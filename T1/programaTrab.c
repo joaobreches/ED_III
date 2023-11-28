@@ -6,17 +6,6 @@
 
 #define ORDEM_ARVORE_B 4
 
-typedef struct {
-    char lixo[3];        
-    char nomeTecnologiaOrigem[15]; // 15 bytes
-    char nomeTecnologiaDestino[40]; // 40 bytes
-    char lixoChave[1];  
-    char removidoLogico;   
-    int chave;
-    int grupo;
-    int popularidade;
-    int peso;
-} RegistroDados;
 
 // Estrutura para representar um registro de cabeçalho no arquivo de índice
 typedef struct {
@@ -27,17 +16,20 @@ typedef struct {
 
 // Estrutura para representar um nó na árvore-B
 typedef struct {
+    int removidoLogico;
+    int RRN;
     int nroChavesNo;
     int alturaNo;
     int RRNdoNo;
     int chave[ORDEM_ARVORE_B - 1];
     int RRNdoNo[ORDEM_ARVORE_B];
-} RegistroDadosArvoreB;
+} RegistroDados;
 
 
+//-------------------------------------funcionalidade 5 (1)--------------------------------------------------------
 
 // Função auxiliar para inserir uma chave em um nó não cheio
-void insereEmNoNaoCheio(RegistroDadosArvoreB *no, int chave, int RRNdoNo, int RRNdoNovoNo, FILE *arquivoIndice) {
+void insereEmNoNaoCheio(RegistroDados *no, int chave, int RRNdoNo, int RRNdoNovoNo, FILE *arquivoIndice) {
     int i = no->nroChavesNo - 1;
 
     // Encontra a posição correta para a nova chave
@@ -53,8 +45,8 @@ void insereEmNoNaoCheio(RegistroDadosArvoreB *no, int chave, int RRNdoNo, int RR
     no->nroChavesNo++;
 
     // Atualiza o nó no arquivo
-    fseek(arquivoIndice, RRNdoNo * sizeof(RegistroDadosArvoreB), SEEK_SET);
-    fwrite(no, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    fseek(arquivoIndice, RRNdoNo * sizeof(RegistroDados), SEEK_SET);
+    fwrite(no, sizeof(RegistroDados), 1, arquivoIndice);
 }
 
 
@@ -62,12 +54,12 @@ void insereEmNoNaoCheio(RegistroDadosArvoreB *no, int chave, int RRNdoNo, int RR
 // Função auxiliar para dividir um nó durante a inserção
 void divideNo(int RRN, int i, int chave, int RRNdoNovoNo, FILE *arquivoIndice) {
     // Lê o nó a ser dividido
-    fseek(arquivoIndice, RRN * sizeof(RegistroDadosArvoreB), SEEK_SET);
-    RegistroDadosArvoreB no;
-    fread(&no, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    fseek(arquivoIndice, RRN * sizeof(RegistroDados), SEEK_SET);
+    RegistroDados no;
+    fread(&no, sizeof(RegistroDados), 1, arquivoIndice);
 
     // Cria um novo nó
-    RegistroDadosArvoreB novoNo;
+    RegistroDados novoNo;
     novoNo.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
     novoNo.alturaNo = 1;
 
@@ -92,12 +84,12 @@ void divideNo(int RRN, int i, int chave, int RRNdoNovoNo, FILE *arquivoIndice) {
     fwrite(&cabecalho, sizeof(RegistroCabecalho), 1, arquivoIndice);
 
     // Atualiza o nó original no arquivo
-    fseek(arquivoIndice, RRN * sizeof(RegistroDadosArvoreB), SEEK_SET);
-    fwrite(&no, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    fseek(arquivoIndice, RRN * sizeof(RegistroDados), SEEK_SET);
+    fwrite(&no, sizeof(RegistroDados), 1, arquivoIndice);
 
     // Escreve o novo nó no arquivo
-    fseek(arquivoIndice, RRNdoNovoNo * sizeof(RegistroDadosArvoreB), SEEK_SET);
-    fwrite(&novoNo, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    fseek(arquivoIndice, RRNdoNovoNo * sizeof(RegistroDados), SEEK_SET);
+    fwrite(&novoNo, sizeof(RegistroDados), 1, arquivoIndice);
 }
 
 
@@ -109,7 +101,7 @@ void insereNaArvoreB(int chave, int RRN, FILE *arquivoIndice) {
 
     if (houveSplit) {
         // Cria um novo nó raiz
-        RegistroDadosArvoreB novaRaiz;
+        RegistroDados novaRaiz;
         novaRaiz.nroChavesNo = 1;
         novaRaiz.alturaNo = 2;
 
@@ -128,8 +120,8 @@ void insereNaArvoreB(int chave, int RRN, FILE *arquivoIndice) {
         fwrite(&cabecalho, sizeof(RegistroCabecalho), 1, arquivoIndice);
 
         // Escreve a nova raiz no arquivo
-        fseek(arquivoIndice, novaRaiz.RRNdoNo[0] * sizeof(RegistroDadosArvoreB), SEEK_SET);
-        fwrite(&novaRaiz, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+        fseek(arquivoIndice, novaRaiz.RRNdoNo[0] * sizeof(RegistroDados), SEEK_SET);
+        fwrite(&novaRaiz, sizeof(RegistroDados), 1, arquivoIndice);
     }
 }
 
@@ -142,9 +134,9 @@ int proximoRRNNo(FILE *arquivoIndice) {
 
 // Função auxiliar para inserir uma chave na árvore-B recursivamente
 int insereNaArvoreBRecursivo(int chave, int RRN, int nivel, int *chavePromovida, int *RRNdoNovoNo, FILE *arquivoIndice) {
-    fseek(arquivoIndice, RRN * sizeof(RegistroDadosArvoreB), SEEK_SET);
-    RegistroDadosArvoreB no;
-    fread(&no, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    fseek(arquivoIndice, RRN * sizeof(RegistroDados), SEEK_SET);
+    RegistroDados no;
+    fread(&no, sizeof(RegistroDados), 1, arquivoIndice);
 
     int i = no.nroChavesNo - 1;
 
@@ -239,9 +231,9 @@ void criarIndiceArvoreB(const char *arquivoDados, const char *arquivoIndice) {
 
 // Função para buscar um registro na árvore-B
 int buscaArvoreB(FILE *arquivoIndice, int RRN, int chave) {
-    RegistroDadosArvoreB no;
-    fseek(arquivoIndice, RRN * sizeof(RegistroDadosArvoreB), SEEK_SET);
-    fread(&no, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    RegistroDados no;
+    fseek(arquivoIndice, RRN * sizeof(RegistroDados), SEEK_SET);
+    fread(&no, sizeof(RegistroDados), 1, arquivoIndice);
 
     int i = 0;
     while (i < no.nroChavesNo && chave > no.chave[i]) {
@@ -262,46 +254,13 @@ int buscaArvoreB(FILE *arquivoIndice, int RRN, int chave) {
 }
 
 // Função para exibir os dados de um registro
-void exibirRegistro(RegistroDados registro) {
+void exibirRegistro(Registro registro) {
     printf("%s, %d, %d, %s, %lf\n",
-           registro.nomeTecnologiaOrigem,
+           registro.TecnologiaOrigem.string,
            registro.grupo,
            registro.popularidade,
-           registro.nomeTecnologiaDestino,
+           registro.TecnologiaDestino.string,
            registro.peso);
-}
-
-// Função para realizar a busca usando a funcionalidade [3]
-void buscaFuncionalidade3(FILE *arquivoDados, char *campo, char *valor) {
-    fseek(arquivoDados, sizeof(RegistroCabecalho), SEEK_SET);
-
-    RegistroDados registro;
-    int encontrado = 0;
-
-    while (fread(&registro, sizeof(RegistroDados), 1, arquivoDados) == 1) {
-        if (registro.removidoLogico == 0) {
-            if (strcmp(campo, "nomeTecnologiaOrigem") == 0 && strcmp(registro.nomeTecnologiaOrigem, valor) == 0) {
-                exibirRegistro(registro);
-                encontrado = 1;
-            } else if (strcmp(campo, "grupo") == 0 && registro.grupo == atoi(valor)) {
-                exibirRegistro(registro);
-                encontrado = 1;
-            } else if (strcmp(campo, "popularidade") == 0 && registro.popularidade == atoi(valor)) {
-                exibirRegistro(registro);
-                encontrado = 1;
-            } else if (strcmp(campo, "nomeTecnologiaDestino") == 0 && strcmp(registro.nomeTecnologiaDestino, valor) == 0) {
-                exibirRegistro(registro);
-                encontrado = 1;
-            } else if (strcmp(campo, "peso") == 0 && registro.peso == atof(valor)) {
-                exibirRegistro(registro);
-                encontrado = 1;
-            }
-        }
-    }
-
-    if (!encontrado) {
-        printf("Registro inexistente.\n");
-    }
 }
 
 // Função principal para realizar a funcionalidade [6]
@@ -335,7 +294,7 @@ void funcionalidade6(char *arquivoDados, char *arquivoIndice, int n, char **camp
             if (RRN != -1) {
                 // Se encontrado na árvore-B, recupera os dados do arquivo de dados
                 fseek(arqDados, RRN * sizeof(RegistroDados), SEEK_SET);
-                RegistroDados registro;
+                Registro registro;
                 fread(&registro, sizeof(RegistroDados), 1, arqDados);
                 exibirRegistro(registro);
             } else {
@@ -351,30 +310,77 @@ void funcionalidade6(char *arquivoDados, char *arquivoIndice, int n, char **camp
     fclose(arqIndice);
 }
 
-int main(int argc, char **argv) {
-    if (argc < 5) {
-        printf("Uso: %s arquivoDados.bin arquivoIndice.bin n campo1 valor1 campo2 valor2 ... campoN valorN\n", argv[0]);
+//-------------------------------------funcionalidade 7 (3)----------------------------------------------------------
+
+// Insere um registro no arquivo de dados
+void inserirNoArquivoDados(FILE *arquivoDados, Registro registro){
+    fseek(arquivoDados, 0, SEEK_END);
+    fwrite(&registro, sizeof(RegistroDados), 1, arquivoDados);
+}
+
+// Exibir os dados de um registro
+void exibirRegistro(Registro registro){
+    printf("%s, %d, %d, %s, %lf\n", registro.TecnologiaOrigem.string, registro.grupo, registro.popularidade, registro.TecnologiaDestino.string, registro.peso);
+}
+
+void funcionalidade7(char *arquivoDados, char *arquivoIndice, int n, char **campos){
+    arquivoDados = diretorioArquivo(arquivoDados, 'b');
+    FILE *arqDados = fopen(arquivoDados, "rb");
+
+    arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
+    FILE *arqIndice = fopen(arquivoIndice, "rb");
+
+    if(arqDados == NULL || arqIndice == NULL){
+        printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
 
-    char *arquivoDados = argv[1];
-    char *arquivoIndice = argv[2];
-    int n = atoi(argv[3]);
+    // Leitura do cabeçalho do índice arvore-B
+    RegistroCabecalho cabecalhoIndice;
+    fread(&cabecalhoIndice, sizeof(RegistroCabecalho), 1, arqIndice);
 
-    char **campos = malloc(n * sizeof(char *));
-    char **valores = malloc(n * sizeof(char *));
+    // Para cada inserção
+    for (int i = 0; i < n; i++){
+        // Lê os valores
+        char *nomeTecnologiaOrigem = campos[i++];
+        int grupo = (strcmp(campos[i++], "NULO") == 0) ? -1 : atoi(campos[i - 1]);
+        int popularidade = (strcmp(campos[i++], "NULO") == 0) ? -1 : atoi(campos[i - 1]);
+        char *nomeTecnologiaDestino = campos[i++];
+        double peso = (strcmp(campos[i], "NULO") == 0) ? -1 : atof(campos[i]);
 
-    int j = 0;
-    for (int i = 4; i < argc; i += 2) {
-        campos[j] = argv[i];
-        valores[j] = argv[i + 1];
-        j++;
+        // Cria o registro
+        Registro novoRegistro;
+        strcpy(novoRegistro.TecnologiaOrigem.string, nomeTecnologiaOrigem);
+        novoRegistro.grupo = grupo;
+        novoRegistro.popularidade = popularidade;
+        strcpy(novoRegistro.TecnologiaDestino.string, nomeTecnologiaDestino);
+        novoRegistro.peso = peso;
+
+        // Insere o registro no arquivo de dados
+        inserirNoArquivoDados(arqDados, novoRegistro);
+
+        // Insere a chave na árvore-B
+        inserirNaArvoreB(arqIndice, novoRegistro.grupo, ftell(arqDados) / sizeof(Registro) - 1);
     }
 
-    funcionalidade6(arquivoDados, arquivoIndice, n, campos, valores);
+    // Atualiza o status no cabeçalho do índice
+    fseek(arqIndice, 0, SEEK_SET);
+    cabecalhoIndice.status = '0';  // Marca como inconsistente
+    fwrite(&cabecalhoIndice, sizeof(RegistroCabecalho), 1, arqIndice);
 
-    free(campos);
-    free(valores);
+    // Exibe os dados dos arquivos
+    printf("Arquivo de dados:\n");
+    binarioNaTela(arquivoDados);
 
-    return 0;
+    printf("Arquivo de índice:\n");
+    binarioNaTela(arquivoIndice);
+
+    fclose(arqDados);
+    fclose(arqIndice);
+
 }
+
+
+
+
+
