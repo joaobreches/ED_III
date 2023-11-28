@@ -1,5 +1,5 @@
-#include "../include/funcoesFornecidas.h"
-#include "../include/registro.h"
+#include "funcoesFornecidas.h"
+#include "registro.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

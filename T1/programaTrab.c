@@ -4,35 +4,35 @@
 #include "funcoesBasicas.c"
 #include "funcoesFornecidas.c"
 
-#define ORDEM_ARVORE_B 4
+// #define ORDEM_ARVORE_B 4
 
-typedef struct {
-    char lixo[3];        
-    char nomeTecnologiaOrigem[15]; // 15 bytes
-    char nomeTecnologiaDestino[40]; // 40 bytes
-    char lixoChave[1];  
-    char removidoLogico;   
-    int chave;
-    int grupo;
-    int popularidade;
-    int peso;
-} RegistroDados;
+// typedef struct {
+//     char lixo[3];        
+//     char nomeTecnologiaOrigem[15]; // 15 bytes
+//     char nomeTecnologiaDestino[40]; // 40 bytes
+//     char lixoChave[1];  
+//     char removidoLogico;   
+//     int chave;
+//     int grupo;
+//     int popularidade;
+//     int peso;
+// } RegistroDados;
 
-// Estrutura para representar um registro de cabeçalho no arquivo de índice
-typedef struct {
-    char status;
-    int noRaiz;
-    int RRNproxNo;
-} RegistroCabecalho;
+// // Estrutura para representar um registro de cabeçalho no arquivo de índice
+// typedef struct {
+//     char status;
+//     int noRaiz;
+//     int RRNproxNo;
+// } RegistroCabecalho;
 
-// Estrutura para representar um nó na árvore-B
-typedef struct {
-    int nroChavesNo;
-    int alturaNo;
-    int RRNdoNo;
-    int chave[ORDEM_ARVORE_B - 1];
-    int RRNdoNo[ORDEM_ARVORE_B];
-} RegistroDadosArvoreB;
+// // Estrutura para representar um nó na árvore-B
+// typedef struct {
+//     int nroChavesNo;
+//     int alturaNo;
+//     int RRNdoNo;
+//     int chave[ORDEM_ARVORE_B - 1];
+//     int RRNdoNo[ORDEM_ARVORE_B];
+// } RegistroDadosArvoreB;
 
 
 

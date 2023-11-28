@@ -1,5 +1,7 @@
-#include "../include/funcionalidades.h"
-#include "../include/registro.h"
+#include "funcionalidades.h"
+#include "funcoesFornecidas.h"
+#include "registro.h"
+#include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -377,4 +379,82 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
 
   // fecha o arquivo
   fclose(arquivo);
+}
+
+// Função para inserir uma chave na árvore-B
+void insereNaArvoreB(int chave, int RRN, FILE *arquivoIndice) {
+    int chavePromovida;
+    int RRNdoNovoNo;
+    int houveSplit = insereNaArvoreBRecursivo(chave, RRN, 0, &chavePromovida, &RRNdoNovoNo, arquivoIndice);
+
+    if (houveSplit) {
+        // Cria um novo nó raiz
+        RegistroDadosArvoreB novaRaiz;
+        novaRaiz.nroChavesNo = 1;
+        novaRaiz.alturaNo = 2;
+
+        // Armazena o RRN do próximo nó no campo RRNdoNo[1] da nova raiz
+        novaRaiz.RRNdoNo[0] = RRN;
+        novaRaiz.RRNdoNo[1] = RRNdoNovoNo;
+        novaRaiz.chave[0] = chavePromovida;
+
+        // Atualiza o cabeçalho
+        fseek(arquivoIndice, 0, SEEK_SET);
+        RegistroCabecalho cabecalho;
+        fread(&cabecalho, sizeof(RegistroCabecalho), 1, arquivoIndice);
+        cabecalho.noRaiz = proximoRRNNo(arquivoIndice);
+        cabecalho.RRNproxNo++;
+        fseek(arquivoIndice, 0, SEEK_SET);
+        fwrite(&cabecalho, sizeof(RegistroCabecalho), 1, arquivoIndice);
+
+        // Escreve a nova raiz no arquivo
+        fseek(arquivoIndice, novaRaiz.RRNdoNo[0] * sizeof(RegistroDadosArvoreB), SEEK_SET);
+        fwrite(&novaRaiz, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    }
+}
+
+void selectWhere(char *arquivoDados, char *arquivoIndice, int n, char **campos, char **valores) {
+    FILE *arqDados = fopen(arquivoDados, "rb");
+    FILE *arqIndice = fopen(arquivoIndice, "rb");
+
+    if (arqDados == NULL || arqIndice == NULL) {
+        printf("Falha no processamento do arquivo.\n");
+        exit(1);
+    }
+
+    // Leitura do cabeçalho do índice árvore-B
+    RegistroCabecalho cabecalhoIndice;
+    fread(&cabecalhoIndice, sizeof(RegistroCabecalho), 1, arqIndice);
+
+    // Verifica a consistência do índice
+    if (cabecalhoIndice.status != '1') {
+        printf("Falha no processamento do arquivo.\n");
+        exit(1);
+    }
+
+    // Para cada busca
+    for (int i = 0; i < n; i++) {
+        int chave;
+        if (strcmp(campos[i], "nomeTecnologiaOrigemDestino") == 0) {
+            // Se o campo for a chave de busca, usa o índice árvore-B
+            chave = atoi(valores[i]);
+            int RRN = buscaArvoreB(arqIndice, cabecalhoIndice.noRaiz, chave);
+
+            if (RRN != -1) {
+                // Se encontrado na árvore-B, recupera os dados do arquivo de dados
+                fseek(arqDados, RRN * sizeof(RegistroDados), SEEK_SET);
+                RegistroDados registro;
+                fread(&registro, sizeof(RegistroDados), 1, arqDados);
+                imprimeRegistroDados(registro);
+            } else {
+                printf("Registro inexistente.\n");
+            }
+        } else {
+            // Se o campo não for a chave de busca, usa a funcionalidade [3]
+            // buscaFuncionalidade3(arqDados, campos[i], valores[i]);
+        }
+    }
+
+    fclose(arqDados);
+    fclose(arqIndice);
 }
