@@ -381,39 +381,33 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
   fclose(arquivo);
 }
 
-// Função para inserir uma chave na árvore-B
-void insereNaArvoreB(int chave, int RRN, FILE *arquivoIndice) {
-    int chavePromovida;
-    int RRNdoNovoNo;
-    int houveSplit = insereNaArvoreBRecursivo(chave, RRN, 0, &chavePromovida, &RRNdoNovoNo, arquivoIndice);
+// Função principal para criar o índice da árvore-B a partir do arquivo de dados
+void criarIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
+    arquivoDados = diretorioArquivo(arquivoDados, 'b');
+    FILE *dados = fopen(arquivoDados, "rb");
+    arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
+    FILE *indice = fopen(arquivoIndice, "wb");
 
-    if (houveSplit) {
-        // Cria um novo nó raiz
-        RegistroDadosArvoreB novaRaiz;
-        novaRaiz.nroChavesNo = 1;
-        novaRaiz.alturaNo = 2;
-
-        // Armazena o RRN do próximo nó no campo RRNdoNo[1] da nova raiz
-        novaRaiz.RRNdoNo[0] = RRN;
-        novaRaiz.RRNdoNo[1] = RRNdoNovoNo;
-        novaRaiz.chave[0] = chavePromovida;
-
-        // Atualiza o cabeçalho
-        fseek(arquivoIndice, 0, SEEK_SET);
-        RegistroCabecalho cabecalho;
-        fread(&cabecalho, sizeof(RegistroCabecalho), 1, arquivoIndice);
-        cabecalho.noRaiz = proximoRRNNo(arquivoIndice);
-        cabecalho.RRNproxNo++;
-        fseek(arquivoIndice, 0, SEEK_SET);
-        fwrite(&cabecalho, sizeof(RegistroCabecalho), 1, arquivoIndice);
-
-        // Escreve a nova raiz no arquivo
-        fseek(arquivoIndice, novaRaiz.RRNdoNo[0] * sizeof(RegistroDadosArvoreB), SEEK_SET);
-        fwrite(&novaRaiz, sizeof(RegistroDadosArvoreB), 1, arquivoIndice);
+    if (dados == NULL || indice == NULL) {
+        printf("Falha no processamento do arquivo.\n");
+        exit(1);
     }
+
+    RegistroDados registro;
+
+    while (fread(&registro, sizeof(RegistroDados), 1, dados) == 1) {
+        // Verifica se o registro não foi removido logicamente
+        if (registro.removidoLogico == 0) {
+            // Insere a chave na árvore-B
+            insereNaArvoreB(registro.chave, ftell(dados) / sizeof(RegistroDados) - 1, indice);
+        }
+    }
+
+    fclose(dados);
+    fclose(indice);
 }
 
-void selectWhere(char *arquivoDados, char *arquivoIndice, int n, char **campos, char **valores) {
+void selectArvoreB(char *arquivoDados, char *arquivoIndice, int n, char **campos, char **valores) {
     FILE *arqDados = fopen(arquivoDados, "rb");
     FILE *arqIndice = fopen(arquivoIndice, "rb");
 
@@ -443,9 +437,9 @@ void selectWhere(char *arquivoDados, char *arquivoIndice, int n, char **campos, 
             if (RRN != -1) {
                 // Se encontrado na árvore-B, recupera os dados do arquivo de dados
                 fseek(arqDados, RRN * sizeof(RegistroDados), SEEK_SET);
-                RegistroDados registro;
+                Registro registro;
                 fread(&registro, sizeof(RegistroDados), 1, arqDados);
-                imprimeRegistroDados(registro);
+                imprimeRegistro(registro);
             } else {
                 printf("Registro inexistente.\n");
             }

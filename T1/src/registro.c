@@ -322,3 +322,24 @@ char* diretorioArquivo(char* nomeArquivo, char tipoArquivo) {
 
     return resultado;
 }
+
+void imprimeBinario(char* binario){
+  binario = diretorioArquivo(binario, 'b');
+  FILE* arquivoBinario = fopen(binario, "rb");
+
+    if (arquivoBinario == NULL) {
+        printf("Falha no processamento do arquivo.\n");
+        exit(1);
+    }
+
+    char c;
+
+    while ((c = fgetc(arquivoBinario)) != EOF) {
+        printf("%c", c);
+    }
+
+    fclose(arquivoBinario); // Fechar o arquivo após o uso
+    free(binario); // Liberar a memória alocada dinamicamente
+
+    printf("\n");
+}

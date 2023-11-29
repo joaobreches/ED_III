@@ -1,5 +1,6 @@
-#include "../include/funcoesFornecidas.h"
-#include "../include/funcionalidades.h"
+#include "funcoesFornecidas.h"
+#include "funcionalidades.h"
+#include "registro.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -50,6 +51,18 @@ int main() {
       break;
     case 4:   
       recuperaRegistro(leitura1, atoi(leitura2));
+      break;
+    case 5:
+      criarIndiceArvoreB(leitura1, leitura2);
+      leitura2 = (char*) leitura2;
+      binarioNaTela(leitura2);
+      break;
+    case 0:
+      leitura1 = (char*) leitura1;
+      binarioNaTela(leitura1);
+      break;
+    case 10:
+      imprimeBinario(leitura1);
       break;
   }
 
