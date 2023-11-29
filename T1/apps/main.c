@@ -37,6 +37,8 @@ int main() {
   leitura2 = realloc(leitura2, sizeof(leitura2));
   free(linha);
 
+  CabecalhoArvoreB cabecalho;
+
   // chama cada funcionalidade de acordo com a entrada no terminal
   switch (funcionalidade){
     case 1:
@@ -48,7 +50,7 @@ int main() {
       imprimeArquivo(leitura1);
       break;
     case 3:
-      recuperaDados(leitura1, atoi(leitura2));
+      busca(3, leitura1, "", atoi(leitura2));
       break;
     case 4:   
       recuperaRegistro(leitura1, atoi(leitura2));
@@ -66,12 +68,11 @@ int main() {
       imprimeBinario(leitura1);
       break;
     case 11:
-      CabecalhoArvoreB cabecalho;
       cabecalho.status = 'a';
       cabecalho.noRaiz = 4;
       cabecalho.RRNproxNo = 7;
 
-      nomeArquivoBinario = diretorioArquivo("cabecalhoArvore.bin", 'b');
+      char* nomeArquivoBinario = diretorioArquivo("cabecalhoArvore.bin", 'b');
       FILE *arquivoBinario = fopen(nomeArquivoBinario, "wb");
       if (arquivoBinario == NULL) {
         printf("Falha no processamento do arquivo.\n");
@@ -90,7 +91,6 @@ int main() {
       printCabecalhoArvoreB(arquivoBinario);
       fclose(arquivoBinario);
       break;
-  }
   }
 
   // libera a memoria alocada

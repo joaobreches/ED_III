@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define TAM_REGISTRO 76
 #define TAM_REGISTRO_FIXO 21
@@ -35,7 +36,7 @@ typedef struct _Registro {
 
 void escreveCabecalho(FILE *arquivo, Cabecalho cabecalho);
 void printCabecalho(FILE *arquivo);
-int skipCabecalho(FILE *arquivoBinario);
+bool skipCabecalho(FILE *arquivoBinario);
 void imprimeRegistro(Registro registro);
 int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, StringVariavel novaTecDestino);
 void contaTecnologias(FILE* arquivoBinario, Registro registroAtual, Cabecalho* cabecalho);

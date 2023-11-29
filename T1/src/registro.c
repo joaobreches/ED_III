@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 void escreveCabecalho(FILE *arquivo, Cabecalho cabecalho) {
   /*
@@ -38,7 +39,7 @@ void printCabecalho(FILE *arquivo) {
   printf("%c %d %d %d\n", cabecalho.status, cabecalho.proxRRN, cabecalho.nroTecnologias, cabecalho.nroParesTecnologias);
 }
 
-int skipCabecalho(FILE *arquivoBinario){
+bool skipCabecalho(FILE *arquivoBinario){
   /*
   Essa funcao verifica se o arquivobinario esta consistente, se existem registros nele e pula para o byteoffset do primeiro registro
 

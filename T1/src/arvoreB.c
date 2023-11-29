@@ -1,4 +1,5 @@
 #include "arvoreB.h"
+#include "registro.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +7,7 @@
 
 void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho) {
   /*
-  Escreve o cabecalho de  arquivo binario referente aos dados presentes no arquivo
+  Escreve o cabecalho de arquivo binario referente aos dados presentes no arquivo
   
   Essa funcao eh chamada na funcao "criaTabela" do cabecalho funcoesBasicas.h 
   */
@@ -18,11 +19,12 @@ void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho) {
   fwrite(&cabecalho.noRaiz, sizeof(int), 1, arquivo);
   fwrite(&cabecalho.RRNproxNo, sizeof(int), 1, arquivo);
 
-  for(int i = 0; i < TAM_PAGINA_DISCO - sizeof(CabecalhoArvoreB); i++)
+  for(int i = 0; i < TAM_PAGINA_DISCO - sizeof(CabecalhoArvoreB); i++){
     fwrite("$", sizeof(char), 1, arquivo);
+  }
 }
 
-void printCabecalhoArvoreB(FILE *arquivo) {
+CabecalhoArvoreB leCabecalhoArvoreB(FILE *arquivo) {
   /*
   Imprime o cabecalho de um arquivo binario
   
@@ -36,15 +38,11 @@ void printCabecalhoArvoreB(FILE *arquivo) {
   fread(&cabecalho.status, sizeof(char), 1, arquivo);
   fread(&cabecalho.noRaiz, sizeof(int), 1, arquivo);
   fread(&cabecalho.RRNproxNo, sizeof(int), 1, arquivo);
+}
+
+void printCabecalhoArvoreB(FILE *arquivo){
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivo);
   printf("%c %d %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
-  char c;
-  int cont = 0;
-  while(!EOF){
-    fread(&c, sizeof(char), 1, arquivo);
-    printf("%c", c);
-    cont++;
-  }
-  printf("%d", cont);
 }
 
 // void imprimePagina(Pagina registro) {
@@ -147,37 +145,88 @@ void printCabecalhoArvoreB(FILE *arquivo) {
 //     return cabecalho.RRNproxNo;
 // }
 
-// // Função auxiliar para inserir uma chave na árvore-B
-// void insereNaArvoreB(int chave, int RRN, FILE *arquivoIndice) {
-//     int chavePromovida;
-//     int RRNdoNovoNo;
-//     int houveSplit = insereNaArvoreBRecursivo(chave, RRN, 0, &chavePromovida, &RRNdoNovoNo, arquivoIndice);
+void escrevePagina(Pagina pagina, FILE *arqIndice){
+  fwrite(&pagina.nroChavesNo, sizeof(int), 1, arqIndice);
+  fwrite(&pagina.alturaNo, sizeof(int), 1, arqIndice);
+  fwrite(&pagina.RRNdoNo, sizeof(int), 1, arqIndice);
 
-//     if (houveSplit) {
-//         // Cria um novo nó raiz
-//         Pagina novaRaiz;
-//         novaRaiz.nroChavesNo = 1;
-//         novaRaiz.alturaNo = 2;
+  int tamStrings = 0;
+  for(int i = 0; i < pagina.nroChavesNo; i++){
+    fwrite(&pagina.chave[i-1].ponteiroanterior, sizeof(int), 1, arqIndice);
+    fwrite(&pagina.chave[i-1].nome, sizeof(char), sizeof(pagina.chave[i-1].nome), arqIndice);
+    fwrite(&pagina.chave[i-1].ref, sizeof(int), 1, arqIndice);
+    tamStrings += sizeof(pagina.chave[i-1].nome); 
+  }
 
-//         // Armazena o RRN do próximo nó no campo RRNdoNo[1] da nova raiz
-//         // novaRaiz.RRNdoNo[0] = RRN;
-//         // novaRaiz.RRNdoNo[1] = RRNdoNovoNo;
-//         // novaRaiz.chave[0] = chavePromovida;
+  fwrite(&pagina.ponteirofinal, sizeof(int), 1, arqIndice);
+}
 
-//         // Atualiza o cabeçalho
-//         fseek(arquivoIndice, 0, SEEK_SET);
-//         CabecalhoArvoreB cabecalho;
-//         fread(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
-//         cabecalho.noRaiz = proximoRRNNo(arquivoIndice);
-//         cabecalho.RRNproxNo++;
-//         fseek(arquivoIndice, 0, SEEK_SET);
-//         fwrite(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
+void criaPaginaNova(FILE *arquivoIndice, CabecalhoArvoreB *cabecalho, int alturaNo, int ponteirofinal, Chave chave){
+  Pagina pagina;
+  pagina.nroChavesNo = 1;
+  pagina.alturaNo = alturaNo;
+  pagina.RRNdoNo = cabecalho->RRNproxNo;
+  pagina.ponteirofinal = ponteirofinal;
+  pagina.chave[0] = chave;
 
-//         // Escreve a nova raiz no arquivo
-//         // fseek(arquivoIndice, novaRaiz.RRNdoNo[0] * sizeof(Pagina), SEEK_SET);
-//         fwrite(&novaRaiz, sizeof(Pagina), 1, arquivoIndice);
-//     }
-// }
+  escrevePagina(pagina, arquivoIndice);
+
+  cabecalho->RRNproxNo++;
+}
+
+// Função auxiliar para inserir uma chave na árvore-B
+void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {
+  // printf("its me hi\n");
+  FILE* arquivoIndice = fopen(diretorioArquivo(nomeArquivoIndice, 'b'), "wb");
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
+  if(cabecalho.status == '0'){
+    printf("Arquivo inconsistente.\n");
+    exit(-1);
+  }
+
+  cabecalho.status = '1';
+  escreveCabecalhoArvoreB(arquivoIndice, cabecalho);
+
+  printf("O OCABECALHO RRN: %d\n", cabecalho.RRNproxNo);
+
+  if (cabecalho.RRNproxNo == 0){
+    printf("at tea time\n");
+    chave.ponteiroanterior = -1;
+    criaPaginaNova(arquivoIndice, &cabecalho, 0, -1, chave);
+    printf("proxrrn cabecalho: %d\n", cabecalho.RRNproxNo);
+    return;
+  }
+
+  int chavePromovida;
+  int RRNdoNovoNo;
+  int houveSplit = 0;
+  // int houveSplit = insereNaArvoreBRecursivo(chave.ref, chave.ref, 0, &chavePromovida, &RRNdoNovoNo, arquivoIndice);
+
+  if (houveSplit) {
+      // Cria um novo nó raiz
+      Pagina novaRaiz;
+      novaRaiz.nroChavesNo = 1;
+      novaRaiz.alturaNo = 2;
+
+      // Armazena o RRN do próximo nó no campo RRNdoNo[1] da nova raiz
+      // novaRaiz.RRNdoNo[0] = RRN;
+      // novaRaiz.RRNdoNo[1] = RRNdoNovoNo;
+      // novaRaiz.chave[0] = chavePromovida;
+
+      // Atualiza o cabeçalho
+      fseek(arquivoIndice, 0, SEEK_SET);
+      CabecalhoArvoreB cabecalho;
+      fread(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
+      // cabecalho.noRaiz = proximoRRNNo(arquivoIndice);
+      cabecalho.RRNproxNo++;
+      fseek(arquivoIndice, 0, SEEK_SET);
+      fwrite(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
+
+      // Escreve a nova raiz no arquivo
+      // fseek(arquivoIndice, novaRaiz.RRNdoNo[0] * sizeof(Pagina), SEEK_SET);
+      fwrite(&novaRaiz, sizeof(Pagina), 1, arquivoIndice);
+  }
+}
 
 // // Função auxiliar para inserir uma chave na árvore-B recursivamente
 // int insereNaArvoreBRecursivo(int chave, int RRN, int nivel, int *chavePromovida, int *RRNdoNovoNo, FILE *arquivoIndice) {
@@ -225,8 +274,8 @@ void printCabecalhoArvoreB(FILE *arquivo) {
 // }
 
 // Função para buscar um registro na árvore-B
-// int buscaArvoreB(FILE *arquivoIndice, int RRN, int chave) {
-//     Pagina no;
+int buscaArvoreB(FILE *arquivoIndice, int RRN, int chave) {
+    Pagina no;
 //     fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
 //     fread(&no, sizeof(Pagina), 1, arquivoIndice);
 
@@ -245,5 +294,5 @@ void printCabecalhoArvoreB(FILE *arquivo) {
     // }
 
     // Desce para o próximo nível da árvore-B
-    // return buscaArvoreB(arquivoIndice, no.RRNdoNo[i], chave);
-// }
+    return buscaArvoreB(arquivoIndice, no.RRNdoNo, chave);
+}

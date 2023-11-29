@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   /*
@@ -220,44 +221,12 @@ void imprimeArquivo(char* nomeArquivoBinario) {
   fclose(arquivoBinario);
 }
 
-void recuperaDados(char *arquivoEntrada, int n) {
-  /*
-  Essa funcao le um arquivo binario e imprime os registros que se adequam a condicao fornecida seus registros.
-
-  Essa funcao representa a funcionalidade 3 do exercicio introdutorio.
-  */
-
-  // abre arquivo binario 
-  arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
-
-  FILE *arquivo = fopen(arquivoEntrada, "rb");
-  if (arquivo == NULL) {
-    printf("Falha no processamento do arquivo. \n");
-    return;
-  }
-
+bool buscaRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char valorCampo[TAM_REGISTRO_FIXO]){
   // cria registro auxiliar
   Registro registro;
 
-  // loop para cada uma das n condicoes fornecidas como entrada
-  for (int i = 0; i < n; i++) {
-    char nomeCampo[TAM_REGISTRO_VARIAVEL];
-    char valorCampo[TAM_REGISTRO_FIXO];
-
-    // le o nome do campo e o valor a ser buscado
-    scanf("%s %s", nomeCampo, valorCampo);
-
-    // limpa o valorCampo se for uma string (remove as aspas)
-    if(strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 || strcmp(nomeCampo, "nomeTecnologiaDestino") == 0){
-      int i;
-      for(i = 0; valorCampo[i] != '\0'; i++){
-        valorCampo[i] = valorCampo[i + 1];
-      }
-      valorCampo[i - 2] = '\0';
-    }
-
-    // indica se o registro atende a condicao fornecida ou nao
-    int encontrado = 0;
+  // indica se o registro atende a condicao fornecida ou nao
+    bool encontrado = 0;
     
     // reseta o arquivo para o inicio
     rewind(arquivo);
@@ -265,7 +234,7 @@ void recuperaDados(char *arquivoEntrada, int n) {
     // pula os bytes do cabecalho do arquivo
     int sucessoArquivo = skipCabecalho(arquivo);
     if (sucessoArquivo == 1){
-      return;
+      return encontrado;
     }
 
     // le os registros do arquivo e imprime-os
@@ -277,10 +246,10 @@ void recuperaDados(char *arquivoEntrada, int n) {
       }
 
       // le o registro
-      trabalhaRegistros(arquivo, &registro); 
+      leRegistro(arquivo, &registro); 
 
       // indica se o registro atende a condicao fornecida ou nao
-      int registrocondiz = 0;
+      bool registrocondiz = 0;
       
       // compara se o campo eh igual a condicao fornecida
       if (registro.removido == '0') {
@@ -303,18 +272,67 @@ void recuperaDados(char *arquivoEntrada, int n) {
       }
 
       // imprime o registro se encontrado
-      if (registrocondiz == 1) {
+      if (registrocondiz) {
         imprimeRegistro(registro);
-        // break;
       }
 
       // libera a memoria alocada
       free(registro.TecnologiaOrigem.string);
       free(registro.TecnologiaDestino.string);
     }
+  return encontrado;
+}
+
+void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
+  /*
+  Essa funcao le um arquivo binario e imprime os registros que se adequam a condicao fornecida seus registros.
+
+  Essa funcao representa a funcionalidade 3 do exercicio introdutorio.
+  */
+
+  // abre arquivo binario 
+  arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
+  FILE *arquivo = fopen(arquivoEntrada, "rb");
+  if(caso > 4){
+    FILE *arqIndice = fopen(diretorioArquivo(arquivoIndice, 'b'), "rb");
+    if (arqIndice == NULL) {
+    printf("Falha no processamento do arquivo. \n");
+    return;
+  }
+  }
+
+  if (arquivo == NULL) {
+    printf("Falha no processamento do arquivo. \n");
+    return;
+  }
+
+  // loop para cada uma das n condicoes fornecidas como entrada
+  for (int i = 0; i < n; i++) {
+    char nomeCampo[TAM_REGISTRO_VARIAVEL];
+    char valorCampo[TAM_REGISTRO_FIXO];
+
+    // le o nome do campo e o valor a ser buscado
+    scanf("%s %s", nomeCampo, valorCampo);
+
+    // limpa o valorCampo se for uma string (remove as aspas)
+    if(strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 || strcmp(nomeCampo, "nomeTecnologiaDestino") == 0){
+      int i;
+      for(i = 0; valorCampo[i] != '\0'; i++){
+        valorCampo[i] = valorCampo[i + 1];
+      }
+      valorCampo[i - 2] = '\0';
+    }
+
+    bool encontrado = 0;
+
+    if(nomeCampo == "nomeTecnologiaOrigemDestino")
+      continue;
+      // encontrado = buscaArvore(arquivo, arqIndice, valorCampo);
+    else
+      encontrado = buscaRegistro(arquivo, nomeCampo, valorCampo);
 
     // imprime se nao encontrado nenhum registro em todo o arquivo
-    if (encontrado == 0) {
+    if (!encontrado) {
       printf("Registro inexistente.\n");
     }
   }
@@ -374,7 +392,7 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
   }
 
   // le o registro desejado e imprime-o
-  trabalhaRegistros(arquivo, &registro);
+  leRegistro(arquivo, &registro);
   imprimeRegistro(registro);
 
   // fecha o arquivo
@@ -383,74 +401,189 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
 
 // Função principal para criar o índice da árvore-B a partir do arquivo de dados
 void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
-    arquivoDados = diretorioArquivo(arquivoDados, 'b');
-    FILE *arqDados = fopen(arquivoDados, "rb");
-    arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
-    FILE *arqIndice = fopen(arquivoIndice, "wb");
+  FILE *arqDados = fopen(diretorioArquivo(arquivoDados, 'b'), "rb");
+  FILE *arqIndice = fopen(diretorioArquivo(arquivoIndice, 'b'), "wb");
 
-    if (arqDados == NULL || arqIndice == NULL) {
-        printf("Falha no processamento do arquivo.\n");
-        exit(1);
-    }
+  if (arqDados == NULL || arqIndice == NULL) {
+      printf("Falha no processamento do arquivo.\n");
+      exit(1);
+  }
 
-    Pagina registro;
+  CabecalhoArvoreB cabecalho;
+  cabecalho.status = '1';
+  cabecalho.noRaiz = -1;
+  cabecalho.RRNproxNo = 0;
+  escreveCabecalhoArvoreB(arqIndice, cabecalho);
+  
+  cabecalho = leCabecalhoArvoreB(arqIndice);
+  printf("%d\n", cabecalho.noRaiz);
+  printCabecalhoArvoreB(arqIndice);
 
-    while (fread(&registro, sizeof(Pagina), 1, arqDados) == 1) {
-        // Verifica se o registro não foi removido logicamente
-        // if (registro.removidoLogico == 0) {
-        //     // Insere a chave na árvore-B
-        //     insereNaArvoreB(registro.chave, ftell(arqDados) / sizeof(Pagina) - 1, arqIndice);
-        // }
-    }
+  fclose(arqIndice);
 
+
+  Registro registroAtual;
+  Chave chave;
+  int RRN = -1;
+
+  if(skipCabecalho(arqDados)){
     fclose(arqDados);
-    fclose(arqIndice);
+    return;
+  }
+
+  // le os registros do arquivo de dados
+  while (1) {
+
+    // verifica se o proximo registro existe
+    if (fread(&registroAtual.removido, sizeof(char), 1, arqDados) == 0) {
+      break;
+    }
+
+    // le o proximo registro
+    leRegistro(arqDados, &registroAtual); 
+    RRN++;
+
+    // Verifica se o registro não foi removido logicamente
+    if (registroAtual.removido == '0') {
+        // Insere a chave na árvore-B
+        chave.nome = registroAtual.TecnologiaOrigem.string;
+        strcat(chave.nome, registroAtual.TecnologiaDestino.string);
+        chave.ref = RRN;
+        // printf("im the problem its me\n");
+        insereNaArvoreB(chave, arquivoIndice);
+    }
+  }
+
+  fclose(arqDados);
+  fclose(arqIndice);
 }
 
-void selectArvoreB(char *arquivoDados, char *arquivoIndice, int n, char **campos, char **valores) {
-    arquivoDados = diretorioArquivo(arquivoDados, 'b');
-    FILE *arqDados = fopen(arquivoDados, "rb");
-    arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
-    FILE *arqIndice = fopen(arquivoIndice, "rb");
+// void filtro(char *arquivoDados, char *arquivoIndice, int n) {
+//   arquivoDados = diretorioArquivo(arquivoDados, 'b');
+//   FILE *arqDados = fopen(arquivoDados, "rb");
+//   arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
+//   FILE *arqIndice = fopen(arquivoIndice, "rb");
 
-    if (arqDados == NULL || arqIndice == NULL) {
-        printf("Falha no processamento do arquivo.\n");
-        exit(1);
-    }
+//   if (arqDados == NULL || arqIndice == NULL) {
+//       printf("Falha no processamento do arquivo.\n");
+//       exit(1);
+//   }
 
-    // Leitura do cabeçalho do índice árvore-B
-    CabecalhoArvoreB cabecalhoIndice;
-    fread(&cabecalhoIndice, sizeof(CabecalhoArvoreB), 1, arqIndice);
+//   // Leitura do cabeçalho do índice árvore-B
+//   CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(arqIndice)
 
-    // Verifica a consistência do índice
-    if (cabecalhoIndice.status != '1') {
-        printf("Falha no processamento do arquivo.\n");
-        exit(1);
-    }
+//   // Verifica a consistência do índice
+//   if (cabecalhoArvoreB.status != '1') {
+//       printf("Falha no processamento do arquivo.\n");
+//       exit(1);
+//   }
 
-    // Para cada busca
-    for (int i = 0; i < n; i++) {
-        int chave;
-        if (strcmp(campos[i], "nomeTecnologiaOrigemDestino") == 0) {
-            // Se o campo for a chave de busca, usa o índice árvore-B
-            chave = atoi(valores[i]);
-            int RRN = buscaArvoreB(arqIndice, cabecalhoIndice.noRaiz, chave);
+//   // cria registro auxiliar
+//   Registro registro;
 
-            if (RRN != -1) {
-                // Se encontrado na árvore-B, recupera os dados do arquivo de dados
-                fseek(arqDados, RRN * sizeof(Pagina), SEEK_SET);
-                Registro registro;
-                fread(&registro, sizeof(Pagina), 1, arqDados);
-                imprimeRegistro(registro);
-            } else {
-                printf("Registro inexistente.\n");
-            }
-        } else {
-            // Se o campo não for a chave de busca, usa a funcionalidade [3]
-            // buscaFuncionalidade3(arqDados, campos[i], valores[i]);
-        }
-    }
+//   // loop para cada uma das n condicoes fornecidas como entrada
+//   for (int i = 0; i < n; i++) {
+//     char nomeCampo[TAM_REGISTRO_VARIAVEL];
+//     char valorCampo[TAM_REGISTRO_FIXO];
 
-    fclose(arqDados);
-    fclose(arqIndice);
-}
+//     // le o nome do campo e o valor a ser buscado
+//     scanf("%s %s", nomeCampo, valorCampo);
+
+//     // limpa o valorCampo se for uma string (remove as aspas)
+//     if(strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 || strcmp(nomeCampo, "nomeTecnologiaDestino") == 0){
+//       int i;
+//       for(i = 0; valorCampo[i] != '\0'; i++){
+//         valorCampo[i] = valorCampo[i + 1];
+//       }
+//       valorCampo[i - 2] = '\0';
+//     }
+
+//     // indica se o registro atende a condicao fornecida ou nao
+//     int encontrado = 0;
+    
+//     // reseta o arquivo para o inicio
+//     rewind(arquivo);
+
+//     // pula os bytes do cabecalho do arquivo
+//     int sucessoArquivo = skipCabecalho(arquivo);
+//     if (sucessoArquivo == 1){
+//       return;
+//     }
+
+//     // le os registros do arquivo e imprime-os
+//     while (1) {
+
+//       // verifica se o proximo registro existe
+//       if (fread(&registro.removido, sizeof(char), 1, arquivo) == 0) {
+//         break;
+//       }
+
+//       // le o registro
+//       leRegistro(arquivo, &registro); 
+
+//       // indica se o registro atende a condicao fornecida ou nao
+//       int registrocondiz = 0;
+      
+//       // compara se o campo eh igual a condicao fornecida
+//       if (registro.removido == '0') {
+//           if (strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 && strcmp(registro.TecnologiaOrigem.string, valorCampo) == 0) {
+//             encontrado = 1;
+//             registrocondiz = 1;
+//             } else if (strcmp(nomeCampo, "grupo") == 0 && registro.grupo == atoi(valorCampo)) {
+//             encontrado = 1;
+//             registrocondiz = 1;
+//           } else if (strcmp(nomeCampo, "popularidade") == 0 && registro.popularidade == atoi(valorCampo)) {
+//             encontrado = 1;
+//             registrocondiz = 1;
+//           } else if (strcmp(nomeCampo, "nomeTecnologiaDestino") == 0 && strcmp(registro.TecnologiaDestino.string, valorCampo) == 0) {
+//             encontrado = 1;
+//             registrocondiz = 1;
+//           } else if (strcmp(nomeCampo, "peso") == 0 && registro.peso == atoi(valorCampo)) {
+//             encontrado = 1;
+//             registrocondiz = 1;
+//           }
+//       }
+
+//       // imprime o registro se encontrado
+//       if (registrocondiz == 1) {
+//         imprimeRegistro(registro);
+//         // break;
+//       }
+
+//       // libera a memoria alocada
+//       free(registro.TecnologiaOrigem.string);
+//       free(registro.TecnologiaDestino.string);
+//     }
+
+//     // imprime se nao encontrado nenhum registro em todo o arquivo
+//     if (encontrado == 0) {
+//       printf("Registro inexistente.\n");
+//     }
+//   }
+
+//     // Para cada busca
+//     for (int i = 0; i < n; i++) {
+//         int chave;
+//         if (strcmp(campos[i], "nomeTecnologiaOrigemDestino") == 0) {
+//             // Se o campo for a chave de busca, usa o índice árvore-B
+//             chave = atoi(valores[i]);
+//             int RRN = buscaArvoreB(arqIndice, cabecalhoIndice.noRaiz, chave);
+
+//             if (RRN != -1) {
+//                 // Se encontrado na árvore-B, recupera os dados do arquivo de dados
+//                 fseek(arqDados, RRN * sizeof(Pagina), SEEK_SET);
+//                 Registro registro;
+//                 fread(&registro, sizeof(Pagina), 1, arqDados);
+//                 imprimeRegistro(registro);
+//             } else {
+//                 printf("Registro inexistente.\n");
+//             }
+//         } else {
+//             // Se o campo não for a chave de busca, usa a funcionalidade [3]
+//             // buscaFuncionalidade3(arqDados, campos[i], valores[i]);
+//         }
+//     }
+
+//     fclose(arqDados);
+//     fclose(arqIndice);
+// }
