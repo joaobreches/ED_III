@@ -206,7 +206,7 @@ void imprimeArquivo(char* nomeArquivoBinario) {
     }
 
     // le o proximo registro
-    trabalhaRegistros(arquivoBinario, &registro); 
+    leRegistro(arquivoBinario, &registro); 
 
     // imprime o registro
     imprimeRegistro(registro);
@@ -382,33 +382,35 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
 }
 
 // Função principal para criar o índice da árvore-B a partir do arquivo de dados
-void criarIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
+void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
     arquivoDados = diretorioArquivo(arquivoDados, 'b');
-    FILE *dados = fopen(arquivoDados, "rb");
+    FILE *arqDados = fopen(arquivoDados, "rb");
     arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
-    FILE *indice = fopen(arquivoIndice, "wb");
+    FILE *arqIndice = fopen(arquivoIndice, "wb");
 
-    if (dados == NULL || indice == NULL) {
+    if (arqDados == NULL || arqIndice == NULL) {
         printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
 
-    RegistroDados registro;
+    Pagina registro;
 
-    while (fread(&registro, sizeof(RegistroDados), 1, dados) == 1) {
+    while (fread(&registro, sizeof(Pagina), 1, arqDados) == 1) {
         // Verifica se o registro não foi removido logicamente
-        if (registro.removidoLogico == 0) {
-            // Insere a chave na árvore-B
-            insereNaArvoreB(registro.chave, ftell(dados) / sizeof(RegistroDados) - 1, indice);
-        }
+        // if (registro.removidoLogico == 0) {
+        //     // Insere a chave na árvore-B
+        //     insereNaArvoreB(registro.chave, ftell(arqDados) / sizeof(Pagina) - 1, arqIndice);
+        // }
     }
 
-    fclose(dados);
-    fclose(indice);
+    fclose(arqDados);
+    fclose(arqIndice);
 }
 
 void selectArvoreB(char *arquivoDados, char *arquivoIndice, int n, char **campos, char **valores) {
+    arquivoDados = diretorioArquivo(arquivoDados, 'b');
     FILE *arqDados = fopen(arquivoDados, "rb");
+    arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
     FILE *arqIndice = fopen(arquivoIndice, "rb");
 
     if (arqDados == NULL || arqIndice == NULL) {
@@ -417,8 +419,8 @@ void selectArvoreB(char *arquivoDados, char *arquivoIndice, int n, char **campos
     }
 
     // Leitura do cabeçalho do índice árvore-B
-    RegistroCabecalho cabecalhoIndice;
-    fread(&cabecalhoIndice, sizeof(RegistroCabecalho), 1, arqIndice);
+    CabecalhoArvoreB cabecalhoIndice;
+    fread(&cabecalhoIndice, sizeof(CabecalhoArvoreB), 1, arqIndice);
 
     // Verifica a consistência do índice
     if (cabecalhoIndice.status != '1') {
@@ -436,9 +438,9 @@ void selectArvoreB(char *arquivoDados, char *arquivoIndice, int n, char **campos
 
             if (RRN != -1) {
                 // Se encontrado na árvore-B, recupera os dados do arquivo de dados
-                fseek(arqDados, RRN * sizeof(RegistroDados), SEEK_SET);
+                fseek(arqDados, RRN * sizeof(Pagina), SEEK_SET);
                 Registro registro;
-                fread(&registro, sizeof(RegistroDados), 1, arqDados);
+                fread(&registro, sizeof(Pagina), 1, arqDados);
                 imprimeRegistro(registro);
             } else {
                 printf("Registro inexistente.\n");

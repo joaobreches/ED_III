@@ -245,7 +245,7 @@ void contaTecnologias(FILE* arquivoBinario, Registro registroAtual, Cabecalho* c
   }
 }
 
-Registro trabalhaRegistros(FILE *arquivo, Registro *registro){
+Registro leRegistro(FILE *arquivo, Registro *registro){
   /* 
   Essa função le o registro e lida com as suas questões gerais, como verificar se o mesmo existe, lidar com nulos, lidar com lixo e le os campos do registro, armazenando a leitura no registro auxiliar
 

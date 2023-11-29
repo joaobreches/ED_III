@@ -1,6 +1,7 @@
 #include "funcoesFornecidas.h"
 #include "funcionalidades.h"
 #include "registro.h"
+#include "arvoreB.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,7 +54,7 @@ int main() {
       recuperaRegistro(leitura1, atoi(leitura2));
       break;
     case 5:
-      criarIndiceArvoreB(leitura1, leitura2);
+      criaIndiceArvoreB(leitura1, leitura2);
       leitura2 = (char*) leitura2;
       binarioNaTela(leitura2);
       break;
@@ -64,6 +65,32 @@ int main() {
     case 10:
       imprimeBinario(leitura1);
       break;
+    case 11:
+      CabecalhoArvoreB cabecalho;
+      cabecalho.status = 'a';
+      cabecalho.noRaiz = 4;
+      cabecalho.RRNproxNo = 7;
+
+      nomeArquivoBinario = diretorioArquivo("cabecalhoArvore.bin", 'b');
+      FILE *arquivoBinario = fopen(nomeArquivoBinario, "wb");
+      if (arquivoBinario == NULL) {
+        printf("Falha no processamento do arquivo.\n");
+        break;
+      }
+
+      escreveCabecalhoArvoreB(arquivoBinario, cabecalho);
+      fclose(arquivoBinario);
+
+      arquivoBinario = fopen(nomeArquivoBinario, "rb");
+      if (arquivoBinario == NULL) {
+        printf("Falha no processamento do arquivo.\n");
+        break;
+      }
+
+      printCabecalhoArvoreB(arquivoBinario);
+      fclose(arquivoBinario);
+      break;
+  }
   }
 
   // libera a memoria alocada
