@@ -14,13 +14,14 @@
 
 int main() {
   
-  char *leitura1, *leitura2, *linha;
+  char *leitura1, *leitura2, *leitura3, *linha;
   int funcionalidade;
 
   // aloca memoria para as strings
-  linha = (char *) malloc(200 * sizeof(char));
+  linha = (char *) malloc(300 * sizeof(char));
   leitura1 = (char *) malloc(100 * sizeof(char));
   leitura2 = (char *) malloc(100 * sizeof(char));
+  leitura3 = (char *) malloc(100 * sizeof(char));
 
   if (linha == NULL || leitura1 == NULL || leitura2 == NULL) {
     printf("Erro na alocação de memória.\n");
@@ -35,6 +36,7 @@ int main() {
   // realoca memoria para as strings e libera o espaço desnecessario
   leitura1 = realloc(leitura1, sizeof(leitura1));
   leitura2 = realloc(leitura2, sizeof(leitura2));
+  leitura3 = realloc(leitura3, sizeof(leitura3));
   free(linha);
 
   CabecalhoArvoreB cabecalho;
@@ -59,6 +61,9 @@ int main() {
       criaIndiceArvoreB(leitura1, leitura2);
       leitura2 = (char*) leitura2;
       binarioNaTela(leitura2);
+      break;
+    case 6:
+      busca(6, leitura1, leitura2, atoi(leitura3));
       break;
     case 0:
       leitura1 = (char*) leitura1;
@@ -96,6 +101,7 @@ int main() {
   // libera a memoria alocada
   free(leitura1);
   free(leitura2);
+  free(leitura3);
 
   return 0;
 }

@@ -8,6 +8,7 @@
 
 #define ORDEM_ARVORE_B 4
 #define TAM_PAGINA_DISCO 205
+#define TAM_CHAVE 55
 
 // Estrutura para representar o registro de cabeçalho no arquivo de índice
 typedef struct _CabecalhoArvoreB {
@@ -38,6 +39,8 @@ void imprimePagina(Pagina registro);
 void insereEmNoNaoCheio(Pagina *no, int chave, int RRNdoNo, int RRNdoNovoNo, FILE *arquivoIndice);
 void particionaNo(int RRN, int i, int chave, int RRNdoNovoNo, FILE *arquivoIndice);
 int proximoRRNNo(FILE *arquivoIndice);
+void escrevePagina(Pagina pagina, FILE *arqIndice);
+void criaPaginaNova(FILE *arquivoIndice, CabecalhoArvoreB *cabecalho, int alturaNo, int ponteirofinal, Chave chave);
 void insereNaArvoreB(Chave chave, char *nomeArquivoIndice);
 int insereNaArvoreBRecursivo(int chave, int RRN, int nivel, int *chavePromovida, int *RRNdoNovoNo, FILE *arquivoIndice);
 int buscaArvoreB(FILE *arquivoIndice, int RRN, int chave);

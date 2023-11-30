@@ -276,23 +276,23 @@ void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {
 // Função para buscar um registro na árvore-B
 int buscaArvoreB(FILE *arquivoIndice, int RRN, int chave) {
     Pagina no;
-//     fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
-//     fread(&no, sizeof(Pagina), 1, arquivoIndice);
+    fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
+    fread(&no, sizeof(Pagina), 1, arquivoIndice);
 
-//     int i = 0;
-    // while (i < no.nroChavesNo && chave > no.chave[i]) {
-    //     i++;
-    // }
+    int i = 0;
+    while (i < no.nroChavesNo && chave > no.chave[i]) {
+        i++;
+    }
 
-    // if (i < no.nroChavesNo && chave == no.chave[i]) {
-    //     return no.RRNdoNo[i];
-    // }
+    if (i < no.nroChavesNo && chave == no.chave[i]) {
+        return no.RRNdoNo[i];
+    }
 
-    // if (no.alturaNo == 1) {
-    //     // Não encontrou a chave em um nó folha
-    //     return -1;
-    // }
+    if (no.alturaNo == 1) {
+        // Não encontrou a chave em um nó folha
+        return -1;
+    }
 
-    // Desce para o próximo nível da árvore-B
+    Desce para o próximo nível da árvore-B
     return buscaArvoreB(arquivoIndice, no.RRNdoNo, chave);
 }
