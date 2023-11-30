@@ -323,7 +323,7 @@ void exibirRegistro(Registro registro){
     printf("%s, %d, %d, %s, %lf\n", registro.TecnologiaOrigem.string, registro.grupo, registro.popularidade, registro.TecnologiaDestino.string, registro.peso);
 }
 
-void funcionalidade7(char *arquivoDados, char *arquivoIndice, int n) {
+void insereRegistros(char *arquivoDados, char *arquivoIndice, int n) {
 
 
     // Realize as inserções
@@ -335,6 +335,7 @@ void funcionalidade7(char *arquivoDados, char *arquivoIndice, int n) {
         return;
     }
 
+    RegistroDados registro;
     Registro novoRegistro;
     RegistroCabecalho cabecalho;
 
@@ -352,7 +353,8 @@ void funcionalidade7(char *arquivoDados, char *arquivoIndice, int n) {
         fwrite(&novoRegistro, sizeof(Registro), 1, dados);
 
         // Insira a chave correspondente na árvore-B
-        chave = novoRegistro.popularidade;  
+        int chave = atoi(novoRegistro.TecnologiaOrigem.string) + atoi(novoRegistro.TecnologiaDestino.string);
+        registro.chave[i] = chave;
         RRN = ftell(dados) / sizeof(Registro) - 1;  
         insereNaArvoreB(chave, RRN, indice);
     }
