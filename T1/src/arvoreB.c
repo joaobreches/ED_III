@@ -19,7 +19,7 @@ void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho) {
   fwrite(&cabecalho.noRaiz, sizeof(int), 1, arquivo);
   fwrite(&cabecalho.RRNproxNo, sizeof(int), 1, arquivo);
 
-  for(int i = 0; i < TAM_PAGINA_DISCO - sizeof(CabecalhoArvoreB); i++){
+  for(int i = 0; i < TAM_PAGINA - sizeof(CabecalhoArvoreB); i++){
     fwrite("$", sizeof(char), 1, arquivo);
   }
 }
@@ -43,6 +43,37 @@ CabecalhoArvoreB leCabecalhoArvoreB(FILE *arquivo) {
 void printCabecalhoArvoreB(FILE *arquivo){
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivo);
   printf("%c %d %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
+}
+
+bool skipCabecalhoArvore(FILE *arquivoBinario){
+  /*
+  Essa funcao verifica se o arquivobinario esta consistente, se existem registros nele e pula para o byteoffset do primeiro registro
+
+  Essa funcao eh chamada nas funcoes "imprimeArquivo" e "recuperaDados" do cabecalho funcoesBasicas.h
+
+  retornos:
+  0 - bem sucedido
+  1 - arquivo inconsistente ou ausencia de registros
+  */
+  
+  // le o cabecalho do arquivo binario e verifica se o arquivo esta consistente
+  char status;
+  fread(&status, sizeof(char), 1, arquivoBinario);
+  if(status == '0'){
+    printf("Falha no processamento do arquivo.\n");
+    return 0;
+  } 
+
+  // verifica se ha registros
+  int proxRRN;
+  fread(&proxRRN, sizeof(int), 1, arquivoBinario); //skip noRaiz
+  fread(&proxRRN, sizeof(int), 1, arquivoBinario);
+  if (proxRRN < 1) {
+    printf("Registro inexistente.\n");
+    return 0;
+  }
+  
+  return 1;
 }
 
 // void imprimePagina(Pagina registro) {
@@ -161,6 +192,31 @@ void escrevePagina(Pagina pagina, FILE *arqIndice){
   fwrite(&pagina.ponteirofinal, sizeof(int), 1, arqIndice);
 }
 
+Pagina lePagina(FILE* arqIndice, int RRN){
+  Pagina pagina;
+
+  if(!skipCabecalhoArvore(arqIndice)){
+    printf("Falha no processamento do arquivo.\n");
+    exit(1);
+  }
+
+  fseek(arqIndice, RRN * TAM_PAGINA, SEEK_CUR);
+
+  fread(&pagina.nroChavesNo, sizeof(int), 1, arqIndice);
+  fread(&pagina.alturaNo, sizeof(int), 1, arqIndice);
+  fread(&pagina.RRNdoNo, sizeof(int), 1, arqIndice);
+
+  for(int i = 0; i < ORDEM_ARVORE_B - 1; i++){
+    fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, arqIndice);
+    fread(&pagina.chave[i].nome, sizeof(char), TAM_CHAVE, arqIndice);
+    fread(&pagina.chave[i].ref, sizeof(int), 1, arqIndice);
+  }
+
+  fread(&pagina.ponteirofinal, sizeof(int), 1, arqIndice);
+
+  return pagina;
+}
+
 void criaPaginaNova(FILE *arquivoIndice, CabecalhoArvoreB *cabecalho, int alturaNo, int ponteirofinal, Chave chave){
   Pagina pagina;
   pagina.nroChavesNo = 1;
@@ -274,25 +330,24 @@ void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {
 // }
 
 // Função para buscar um registro na árvore-B
-int buscaArvoreB(FILE *arquivoIndice, int RRN, int chave) {
-    Pagina no;
-    fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
-    fread(&no, sizeof(Pagina), 1, arquivoIndice);
+int buscaArvoreB(FILE *arquivoIndice, int RRNarvore, char* chave) {
+  Pagina pagina;
 
-    int i = 0;
-    while (i < no.nroChavesNo && chave > no.chave[i]) {
-        i++;
-    }
+  while(1){
+    pagina = lePagina(arquivoIndice, RRNarvore);
 
-    if (i < no.nroChavesNo && chave == no.chave[i]) {
-        return no.RRNdoNo[i];
-    }
+    for(int i = 0; i < pagina.nroChavesNo; i++){
+      if(strcmp(pagina.chave[i].nome, chave) == 0)
+        return pagina.chave[i].ref;
+      else if(strcmp(pagina.chave[i].nome, chave) > 0)
+        RRNarvore = pagina.chave[i].ponteiroanterior;
+      else
+        if(i == ORDEM_ARVORE_B - 2)
+          RRNarvore = pagina.ponteirofinal;
+        else continue;
 
-    if (no.alturaNo == 1) {
-        // Não encontrou a chave em um nó folha
+      if(RRNarvore == -1)
         return -1;
     }
-
-    Desce para o próximo nível da árvore-B
-    return buscaArvoreB(arquivoIndice, no.RRNdoNo, chave);
+  }
 }
