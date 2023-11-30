@@ -323,60 +323,47 @@ void exibirRegistro(Registro registro){
     printf("%s, %d, %d, %s, %lf\n", registro.TecnologiaOrigem.string, registro.grupo, registro.popularidade, registro.TecnologiaDestino.string, registro.peso);
 }
 
-void insereRegistro(char *arquivoDados, char *arquivoIndice, int n, char **campos){
-    arquivoDados = diretorioArquivo(arquivoDados, 'b');
-    FILE *arqDados = fopen(arquivoDados, "rb");
+void funcionalidade7(char *arquivoDados, char *arquivoIndice, int n) {
 
-    arquivoIndice = diretorioArquivo(arquivoIndice, 'b');
-    FILE *arqIndice = fopen(arquivoIndice, "rb");
 
-    if(arqDados == NULL || arqIndice == NULL){
+    // Realize as inserções
+    FILE *dados = fopen(arquivoDados, "ab");
+    FILE *indice = fopen(arquivoIndice, "rb+");
+
+    if (dados == NULL || indice == NULL) {
         printf("Falha no processamento do arquivo.\n");
-        exit(1);
+        return;
     }
 
-    // Leitura do cabeçalho do índice arvore-B
-    RegistroCabecalho cabecalhoIndice;
-    fread(&cabecalhoIndice, sizeof(RegistroCabecalho), 1, arqIndice);
+    Registro novoRegistro;
+    RegistroCabecalho cabecalho;
 
-    // Para cada inserção
-    for (int i = 0; i < n; i++){
-        // Lê os valores
-        char *nomeTecnologiaOrigem = campos[i++];
-        int grupo = (strcmp(campos[i++], "NULO") == 0) ? -1 : atoi(campos[i - 1]);
-        int popularidade = (strcmp(campos[i++], "NULO") == 0) ? -1 : atoi(campos[i - 1]);
-        char *nomeTecnologiaDestino = campos[i++];
-        double peso = (strcmp(campos[i], "NULO") == 0) ? -1 : atof(campos[i]);
+    fseek(indice, 0, SEEK_SET);
+    fread(&cabecalho, sizeof(RegistroCabecalho), 1, indice);
 
-        // Cria o registro
-        Registro novoRegistro;
-        strcpy(novoRegistro.TecnologiaOrigem.string, nomeTecnologiaOrigem);
-        novoRegistro.grupo = grupo;
-        novoRegistro.popularidade = popularidade;
-        strcpy(novoRegistro.TecnologiaDestino.string, nomeTecnologiaDestino);
-        novoRegistro.peso = peso;
+    int chave, RRN;
 
-        // Insere o registro no arquivo de dados
-        inserirNoArquivoDados(arqDados, novoRegistro);
+    for (int i = 0; i < n; i++) {
+        // Solicite ao usuário os valores do novo registro
+        scanf("%s %d %d %s %d", novoRegistro.TecnologiaOrigem.string, &novoRegistro.grupo, &novoRegistro.popularidade,
+              novoRegistro.TecnologiaDestino.string, &novoRegistro.peso);
 
-        // Insere a chave na árvore-B
-        inserirNaArvoreB(arqIndice, novoRegistro.grupo, ftell(arqDados) / sizeof(Registro) - 1);
+        // Insira o registro no arquivo de dados
+        fwrite(&novoRegistro, sizeof(Registro), 1, dados);
+
+        // Insira a chave correspondente na árvore-B
+        chave = novoRegistro.popularidade;  
+        RRN = ftell(dados) / sizeof(Registro) - 1;  
+        insereNaArvoreB(chave, RRN, indice);
     }
 
-    // Atualiza o status no cabeçalho do índice
-    fseek(arqIndice, 0, SEEK_SET);
-    cabecalhoIndice.status = '0';  // Marca como inconsistente
-    fwrite(&cabecalhoIndice, sizeof(RegistroCabecalho), 1, arqIndice);
+    fclose(dados);
+    fclose(indice);
 
-    // Exibe os dados dos arquivos
-    printf("Arquivo de dados:\n");
+    // Exibe o conteúdo dos arquivos na tela
+    printf("\nConteúdo do arquivo de dados:\n");
     binarioNaTela(arquivoDados);
 
-    printf("Arquivo de índice:\n");
+    printf("\nConteúdo do arquivo de índice árvore-B:\n");
     binarioNaTela(arquivoIndice);
-
-    fclose(arqDados);
-    fclose(arqIndice);
-
 }
-
