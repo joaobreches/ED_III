@@ -1,12 +1,8 @@
-#include "funcionalidades.h"
-#include "funcoesFornecidas.h"
-#include "registro.h"
-#include "arvoreB.h"
-#include "arquivo.h"
+#include "../include/funcionalidades.h"
+#include "../include/registro.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   /*
@@ -208,7 +204,7 @@ void imprimeArquivo(char* nomeArquivoBinario) {
     }
 
     // le o proximo registro
-    leRegistro(arquivoBinario, &registro); 
+    trabalhaRegistros(arquivoBinario, &registro); 
 
     // imprime o registro
     imprimeRegistro(registro);
@@ -222,12 +218,44 @@ void imprimeArquivo(char* nomeArquivoBinario) {
   fclose(arquivoBinario);
 }
 
-bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char valorCampo[TAM_REGISTRO_FIXO]){
+void recuperaDados(char *arquivoEntrada, int n) {
+  /*
+  Essa funcao le um arquivo binario e imprime os registros que se adequam a condicao fornecida seus registros.
+
+  Essa funcao representa a funcionalidade 3 do exercicio introdutorio.
+  */
+
+  // abre arquivo binario 
+  arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
+
+  FILE *arquivo = fopen(arquivoEntrada, "rb");
+  if (arquivo == NULL) {
+    printf("Falha no processamento do arquivo. \n");
+    return;
+  }
+
   // cria registro auxiliar
   Registro registro;
 
-  // indica se o registro atende a condicao fornecida ou nao
-    bool encontrado = 0;
+  // loop para cada uma das n condicoes fornecidas como entrada
+  for (int i = 0; i < n; i++) {
+    char nomeCampo[TAM_REGISTRO_VARIAVEL];
+    char valorCampo[TAM_REGISTRO_FIXO];
+
+    // le o nome do campo e o valor a ser buscado
+    scanf("%s %s", nomeCampo, valorCampo);
+
+    // limpa o valorCampo se for uma string (remove as aspas)
+    if(strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 || strcmp(nomeCampo, "nomeTecnologiaDestino") == 0){
+      int i;
+      for(i = 0; valorCampo[i] != '\0'; i++){
+        valorCampo[i] = valorCampo[i + 1];
+      }
+      valorCampo[i - 2] = '\0';
+    }
+
+    // indica se o registro atende a condicao fornecida ou nao
+    int encontrado = 0;
     
     // reseta o arquivo para o inicio
     rewind(arquivo);
@@ -235,7 +263,7 @@ bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char v
     // pula os bytes do cabecalho do arquivo
     int sucessoArquivo = skipCabecalho(arquivo);
     if (sucessoArquivo == 1){
-      return encontrado;
+      return;
     }
 
     // le os registros do arquivo e imprime-os
@@ -247,10 +275,10 @@ bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char v
       }
 
       // le o registro
-      leRegistro(arquivo, &registro); 
+      trabalhaRegistros(arquivo, &registro); 
 
       // indica se o registro atende a condicao fornecida ou nao
-      bool registrocondiz = 0;
+      int registrocondiz = 0;
       
       // compara se o campo eh igual a condicao fornecida
       if (registro.removido == '0') {
@@ -273,53 +301,18 @@ bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char v
       }
 
       // imprime o registro se encontrado
-      if (registrocondiz) {
+      if (registrocondiz == 1) {
         imprimeRegistro(registro);
+        // break;
       }
 
       // libera a memoria alocada
       free(registro.TecnologiaOrigem.string);
       free(registro.TecnologiaDestino.string);
     }
-  return encontrado;
-}
-
-void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
-  /*
-  Essa funcao le um arquivo binario e imprime os registros que se adequam a condicao fornecida seus registros.
-
-  Essa funcao representa a funcionalidade 3 do exercicio introdutorio.
-  */
-
-  // abre arquivo binario 
-  FILE *arquivo = abreBinarioLeitura(arquivoEntrada);
-
-  // loop para cada uma das n condicoes fornecidas como entrada
-  for (int i = 0; i < n; i++) {
-    char nomeCampo[TAM_REGISTRO_VARIAVEL];
-    char valorCampo[TAM_REGISTRO_FIXO];
-
-    // le o nome do campo e o valor a ser buscado
-    scanf("%s %s", nomeCampo, valorCampo);
-
-    // limpa o valorCampo se for uma string (remove as aspas)
-    if(strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 || strcmp(nomeCampo, "nomeTecnologiaDestino") == 0){
-      int i;
-      for(i = 0; valorCampo[i] != '\0'; i++){
-        valorCampo[i] = valorCampo[i + 1];
-      }
-      valorCampo[i - 2] = '\0';
-    }
-
-    bool encontrado = 0;
-
-    if(nomeCampo == "nomeTecnologiaOrigemDestino")
-      encontrado = filtroArvore(arquivoEntrada, arquivoIndice, valorCampo);
-    else
-      encontrado = filtroRegistro(arquivo, nomeCampo, valorCampo);
 
     // imprime se nao encontrado nenhum registro em todo o arquivo
-    if (!encontrado) {
+    if (encontrado == 0) {
       printf("Registro inexistente.\n");
     }
   }
@@ -379,129 +372,9 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
   }
 
   // le o registro desejado e imprime-o
-  leRegistro(arquivo, &registro);
+  trabalhaRegistros(arquivo, &registro);
   imprimeRegistro(registro);
 
   // fecha o arquivo
   fclose(arquivo);
-}
-
-// Função principal para criar o índice da árvore-B a partir do arquivo de dados
-void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
-  FILE *arqDados = abreBinarioLeitura(arquivoDados);
-  FILE *arqIndice = abreBinarioEscrita(arquivoIndice);
-
-  CabecalhoArvoreB cabecalho;
-  cabecalho.status = '1';
-  cabecalho.noRaiz = -1;
-  cabecalho.RRNproxNo = 0;
-  escreveCabecalhoArvoreB(arqIndice, cabecalho);
-
-  fclose(arqIndice);
-
-  if(skipCabecalho(arqDados)){
-    fclose(arqDados);
-    return;
-  }
-
-  Registro registroAtual;
-  Chave chave;
-  chave.ponteiroanterior = -1;
-  int RRN = -1;
-
-  // le os registros do arquivo de dados
-  while (1) {
-
-    // verifica se o proximo registro existe
-    if (fread(&registroAtual.removido, sizeof(char), 1, arqDados) == 0) {
-      break;
-    }
-
-    // le o proximo registro
-    leRegistro(arqDados, &registroAtual); 
-    RRN++;
-
-    // Verifica se o registro não foi removido logicamente
-    if (registroAtual.removido == '0') {
-        // Insere a chave na árvore-B
-        chave.nome = registroAtual.TecnologiaOrigem.string;
-        strcat(chave.nome, registroAtual.TecnologiaDestino.string);
-        chave.ref = RRN;
-        insereNaArvoreB(chave, arquivoIndice);
-    }
-  }
-
-  fclose(arqDados);
-}
-
-bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) {
-
-  // Leitura do cabeçalho do índice árvore-B
-  CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(nomeArquivoIndice);
-
-  // Verifica a consistência do índice
-  if (cabecalhoArvoreB.status != '1') {
-      printf("Falha no processamento do arquivo.\n");
-      exit(1);
-  }
-
-  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
-  bool encontrado = 0;
-
-  int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave);
-
-  if (RRN != -1) {
-      // Se encontrado na árvore-B, recupera os dados do arquivo de dados
-      recuperaRegistro(nomeArquivoDados, RRN);
-      encontrado = 1;
-  }
-
-  fclose(arquivoIndice);
-  return encontrado;
-}
-
-void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
-    
-    // Realize as inserções
-  FILE *dados = fopen(diretorioArquivo(arquivoDados, 'b'), "rb");
-  FILE *indice = fopen(diretorioArquivo(arquivoIndice, 'b'), "wb");
-
-    if (dados == NULL || indice == NULL) {
-        printf("Falha no processamento do arquivo.\n");
-        return;
-    }
-
-    Registro novoRegistro;
-    Cabecalho cabecalho;
-    Chave chave;
-    int RRN;
-
-    fseek(indice, 0, SEEK_SET);
-    fread(&cabecalho, sizeof(Cabecalho), 1, indice);
-
-
-    for (int i = 0; i < n; i++) {
-        // Solicite ao usuário os valores do novo registro
-        scanf("%s %d %d %s %d", novoRegistro.TecnologiaOrigem.string, &novoRegistro.grupo, &novoRegistro.popularidade,
-              novoRegistro.TecnologiaDestino.string, &novoRegistro.peso);
-
-        // Insira o registro no arquivo de dados
-        fwrite(&novoRegistro, sizeof(Registro), 1, dados);
-
-        // Insira a chave correspondente na árvore-B
-        chave.nome = novoRegistro.TecnologiaOrigem.string;
-        strcat(chave.nome, novoRegistro.TecnologiaDestino.string);
-        chave.ref = RRN;
-        insereNaArvoreB(chave, arquivoIndice);  
-    }
-
-    fclose(dados);
-    fclose(indice);
-
-    // Exibe o conteúdo dos arquivos na tela
-    printf("\nConteúdo do arquivo de dados:\n");
-    binarioNaTela(arquivoDados);
-
-    printf("\nConteúdo do arquivo de índice árvore-B:\n");
-    binarioNaTela(arquivoIndice);
 }
