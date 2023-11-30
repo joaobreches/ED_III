@@ -65,6 +65,9 @@ int main() {
     case 6:
       busca(6, leitura1, leitura2, atoi(leitura3));
       break;
+    case 7:   
+      insereRegistros(leitura1, leitura2, atoi(leitura3));
+      break;
     case 0:
       leitura1 = (char*) leitura1;
       binarioNaTela(leitura1);

@@ -323,9 +323,8 @@ void exibirRegistro(Registro registro){
     printf("%s, %d, %d, %s, %lf\n", registro.TecnologiaOrigem.string, registro.grupo, registro.popularidade, registro.TecnologiaDestino.string, registro.peso);
 }
 
-void insereRegistros(char *arquivoDados, char *arquivoIndice, int n) {
-
-
+void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
+    
     // Realize as inserções
     FILE *dados = fopen(arquivoDados, "ab");
     FILE *indice = fopen(arquivoIndice, "rb+");
