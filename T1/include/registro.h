@@ -41,7 +41,5 @@ void imprimeRegistro(Registro registro);
 int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, StringVariavel novaTecDestino);
 void contaTecnologias(FILE* arquivoBinario, Registro registroAtual, Cabecalho* cabecalho);
 Registro leRegistro(FILE *arquivo, Registro *registro);
-char* diretorioArquivo(char* nomeArquivo, char tipoArquivo);
-void imprimeBinario(char* binario);
 
 #endif

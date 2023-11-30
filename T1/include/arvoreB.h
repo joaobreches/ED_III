@@ -1,10 +1,11 @@
 #ifndef ARVOREB_H
 #define ARVOREB_H
 
-#include "registro.h"
+#include "arquivo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define ORDEM_ARVORE_B 4
 #define TAM_PAGINA 205
@@ -33,17 +34,18 @@ typedef struct _Pagina {
     int ponteirofinal;
 } Pagina;
 
+FILE* abreIndiceEscrita(char* nomeIndice);
+void fechaIndiceEscrita(FILE* indice, char* nomeIndice);
 void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho);
-CabecalhoArvoreB leCabecalhoArvoreB(FILE *arquivo);
-void printCabecalhoArvoreB(FILE *arquivo);
+CabecalhoArvoreB leCabecalhoArvoreB(char* nomeArquivo);
+void printCabecalhoArvoreB(char* nomeArquivo);
 bool skipCabecalhoArvore(FILE *arquivoBinario);
 void imprimePagina(Pagina registro);
 void insereEmNoNaoCheio(Pagina *no, int chave, int RRNdoNo, int RRNdoNovoNo, FILE *arquivoIndice);
 void particionaNo(int RRN, int i, int chave, int RRNdoNovoNo, FILE *arquivoIndice);
 int proximoRRNNo(FILE *arquivoIndice);
-void escrevePagina(Pagina pagina, char* nomeArquivoIndice);
 Pagina lePagina(FILE* arqIndice, int RRN);
-void criaPaginaNova(FILE *arquivoIndice, CabecalhoArvoreB cabecalho, int alturaNo, int ponteirofinal, Chave chave);
+void criaPaginaNova(char* nomeArquivoIndice, CabecalhoArvoreB cabecalho, int alturaNo, int ponteirofinal, Chave chave);
 void insereNaArvoreB(Chave chave, char *nomeArquivoIndice);
 int insereNaArvoreBRecursivo(int chave, int RRN, int nivel, int *chavePromovida, int *RRNdoNovoNo, FILE *arquivoIndice);
 int buscaArvoreB(FILE *arquivoIndice, int RRN, char* chave);

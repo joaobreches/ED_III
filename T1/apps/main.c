@@ -1,7 +1,6 @@
 #include "funcoesFornecidas.h"
 #include "funcionalidades.h"
-#include "registro.h"
-#include "arvoreB.h"
+#include "arquivo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -66,7 +65,7 @@ int main() {
       busca(6, leitura1, leitura2, atoi(leitura3));
       break;
     case 7:   
-      insereRegistros(leitura1, leitura2, atoi(leitura3));
+      // insereRegistros(leitura1, leitura2, atoi(leitura3));
       break;
     case 0:
       leitura1 = (char*) leitura1;
@@ -74,30 +73,6 @@ int main() {
       break;
     case 10:
       imprimeBinario(leitura1);
-      break;
-    case 11:
-      cabecalho.status = 'a';
-      cabecalho.noRaiz = 4;
-      cabecalho.RRNproxNo = 7;
-
-      char* nomeArquivoBinario = diretorioArquivo("cabecalhoArvore.bin", 'b');
-      FILE *arquivoBinario = fopen(nomeArquivoBinario, "wb");
-      if (arquivoBinario == NULL) {
-        printf("Falha no processamento do arquivo.\n");
-        break;
-      }
-
-      escreveCabecalhoArvoreB(arquivoBinario, cabecalho);
-      fclose(arquivoBinario);
-
-      arquivoBinario = fopen(nomeArquivoBinario, "rb");
-      if (arquivoBinario == NULL) {
-        printf("Falha no processamento do arquivo.\n");
-        break;
-      }
-      
-      printCabecalhoArvoreB(arquivoBinario);
-      fclose(arquivoBinario);
       break;
   }
 

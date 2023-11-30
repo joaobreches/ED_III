@@ -2,6 +2,7 @@
 #include "funcoesFornecidas.h"
 #include "registro.h"
 #include "arvoreB.h"
+#include "arquivo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -291,22 +292,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
   */
 
   // abre arquivo binario 
-  arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
-  FILE *arquivo = fopen(arquivoEntrada, "rb");
-  FILE *arqIndice;
-
-  if(caso > 4){
-    arqIndice = fopen(diretorioArquivo(arquivoIndice, 'b'), "rb");
-    if (arqIndice == NULL) {
-    printf("Falha no processamento do arquivo. \n");
-    return;
-  }
-  }
-
-  if (arquivo == NULL) {
-    printf("Falha no processamento do arquivo. \n");
-    return;
-  }
+  FILE *arquivo = abreBinarioLeitura(arquivoEntrada);
 
   // loop para cada uma das n condicoes fornecidas como entrada
   for (int i = 0; i < n; i++) {
@@ -328,7 +314,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
     bool encontrado = 0;
 
     if(nomeCampo == "nomeTecnologiaOrigemDestino")
-      encontrado = filtroArvore(arquivoEntrada, arqIndice, valorCampo);
+      encontrado = filtroArvore(arquivoEntrada, arquivoIndice, valorCampo);
     else
       encontrado = filtroRegistro(arquivo, nomeCampo, valorCampo);
 
@@ -340,9 +326,6 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
 
   // fecha o arquivo binario
   fclose(arquivo);
-
-  if(caso > 4)
-    fclose(arqIndice);
 }
 
 void recuperaRegistro(char *arquivoEntrada, int rrn) {
@@ -405,13 +388,8 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
 
 // Função principal para criar o índice da árvore-B a partir do arquivo de dados
 void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
-  FILE *arqDados = fopen(diretorioArquivo(arquivoDados, 'b'), "rb");
-  FILE *arqIndice = fopen(diretorioArquivo(arquivoIndice, 'b'), "wb");
-
-  if (arqDados == NULL || arqIndice == NULL) {
-      printf("Falha no processamento do arquivo.\n");
-      exit(1);
-  }
+  FILE *arqDados = abreBinarioLeitura(arquivoDados);
+  FILE *arqIndice = abreBinarioEscrita(arquivoIndice);
 
   CabecalhoArvoreB cabecalho;
   cabecalho.status = '1';
@@ -456,10 +434,10 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
   fclose(arqDados);
 }
 
-bool filtroArvore(char* nomeArquivoDados, FILE *arquivoIndice, char* chave) {
+bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) {
 
   // Leitura do cabeçalho do índice árvore-B
-  CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(arquivoIndice);
+  CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(nomeArquivoIndice);
 
   // Verifica a consistência do índice
   if (cabecalhoArvoreB.status != '1') {
@@ -467,6 +445,7 @@ bool filtroArvore(char* nomeArquivoDados, FILE *arquivoIndice, char* chave) {
       exit(1);
   }
 
+  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
   bool encontrado = 0;
 
   int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave);
@@ -477,5 +456,6 @@ bool filtroArvore(char* nomeArquivoDados, FILE *arquivoIndice, char* chave) {
       encontrado = 1;
   }
 
+  fclose(arquivoIndice);
   return encontrado;
 }

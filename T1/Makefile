@@ -5,6 +5,7 @@ test: #verify if still runs with directory changes
 	valgrind --leak-check=full -s ./bin/main
 
 all:
+	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
 	gcc -c ./src/arvoreB.c -I ./include -o ./obj/arvoreB.o
@@ -18,6 +19,7 @@ runwindows:
 	.\bin\main
 
 crw:  #compile and run for windows
+	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
 	gcc -c ./src/arvoreB.c -I ./include -o ./obj/arvoreB.o
@@ -26,6 +28,7 @@ crw:  #compile and run for windows
 	.\bin\main
 
 crl: #compile and run for linux
+	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
 	gcc -c ./src/arvoreB.c -I ./include -o ./obj/arvoreB.o
