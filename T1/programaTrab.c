@@ -323,7 +323,7 @@ void exibirRegistro(Registro registro){
     printf("%s, %d, %d, %s, %lf\n", registro.TecnologiaOrigem.string, registro.grupo, registro.popularidade, registro.TecnologiaDestino.string, registro.peso);
 }
 
-void insereRegistros(char *arquivoDados, char *arquivoIndice, int n) {
+void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
 
 
     // Realize as inserções
@@ -346,7 +346,6 @@ void insereRegistros(char *arquivoDados, char *arquivoIndice, int n) {
 
     for (int i = 0; i < n; i++) {
         // Solicite ao usuário os valores do novo registro
-        printf("entrou no for");
         scanf("%s %d %d %s %d", novoRegistro.TecnologiaOrigem.string, &novoRegistro.grupo, &novoRegistro.popularidade,
               novoRegistro.TecnologiaDestino.string, &novoRegistro.peso);
 

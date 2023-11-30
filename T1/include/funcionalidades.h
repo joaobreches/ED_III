@@ -14,5 +14,6 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n); //busca 
 void recuperaRegistro(char *arquivoEntrada, int rrn); //funcionalidade 4
 void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice); //funcionalidade 5
 bool filtroArvore(char *arquivoDados, char *arquivoIndice, int n, char **campos, char **valores); //funcionalidade 6
+void insereRegistro(char *arquivoDados, char *arquivoIndice, int n); //funcionalidade 7
 
 #endif
