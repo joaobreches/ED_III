@@ -324,8 +324,7 @@ void exibirRegistro(Registro registro){
 }
 
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
-
-
+    
     // Realize as inserções
     FILE *dados = fopen(arquivoDados, "ab");
     FILE *indice = fopen(arquivoIndice, "rb+");
