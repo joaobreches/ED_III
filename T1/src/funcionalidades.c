@@ -483,8 +483,8 @@ bool filtroArvore(char* nomeArquivoDados, FILE *arquivoIndice, char* chave) {
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
     
     // Realize as inserções
-    FILE *dados = fopen(arquivoDados, "ab");
-    FILE *indice = fopen(arquivoIndice, "rb+");
+  FILE *dados = fopen(diretorioArquivo(arquivoDados, 'b'), "rb");
+  FILE *indice = fopen(diretorioArquivo(arquivoIndice, 'b'), "wb");
 
     if (dados == NULL || indice == NULL) {
         printf("Falha no processamento do arquivo.\n");
