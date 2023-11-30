@@ -323,7 +323,7 @@ void exibirRegistro(Registro registro){
     printf("%s, %d, %d, %s, %lf\n", registro.TecnologiaOrigem.string, registro.grupo, registro.popularidade, registro.TecnologiaDestino.string, registro.peso);
 }
 
-void funcionalidade7(char *arquivoDados, char *arquivoIndice, int n, char **campos){
+void insereRegistro(char *arquivoDados, char *arquivoIndice, int n, char **campos){
     arquivoDados = diretorioArquivo(arquivoDados, 'b');
     FILE *arqDados = fopen(arquivoDados, "rb");
 
@@ -379,8 +379,4 @@ void funcionalidade7(char *arquivoDados, char *arquivoIndice, int n, char **camp
     fclose(arqIndice);
 
 }
-
-
-
-
 
