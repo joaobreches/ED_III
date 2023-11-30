@@ -92,7 +92,7 @@ int main() {
         printf("Falha no processamento do arquivo.\n");
         break;
       }
-
+      
       printCabecalhoArvoreB(arquivoBinario);
       fclose(arquivoBinario);
       break;

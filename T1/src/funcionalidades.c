@@ -418,22 +418,18 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
   cabecalho.noRaiz = -1;
   cabecalho.RRNproxNo = 0;
   escreveCabecalhoArvoreB(arqIndice, cabecalho);
-  
-  cabecalho = leCabecalhoArvoreB(arqIndice);
-  printf("%d\n", cabecalho.noRaiz);
-  printCabecalhoArvoreB(arqIndice);
 
   fclose(arqIndice);
-
-
-  Registro registroAtual;
-  Chave chave;
-  int RRN = -1;
 
   if(skipCabecalho(arqDados)){
     fclose(arqDados);
     return;
   }
+
+  Registro registroAtual;
+  Chave chave;
+  chave.ponteiroanterior = -1;
+  int RRN = -1;
 
   // le os registros do arquivo de dados
   while (1) {
@@ -453,13 +449,11 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
         chave.nome = registroAtual.TecnologiaOrigem.string;
         strcat(chave.nome, registroAtual.TecnologiaDestino.string);
         chave.ref = RRN;
-        // printf("im the problem its me\n");
         insereNaArvoreB(chave, arquivoIndice);
     }
   }
 
   fclose(arqDados);
-  fclose(arqIndice);
 }
 
 bool filtroArvore(char* nomeArquivoDados, FILE *arquivoIndice, char* chave) {
