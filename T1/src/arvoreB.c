@@ -250,13 +250,13 @@ void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {
     exit(-1);
   }
 
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
+
   if(cabecalho.status == '0'){
     printf("Arquivo inconsistente.\n");
     exit(-1);
   }
   
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
-
   fclose(arquivoIndice);
 
   arquivoIndice = fopen(diretorioArquivo(nomeArquivoIndice, 'b'), "wb");
