@@ -73,16 +73,15 @@ bool skipCabecalhoArvore(FILE *arquivoBinario){
   Essa funcao eh chamada nas funcoes "imprimeArquivo" e "recuperaDados" do cabecalho funcoesBasicas.h
 
   retornos:
-  0 - bem sucedido
-  1 - arquivo inconsistente ou ausencia de registros
+  1 - bem sucedido
   */
   
   // le o cabecalho do arquivo binario e verifica se o arquivo esta consistente
   char status;
   fread(&status, sizeof(char), 1, arquivoBinario);
   if(status == '0'){
-    printf("Falha no processamento do arquivo.\n");
-    return 0;
+    printf("Arquivo inconsistente.\n");
+    exit(1);
   } 
 
   // verifica se ha registros
@@ -113,70 +112,59 @@ void imprimePagina(Pagina pagina) {
     printf("ponteiroanterior %d, chave %d: %s, RRN: %d;\n", pagina.chave[i].ponteiroanterior, i, pagina.chave[i].nome, pagina.chave[i].ref);
 }
 
-
 // Função auxiliar para inserir uma chave em um nó não cheio
-// void insereEmNoNaoCheio(Pagina *no, int chave, int RRNdoNo, int RRNdoNovoNo, FILE *arquivoIndice) {
-//     int i = no->nroChavesNo - 1;
+void insereEmNoNaoCheio(Pagina *pagina, Chave chave, int RRN, FILE *arquivoIndice) {
+    int i = pagina->nroChavesNo - 1;
 
-//     // Encontra a posição correta para a nova chave
-//     // while (i >= 0 && chave < no->chave[i]) {
-//     //     no->chave[i + 1] = no->chave[i];
-//     //     no->RRNdoNo[i + 2] = no->RRNdoNo[i + 1];
-//     //     i--;
-//     // }
+    // Encontra a posição correta para a nova chave
+    while (i >= 0 && strcmp(pagina->chave[i].nome, chave.nome) > 0) {
+        pagina->chave[i + 1] = pagina->chave[i];
+        i--;
+    }
 
-//     // Insere a nova chave e atualiza os ponteiros dos filhos
-//     // no->chave[i + 1] = chave;
-//     // no->RRNdoNo[i + 2] = RRNdoNovoNo;
-//     no->nroChavesNo++;
+    // Insere a nova chave e atualiza os ponteiros dos filhos
+    pagina->chave[i + 1] = chave;
+    pagina->nroChavesNo++;
 
-//     // Atualiza o nó no arquivo
-//     fseek(arquivoIndice, RRNdoNo * sizeof(Pagina), SEEK_SET);
-//     fwrite(no, sizeof(Pagina), 1, arquivoIndice);
-// }
+    // Atualiza o nó no arquivo
+    escrevePagina(*pagina, RRN, arquivoIndice);
+}
 
+// Função auxiliar para dividir um nó durante a inserção
+void particionaNo(int RRN, int RRNdoNovoNo, FILE *arquivoIndice) {
+    // Lê o nó a ser dividido
+    Pagina no = lePagina(arquivoIndice, RRN);
 
+    // Cria um novo nó
+    Pagina novoNo;
+    novoNo.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
+    novoNo.alturaNo = 1;
 
-// // Função auxiliar para dividir um nó durante a inserção
-// void particionaNo(int RRN, int i, int chave, int RRNdoNovoNo, FILE *arquivoIndice) {
-//     // Lê o nó a ser dividido
-//     fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
-//     Pagina no;
-//     fread(&no, sizeof(Pagina), 1, arquivoIndice);
-
-//     // Cria um novo nó
-//     Pagina novoNo;
-//     novoNo.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
-//     novoNo.alturaNo = 1;
-
-//     // Copia metade das chaves e RRNs para o novo nó
-//     for (int j = 0; j < (ORDEM_ARVORE_B - 1) / 2; j++) {
-//         // novoNo.chave[j] = no.chave[j + (ORDEM_ARVORE_B + 1) / 2];
-//         // novoNo.RRNdoNo[j] = no.RRNdoNo[j + (ORDEM_ARVORE_B + 1) / 2];
-//     }
+    // Copia metade das chaves e RRNs para o novo nó
+    for (int j = 0; j < (ORDEM_ARVORE_B - 1) / 2; j++) {
+        novoNo.chave[j] = no.chave[j + (ORDEM_ARVORE_B + 1) / 2];
+    }
     
-//     // Atualiza a quantidade de chaves no nó original
-//     no.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
+    // Atualiza a quantidade de chaves no nó original
+    no.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
 
-//     // Atualiza o RRN do próximo nó no nó original
-//     // no.RRNdoNo[ORDEM_ARVORE_B / 2] = RRNdoNovoNo;
+    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
+    
+    // Atualiza o RRN do próximo nó no nó original
+    novoNo.RRNdoNo = cabecalho.RRNproxNo;
 
-//     // Atualiza o cabeçalho
-//     fseek(arquivoIndice, 0, SEEK_SET);
-//     CabecalhoArvoreB cabecalho;
-//     fread(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
-//     cabecalho.RRNproxNo++;
-//     fseek(arquivoIndice, 0, SEEK_SET);
-//     fwrite(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
+    // Atualiza o cabeçalho
+    cabecalho.RRNproxNo++;
+    escreveCabecalhoArvoreB(arquivoIndice, cabecalho);
 
-//     // Atualiza o nó original no arquivo
-//     fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
-//     fwrite(&no, sizeof(Pagina), 1, arquivoIndice);
+    // Atualiza o nó original no arquivo
+    fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
+    fwrite(&no, sizeof(Pagina), 1, arquivoIndice);
 
-//     // Escreve o novo nó no arquivo
-//     fseek(arquivoIndice, RRNdoNovoNo * sizeof(Pagina), SEEK_SET);
-//     fwrite(&novoNo, sizeof(Pagina), 1, arquivoIndice);
-// }
+    // Escreve o novo nó no arquivo
+    fseek(arquivoIndice, RRNdoNovoNo * sizeof(Pagina), SEEK_SET);
+    fwrite(&novoNo, sizeof(Pagina), 1, arquivoIndice);
+}
 
 // int proximoRRNNo(FILE *arquivoIndice) {
 //     fseek(arquivoIndice, 0, SEEK_SET);
@@ -229,10 +217,12 @@ void criaPaginaNova(char* nomeArquivoIndice, CabecalhoArvoreB cabecalho, int alt
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fwrite(&pagina.chave[i-1].ponteiroanterior, sizeof(int), 1, arquivoIndice);
     fwrite(&pagina.chave[i-1].nome, sizeof(char), sizeof(pagina.chave[i-1].nome), arquivoIndice);
-
-    // for(int j = sizeof(pagina.chave[i-1].nome); i <= TAM_CHAVE; i++)
-      fwrite("$", sizeof(char), TAM_CHAVE - sizeof(pagina.chave[i-1].nome), arquivoIndice);
+    fwrite("$", sizeof(char), TAM_CHAVE - sizeof(pagina.chave[i-1].nome), arquivoIndice);
     fwrite(&pagina.chave[i-1].ref, sizeof(int), 1, arquivoIndice);
+  }
+
+  for(i = pagina.nroChavesNo; i < ORDEM_ARVORE_B; i++){
+    fwrite("$", sizeof(char), TAM_PAGINA + 8, arquivoIndice);
   }
 
   fwrite(&pagina.ponteirofinal, sizeof(int), 1, arquivoIndice);
@@ -246,9 +236,7 @@ void criaPaginaNova(char* nomeArquivoIndice, CabecalhoArvoreB cabecalho, int alt
 }
 
 // Função auxiliar para inserir uma chave na árvore-B
-void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {
-  // printf("its me hi\n");
-  
+void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {  
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivoIndice);
 
   if(cabecalho.status == '0'){
@@ -257,15 +245,14 @@ void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {
   }
   
   if (cabecalho.noRaiz == -1){
-    criaPaginaNova(nomeArquivoIndice, cabecalho, 0, -1, chave);
+    criaPaginaNova(nomeArquivoIndice, cabecalho, 1, -1, chave);
     imprimePagina(lePagina(abreBinarioLeitura(nomeArquivoIndice), 0));
     return;
   }
 
+  int houveSplit = insereNaArvoreBRecursivo(chave, 0, &chavePromovida, &RRNdoNovoNo, arquivoIndice);
   // int chavePromovida;
   // int RRNdoNovoNo;
-  // int houveSplit = 0;
-  // // int houveSplit = insereNaArvoreBRecursivo(chave.ref, chave.ref, 0, &chavePromovida, &RRNdoNovoNo, arquivoIndice);
 
   // if (houveSplit) {
   //     // Cria um novo nó raiz
@@ -293,50 +280,57 @@ void insereNaArvoreB(Chave chave, char* nomeArquivoIndice) {
   // }
 }
 
-// // Função auxiliar para inserir uma chave na árvore-B recursivamente
-// int insereNaArvoreBRecursivo(int chave, int RRN, int nivel, int *chavePromovida, int *RRNdoNovoNo, FILE *arquivoIndice) {
-//     fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
-//     Pagina no;
-//     fread(&no, sizeof(Pagina), 1, arquivoIndice);
+// Função auxiliar para inserir uma chave na árvore-B recursivamente
+int insereNaArvoreBRecursivo(Chave chave, int *chavePromovida, int *RRNdoNovoNo, FILE *arquivoIndice) {
+    int RRN = 0;
+    bool encontrado = 0;
 
-//     int i = no.nroChavesNo - 1;
+    while(!encontrado){
+      Pagina pagina = lePagina(arquivoIndice, RRN);
 
-//     // Encontra a posição correta para a nova chave
-//     // while (i >= 0 && chave < no.chave[i]) {
-//     //     i--;
-//     // }
+      // Encontra a posição correta para a nova chave
+      for (int i = 0, i < pagina.nroChavesNo; i++){
+        if(strcmp(pagina.chave[i].nome, chave.nome) > 0){
+          if(pagina.chave[i].ponteiroanterior != -1)
+            RRN = pagina.chave[i].ponteiroanterior;
+          else 
+            encontrado = 1;
+          break;
+        }
+      }
+    }
 
-//     // Caso base: se o nó é uma folha
-//     if (no.alturaNo == 1) {
-//         if (no.nroChavesNo < ORDEM_ARVORE_B - 1) {
-//             // Se há espaço no nó, insere a chave
-//             insereEmNoNaoCheio(&no, chave, RRN, -1, arquivoIndice);
-//             return 0;
-//         } else {
-//             // Se o nó está cheio, divide-o
-//             particionaNo(RRN, i + 1, chave, *RRNdoNovoNo, arquivoIndice);
-//             return 1;
-//         }
-//     } else {
-//         // Caso recursivo: desce na árvore
-//         // int houveSplit = insereNaArvoreBRecursivo(chave, no.RRNdoNo[i + 1], nivel + 1, chavePromovida, RRNdoNovoNo, arquivoIndice);
+    // Caso base: se o nó é uma folha
+    if (pagina.alturaNo == 1) {
+        if (pagina.nroChavesNo < ORDEM_ARVORE_B - 1) {
+            // Se há espaço no nó, insere a chave
+            insereEmNoNaoCheio(&pagina, chave, RRN, -1, arquivoIndice);
+            return 0;
+        } else {
+            // Se o nó está cheio, divide-o
+            particionaNo(RRN, i + 1, chave, *RRNdoNovoNo, arquivoIndice);
+            return 1;
+        }
+    } else {
+        // Caso recursivo: desce na árvore
+        // int houveSplit = insereNaArvoreBRecursivo(chave, pagina.RRNdoNo[i + 1], nivel + 1, chavePromovida, RRNdoNovoNo, arquivoIndice);
 
-//         // Se houve split no nível inferior, insere a chave promovida
-//         // if (houveSplit) {
-//         //     if (no.nroChavesNo < ORDEM_ARVORE_B - 1) {
-//         //         // Se há espaço no nó, insere a chave promovida
-//         //         insereEmNoNaoCheio(&no, *chavePromovida, RRN, *RRNdoNovoNo, arquivoIndice);
-//         //         return 0;
-//         //     } else {
-//         //         // Se o nó está cheio, divide-o
-//         //         particionaNo(RRN, i + 1, *chavePromovida, *RRNdoNovoNo, arquivoIndice);
-//         //         return 1;
-//         //     }
-//         // }
+        // Se houve split no nível inferior, insere a chave promovida
+        // if (houveSplit) {
+        //     if (pagina.nroChavesNo < ORDEM_ARVORE_B - 1) {
+        //         // Se há espaço no nó, insere a chave promovida
+        //         insereEmNoNaoCheio(&pagina, *chavePromovida, RRN, *RRNdoNovoNo, arquivoIndice);
+        //         return 0;
+        //     } else {
+        //         // Se o nó está cheio, divide-o
+        //         particionaNo(RRN, i + 1, *chavePromovida, *RRNdoNovoNo, arquivoIndice);
+        //         return 1;
+        //     }
+        // }
 
-//         return 0;
-//     }
-// }
+        return 0;
+    }
+}
 
 // Função para buscar um registro na árvore-B
 int buscaArvoreB(FILE *arquivoIndice, int RRNarvore, char* chave) {
