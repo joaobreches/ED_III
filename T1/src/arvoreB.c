@@ -168,8 +168,10 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *arquivoIndi
       }
     }
     
-    if(lado)
+    if(lado){
       insereEmNoNaoCheio(&novaPagina, chave, arquivoIndice);
+      chavePromovida = novaPagina.chave[0];
+    }
     
     chavePromovida.ponteiroanterior = pagina.RRNdoNo;
     int ponteirofinal = novaPagina.RRNdoNo;
