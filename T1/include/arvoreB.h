@@ -21,6 +21,7 @@ typedef struct _CabecalhoArvoreB {
 
 typedef struct _Chave {
     int ponteiroanterior;
+    int ponteiroproximo;
     char* nome;
     int ref;
 } Chave;

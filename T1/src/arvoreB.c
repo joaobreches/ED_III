@@ -95,6 +95,12 @@ bool skipCabecalhoArvore(FILE *arquivoBinario){
   return 1;
 }
 
+escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice){
+  fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
+  fwrite(&pagina, sizeof(Pagina), 1, arquivoIndice);
+}
+
+
 void imprimePagina(Pagina pagina) {
   /*
   Essa funcao imprime o registro no formato:
@@ -133,55 +139,66 @@ void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *arquivoIndice) {
 // Função auxiliar para dividir um nó durante a inserção
 void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *arquivoIndice, char* nomeArquivoIndice) {
 
-    // Cria um novo nó
-    Pagina novaPagina;
-    novaPagina.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
-    novaPagina.alturaNo = pagina.alturaNo;
+  // Cria um novo nó
+  Pagina novaPagina;
+  novaPagina.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
+  novaPagina.alturaNo = pagina.alturaNo;
 
-    // Copia metade das chaves e RRNs para o novo nó
-    for (int j = 0; j < novaPagina.nroChavesNo; j++) {
-        novaPagina.chave[j] = pagina.chave[j + (ORDEM_ARVORE_B + 1) / 2];
-    }
-    
-    // Atualiza a quantidade de chaves no nó original
-    pagina.nroChavesNo = ORDEM_ARVORE_B - 1 - novaPagina.nroChavesNo;
+  // Copia metade das chaves e RRNs para o novo nó
+  for (int j = 0; j < novaPagina.nroChavesNo; j++) {
+    novaPagina.chave[j] = pagina.chave[j + (ORDEM_ARVORE_B + 1) / 2];
+  }
 
-    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivoIndice);
-    
-    // Atualiza o RRN do próximo nó no nó original
-    novaPagina.RRNdoNo = cabecalho.RRNproxNo;
+  // Atualiza a quantidade de chaves no nó original
+  pagina.alturaNo = (ORDEM_ARVORE_B + 1) / 2 - 1;
 
-    // Atualiza o cabeçalho
-    cabecalho.RRNproxNo++;
-    escreveCabecalhoArvoreB(arquivoIndice, cabecalho);
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivoIndice);
 
-    /* adiciona a chave e promove outra */
+  // Atualiza o RRN do próximo nó no nó original
+  novaPagina.RRNdoNo = cabecalho.RRNproxNo;
 
-    bool lado = 1; //0 = esquerda, 1 = direita
-    Chave chavePromovida;
+  // Atualiza o cabeçalho
+  cabecalho.RRNproxNo++;
+  escreveCabecalhoArvoreB(arquivoIndice, cabecalho);
 
-    for(int i = 0; i < pagina.nroChavesNo; i++){
-      if(strcmp(pagina.chave[i].nome, chave.nome) > 0){
-        insereEmNoNaoCheio(&pagina, chave, arquivoIndice);
-        lado = 0;
-        chavePromovida = pagina.chave[pagina.nroChavesNo];
-      }
-    }
-    
-    if(lado){
+  // Adiciona a chave no nó apropriado
+  if (strcmp(chave.nome, novaPagina.chave[0].nome) < 0) {
+      insereEmNoNaoCheio(&pagina, chave, arquivoIndice);
+  } else {
       insereEmNoNaoCheio(&novaPagina, chave, arquivoIndice);
-      chavePromovida = novaPagina.chave[0];
+  }
+
+  // Chave a ser promovida
+  Chave chavePromovida;
+
+  // Se o nó original tiver mais chaves que o novo nó
+  if (pagina.nroChavesNo > novaPagina.nroChavesNo) {
+    // Chave a ser promovida é a última do nó original
+    chavePromovida = pagina.chave[pagina.nroChavesNo - 1];
+    pagina.nroChavesNo--;
+  } else {
+    // Chave a ser promovida é a primeira do novo nó
+    chavePromovida = novaPagina.chave[0];
+    insereEmNoNaoCheio(&pagina, chavePromovida, arquivoIndice);
+    for (int i = 0; i < novaPagina.nroChavesNo - 1; i++) {
+      novaPagina.chave[i] = novaPagina.chave[i + 1];
     }
-    
-    chavePromovida.ponteiroanterior = pagina.RRNdoNo;
-    int ponteirofinal = novaPagina.RRNdoNo;
-    insereNaArvoreB(chavePromovida, ponteirofinal, nomeArquivoIndice);
+      novaPagina.nroChavesNo--;
+  }
 
-    // Atualiza o nó original no arquivo
-    // escrevePagina(pagina, RRN, arquivoIndice);
+  // Atualiza ponteiros
+  chavePromovida.ponteiroanterior = RRNSuperior;
+  chavePromovida.ponteiroproximo = novaPagina.RRNdoNo;
 
-    // Escreve o novo nó no arquivo
-    // escrevePagina(novaPagina, novaPagina.RRNdoNo, arquivoIndice);
+  // Insere chave promovida no nó pai
+  insereNaArvoreB(chavePromovida, novaPagina.RRNdoNo, nomeArquivoIndice);
+
+  // Atualiza o nó original no arquivo
+  escrevePagina(pagina, RRNSuperior, arquivoIndice);
+
+  // Escreve o novo nó no arquivo
+  escrevePagina(novaPagina, novaPagina.RRNdoNo, arquivoIndice);
+
 }
 
 Pagina lePagina(FILE* arquivoIndice, int RRN){
