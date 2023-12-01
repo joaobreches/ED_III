@@ -150,7 +150,7 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *arquivoIndi
   }
 
   // Atualiza a quantidade de chaves no nó original
-  pagina.alturaNo = (ORDEM_ARVORE_B + 1) / 2 - 1;
+  pagina.nroChavesNo = (ORDEM_ARVORE_B + 1) / 2 - 1;
 
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivoIndice);
 
@@ -287,35 +287,6 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, char* nomeArquivoIndice) {
     fechaIndiceEscrita(arquivoIndice, nomeArquivoIndice);
   }
 
-
-  // int houveSplit = insereNaArvoreBRecursivo(chave, arquivoIndice);
-  // int chavePromovida;
-  // int RRNdoNovoNo;
-
-  // if (houveSplit) {
-  //     // Cria um novo nó raiz
-  //     Pagina novaRaiz;
-  //     novaRaiz.nroChavesNo = 1;
-  //     novaRaiz.alturaNo = 2;
-
-  //     // Armazena o RRN do próximo nó no campo RRNdoNo[1] da nova raiz
-  //     // novaRaiz.RRNdoNo[0] = RRN;
-  //     // novaRaiz.RRNdoNo[1] = RRNdoNovoNo;
-  //     // novaRaiz.chave[0] = chavePromovida;
-
-  //     // Atualiza o cabeçalho
-  //     fseek(arquivoIndice, 0, SEEK_SET);
-  //     CabecalhoArvoreB cabecalho;
-  //     fread(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
-  //     // cabecalho.noRaiz = proximoRRNNo(arquivoIndice);
-  //     cabecalho.RRNproxNo++;
-  //     fseek(arquivoIndice, 0, SEEK_SET);
-  //     fwrite(&cabecalho, sizeof(CabecalhoArvoreB), 1, arquivoIndice);
-
-  //     // Escreve a nova raiz no arquivo
-  //     // fseek(arquivoIndice, novaRaiz.RRNdoNo[0] * sizeof(Pagina), SEEK_SET);
-  //     fwrite(&novaRaiz, sizeof(Pagina), 1, arquivoIndice);
-  // }
 }
 
 Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, char* nomeArquivoIndice){
@@ -351,36 +322,6 @@ void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE 
       particionaNo(pagina, chave, RRNSuperior, arquivoIndice, nomeArquivoIndice);
     }
 
-    // Caso base: se o nó é uma folha
-    // if (pagina.alturaNo == 1) {
-    //     if (pagina.nroChavesNo < ORDEM_ARVORE_B - 1) {
-    //         // Se há espaço no nó, insere a chave
-    //         insereEmNoNaoCheio(&pagina, chave, -1, arquivoIndice);
-    //         return 0;
-    //     } else {
-    //         // Se o nó está cheio, divide-o
-    //         particionaNo(RRN, chave, RRNSuperior, arquivoIndice);
-    //         return 1;
-    //     }
-    // } else {
-        // Caso recursivo: desce na árvore
-        // int houveSplit = insereNaArvoreBRecursivo(chave, pagina.RRNdoNo[i + 1], nivel + 1, chavePromovida, RRNdoNovoNo, arquivoIndice);
-
-        // Se houve split no nível inferior, insere a chave promovida
-        // if (houveSplit) {
-        //     if (pagina.nroChavesNo < ORDEM_ARVORE_B - 1) {
-        //         // Se há espaço no nó, insere a chave promovida
-        //         insereEmNoNaoCheio(&pagina, *chavePromovida, RRN, *RRNdoNovoNo, arquivoIndice);
-        //         return 0;
-        //     } else {
-        //         // Se o nó está cheio, divide-o
-        //         particionaNo(RRN, i + 1, *chavePromovida, *RRNdoNovoNo, arquivoIndice);
-        //         return 1;
-        //     }
-        // }
-
-    //     return 0;
-    // }
 }
 
 // Função para buscar um registro na árvore-B
