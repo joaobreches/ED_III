@@ -38,9 +38,10 @@ typedef struct _Pagina {
 FILE* abreIndiceEscrita(char* nomeIndice);
 void fechaIndiceEscrita(FILE* indice, char* nomeIndice);
 void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho);
-CabecalhoArvoreB leCabecalhoArvoreB(char* nomeArquivo);
-void printCabecalhoArvoreB(char* nomeArquivo);
+CabecalhoArvoreB leCabecalhoArvoreB(FILE* arquivo);
+void printCabecalhoArvoreB(FILE* arquivoIndice);
 bool skipCabecalhoArvore(FILE *arquivoBinario);
+void escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice);
 void imprimePagina(Pagina pagina);
 void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *arquivoIndice);
 void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *arquivoIndice, char* nomeArquivoIndice);

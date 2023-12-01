@@ -8,16 +8,18 @@
 FILE* abreIndiceEscrita(char* nomeIndice){
     FILE* indice = abreBinarioEscrita(nomeIndice);
 
-    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeIndice);
+    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
     cabecalho.status = '0';
+    printf("\n\n%c, %d, %d\n\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
     escreveCabecalhoArvoreB(indice, cabecalho);
+    printCabecalhoArvoreB(indice);
 
     return indice;
 }
 
 void fechaIndiceEscrita(FILE* indice, char* nomeIndice){
-    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeIndice);
+    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
     cabecalho.status = '1';
     escreveCabecalhoArvoreB(indice, cabecalho);
@@ -40,14 +42,12 @@ void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho) {
   fwrite(&cabecalho.RRNproxNo, sizeof(int), 1, arquivo);
 }
 
-CabecalhoArvoreB leCabecalhoArvoreB(char* nomeArquivo) {
+CabecalhoArvoreB leCabecalhoArvoreB(FILE* arquivo) {
   /*
   Imprime o cabecalho de um arquivo binario
   
   Essa eh uma funcao auxiliar usada para verificacao dos valores do cabecalho e nao foi implementada nas funcoes principais do projeto
   */
-
-  FILE* arquivo = abreBinarioLeitura(nomeArquivo);
   
   fseek(arquivo, 0, SEEK_SET); //inicia a leitura no começo do arquivo
 
@@ -57,12 +57,11 @@ CabecalhoArvoreB leCabecalhoArvoreB(char* nomeArquivo) {
   fread(&cabecalho.noRaiz, sizeof(int), 1, arquivo);
   fread(&cabecalho.RRNproxNo, sizeof(int), 1, arquivo);
 
-  fclose(arquivo);
   return cabecalho;
 }
 
-void printCabecalhoArvoreB(char *nomeArquivo){
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivo);
+void printCabecalhoArvoreB(FILE* arquivoIndice){
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
   printf("%c %d %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
 }
 
@@ -95,7 +94,7 @@ bool skipCabecalhoArvore(FILE *arquivoBinario){
   return 1;
 }
 
-escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice){
+void escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice){
   fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
   fwrite(&pagina, sizeof(Pagina), 1, arquivoIndice);
 }
@@ -152,7 +151,7 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *arquivoIndi
   // Atualiza a quantidade de chaves no nó original
   pagina.nroChavesNo = (ORDEM_ARVORE_B + 1) / 2 - 1;
 
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivoIndice);
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
 
   // Atualiza o RRN do próximo nó no nó original
   novaPagina.RRNdoNo = cabecalho.RRNproxNo;
@@ -202,22 +201,27 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *arquivoIndi
 }
 
 Pagina lePagina(FILE* arquivoIndice, int RRN){
-  Pagina pagina;
-
-  if(!skipCabecalhoArvore(arquivoIndice)){
-    printf("Falha no processamento do arquivo.\n");
+  char status;
+  fread(&status, sizeof(char), 1, arquivoIndice);
+  if(status == '0'){
+    printf("Arquivo inconsistente.\n");
     exit(1);
   }
-
+  fseek(arquivoIndice, TAM_CABECALHO_ARVORE - 1, SEEK_CUR);
   fseek(arquivoIndice, RRN * TAM_PAGINA, SEEK_CUR);
 
+  Pagina pagina;
   fread(&pagina.nroChavesNo, sizeof(int), 1, arquivoIndice);
   fread(&pagina.alturaNo, sizeof(int), 1, arquivoIndice);
   fread(&pagina.RRNdoNo, sizeof(int), 1, arquivoIndice);
 
   for(int i = 0; i < ORDEM_ARVORE_B - 1; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, arquivoIndice);
-    fread(&pagina.chave[i].nome, sizeof(char), TAM_CHAVE, arquivoIndice);
+    // char c;
+    // while((c = fgetc(arquivoIndice)) != '$' && c > 64);{
+    //   printf("no while\n");
+    //   strcat(pagina.chave[i].nome, &c);
+    // }
     fread(&pagina.chave[i].ref, sizeof(int), 1, arquivoIndice);
   }
 
@@ -227,7 +231,8 @@ Pagina lePagina(FILE* arquivoIndice, int RRN){
 }
 
 void criaPaginaNova(char* nomeArquivoIndice, int alturaNo, int ponteirofinal, Chave chave){
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivoIndice);
+  FILE* arquivoIndice = abreIndiceEscrita(nomeArquivoIndice);
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
   
   Pagina pagina;
   pagina.nroChavesNo = 1;
@@ -236,7 +241,7 @@ void criaPaginaNova(char* nomeArquivoIndice, int alturaNo, int ponteirofinal, Ch
   pagina.ponteirofinal = ponteirofinal;
   pagina.chave[0] = chave;
 
-  FILE* arquivoIndice = abreIndiceEscrita(nomeArquivoIndice);
+  printCabecalhoArvoreB(arquivoIndice);
   fseek(arquivoIndice, cabecalho.RRNproxNo * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
 
   fwrite(&pagina.nroChavesNo, sizeof(int), 1, arquivoIndice);
@@ -245,37 +250,43 @@ void criaPaginaNova(char* nomeArquivoIndice, int alturaNo, int ponteirofinal, Ch
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fwrite(&pagina.chave[i-1].ponteiroanterior, sizeof(int), 1, arquivoIndice);
-    fwrite(&pagina.chave[i-1].nome, sizeof(char), sizeof(pagina.chave[i-1].nome), arquivoIndice);
-    fwrite("$", sizeof(char), TAM_CHAVE - sizeof(pagina.chave[i-1].nome), arquivoIndice);
+    // fwrite(&pagina.chave[i-1].nome, sizeof(char), sizeof(pagina.chave[i-1].nome), arquivoIndice);
+    // fwrite("$", sizeof(char), TAM_CHAVE - sizeof(pagina.chave[i-1].nome), arquivoIndice);
     fwrite(&pagina.chave[i-1].ref, sizeof(int), 1, arquivoIndice);
   }
 
-  for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B; i++){
-    fwrite("$", sizeof(char), TAM_PAGINA + 8, arquivoIndice);
-  }
-
+  // for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
+    // fwrite("$", sizeof(char), TAM_CHAVE + 8, arquivoIndice);
+  // }
   fwrite(&pagina.ponteirofinal, sizeof(int), 1, arquivoIndice);
 
   cabecalho.RRNproxNo++;
   if(cabecalho.noRaiz == -1)
     cabecalho.noRaiz++;
   escreveCabecalhoArvoreB(arquivoIndice, cabecalho);
-
   fechaIndiceEscrita(arquivoIndice, nomeArquivoIndice);
 }
 
 // Função auxiliar para inserir uma chave na árvore-B
 void insereNaArvoreB(Chave chave, int ponteirofinal, char* nomeArquivoIndice) {  
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(nomeArquivoIndice);
+  printf("its me hi ");
+  int n;
+  scanf("%d", &n);
+  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
+  fclose(arquivoIndice);
 
   if(cabecalho.status == '0'){
     printf("Arquivo inconsistente.\n");
     exit(-1);
   }
-  
   if (cabecalho.noRaiz == -1){
+    FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
+    printCabecalhoArvoreB(arquivoIndice);
     criaPaginaNova(nomeArquivoIndice, 1, ponteirofinal, chave);
-    imprimePagina(lePagina(abreBinarioLeitura(nomeArquivoIndice), 0));
+    printCabecalhoArvoreB(arquivoIndice);
+    imprimePagina(lePagina(arquivoIndice, 0));
+    fclose(arquivoIndice);
     return;
   }
   else{

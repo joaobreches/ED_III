@@ -436,16 +436,16 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
 
 bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) {
 
+  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
   // Leitura do cabeçalho do índice árvore-B
-  CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(nomeArquivoIndice);
+  CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(arquivoIndice);
 
   // Verifica a consistência do índice
-  if (cabecalhoArvoreB.status != '1') {
+  if (cabecalhoArvoreB.status != '0') {
       printf("Falha no processamento do arquivo.\n");
       exit(1);
   }
 
-  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
   bool encontrado = 0;
 
   int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave);

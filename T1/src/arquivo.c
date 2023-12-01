@@ -30,9 +30,8 @@ void imprimeBinario(char* binario){
     }
 
     char c;
-
     while ((c = fgetc(arquivoBinario)) != EOF) {
-        printf("%c", c);
+        printf("char %c, ", c);
     }
 
     fclose(arquivoBinario); // Fechar o arquivo após o uso
