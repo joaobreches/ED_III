@@ -40,14 +40,14 @@ void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho);
 CabecalhoArvoreB leCabecalhoArvoreB(char* nomeArquivo);
 void printCabecalhoArvoreB(char* nomeArquivo);
 bool skipCabecalhoArvore(FILE *arquivoBinario);
-void imprimePagina(Pagina registro);
-void insereEmNoNaoCheio(Pagina *no, int chave, int RRNdoNo, int RRNdoNovoNo, FILE *arquivoIndice);
-void particionaNo(int RRN, int i, int chave, int RRNdoNovoNo, FILE *arquivoIndice);
-int proximoRRNNo(FILE *arquivoIndice);
-Pagina lePagina(FILE* arqIndice, int RRN);
-void criaPaginaNova(char* nomeArquivoIndice, CabecalhoArvoreB cabecalho, int alturaNo, int ponteirofinal, Chave chave);
-void insereNaArvoreB(Chave chave, char *nomeArquivoIndice);
-int insereNaArvoreBRecursivo(int chave, int RRN, int nivel, int *chavePromovida, int *RRNdoNovoNo, FILE *arquivoIndice);
-int buscaArvoreB(FILE *arquivoIndice, int RRN, char* chave);
+void imprimePagina(Pagina pagina);
+void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *arquivoIndice);
+void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *arquivoIndice, char* nomeArquivoIndice);
+Pagina lePagina(FILE* arquivoIndice, int RRN);
+void criaPaginaNova(char* nomeArquivoIndice, int alturaNo, int ponteirofinal, Chave chave);
+void insereNaArvoreB(Chave chave, int ponteirofinal, char* nomeArquivoIndice);
+Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, char* nomeArquivoIndice);
+void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *arquivoIndice, char* nomeArquivoIndice);
+int buscaArvoreB(FILE *arquivoIndice, int RRNpagina, char* chave);
 
 #endif
