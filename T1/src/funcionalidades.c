@@ -450,9 +450,8 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
   fechaIndiceEscrita(arqIndice);
 }
 
-bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) {
+bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
 
-  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
   // Leitura do cabeçalho do índice árvore-B
   CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(arquivoIndice);
 
