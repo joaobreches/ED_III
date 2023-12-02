@@ -151,7 +151,6 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
-    
     pagina.chave[i].nome = (char*) malloc(TAM_CHAVE * sizeof(char));
     fgets(pagina.chave[i].nome, TAM_CHAVE, indiceLeitura);
 
@@ -160,8 +159,7 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
         pagina.chave[i].nome[j] = '\0';
         break;
       }
-    }
-
+    }    
     fread(&pagina.chave[i].ref, sizeof(int), 1, indiceLeitura);
   }
 
