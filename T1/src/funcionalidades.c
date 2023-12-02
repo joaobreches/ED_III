@@ -449,8 +449,10 @@ bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) 
   }
 
   bool encontrado = 0;
-
-  int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave);
+  Pagina pagina;
+  int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave, pagina);
+  for(int i = 0; i < pagina.nroChavesNo; i++)
+    free(pagina.chave[i].nome);
 
   if (RRN != -1) {
       // Se encontrado na árvore-B, recupera os dados do arquivo de dados
