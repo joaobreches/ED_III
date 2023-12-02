@@ -389,7 +389,7 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
 // Função principal para criar o índice da árvore-B a partir do arquivo de dados
 void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
   FILE *arqDados = abreBinarioLeitura(arquivoDados);
-  FILE *arqIndice = abreBinarioEscrita(arquivoIndice);
+  FILE *arqIndice = abreBinarioEscritaLeitura(arquivoIndice);
 
   CabecalhoArvoreB cabecalho;
   cabecalho.status = '1';
@@ -397,15 +397,10 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
   cabecalho.RRNproxNo = 0;
   escreveCabecalhoArvoreB(arqIndice, cabecalho);
 
-  fclose(arqIndice);
-
   if(skipCabecalho(arqDados)){
     fclose(arqDados);
     return;
   }
-
-  FILE* arqIndiceEscrita = abreIndiceEscrita(arquivoIndice);
-  FILE* arqIndiceLeitura = abreBinarioLeitura(arquivoIndice);
 
   Registro registroAtual;
   Chave chave;
@@ -425,18 +420,20 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
     RRN++;
 
     // Verifica se o registro não foi removido logicamente
-    if (registroAtual.removido == '0') {
+    if (registroAtual.removido == '0' && registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0) {
         // Insere a chave na árvore-B
-        chave.nome = registroAtual.TecnologiaOrigem.string;
+        chave.nome = malloc(registroAtual.TecnologiaDestino.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+        chave.nome[0] = '\0';
+        strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
         strcat(chave.nome, registroAtual.TecnologiaDestino.string);
         chave.ref = RRN;
-        insereNaArvoreB(chave, -1, arqIndiceLeitura, arqIndiceEscrita);
+        insereNaArvoreB(chave, -1, arqIndice);
     }
   }
 
   fclose(arqDados);
-  fechaIndiceEscrita(arqIndiceLeitura, arqIndiceEscrita);
-  fclose(arqIndiceLeitura);
+  fechaIndiceEscrita(arqIndice);
+  fclose(arqIndice);
 }
 
 bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) {
@@ -469,8 +466,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
     
     // Realize as inserções
   FILE *dados = abreBinarioEscrita(arquivoDados);
-  FILE *indiceEscrita = abreIndiceEscrita(arquivoIndice);
-  FILE *indiceLeitura = abreBinarioLeitura(arquivoIndice);
+  FILE *indice = abreBinarioEscritaLeitura(arquivoIndice);
 
   Registro novoRegistro;
   Chave chave;
@@ -488,12 +484,11 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       chave.nome = novoRegistro.TecnologiaOrigem.string;
       strcat(chave.nome, novoRegistro.TecnologiaDestino.string);
       chave.ref = RRN;
-      insereNaArvoreB(chave, -1, indiceLeitura, indiceEscrita);  
+      insereNaArvoreB(chave, -1, indice);  
   }
 
   fclose(dados);
-  fechaIndiceEscrita(indiceLeitura, indiceEscrita);
-  fclose(indiceLeitura);
+  fechaIndiceEscrita(indice);
 
   // Exibe o conteúdo dos arquivos na tela
   printf("\nConteúdo do arquivo de dados:\n");

@@ -36,20 +36,20 @@ typedef struct _Pagina {
 } Pagina;
 
 FILE* abreIndiceEscrita(char* nomeIndice);
-void fechaIndiceEscrita(FILE* indiceLeitura, FILE* indiceEscrita);
-void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho);
-CabecalhoArvoreB leCabecalhoArvoreB(FILE* indiceLeitura);
-void printCabecalhoArvoreB(FILE* indiceLeitura);
+void fechaIndiceEscrita(FILE* indice);
+void escreveCabecalhoArvoreB(FILE *indice, CabecalhoArvoreB cabecalho);
+CabecalhoArvoreB leCabecalhoArvoreB(FILE* indice);
+void printCabecalhoArvoreB(FILE* indice);
 bool skipCabecalhoArvore(FILE *indice);
-void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita);
-Pagina lePagina(FILE* indiceLeitura, int RRN);
+void escrevePagina(Pagina pagina, int RRN, FILE* indice);
+Pagina lePagina(FILE* indice, int RRN);
 void imprimePagina(Pagina pagina);
-void criaPaginaNova(FILE* indiceLeitura, FILE* indiceEscrita, int alturaNo, int ponteirofinal, Chave chave);
-void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indiceEscrita);
-void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indiceLeitura, FILE *indiceEscrita);
-void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indiceLeitura, FILE* indiceEscrita);
-void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *indiceLeitura, FILE *indiceEscrita);
-Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indiceLeitura);
-int buscaArvoreB(FILE *indiceLeitura, int RRNpagina, char* chave);
+void criaPaginaNova(FILE* indice, int alturaNo, int ponteirofinal, Chave chave);
+void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indice);
+void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice);
+void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice);
+void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *indice);
+Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indice);
+int buscaArvoreB(FILE *indice, int RRNpagina, char* chave);
 
 #endif

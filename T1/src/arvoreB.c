@@ -17,13 +17,13 @@ FILE* abreIndiceEscrita(char* nomeIndice){
     return indice;
 }
 
-void fechaIndiceEscrita(FILE* indiceLeitura, FILE* indiceEscrita){
-    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indiceLeitura);
+void fechaIndiceEscrita(FILE* indice){
+    CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
     cabecalho.status = '1';
-    escreveCabecalhoArvoreB(indiceEscrita, cabecalho);
+    escreveCabecalhoArvoreB(indice, cabecalho);
 
-    fclose(indiceEscrita);
+    fclose(indice);
 }
 
 void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho) {
@@ -103,24 +103,31 @@ bool skipCabecalhoArvore(FILE *indice){
 }
 
 void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
+  printf("pagina: tentando escrever\n");
   fseek(indiceEscrita, RRN * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
 
-  fwrite(&pagina.nroChavesNo, sizeof(int), 1, indiceEscrita);
-  fwrite(&pagina.alturaNo, sizeof(int), 1, indiceEscrita);
-  fwrite(&pagina.RRNdoNo, sizeof(int), 1, indiceEscrita);
+  fwrite(&(pagina.nroChavesNo), sizeof(int), 1, indiceEscrita);
+  fwrite(&(pagina.alturaNo), sizeof(int), 1, indiceEscrita);
+  fwrite(&(pagina.RRNdoNo), sizeof(int), 1, indiceEscrita);
 
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
-    fwrite(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceEscrita);
-    fwrite(&pagina.chave[i].nome, sizeof(char), strlen(pagina.chave[i].nome), indiceEscrita);
-    fwrite("$", sizeof(char), TAM_CHAVE - strlen(pagina.chave[i].nome), indiceEscrita);
-    fwrite(&pagina.chave[i].ref, sizeof(int), 1, indiceEscrita);
+    fwrite(&(pagina.chave[i].ponteiroanterior), sizeof(int), 1, indiceEscrita);
+    fwrite(pagina.chave[i].nome, sizeof(char), strlen(pagina.chave[i].nome), indiceEscrita);
+    for(int j = 0; j < TAM_CHAVE - strlen(pagina.chave[i].nome); j++) {
+      fwrite("$", sizeof(char), 1, indiceEscrita);
+    }
+    fwrite(&(pagina.chave[i].ref), sizeof(int), 1, indiceEscrita);
   }
 
-  // for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
-    // fwrite("$", sizeof(char), TAM_CHAVE + 8, indiceEscrita);
-  // }
-  fwrite(&pagina.ponteirofinal, sizeof(int), 1, indiceEscrita);
+  for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
+    for(int j = 0; j < TAM_CHAVE + 8; j++)
+      fwrite("$", sizeof(char), 1, indiceEscrita);
+  }
+  fwrite(&(pagina.ponteirofinal), sizeof(int), 1, indiceEscrita);
+
+  fclose(indiceEscrita);
+  exit(EXIT_SUCCESS);
 }
 
 Pagina lePagina(FILE* indiceLeitura, int RRN){
@@ -175,8 +182,8 @@ void imprimePagina(Pagina pagina){
     printf("ponteiroanterior %d, chave %d: %s, RRN: %d;\n", pagina.chave[i].ponteiroanterior, i, pagina.chave[i].nome, pagina.chave[i].ref);
 }
 
-void criaPaginaNova(FILE* indiceLeitura, FILE* indiceEscrita, int alturaNo, int ponteirofinal, Chave chave){
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indiceLeitura);
+void criaPaginaNova(FILE* indice, int alturaNo, int ponteirofinal, Chave chave){
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
   
   Pagina pagina;
   pagina.nroChavesNo = 1;
@@ -184,17 +191,18 @@ void criaPaginaNova(FILE* indiceLeitura, FILE* indiceEscrita, int alturaNo, int 
   pagina.RRNdoNo = cabecalho.RRNproxNo;
   pagina.ponteirofinal = ponteirofinal;
   pagina.chave[0] = chave;
+  printf("pagina: %d, %d, %d, %d, %s, %d\n", pagina.nroChavesNo, pagina.alturaNo, pagina.RRNdoNo, pagina.ponteirofinal, pagina.chave->nome, pagina.chave->ponteiroanterior);
 
-  escrevePagina(pagina, pagina.RRNdoNo, indiceEscrita);
+  escrevePagina(pagina, pagina.RRNdoNo, indice);
 
   cabecalho.RRNproxNo++;
   if(cabecalho.noRaiz == -1)
     cabecalho.noRaiz++;
-  escreveCabecalhoArvoreB(indiceEscrita, cabecalho);
+  escreveCabecalhoArvoreB(indice, cabecalho);
 }
 
 // Função auxiliar para inserir uma chave em um nó não cheio
-void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indiceEscrita) {
+void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indice) {
     int i = pagina->nroChavesNo - 1;
 
     // Encontra a posição correta para a nova chave
@@ -208,11 +216,11 @@ void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indiceEscrita) {
     pagina->nroChavesNo++;
 
     // Atualiza o nó no arquivo
-    escrevePagina(*pagina, pagina->RRNdoNo, indiceEscrita);
+    escrevePagina(*pagina, pagina->RRNdoNo, indice);
 }
 
 // Função auxiliar para dividir um nó durante a inserção
-void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indiceLeitura, FILE *indiceEscrita) {
+void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
 
   // Cria um novo nó
   Pagina novaPagina;
@@ -227,20 +235,20 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indiceLeitu
   // Atualiza a quantidade de chaves no nó original
   pagina.nroChavesNo = (ORDEM_ARVORE_B + 1) / 2 - 1;
 
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indiceLeitura);
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
   // Atualiza o RRN do próximo nó no nó original
   novaPagina.RRNdoNo = cabecalho.RRNproxNo;
 
   // Atualiza o cabeçalho
   cabecalho.RRNproxNo++;
-  escreveCabecalhoArvoreB(indiceEscrita, cabecalho);
+  escreveCabecalhoArvoreB(indice, cabecalho);
 
   // Adiciona a chave no nó apropriado
   if (strcmp(chave.nome, novaPagina.chave[0].nome) < 0) {
-      insereEmNoNaoCheio(&pagina, chave, indiceEscrita);
+      insereEmNoNaoCheio(&pagina, chave, indice);
   } else {
-      insereEmNoNaoCheio(&novaPagina, chave, indiceEscrita);
+      insereEmNoNaoCheio(&novaPagina, chave, indice);
   }
 
   // Chave a ser promovida
@@ -254,7 +262,7 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indiceLeitu
   } else {
     // Chave a ser promovida é a primeira do novo nó
     chavePromovida = novaPagina.chave[0];
-    insereEmNoNaoCheio(&pagina, chavePromovida, indiceEscrita);
+    insereEmNoNaoCheio(&pagina, chavePromovida, indice);
     for (int i = 0; i < novaPagina.nroChavesNo - 1; i++) {
       novaPagina.chave[i] = novaPagina.chave[i + 1];
     }
@@ -266,56 +274,60 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indiceLeitu
   chavePromovida.ponteiroproximo = novaPagina.RRNdoNo;
 
   // Insere chave promovida no nó pai
-  insereNaArvoreB(chavePromovida, novaPagina.RRNdoNo, indiceLeitura, indiceEscrita);
+  insereNaArvoreB(chavePromovida, novaPagina.RRNdoNo, indice);
 
   // Atualiza o nó original no arquivo
-  escrevePagina(pagina, RRNSuperior, indiceEscrita);
+  escrevePagina(pagina, RRNSuperior, indice);
 
   // Escreve o novo nó no arquivo
-  escrevePagina(novaPagina, novaPagina.RRNdoNo, indiceEscrita);
+  escrevePagina(novaPagina, novaPagina.RRNdoNo, indice);
 
 }
 
 // Função auxiliar para inserir uma chave na árvore-B
-void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indiceLeitura, FILE* indiceEscrita) {  
+void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {  
+  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
+
+  printf("cabecalho: %c, %d, %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
+
   printf("its me hi ");
   int n;
   scanf("%d", &n);
-
-  CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indiceLeitura);
 
   if(cabecalho.status == '0'){
     printf("Arquivo inconsistente.\n");
     exit(-1);
   }
   if (cabecalho.noRaiz == -1){
-    criaPaginaNova(indiceLeitura, indiceEscrita, 1, ponteirofinal, chave);
-    imprimePagina(lePagina(indiceLeitura, 0));
-
+    criaPaginaNova(indice, 1, ponteirofinal, chave);
+    
+    //imprimePagina(lePagina(indice, 0));
+    fclose(indice);
+    exit(EXIT_SUCCESS);
     return;
   }
   else{
     int RRNSuperior = 0;
 
-    Pagina pagina = desceArvore(chave, cabecalho.noRaiz, &RRNSuperior, indiceLeitura);
-    insereNaArvoreBRecursivo(pagina, RRNSuperior, chave, indiceLeitura, indiceEscrita);
+    Pagina pagina = desceArvore(chave, cabecalho.noRaiz, &RRNSuperior, indice);
+    insereNaArvoreBRecursivo(pagina, RRNSuperior, chave, indice);
   }
 
 }
 
 // Função auxiliar para inserir uma chave na árvore-B recursivamente
-void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *indiceLeitura, FILE *indiceEscrita) {
+void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *indice) {
     if(pagina.nroChavesNo < ORDEM_ARVORE_B - 1){
-      insereEmNoNaoCheio(&pagina, chave, indiceEscrita);
+      insereEmNoNaoCheio(&pagina, chave, indice);
       return;
     } else {
-      particionaNo(pagina, chave, RRNSuperior, indiceLeitura, indiceEscrita);
+      particionaNo(pagina, chave, RRNSuperior, indice);
     }
 
 }
 
-Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indiceLeitura){
-  Pagina pagina = lePagina(indiceLeitura, RRNpagina);
+Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indice){
+  Pagina pagina = lePagina(indice, RRNpagina);
   
   if(pagina.alturaNo == 1){
     return pagina;
@@ -324,30 +336,30 @@ Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indiceLei
     for(int i = 0; i < pagina.nroChavesNo; i++){
       if(strcmp(pagina.chave[i].nome, chave.nome) > 0){
         *RRNSuperior = RRNpagina;
-        desceArvore(chave, pagina.chave[i].ponteiroanterior, RRNSuperior, indiceLeitura);
+        desceArvore(chave, pagina.chave[i].ponteiroanterior, RRNSuperior, indice);
       }
       else if(i == pagina.nroChavesNo - 1){
         *RRNSuperior = RRNpagina;
-        desceArvore(chave, pagina.ponteirofinal, RRNSuperior, indiceLeitura);
+        desceArvore(chave, pagina.ponteirofinal, RRNSuperior, indice);
       }
     }
   }
 }
 
 // Função para buscar um registro na árvore-B
-int buscaArvoreB(FILE *indiceLeitura, int RRNpagina, char* chave) {
+int buscaArvoreB(FILE *indice, int RRNpagina, char* chave) {
   if(RRNpagina == -1) //nao achou a chave num no folha
     return -1;
 
-  Pagina pagina= lePagina(indiceLeitura, RRNpagina);
+  Pagina pagina= lePagina(indice, RRNpagina);
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
     if(strcmp(pagina.chave[i].nome, chave) == 0)
       return pagina.chave[i].ref;
     else if(strcmp(pagina.chave[i].nome, chave) > 0)
-      buscaArvoreB(indiceLeitura, pagina.chave[i].ponteiroanterior, chave);
+      buscaArvoreB(indice, pagina.chave[i].ponteiroanterior, chave);
     else
       if(i == ORDEM_ARVORE_B - 2)
-        buscaArvoreB(indiceLeitura, pagina.ponteirofinal, chave);
+        buscaArvoreB(indice, pagina.ponteirofinal, chave);
   }
 }

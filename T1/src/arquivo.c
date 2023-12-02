@@ -7,15 +7,13 @@ char* diretorioArquivo(char* nomeArquivo, char tipoArquivo) {
     char* diretorio;
   
     if (tipoArquivo == 'b')
-        diretorio = strdup("arquivo/binario/");
+        diretorio = "arquivo/binario/";
     else
-        diretorio = strdup("arquivo/csv/");
+        diretorio = "arquivo/csv/";
 
     char* resultado = malloc(strlen(diretorio) + strlen(nomeArquivo) + 1);
     strcpy(resultado, diretorio);
     strcat(resultado, nomeArquivo);
-
-    free(diretorio); // Liberar a memória alocada para a string original
 
     return resultado;
 }
@@ -38,6 +36,17 @@ void imprimeBinario(char* binario){
     free(binario); // Liberar a memória alocada dinamicamente
 
     printf("\n");
+}
+
+FILE* abreBinarioEscritaLeitura(char* nomeBinario){
+    FILE* binario = fopen(diretorioArquivo(nomeBinario, 'b'), "wb+");
+
+    if(binario == NULL){
+        printf("Falha no processamento do arquivo.\n");
+        exit(1);
+    }
+
+    return binario;
 }
 
 FILE* abreBinarioEscrita(char* nomeBinario){
