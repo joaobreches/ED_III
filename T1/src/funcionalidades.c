@@ -464,28 +464,38 @@ bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) 
 
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
     
-    // Realize as inserções
+  // Realize as inserções
   FILE *dados = abreBinarioEscrita(arquivoDados);
   FILE *indice = abreBinarioEscritaLeitura(arquivoIndice);
 
-  Registro novoRegistro;
+  Cabecalho cabecalho;
+  Registro registroAtual;
   Chave chave;
   int RRN;
 
   for (int i = 0; i < n; i++) {
       // Solicite ao usuário os valores do novo registro
-      scanf("%s %d %d %s %d", novoRegistro.TecnologiaOrigem.string, &novoRegistro.grupo, &novoRegistro.popularidade,
-            novoRegistro.TecnologiaDestino.string, &novoRegistro.peso);
+      scanf("%s %d %d %s %d", registroAtual.TecnologiaOrigem.string, &registroAtual.grupo, &registroAtual.popularidade,
+            registroAtual.TecnologiaDestino.string, &registroAtual.peso);
 
-      // Insira o registro no arquivo de dados
-      fwrite(&novoRegistro, sizeof(Registro), 1, dados);
+      // escreve campos no arquivo binario
+      fwrite(&registroAtual.removido, sizeof(char), 1, dados);
+      fwrite(&registroAtual.grupo, sizeof(int), 1, dados);
+      fwrite(&registroAtual.popularidade, sizeof(int), 1, dados);
+      fwrite(&registroAtual.peso, sizeof(int), 1, dados);
+      fwrite(&registroAtual.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
+      fwrite(registroAtual.TecnologiaOrigem.string, sizeof(char), registroAtual.TecnologiaOrigem.tamanho, dados);
+      fwrite(&registroAtual.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
+      fwrite(registroAtual.TecnologiaDestino.string, sizeof(char), registroAtual.TecnologiaDestino.tamanho, dados);
 
       // Insira a chave correspondente na árvore-B
-      chave.nome = novoRegistro.TecnologiaOrigem.string;
-      strcat(chave.nome, novoRegistro.TecnologiaDestino.string);
+      chave.nome = registroAtual.TecnologiaOrigem.string;
+      strcat(chave.nome, registroAtual.TecnologiaDestino.string);
       chave.ref = RRN;
       insereNaArvoreB(chave, -1, indice);  
   }
+
+  contaTecnologias(dados, registroAtual, &cabecalho);
 
   fclose(dados);
   fechaIndiceEscrita(indice);
