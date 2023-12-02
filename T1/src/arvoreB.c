@@ -295,9 +295,9 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
 void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {  
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
-  printf("its me hi ");
-  int n;
-  scanf("%d", &n);
+  // printf("its me hi ");
+  // int n;
+  // scanf("%d", &n);
 
   if(cabecalho.status == '0'){
     printf("Arquivo inconsistente.\n");
@@ -305,10 +305,6 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {
   }
   if (cabecalho.noRaiz == -1){
     criaPaginaNova(indice, 1, ponteirofinal, chave);
-    
-    Pagina pagina = lePagina(indice, 0);
-    imprimePagina(pagina);
-    free(pagina.chave[0].nome);
     return;
   }
   else{
