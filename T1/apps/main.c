@@ -28,7 +28,7 @@ int main() {
   }
 
   // le uma linha de entrada do terminal
-  fgets(linha, 200, stdin);
+  fgets(linha, 300, stdin);
   // armazena os valores lidos nas suas respectivas variaveis
   sscanf(linha, "%d %s %s %s", &funcionalidade, leitura1, leitura2, leitura3);
 

@@ -172,6 +172,8 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   for(int i = 0; i < 5; i++) {
     free(colunas[i]);
   }
+  free(nomeArquivoCSV);
+  free(nomeArquivoBinario);
 }
 
 // incluir mensagens de erro - erro de nao registros ja incluido
@@ -220,6 +222,7 @@ void imprimeArquivo(char* nomeArquivoBinario) {
 
   // fecha o arquivo binario
   fclose(arquivoBinario);
+  free(nomeArquivoBinario);
 }
 
 bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char valorCampo[TAM_REGISTRO_FIXO]){
@@ -395,6 +398,7 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
 
   // fecha o arquivo
   fclose(arquivo);
+  free(arquivoEntrada);
 }
 
 // Função principal para criar o índice da árvore-B a partir do arquivo de dados
@@ -433,7 +437,7 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
     // Verifica se o registro não foi removido logicamente
     if (registroAtual.removido == '0' && registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0) {
         // Insere a chave na árvore-B
-        chave.nome = malloc(registroAtual.TecnologiaDestino.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+        chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
         chave.nome[0] = '\0';
         strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
         strcat(chave.nome, registroAtual.TecnologiaDestino.string);

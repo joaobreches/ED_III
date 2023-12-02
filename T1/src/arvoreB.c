@@ -32,6 +32,8 @@ void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho) {
   
   Essa funcao eh chamada na funcao "criaTabela" do cabecalho funcoesBasicas.h 
   */
+
+  // printf("ESCREVENDO CABECALHO: %c, %d, %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
   
   fseek(indiceEscrita, 0, SEEK_SET); //inicia a escrita no começo do arquivo
 
@@ -103,6 +105,8 @@ bool skipCabecalhoArvore(FILE *indice){
 }
 
 void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
+  printf("ESCREVENDO PAGINA: %d, %d, %d\n", pagina.nroChavesNo, pagina.alturaNo, pagina.RRNdoNo);
+
   fseek(indiceEscrita, RRN * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
 
   fwrite(&(pagina.nroChavesNo), sizeof(int), 1, indiceEscrita);
@@ -150,19 +154,20 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
-    pagina.chave[i].nome = (char*) malloc(TAM_CHAVE * sizeof(char));
+    pagina.chave[i].nome = (char*) malloc((TAM_CHAVE + 1) * sizeof(char));
     if(pagina.chave[i].nome == NULL){
       printf("Erro na alocacao de memoria.\n");
       exit(1);
     }
     fgets(pagina.chave[i].nome, TAM_CHAVE + 1, indiceLeitura);
 
-    for(int j = 0; j < TAM_CHAVE; j++){
-      if(pagina.chave[i].nome[j] == '$'){
+    for(int j = 0; j < TAM_CHAVE; j++) {
+      if(pagina.chave[i].nome[j] == '$') {
         pagina.chave[i].nome[j] = '\0';
         break;
       }
-    }   
+    }
+    pagina.chave[i].nome[TAM_CHAVE] = '\0';
 
     fread(&pagina.chave[i].ref, sizeof(int), 1, indiceLeitura);
   }
@@ -295,9 +300,9 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
 void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {  
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
-  printf("its me hi ");
-  int n;
-  scanf("%d", &n);
+  // printf("its me hi ");
+  // int n;
+  // scanf("%d", &n);
 
   if(cabecalho.status == '0'){
     printf("Arquivo inconsistente.\n");
@@ -305,10 +310,6 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {
   }
   if (cabecalho.noRaiz == -1){
     criaPaginaNova(indice, 1, ponteirofinal, chave);
-    
-    Pagina pagina = lePagina(indice, 0);
-    imprimePagina(pagina);
-    free(pagina.chave[0].nome);
     return;
   }
   else{
