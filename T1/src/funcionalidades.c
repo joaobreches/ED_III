@@ -340,6 +340,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
 
   // fecha o arquivo binario
   fclose(arquivo);
+  fclose(arqIndice);
 }
 
 void recuperaRegistro(char *arquivoEntrada, int rrn) {
