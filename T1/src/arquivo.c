@@ -39,45 +39,53 @@ void imprimeBinario(char* binario){
 }
 
 FILE* abreBinarioEscritaLeitura(char* nomeBinario){
-    FILE* binario = fopen(diretorioArquivo(nomeBinario, 'b'), "wb+");
+    nomeBinario = diretorioArquivo(nomeBinario, 'b');
+    FILE* binario = fopen(nomeBinario, "wb+");
 
     if(binario == NULL){
         printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
 
+    free(nomeBinario);
     return binario;
 }
 
 FILE* abreBinarioEscrita(char* nomeBinario){
-    FILE* binario = fopen(diretorioArquivo(nomeBinario, 'b'), "wb");
+    nomeBinario = diretorioArquivo(nomeBinario, 'b');
+    FILE* binario = fopen(nomeBinario, "wb");
 
     if(binario == NULL){
         printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
 
+    free(nomeBinario);
     return binario;
 }
 
 FILE* abreBinarioLeitura(char* nomeBinario){
-    FILE* binario = fopen(diretorioArquivo(nomeBinario, 'b'), "rb");
+    nomeBinario = diretorioArquivo(nomeBinario, 'b');
+    FILE* binario = fopen(nomeBinario, "rb");
 
     if(binario == NULL){
         printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
 
+    free(nomeBinario);
     return binario;
 }
 
 FILE* abreCSVEscrita(char* nomeCSV){
-    FILE* csv = fopen(diretorioArquivo(nomeCSV, 'c'), "r");
+    nomeCSV = diretorioArquivo(nomeCSV, 'c');
+    FILE* csv = fopen(nomeCSV, "r");
 
     if(csv == NULL){
         printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
 
+    free(nomeCSV);
     return csv;
 }

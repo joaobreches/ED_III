@@ -313,8 +313,8 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {
     Pagina pagina = desceArvore(chave, cabecalho.noRaiz, &RRNSuperior, indice);
     insereNaArvoreBRecursivo(pagina, RRNSuperior, chave, indice);
 
-    for(int i = 0; i < pagina.nroChavesNo; i++)
-      free(pagina.chave[i].nome);
+    // for(int i = 0; i < pagina.nroChavesNo; i++)
+    //   free(pagina.chave[i].nome);
   }
 
 }
