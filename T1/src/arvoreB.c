@@ -119,15 +119,14 @@ void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
     fwrite(&(pagina.chave[i].ref), sizeof(int), 1, indiceEscrita);
   }
 
-  int cont = 0;
+  int menosUm = -1;
   for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
-    for(int j = 0; j < TAM_CHAVE + 8; j++){
+    fwrite(&menosUm, sizeof(int), 1, indiceEscrita);
+    for(int j = 0; j < TAM_CHAVE; j++){
       fwrite("$", sizeof(char), 1, indiceEscrita);
-      cont++;
     }
+    fwrite(&menosUm, sizeof(int), 1, indiceEscrita);
   }
-
-  printf("cont da escreve: %d\n", cont);
 
   fwrite(&(pagina.ponteirofinal), sizeof(int), 1, indiceEscrita);
 }
@@ -152,19 +151,23 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
     pagina.chave[i].nome = (char*) malloc(TAM_CHAVE * sizeof(char));
-    fgets(pagina.chave[i].nome, TAM_CHAVE, indiceLeitura);
+    if(pagina.chave[i].nome == NULL){
+      printf("Erro na alocacao de memoria.\n");
+      exit(1);
+    }
+    fgets(pagina.chave[i].nome, TAM_CHAVE + 1, indiceLeitura);
 
     for(int j = 0; j < TAM_CHAVE; j++){
       if(pagina.chave[i].nome[j] == '$'){
         pagina.chave[i].nome[j] = '\0';
         break;
       }
-    }    
+    }   
+
     fread(&pagina.chave[i].ref, sizeof(int), 1, indiceLeitura);
   }
 
   fseek(indiceLeitura, (ORDEM_ARVORE_B - pagina.nroChavesNo - 1) * (TAM_CHAVE + 8), SEEK_CUR);
-  printf("cont da escreve: %d\n", (ORDEM_ARVORE_B - pagina.nroChavesNo - 1) * (TAM_CHAVE + 8));
   fread(&pagina.ponteirofinal, sizeof(int), 1, indiceLeitura);
 
   return pagina;
@@ -184,7 +187,7 @@ void imprimePagina(Pagina pagina){
   // imprime o registro, se o campo for nulo (-1) imprime NULO
   printf("nroChaves: %d, altura: %d, RRN: %d, ponteirofinal: %d\n", pagina.nroChavesNo, pagina.alturaNo, pagina.RRNdoNo, pagina.ponteirofinal);
   for(int i = 0; i < pagina.nroChavesNo; i++)
-    printf("ponteiroanterior %d, chave %d: %s, RRN: %d;\n", pagina.chave[i].ponteiroanterior, i, pagina.chave[i].nome, pagina.chave[i].ref);
+    printf("ponteiroanterior %d, chave %d: %s, RRN: %d\n", pagina.chave[i].ponteiroanterior, i, pagina.chave[i].nome, pagina.chave[i].ref);
 }
 
 void criaPaginaNova(FILE* indice, int alturaNo, int ponteirofinal, Chave chave){
