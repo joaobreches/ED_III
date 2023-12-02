@@ -101,10 +101,10 @@ void escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice){
   fwrite(&pagina.RRNdoNo, sizeof(int), 1, arquivoIndice);
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
-    fwrite(&pagina.chave[i-1].ponteiroanterior, sizeof(int), 1, arquivoIndice);
-    // fwrite(&pagina.chave[i-1].nome, sizeof(char), sizeof(pagina.chave[i-1].nome), arquivoIndice);
-    // fwrite("$", sizeof(char), TAM_CHAVE - sizeof(pagina.chave[i-1].nome), arquivoIndice);
-    fwrite(&pagina.chave[i-1].ref, sizeof(int), 1, arquivoIndice);
+    fwrite(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, arquivoIndice);
+    fwrite(&pagina.chave[i].nome, sizeof(char), strlen(pagina.chave[i].nome), arquivoIndice);
+    fwrite("$", sizeof(char), TAM_CHAVE - strlen(pagina.chave[i].nome), arquivoIndice);
+    fwrite(&pagina.chave[i].ref, sizeof(int), 1, arquivoIndice);
   }
 
   // for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
@@ -112,7 +112,6 @@ void escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice){
   // }
   fwrite(&pagina.ponteirofinal, sizeof(int), 1, arquivoIndice);
 }
-
 
 void imprimePagina(Pagina pagina) {
   /*
@@ -231,11 +230,21 @@ Pagina lePagina(FILE* arquivoIndice, int RRN){
 
   for(int i = 0; i < ORDEM_ARVORE_B - 1; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, arquivoIndice);
-    // char c;
-    // while((c = fgetc(arquivoIndice)) != '$' && c > 64);{
-    //   printf("no while\n");
-    //   strcat(pagina.chave[i].nome, &c);
+    
+    pagina.chave[i].nome = (char*) malloc(TAM_CHAVE * sizeof(char));
+    if(pagina.chave[i].nome == NULL){
+      printf("Falha no processamento do arquivo.");
+      exit(1);
+    }
+    fgets(pagina.chave[i].nome, TAM_CHAVE, arquivoIndice);
+    
+    // for(int j = 0; j < TAM_CHAVE; j++){
+    //   if(pagina.chave[i].nome[j] == '$'){
+    //     pagina.chave[i].nome[j] = '\0';
+    //     break;
+    //   }
     // }
+
     fread(&pagina.chave[i].ref, sizeof(int), 1, arquivoIndice);
   }
 
