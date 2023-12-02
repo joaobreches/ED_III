@@ -32,6 +32,8 @@ void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho) {
   
   Essa funcao eh chamada na funcao "criaTabela" do cabecalho funcoesBasicas.h 
   */
+
+  // printf("ESCREVENDO CABECALHO: %c, %d, %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
   
   fseek(indiceEscrita, 0, SEEK_SET); //inicia a escrita no começo do arquivo
 
@@ -103,6 +105,8 @@ bool skipCabecalhoArvore(FILE *indice){
 }
 
 void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
+  printf("ESCREVENDO PAGINA: %d, %d, %d\n", pagina.nroChavesNo, pagina.alturaNo, pagina.RRNdoNo);
+
   fseek(indiceEscrita, RRN * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
 
   fwrite(&(pagina.nroChavesNo), sizeof(int), 1, indiceEscrita);
@@ -313,8 +317,8 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {
     Pagina pagina = desceArvore(chave, cabecalho.noRaiz, &RRNSuperior, indice);
     insereNaArvoreBRecursivo(pagina, RRNSuperior, chave, indice);
 
-    // for(int i = 0; i < pagina.nroChavesNo; i++)
-    //   free(pagina.chave[i].nome);
+    for(int i = 0; i < pagina.nroChavesNo; i++)
+      free(pagina.chave[i].nome);
   }
 
 }
