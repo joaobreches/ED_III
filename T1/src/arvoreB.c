@@ -105,7 +105,7 @@ bool skipCabecalhoArvore(FILE *indice){
 }
 
 void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
-  printf("ESCREVENDO PAGINA: %d, %d, %d\n", pagina.nroChavesNo, pagina.alturaNo, pagina.RRNdoNo);
+  // printf("ESCREVENDO PAGINA: %d, %d, %d\n", pagina.nroChavesNo, pagina.alturaNo, pagina.RRNdoNo);
 
   fseek(indiceEscrita, RRN * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
 
@@ -156,7 +156,7 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
     pagina.chave[i].nome = (char*) malloc((TAM_CHAVE + 1) * sizeof(char));
     if(pagina.chave[i].nome == NULL){
-      printf("Erro na alocacao de memoria.\n");
+      printf("AAErro na alocacao de memoria.\n");
       exit(1);
     }
     fgets(pagina.chave[i].nome, TAM_CHAVE + 1, indiceLeitura);
