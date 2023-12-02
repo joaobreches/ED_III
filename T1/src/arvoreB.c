@@ -151,9 +151,9 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
     for(int j = 0; j < TAM_CHAVE; j++){
       char c;
       fread(&c, sizeof(char), 1, indiceLeitura);
-      // pagina.chave[i].nome[j] = c;
+      pagina.chave[i].nome[j] = c;
       if(c == '$'){
-        // pagina.chave[i].nome[j] = '\0';
+        pagina.chave[i].nome[j] = '\0';
         break;
       }
       printf("%c", c);
