@@ -464,10 +464,11 @@ bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) 
 
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
     
-    // Realize as inserções
+  // Realize as inserções
   FILE *dados = abreBinarioEscrita(arquivoDados);
   FILE *indice = abreBinarioEscritaLeitura(arquivoIndice);
 
+  Cabecalho cabecalho;
   Registro novoRegistro;
   Chave chave;
   int RRN;
@@ -477,8 +478,15 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       scanf("%s %d %d %s %d", novoRegistro.TecnologiaOrigem.string, &novoRegistro.grupo, &novoRegistro.popularidade,
             novoRegistro.TecnologiaDestino.string, &novoRegistro.peso);
 
-      // Insira o registro no arquivo de dados
-      fwrite(&novoRegistro, sizeof(Registro), 1, dados);
+      // escreve campos no arquivo binario
+      fwrite(&novoRegistro.removido, sizeof(char), 1, dados);
+      fwrite(&novoRegistro.grupo, sizeof(int), 1, dados);
+      fwrite(&novoRegistro.popularidade, sizeof(int), 1, dados);
+      fwrite(&novoRegistro.peso, sizeof(int), 1, dados);
+      fwrite(&novoRegistro.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
+      fwrite(novoRegistro.TecnologiaOrigem.string, sizeof(char), novoRegistro.TecnologiaOrigem.tamanho, dados);
+      fwrite(&novoRegistro.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
+      fwrite(novoRegistro.TecnologiaDestino.string, sizeof(char), novoRegistro.TecnologiaDestino.tamanho, dados);
 
       // Insira a chave correspondente na árvore-B
       chave.nome = novoRegistro.TecnologiaOrigem.string;
@@ -486,6 +494,8 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       chave.ref = RRN;
       insereNaArvoreB(chave, -1, indice);  
   }
+
+  contaTecnologias(dados, novoRegistro, &cabecalho);
 
   fclose(dados);
   fechaIndiceEscrita(indice);
