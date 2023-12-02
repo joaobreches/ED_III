@@ -426,7 +426,7 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
     // Verifica se o registro não foi removido logicamente
     if (registroAtual.removido == '0' && registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0) {
         // Insere a chave na árvore-B
-        chave.nome = malloc(registroAtual.TecnologiaDestino.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+        chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
         chave.nome[0] = '\0';
         strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
         strcat(chave.nome, registroAtual.TecnologiaDestino.string);
