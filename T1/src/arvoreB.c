@@ -6,14 +6,13 @@
 #include <stdbool.h>
 
 FILE* abreIndiceEscrita(char* nomeIndice){
-    FILE* indice = abreBinarioEscrita(nomeIndice);
-
+    FILE* indice = abreBinarioLeitura(nomeIndice);
     CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
+    fclose(indice);
 
+    indice = abreBinarioEscrita(nomeIndice);
     cabecalho.status = '0';
-    printf("\n\n%c, %d, %d\n\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
     escreveCabecalhoArvoreB(indice, cabecalho);
-    printCabecalhoArvoreB(indice);
 
     return indice;
 }
@@ -95,8 +94,23 @@ bool skipCabecalhoArvore(FILE *arquivoBinario){
 }
 
 void escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice){
-  fseek(arquivoIndice, RRN * sizeof(Pagina), SEEK_SET);
-  fwrite(&pagina, sizeof(Pagina), 1, arquivoIndice);
+  fseek(arquivoIndice, RRN * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
+
+  fwrite(&pagina.nroChavesNo, sizeof(int), 1, arquivoIndice);
+  fwrite(&pagina.alturaNo, sizeof(int), 1, arquivoIndice);
+  fwrite(&pagina.RRNdoNo, sizeof(int), 1, arquivoIndice);
+
+  for(int i = 0; i < pagina.nroChavesNo; i++){
+    fwrite(&pagina.chave[i-1].ponteiroanterior, sizeof(int), 1, arquivoIndice);
+    // fwrite(&pagina.chave[i-1].nome, sizeof(char), sizeof(pagina.chave[i-1].nome), arquivoIndice);
+    // fwrite("$", sizeof(char), TAM_CHAVE - sizeof(pagina.chave[i-1].nome), arquivoIndice);
+    fwrite(&pagina.chave[i-1].ref, sizeof(int), 1, arquivoIndice);
+  }
+
+  // for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
+    // fwrite("$", sizeof(char), TAM_CHAVE + 8, arquivoIndice);
+  // }
+  fwrite(&pagina.ponteirofinal, sizeof(int), 1, arquivoIndice);
 }
 
 
@@ -231,8 +245,11 @@ Pagina lePagina(FILE* arquivoIndice, int RRN){
 }
 
 void criaPaginaNova(char* nomeArquivoIndice, int alturaNo, int ponteirofinal, Chave chave){
-  FILE* arquivoIndice = abreIndiceEscrita(nomeArquivoIndice);
+  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
+  fclose(arquivoIndice);
+
+  arquivoIndice = abreIndiceEscrita(nomeArquivoIndice);
   
   Pagina pagina;
   pagina.nroChavesNo = 1;
@@ -241,24 +258,7 @@ void criaPaginaNova(char* nomeArquivoIndice, int alturaNo, int ponteirofinal, Ch
   pagina.ponteirofinal = ponteirofinal;
   pagina.chave[0] = chave;
 
-  printCabecalhoArvoreB(arquivoIndice);
-  fseek(arquivoIndice, cabecalho.RRNproxNo * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
-
-  fwrite(&pagina.nroChavesNo, sizeof(int), 1, arquivoIndice);
-  fwrite(&pagina.alturaNo, sizeof(int), 1, arquivoIndice);
-  fwrite(&pagina.RRNdoNo, sizeof(int), 1, arquivoIndice);
-
-  for(int i = 0; i < pagina.nroChavesNo; i++){
-    fwrite(&pagina.chave[i-1].ponteiroanterior, sizeof(int), 1, arquivoIndice);
-    // fwrite(&pagina.chave[i-1].nome, sizeof(char), sizeof(pagina.chave[i-1].nome), arquivoIndice);
-    // fwrite("$", sizeof(char), TAM_CHAVE - sizeof(pagina.chave[i-1].nome), arquivoIndice);
-    fwrite(&pagina.chave[i-1].ref, sizeof(int), 1, arquivoIndice);
-  }
-
-  // for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
-    // fwrite("$", sizeof(char), TAM_CHAVE + 8, arquivoIndice);
-  // }
-  fwrite(&pagina.ponteirofinal, sizeof(int), 1, arquivoIndice);
+  escrevePagina(pagina, pagina.RRNdoNo, arquivoIndice);
 
   cabecalho.RRNproxNo++;
   if(cabecalho.noRaiz == -1)
@@ -281,12 +281,12 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, char* nomeArquivoIndice) {
     exit(-1);
   }
   if (cabecalho.noRaiz == -1){
-    FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
-    printCabecalhoArvoreB(arquivoIndice);
     criaPaginaNova(nomeArquivoIndice, 1, ponteirofinal, chave);
-    printCabecalhoArvoreB(arquivoIndice);
+
+    FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
     imprimePagina(lePagina(arquivoIndice, 0));
     fclose(arquivoIndice);
+
     return;
   }
   else{
