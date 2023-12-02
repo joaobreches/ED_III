@@ -100,6 +100,7 @@ void escrevePagina(Pagina pagina, int RRN, FILE* arquivoIndice){
   fwrite(&pagina.alturaNo, sizeof(int), 1, arquivoIndice);
   fwrite(&pagina.RRNdoNo, sizeof(int), 1, arquivoIndice);
 
+
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fwrite(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, arquivoIndice);
     fwrite(&pagina.chave[i].nome, sizeof(char), strlen(pagina.chave[i].nome), arquivoIndice);
@@ -231,13 +232,6 @@ Pagina lePagina(FILE* arquivoIndice, int RRN){
   for(int i = 0; i < ORDEM_ARVORE_B - 1; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, arquivoIndice);
     
-    pagina.chave[i].nome = (char*) malloc(TAM_CHAVE * sizeof(char));
-    if(pagina.chave[i].nome == NULL){
-      printf("Falha no processamento do arquivo.");
-      exit(1);
-    }
-    fgets(pagina.chave[i].nome, TAM_CHAVE, arquivoIndice);
-    
     // for(int j = 0; j < TAM_CHAVE; j++){
     //   if(pagina.chave[i].nome[j] == '$'){
     //     pagina.chave[i].nome[j] = '\0';
@@ -281,6 +275,7 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, char* nomeArquivoIndice) {
   printf("its me hi ");
   int n;
   scanf("%d", &n);
+
   FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(arquivoIndice);
   fclose(arquivoIndice);
@@ -293,7 +288,7 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, char* nomeArquivoIndice) {
     criaPaginaNova(nomeArquivoIndice, 1, ponteirofinal, chave);
 
     FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
-    imprimePagina(lePagina(arquivoIndice, 0));
+    // imprimePagina(lePagina(arquivoIndice, 0));
     fclose(arquivoIndice);
 
     return;

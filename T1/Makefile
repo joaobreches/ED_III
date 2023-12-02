@@ -4,6 +4,9 @@ allg: #verify if still runs with directory changes
 test: #verify if still runs with directory changes
 	valgrind --leak-check=full -s ./bin/main
 
+test2:
+	valgrind --leak-check=full --show-leak-kinds=all -s ./bin/main
+	
 all:
 	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
