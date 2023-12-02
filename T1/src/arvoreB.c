@@ -125,9 +125,6 @@ void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
       fwrite("$", sizeof(char), 1, indiceEscrita);
   }
   fwrite(&(pagina.ponteirofinal), sizeof(int), 1, indiceEscrita);
-
-  fclose(indiceEscrita);
-  exit(EXIT_SUCCESS);
 }
 
 Pagina lePagina(FILE* indiceLeitura, int RRN){
@@ -302,8 +299,6 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {
     criaPaginaNova(indice, 1, ponteirofinal, chave);
     
     //imprimePagina(lePagina(indice, 0));
-    fclose(indice);
-    exit(EXIT_SUCCESS);
     return;
   }
   else{
