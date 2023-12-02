@@ -296,17 +296,16 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
 
   // abre arquivo binario 
   FILE *arquivo = abreBinarioLeitura(arquivoEntrada);
-  FILE *arqIndice = abreBinarioEscritaLeitura(arquivoIndice);
+  FILE *arqIndice = abreBinarioLeitura(arquivoIndice);
 
   char statusEntrada, statusIndice;
   fread(&statusEntrada, sizeof(char), 1, arquivo);
   fread(&statusIndice, sizeof(char), 1, arqIndice);
 
-  if(statusEntrada == '0' || statusIndice == '0'){
+  if(statusEntrada != '1' || statusIndice != '1'){
     printf("Falha no processamento do arquivo.\n");
     return;
   }  
-
 
   // loop para cada uma das n condicoes fornecidas como entrada
   for (int i = 0; i < n; i++) {
@@ -365,7 +364,7 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
   // verifica o status do arquivo binario
   char status;
   fread(&status, sizeof(char), 1, arquivo);
-  if(status == '0'){
+  if(status != '1'){
     printf("Falha no processamento do arquivo.\n");
     return;
   }  
@@ -437,29 +436,28 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
 
     // Verifica se o registro não foi removido logicamente
     if (registroAtual.removido == '0' && registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0) {
-        // Insere a chave na árvore-B
-        chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
-        chave.nome[0] = '\0';
-        strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
-        strcat(chave.nome, registroAtual.TecnologiaDestino.string);
-        chave.ref = RRN;
-        insereNaArvoreB(chave, -1, arqIndice);
+      // Insere a chave na árvore-B
+      chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+      chave.nome[0] = '\0';
+      strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
+      strcat(chave.nome, registroAtual.TecnologiaDestino.string);
+      chave.ref = RRN;
+      insereNaArvoreB(chave, -1, arqIndice);
+      free(chave.nome);
     }
   }
 
   fclose(arqDados);
   fechaIndiceEscrita(arqIndice);
-  fclose(arqIndice);
 }
 
-bool filtroArvore(char* nomeArquivoDados, char* nomeArquivoIndice, char* chave) {
+bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
 
-  FILE* arquivoIndice = abreBinarioLeitura(nomeArquivoIndice);
   // Leitura do cabeçalho do índice árvore-B
   CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(arquivoIndice);
 
   // Verifica a consistência do índice
-  if (cabecalhoArvoreB.status != '0') {
+  if (cabecalhoArvoreB.status != '1') {
       printf("Falha no processamento do arquivo.\n");
       exit(1);
   }
