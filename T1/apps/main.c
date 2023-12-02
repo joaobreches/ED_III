@@ -33,9 +33,9 @@ int main() {
   sscanf(linha, "%d %s %s %s", &funcionalidade, leitura1, leitura2, leitura3);
 
   // realoca memoria para as strings e libera o espaço desnecessario
-  /*leitura1 = realloc(leitura1, sizeof(leitura1));
-  leitura2 = realloc(leitura2, sizeof(leitura2));
-  leitura3 = realloc(leitura3, sizeof(leitura3));*/
+  //leitura1 = realloc(leitura1, sizeof(leitura1));
+  //leitura2 = realloc(leitura2, sizeof(leitura2));
+  //leitura3 = realloc(leitura3, sizeof(leitura3));
 
   CabecalhoArvoreB cabecalho;
 

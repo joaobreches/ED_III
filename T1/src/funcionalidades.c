@@ -15,7 +15,7 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   Essa funcao representa a funcionalidade 1 do exercicio introdutorio.
   */
 
- nomeArquivoCSV = diretorioArquivo(nomeArquivoCSV, 'c');
+  nomeArquivoCSV = diretorioArquivo(nomeArquivoCSV, 'c');
 
   // abre arquivo csv
   FILE* arquivoCSV = fopen(nomeArquivoCSV, "r");
@@ -290,7 +290,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
 
   Essa funcao representa a funcionalidade 3 do exercicio introdutorio.
   */
-
+  
   // abre arquivo binario 
   FILE *arquivo = abreBinarioLeitura(arquivoEntrada);
 
