@@ -290,9 +290,20 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
 
   Essa funcao representa a funcionalidade 3 do exercicio introdutorio.
   */
-  
+
   // abre arquivo binario 
   FILE *arquivo = abreBinarioLeitura(arquivoEntrada);
+  FILE *arqIndice = abreBinarioEscritaLeitura(arquivoIndice);
+
+  char statusEntrada, statusIndice;
+  fread(&statusEntrada, sizeof(char), 1, arquivo);
+  fread(&statusIndice, sizeof(char), 1, arqIndice);
+
+  if(statusEntrada == '0' || statusIndice == '0'){
+    printf("Falha no processamento do arquivo.\n");
+    return;
+  }  
+
 
   // loop para cada uma das n condicoes fornecidas como entrada
   for (int i = 0; i < n; i++) {
