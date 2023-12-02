@@ -103,7 +103,6 @@ bool skipCabecalhoArvore(FILE *indice){
 }
 
 void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
-  printf("pagina: tentando escrever\n");
   fseek(indiceEscrita, RRN * TAM_PAGINA + TAM_CABECALHO_ARVORE, SEEK_SET);
 
   fwrite(&(pagina.nroChavesNo), sizeof(int), 1, indiceEscrita);
@@ -124,6 +123,7 @@ void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
     for(int j = 0; j < TAM_CHAVE + 8; j++)
       fwrite("$", sizeof(char), 1, indiceEscrita);
   }
+
   fwrite(&(pagina.ponteirofinal), sizeof(int), 1, indiceEscrita);
 }
 
@@ -144,15 +144,22 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
   fread(&pagina.alturaNo, sizeof(int), 1, indiceLeitura);
   fread(&pagina.RRNdoNo, sizeof(int), 1, indiceLeitura);
 
-  for(int i = 0; i < ORDEM_ARVORE_B - 1; i++){
+  for(int i = 0; i < pagina.nroChavesNo; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
+    printf("lendo chave\n");
     
-    // for(int j = 0; j < TAM_CHAVE; j++){
-    //   if(pagina.chave[i].nome[j] == '$'){
-    //     pagina.chave[i].nome[j] = '\0';
-    //     break;
-    //   }
-    // }
+    for(int j = 0; j < TAM_CHAVE; j++){
+      char c;
+      fread(&c, sizeof(char), 1, indiceLeitura);
+      // pagina.chave[i].nome[j] = c;
+      if(c == '$'){
+        // pagina.chave[i].nome[j] = '\0';
+        break;
+      }
+      printf("%c", c);
+    }
+
+    printf("\nleu chave\n");
 
     fread(&pagina.chave[i].ref, sizeof(int), 1, indiceLeitura);
   }
@@ -188,7 +195,6 @@ void criaPaginaNova(FILE* indice, int alturaNo, int ponteirofinal, Chave chave){
   pagina.RRNdoNo = cabecalho.RRNproxNo;
   pagina.ponteirofinal = ponteirofinal;
   pagina.chave[0] = chave;
-  printf("pagina: %d, %d, %d, %d, %s, %d\n", pagina.nroChavesNo, pagina.alturaNo, pagina.RRNdoNo, pagina.ponteirofinal, pagina.chave->nome, pagina.chave->ponteiroanterior);
 
   escrevePagina(pagina, pagina.RRNdoNo, indice);
 
@@ -285,8 +291,6 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
 void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {  
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
-  printf("cabecalho: %c, %d, %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
-
   printf("its me hi ");
   int n;
   scanf("%d", &n);
@@ -298,7 +302,7 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice) {
   if (cabecalho.noRaiz == -1){
     criaPaginaNova(indice, 1, ponteirofinal, chave);
     
-    //imprimePagina(lePagina(indice, 0));
+    imprimePagina(lePagina(indice, 0));
     return;
   }
   else{
