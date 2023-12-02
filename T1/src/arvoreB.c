@@ -119,10 +119,15 @@ void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){
     fwrite(&(pagina.chave[i].ref), sizeof(int), 1, indiceEscrita);
   }
 
+  int cont = 0;
   for(int i = pagina.nroChavesNo; i < ORDEM_ARVORE_B - 1; i++){
-    for(int j = 0; j < TAM_CHAVE + 8; j++)
+    for(int j = 0; j < TAM_CHAVE + 8; j++){
       fwrite("$", sizeof(char), 1, indiceEscrita);
+      cont++;
+    }
   }
+
+  printf("cont da escreve: %d\n", cont);
 
   fwrite(&(pagina.ponteirofinal), sizeof(int), 1, indiceEscrita);
 }
@@ -146,24 +151,22 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
-    printf("lendo chave\n");
     
+    pagina.chave[i].nome = (char*) malloc(TAM_CHAVE * sizeof(char));
+    fgets(pagina.chave[i].nome, TAM_CHAVE, indiceLeitura);
+
     for(int j = 0; j < TAM_CHAVE; j++){
-      char c;
-      fread(&c, sizeof(char), 1, indiceLeitura);
-      // pagina.chave[i].nome[j] = c;
-      if(c == '$'){
-        // pagina.chave[i].nome[j] = '\0';
+      if(pagina.chave[i].nome[j] == '$'){
+        pagina.chave[i].nome[j] = '\0';
         break;
       }
-      printf("%c", c);
     }
-
-    printf("\nleu chave\n");
 
     fread(&pagina.chave[i].ref, sizeof(int), 1, indiceLeitura);
   }
 
+  fseek(indiceLeitura, (ORDEM_ARVORE_B - pagina.nroChavesNo - 1) * (TAM_CHAVE + 8), SEEK_CUR);
+  printf("cont da escreve: %d\n", (ORDEM_ARVORE_B - pagina.nroChavesNo - 1) * (TAM_CHAVE + 8));
   fread(&pagina.ponteirofinal, sizeof(int), 1, indiceLeitura);
 
   return pagina;
