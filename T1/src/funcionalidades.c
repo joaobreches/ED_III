@@ -327,7 +327,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
     bool encontrado = 0;
 
     if(nomeCampo == "nomeTecnologiaOrigemDestino")
-      encontrado = filtroArvore(arquivoEntrada, arquivoIndice, valorCampo);
+      encontrado = filtroArvore(arquivoEntrada, arqIndice, valorCampo);
     else
       encontrado = filtroRegistro(arquivo, nomeCampo, valorCampo);
 
@@ -339,6 +339,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
 
   // fecha o arquivo binario
   fclose(arquivo);
+  fclose(arqIndice);
 }
 
 void recuperaRegistro(char *arquivoEntrada, int rrn) {
@@ -455,12 +456,6 @@ bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
   // Leitura do cabeçalho do índice árvore-B
   CabecalhoArvoreB cabecalhoArvoreB = leCabecalhoArvoreB(arquivoIndice);
 
-  // Verifica a consistência do índice
-  if (cabecalhoArvoreB.status != '1') {
-      printf("Falha no processamento do arquivo.\n");
-      exit(1);
-  }
-
   bool encontrado = 0;
   Pagina pagina;
   int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave, pagina);
@@ -472,8 +467,6 @@ bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
       recuperaRegistro(nomeArquivoDados, RRN);
       encontrado = 1;
   }
-
-  fclose(arquivoIndice);
   return encontrado;
 }
 
