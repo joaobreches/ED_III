@@ -357,9 +357,10 @@ Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indice){
 
 // Função para buscar um registro na árvore-B
 int buscaArvoreB(FILE *indice, int RRNpagina, char* chave, Pagina pagina) {
-  if(RRNpagina == -1) //nao achou a chave num no folha
+  if(RRNpagina == -1){ //nao achou a chave num no folha
     return -1;
-
+  }
+  
   pagina = lePagina(indice, RRNpagina);
 
   for(int i = 0; i < pagina.nroChavesNo; i++){
