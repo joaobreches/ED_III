@@ -469,33 +469,33 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
   FILE *indice = abreBinarioEscritaLeitura(arquivoIndice);
 
   Cabecalho cabecalho;
-  Registro novoRegistro;
+  Registro registroAtual;
   Chave chave;
   int RRN;
 
   for (int i = 0; i < n; i++) {
       // Solicite ao usuário os valores do novo registro
-      scanf("%s %d %d %s %d", novoRegistro.TecnologiaOrigem.string, &novoRegistro.grupo, &novoRegistro.popularidade,
-            novoRegistro.TecnologiaDestino.string, &novoRegistro.peso);
+      scanf("%s %d %d %s %d", registroAtual.TecnologiaOrigem.string, &registroAtual.grupo, &registroAtual.popularidade,
+            registroAtual.TecnologiaDestino.string, &registroAtual.peso);
 
       // escreve campos no arquivo binario
-      fwrite(&novoRegistro.removido, sizeof(char), 1, dados);
-      fwrite(&novoRegistro.grupo, sizeof(int), 1, dados);
-      fwrite(&novoRegistro.popularidade, sizeof(int), 1, dados);
-      fwrite(&novoRegistro.peso, sizeof(int), 1, dados);
-      fwrite(&novoRegistro.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
-      fwrite(novoRegistro.TecnologiaOrigem.string, sizeof(char), novoRegistro.TecnologiaOrigem.tamanho, dados);
-      fwrite(&novoRegistro.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
-      fwrite(novoRegistro.TecnologiaDestino.string, sizeof(char), novoRegistro.TecnologiaDestino.tamanho, dados);
+      fwrite(&registroAtual.removido, sizeof(char), 1, dados);
+      fwrite(&registroAtual.grupo, sizeof(int), 1, dados);
+      fwrite(&registroAtual.popularidade, sizeof(int), 1, dados);
+      fwrite(&registroAtual.peso, sizeof(int), 1, dados);
+      fwrite(&registroAtual.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
+      fwrite(registroAtual.TecnologiaOrigem.string, sizeof(char), registroAtual.TecnologiaOrigem.tamanho, dados);
+      fwrite(&registroAtual.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
+      fwrite(registroAtual.TecnologiaDestino.string, sizeof(char), registroAtual.TecnologiaDestino.tamanho, dados);
 
       // Insira a chave correspondente na árvore-B
-      chave.nome = novoRegistro.TecnologiaOrigem.string;
-      strcat(chave.nome, novoRegistro.TecnologiaDestino.string);
+      chave.nome = registroAtual.TecnologiaOrigem.string;
+      strcat(chave.nome, registroAtual.TecnologiaDestino.string);
       chave.ref = RRN;
       insereNaArvoreB(chave, -1, indice);  
   }
 
-  contaTecnologias(dados, novoRegistro, &cabecalho);
+  contaTecnologias(dados, registroAtual, &cabecalho);
 
   fclose(dados);
   fechaIndiceEscrita(indice);
