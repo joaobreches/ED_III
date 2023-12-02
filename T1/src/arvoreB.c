@@ -39,6 +39,13 @@ void escreveCabecalhoArvoreB(FILE *arquivo, CabecalhoArvoreB cabecalho) {
   fwrite(&cabecalho.status, sizeof(char), 1, arquivo);
   fwrite(&cabecalho.noRaiz, sizeof(int), 1, arquivo);
   fwrite(&cabecalho.RRNproxNo, sizeof(int), 1, arquivo);
+  
+  char lixo[TAM_CABECALHO_ARVORE - 9];
+  for (int i = 0; i <= TAM_CABECALHO_ARVORE-9; i++){
+    lixo[i] = '$';
+  }
+  
+  fwrite(lixo, sizeof(char), TAM_CABECALHO_ARVORE - 9, arquivo);
 }
 
 CabecalhoArvoreB leCabecalhoArvoreB(FILE* arquivo) {

@@ -10,7 +10,7 @@
 #define ORDEM_ARVORE_B 4
 #define TAM_PAGINA 205
 #define TAM_CHAVE 55
-#define TAM_CABECALHO_ARVORE 9
+#define TAM_CABECALHO_ARVORE 205
 
 // Estrutura para representar o registro de cabeçalho no arquivo de índice
 typedef struct _CabecalhoArvoreB {
