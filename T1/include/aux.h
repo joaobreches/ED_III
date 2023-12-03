@@ -30,7 +30,7 @@ typedef struct {    //Página/Nó da Árvore B
     Dado dado[ORDEM - 1];
 } No;
 
-
 void leBinario();
+void comparaBinarios();
 
 #endif

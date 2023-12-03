@@ -46,6 +46,7 @@ Pagina lePagina(FILE* indice, int RRN);
 void imprimePagina(Pagina pagina);
 void criaPaginaNova(FILE* indice, int alturaNo, int ponteirofinal, Chave chave);
 void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indice);
+void clearUltimaChave(Pagina *pagina);
 void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice);
 void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel,  FILE* indice);
 void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *indice);

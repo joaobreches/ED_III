@@ -68,8 +68,7 @@ int main() {
       // insereRegistros(leitura1, leitura2, atoi(leitura3));
       break;
     case 0:
-      leitura1 = (char*) leitura1;
-      binarioNaTela(leitura1);
+      comparaBinarios();
       break;
     case 10:
       leBinario();
