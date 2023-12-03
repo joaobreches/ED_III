@@ -120,7 +120,7 @@ int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, Strin
   Registro registro;
   int tecRepetidaOrigem = 0;
   int tecRepetidaDestino = 0;
-
+  printf("entrou!");
   // inicia a leitura do arquivo pulando o cabecalho
   if (fseek(arquivoBinario, TAM_CABECALHO, SEEK_SET) != 0) {
     printf("Falha no processamento do arquivo.\n");
@@ -129,6 +129,7 @@ int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, Strin
   }
 
   // le o arquivo ate o final
+  int RRN = 0;
   while (1) {
     if (fread(&registro.removido, sizeof(char), 1, arquivoBinario) == 0) {
       break;
@@ -136,7 +137,8 @@ int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, Strin
 
     // verifica se o registro foi removido e passa para a proxima interacao se verdadeiro
     if (registro.removido == '1') {
-      fseek(arquivoBinario, TAM_REGISTRO - 1, SEEK_CUR);
+      RRN++;
+      fseek(arquivoBinario, RRN * TAM_REGISTRO, SEEK_SET);
       continue;
     }
 
@@ -148,17 +150,20 @@ int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, Strin
 
     registro.TecnologiaOrigem.string = malloc((registro.TecnologiaOrigem.tamanho + 1) * sizeof(char));
     fread(registro.TecnologiaOrigem.string, sizeof(char), registro.TecnologiaOrigem.tamanho, arquivoBinario);
+    registro.TecnologiaOrigem.string[registro.TecnologiaOrigem.tamanho] = '\0';
 
     // le a tecnologia de destino e armazena no registro auxiliar
     fread(&registro.TecnologiaDestino.tamanho, sizeof(int), 1, arquivoBinario);
 
     registro.TecnologiaDestino.string = malloc((registro.TecnologiaDestino.tamanho + 1) * sizeof(char));
     fread(registro.TecnologiaDestino.string, sizeof(char), registro.TecnologiaDestino.tamanho, arquivoBinario);
+    registro.TecnologiaDestino.string[registro.TecnologiaDestino.tamanho] = '\0';
 
     // pula o lixo do registro com o ponteiro do arquivo 
-    int TAM_BITES = sizeof(registro.grupo) + sizeof(registro.popularidade) + sizeof(registro.peso) + sizeof(registro.TecnologiaOrigem.tamanho) + sizeof(registro.TecnologiaDestino.tamanho) + sizeof(char) + registro.TecnologiaOrigem.tamanho + registro.TecnologiaDestino.tamanho;
-    fseek(arquivoBinario, TAM_REGISTRO - TAM_BITES + 1, SEEK_CUR);
+    RRN++;
+    fseek(arquivoBinario, TAM_REGISTRO * RRN, SEEK_SET);
 
+    printf("%d, %d, %d", RRN, registro.TecnologiaDestino.tamanho, registro.TecnologiaOrigem.tamanho);
     // finaliza as strings das tecnologias com '\0'
     registro.TecnologiaOrigem.string[registro.TecnologiaOrigem.tamanho] = '\0';
     registro.TecnologiaDestino.string[registro.TecnologiaDestino.tamanho] = '\0';
@@ -215,7 +220,8 @@ void contaTecnologias(FILE* arquivoBinario, Registro registroAtual, Cabecalho* c
   
   Essa funcao eh chamada na "criaTabela" do cabecalho funcoesBasicas.h
   */
-  
+
+
   int novaTec = comparaTecnologias(arquivoBinario, registroAtual.TecnologiaOrigem, registroAtual.TecnologiaDestino);
 
   switch (novaTec) {
