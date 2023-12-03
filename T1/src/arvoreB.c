@@ -5,27 +5,30 @@
 #include <string.h>
 #include <stdbool.h>
 
+// Abre o aquivo de indice para escrita
 FILE* abreIndiceEscrita(char* nomeIndice){
     FILE* indice = abreBinarioLeitura(nomeIndice);
     CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
     fclose(indice);
 
     indice = abreBinarioEscrita(nomeIndice);
-    cabecalho.status = '0';
+    cabecalho.status = '0';   //define o status como '0'
     escreveCabecalhoArvoreB(indice, cabecalho);
 
     return indice;
 }
 
+// Fecha o arquivo indice aberto para escrita
 void fechaIndiceEscrita(FILE* indice){
     CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
 
-    cabecalho.status = '1';
+    cabecalho.status = '1'; // define o status como '1'
     escreveCabecalhoArvoreB(indice, cabecalho);
 
     fclose(indice);
 }
 
+// Escreve o cabecalho da arvore
 void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho) {
   /*
   Escreve o cabecalho de arquivo binario referente aos dados presentes no arquivo

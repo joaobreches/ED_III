@@ -33,11 +33,6 @@ int main() {
   // armazena os valores lidos nas suas respectivas variaveis
   sscanf(linha, "%d %s %s %s", &funcionalidade, leitura1, leitura2, leitura3);
 
-  // realoca memoria para as strings e libera o espaço desnecessario
-  //leitura1 = realloc(leitura1, sizeof(leitura1));
-  //leitura2 = realloc(leitura2, sizeof(leitura2));
-  //leitura3 = realloc(leitura3, sizeof(leitura3));
-
   CabecalhoArvoreB cabecalho;
 
   // chama cada funcionalidade de acordo com a entrada no terminal

@@ -226,6 +226,7 @@ void imprimeArquivo(char* nomeArquivoBinario) {
 }
 
 bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char valorCampo[TAM_REGISTRO_FIXO]){
+
   // cria registro auxiliar
   Registro registro;
 
@@ -660,15 +661,15 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
         fwrite(&lixo, sizeof(char), 1, dados);
       }
 
-      // if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
-      //   // Insira a chave correspondente na árvore-B
-      //   chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
-      //   chave.nome[0] = '\0';
-      //   strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
-      //   strcat(chave.nome, registroAtual.TecnologiaDestino.string);
-      //   chave.ref = RRN;
-      //   insereNaArvoreB(chave, -1, -1, indice);  
-      // }
+      if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
+        // Insira a chave correspondente na árvore-B
+        chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+        chave.nome[0] = '\0';
+        strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
+        strcat(chave.nome, registroAtual.TecnologiaDestino.string);
+        chave.ref = RRN;
+        insereNaArvoreB(chave, -1, -1, indice);  
+      }
     cabecalho.proxRRN++;
   }
 
