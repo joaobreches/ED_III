@@ -29,8 +29,6 @@ void binarioNaTela(char *arquivoSaida) { /* Você não precisa entender o códig
 	/* Use essa função para comparação no run.codes. Lembre-se de ter fechado (fclose) o arquivo anteriormente.
 	*  Ela vai abrir de novo para leitura e depois fechar (você não vai perder pontos por isso se usar ela). */
 
-	arquivoSaida = diretorioArquivo(arquivoSaida, 'b');
-
 	unsigned long i, cs;
 	unsigned char *mb;
 	size_t fl;
