@@ -545,16 +545,16 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
   FILE *indice = abreBinarioEscritaLeitura(arquivoIndice);
 
   Cabecalho cabecalho;
-  fseek(dados, 0, SEEK_SET);
-  fread(&cabecalho.status, sizeof(char), 1, dados);
-  fread(&cabecalho.proxRRN, sizeof(int), 1, dados);
-  fread(&cabecalho.nroTecnologias, sizeof(int), 1, dados);
-  fread(&cabecalho.nroParesTecnologias, sizeof(int), 1, dados);
+  //fseek(dados, 0, SEEK_SET);
+  //fread(&cabecalho.status, sizeof(char), 1, dados);
+  // fread(&cabecalho.proxRRN, sizeof(int), 1, dados);
+  // fread(&cabecalho.nroTecnologias, sizeof(int), 1, dados);
+  // fread(&cabecalho.nroParesTecnologias, sizeof(int), 1, dados);
 
   //fseek(dados, cabecalho.proxRRN * TAM_REGISTRO, SEEK_SET);
-
-  printf("%c, %d, %d, %d", cabecalho.status, cabecalho.proxRRN, cabecalho.nroTecnologias, cabecalho.nroParesTecnologias);
+  fclose(dados);
   return;
+  printf("%c, %d, %d, %d", cabecalho.status, cabecalho.proxRRN, cabecalho.nroTecnologias, cabecalho.nroParesTecnologias);
 
   Registro registroAtual;
   Chave chave;
