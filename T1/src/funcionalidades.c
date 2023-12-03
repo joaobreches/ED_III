@@ -483,7 +483,7 @@ Registro lidaNulos(){
   char* reg1 = malloc(sizeof(char));
   scanf("%s", reg1);
   reg1 = strtok(reg1, ",");
-  if(strcmp(reg1, "NULO")){
+  if(strcmp(reg1, "NULO") == 0){
     free(reg1);
     registro.TecnologiaOrigem.string = NULL;
     registro.TecnologiaOrigem.tamanho = 0;
@@ -495,7 +495,7 @@ Registro lidaNulos(){
   char* reg2 = malloc(sizeof(char));
   scanf("%s", reg2);
   reg2 = strtok(reg2, ",");
-  if(strcmp(reg2, "NULO")){
+  if(strcmp(reg2, "NULO") == 0){
     free(reg2);
     registro.grupo = -1;
   } else{
@@ -506,7 +506,7 @@ Registro lidaNulos(){
   char* reg3 = malloc(sizeof(char));
   scanf("%s", reg3);
   reg3 = strtok(reg3, ",");
-  if(strcmp(reg3, "NULO")){
+  if(strcmp(reg3, "NULO") == 0){
     free(reg3);
     registro.popularidade = -1;
   } else{
@@ -517,7 +517,7 @@ Registro lidaNulos(){
   char* reg4 = malloc(sizeof(char));
   scanf("%s", reg4);
   reg4 = strtok(reg4, ",");
-  if(strcmp(reg4, "NULO")){
+  if(strcmp(reg4, "NULO") == 0){
     free(reg4);
     registro.TecnologiaDestino.string = NULL;
     registro.TecnologiaDestino.tamanho = 0;
@@ -528,7 +528,7 @@ Registro lidaNulos(){
 
   char* reg5 = malloc(sizeof(char));
   scanf("%s", reg5);
-  if(strcmp(reg5, "NULO")){
+  if(strcmp(reg5, "NULO") == 0){
     free(reg5);
     registro.peso = -1;
   } else{
@@ -536,25 +536,25 @@ Registro lidaNulos(){
     free(reg5);
   }
   
+  return registro;
 }
 
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
     
   // Realize as inserções
-  FILE *dados = abreBinarioEscritaLeitura(arquivoDados);
-  FILE *indice = abreBinarioEscritaLeitura(arquivoIndice);
+  FILE *dados = fopen(arquivoDados, "rb+");
+  FILE *indice = fopen(arquivoIndice, "rb+");
 
   Cabecalho cabecalho;
-  //fseek(dados, 0, SEEK_SET);
-  //fread(&cabecalho.status, sizeof(char), 1, dados);
-  // fread(&cabecalho.proxRRN, sizeof(int), 1, dados);
-  // fread(&cabecalho.nroTecnologias, sizeof(int), 1, dados);
-  // fread(&cabecalho.nroParesTecnologias, sizeof(int), 1, dados);
 
-  //fseek(dados, cabecalho.proxRRN * TAM_REGISTRO, SEEK_SET);
-  fclose(dados);
-  return;
+  fseek(dados, 0, SEEK_SET);
+  fread(&cabecalho.status, sizeof(char), 1, dados);
+  fread(&cabecalho.proxRRN, sizeof(int), 1, dados);
+  fread(&cabecalho.nroTecnologias, sizeof(int), 1, dados);
+  fread(&cabecalho.nroParesTecnologias, sizeof(int), 1, dados);
   printf("%c, %d, %d, %d", cabecalho.status, cabecalho.proxRRN, cabecalho.nroTecnologias, cabecalho.nroParesTecnologias);
+
+  fseek(dados, cabecalho.proxRRN * TAM_REGISTRO, SEEK_SET);
 
   Registro registroAtual;
   Chave chave;
@@ -564,6 +564,8 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       // Solicite ao usuário os valores do novo registro
       registroAtual = lidaNulos();
       registroAtual.removido = '0';
+      printf("%c, %d, %d, %d, %d, %s, %d, %s", registroAtual.removido, registroAtual.grupo, registroAtual.popularidade, registroAtual.peso, registroAtual.TecnologiaOrigem.tamanho, registroAtual.TecnologiaOrigem.string, registroAtual.TecnologiaDestino.tamanho, registroAtual.TecnologiaDestino.string);
+
 
       // escreve campos no arquivo binario
       fwrite(&registroAtual.removido, sizeof(char), 1, dados);
