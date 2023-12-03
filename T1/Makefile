@@ -32,7 +32,6 @@ crw:  #compile and run for windows
 
 crl: #compile and run for linux
 	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
-	gcc -c ./src/aux.c -I ./include -o ./obj/aux.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
 	gcc -c ./src/arvoreB.c -I ./include -o ./obj/arvoreB.o
