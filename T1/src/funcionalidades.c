@@ -460,6 +460,9 @@ bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
   Pagina pagina;
 
   int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave, &pagina);
+  if(RRN == -1)
+    return 0;
+
   pagina = lePagina(arquivoIndice, RRN);
 
   for(int i = 0; i < pagina.nroChavesNo; i++)
@@ -473,21 +476,93 @@ bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
   return encontrado;
 }
 
+Registro lidaNulos(){
+  Registro registro;
+
+  char* reg1 = malloc(sizeof(char));
+  scanf("%s", reg1);
+  reg1 = strtok(reg1, ",");
+  if(strcmp(reg1, "NULO")){
+    free(reg1);
+    registro.TecnologiaOrigem.string = NULL;
+    registro.TecnologiaOrigem.tamanho = 0;
+  } else{
+    registro.TecnologiaOrigem.string = reg1;
+    registro.TecnologiaOrigem.tamanho = strlen(reg1);
+  }
+
+  char* reg2 = malloc(sizeof(char));
+  scanf("%s", reg2);
+  reg2 = strtok(reg2, ",");
+  if(strcmp(reg2, "NULO")){
+    free(reg2);
+    registro.grupo = -1;
+  } else{
+    registro.grupo = atoi(reg2);
+    free(reg2);
+  }
+
+  char* reg3 = malloc(sizeof(char));
+  scanf("%s", reg3);
+  reg3 = strtok(reg3, ",");
+  if(strcmp(reg3, "NULO")){
+    free(reg3);
+    registro.popularidade = -1;
+  } else{
+    registro.popularidade = atoi(reg3);
+    free(reg3);
+  }
+
+  char* reg4 = malloc(sizeof(char));
+  scanf("%s", reg4);
+  reg4 = strtok(reg4, ",");
+  if(strcmp(reg4, "NULO")){
+    free(reg4);
+    registro.TecnologiaDestino.string = NULL;
+    registro.TecnologiaDestino.tamanho = 0;
+  } else{
+    registro.TecnologiaDestino.string = reg4;
+    registro.TecnologiaDestino.tamanho = strlen(reg4);
+  }
+
+  char* reg5 = malloc(sizeof(char));
+  scanf("%s", reg5);
+  if(strcmp(reg5, "NULO")){
+    free(reg5);
+    registro.peso = -1;
+  } else{
+    registro.peso = atoi(reg5);
+    free(reg5);
+  }
+  
+}
+
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
     
   // Realize as inserções
-  FILE *dados = abreBinarioEscrita(arquivoDados);
+  FILE *dados = abreBinarioEscritaLeitura(arquivoDados);
   FILE *indice = abreBinarioEscritaLeitura(arquivoIndice);
 
   Cabecalho cabecalho;
+  fseek(dados, 0, SEEK_SET);
+  fread(&cabecalho.status, sizeof(char), 1, dados);
+  fread(&cabecalho.proxRRN, sizeof(int), 1, dados);
+  fread(&cabecalho.nroTecnologias, sizeof(int), 1, dados);
+  fread(&cabecalho.nroParesTecnologias, sizeof(int), 1, dados);
+
+  //fseek(dados, cabecalho.proxRRN * TAM_REGISTRO, SEEK_SET);
+
+  printf("%c, %d, %d, %d", cabecalho.status, cabecalho.proxRRN, cabecalho.nroTecnologias, cabecalho.nroParesTecnologias);
+  return;
+
   Registro registroAtual;
   Chave chave;
   int RRN;
 
   for (int i = 0; i < n; i++) {
       // Solicite ao usuário os valores do novo registro
-      scanf("%s %d %d %s %d", registroAtual.TecnologiaOrigem.string, &registroAtual.grupo, &registroAtual.popularidade,
-            registroAtual.TecnologiaDestino.string, &registroAtual.peso);
+      registroAtual = lidaNulos();
+      registroAtual.removido = '0';
 
       // escreve campos no arquivo binario
       fwrite(&registroAtual.removido, sizeof(char), 1, dados);
@@ -495,18 +570,31 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       fwrite(&registroAtual.popularidade, sizeof(int), 1, dados);
       fwrite(&registroAtual.peso, sizeof(int), 1, dados);
       fwrite(&registroAtual.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
-      fwrite(registroAtual.TecnologiaOrigem.string, sizeof(char), registroAtual.TecnologiaOrigem.tamanho, dados);
+      if(registroAtual.TecnologiaOrigem.string != NULL)
+        fwrite(registroAtual.TecnologiaOrigem.string, sizeof(char), registroAtual.TecnologiaOrigem.tamanho, dados);
+      
       fwrite(&registroAtual.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
-      fwrite(registroAtual.TecnologiaDestino.string, sizeof(char), registroAtual.TecnologiaDestino.tamanho, dados);
+      if(registroAtual.TecnologiaDestino.string != NULL)
+        fwrite(registroAtual.TecnologiaDestino.string, sizeof(char), registroAtual.TecnologiaDestino.tamanho, dados);
+      
+      for(int j=0; j < TAM_REGISTRO - 21 - registroAtual.TecnologiaOrigem.tamanho - registroAtual.TecnologiaDestino.tamanho; j++){
+        char lixo = '$';
+        fwrite(&lixo, sizeof(char), 1, dados);
+      }
 
-      // Insira a chave correspondente na árvore-B
-      chave.nome = registroAtual.TecnologiaOrigem.string;
-      strcat(chave.nome, registroAtual.TecnologiaDestino.string);
-      chave.ref = RRN;
-      insereNaArvoreB(chave, -1, -1, indice);  
+      // if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
+      //   // Insira a chave correspondente na árvore-B
+      //   chave.nome = registroAtual.TecnologiaOrigem.string;
+      //   strcat(chave.nome, registroAtual.TecnologiaDestino.string);
+      //   chave.ref = RRN;
+      //   insereNaArvoreB(chave, -1, -1, indice);  
+      // }
   }
 
-  contaTecnologias(dados, registroAtual, &cabecalho);
+  // conta as tecnologias diferentes
+  //contaTecnologias(dados, registroAtual, &cabecalho);
+  // escreev o cabecalho no arquivo
+  //escreveCabecalho(dados, cabecalho);
 
   fclose(dados);
   fechaIndiceEscrita(indice);

@@ -65,7 +65,7 @@ int main() {
       busca(6, leitura1, leitura2, atoi(leitura3));
       break;
     case 7:   
-      // insereRegistros(leitura1, leitura2, atoi(leitura3));
+      insereRegistro(leitura1, leitura2, atoi(leitura3));
       break;
     case 0:
       comparaBinarios();

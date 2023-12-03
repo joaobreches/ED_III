@@ -148,10 +148,12 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
   for(int i = 0; i < pagina.nroChavesNo; i++){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
     pagina.chave[i].nome = (char*) malloc((TAM_CHAVE + 1) * sizeof(char));
+
     if(pagina.chave[i].nome == NULL){
       printf("Erro na alocacao de memoria.\n");
       exit(1);
     }
+
     fgets(pagina.chave[i].nome, TAM_CHAVE + 1, indiceLeitura);
 
     for(int j = 0; j < TAM_CHAVE; j++) {
@@ -168,14 +170,16 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
       pagina.chave[i - 1].ponteiroproximo = pagina.chave[i].ponteiroanterior;
   }
 
-  fseek(indiceLeitura, (ORDEM_ARVORE_B - pagina.nroChavesNo - 1) * (TAM_CHAVE + 8), SEEK_CUR);
-  fread(&pagina.ponteirofinal, sizeof(int), 1, indiceLeitura);
-
-  pagina.chave[pagina.nroChavesNo].ponteiroproximo = pagina.ponteirofinal;
-
-  // printf("\nimprimindo na lePagina\n");
-  // imprimePagina(pagina);
-
+  fread(&pagina.chave[pagina.nroChavesNo - 1].ponteiroproximo, sizeof(int), 1, indiceLeitura);
+  
+  if(pagina.nroChavesNo < 3){
+    fseek(indiceLeitura, (ORDEM_ARVORE_B - pagina.nroChavesNo - 1) * (TAM_CHAVE + 8) - 4, SEEK_CUR);
+    fread(&pagina.ponteirofinal, sizeof(int), 1, indiceLeitura);
+    pagina.chave[pagina.nroChavesNo].ponteiroproximo = pagina.ponteirofinal;
+  } else{
+    pagina.ponteirofinal = pagina.chave[2].ponteiroproximo;
+  }
+  
   return pagina;
 }
 
@@ -455,6 +459,7 @@ Pagina desceArvore(Chave chave, int RRNpagina, int nivel, int *RRNSuperior, FILE
 int buscaArvoreB(FILE *indice, int RRNpagina, char* chave, Pagina *pagina) {
   
   while (RRNpagina != -1) {
+
     *pagina = lePagina(indice, RRNpagina);
     int i;
 
@@ -465,7 +470,8 @@ int buscaArvoreB(FILE *indice, int RRNpagina, char* chave, Pagina *pagina) {
         RRNpagina = pagina->chave[i].ponteiroanterior;
         break;
       } else if (i == pagina->nroChavesNo - 1) {
-        RRNpagina = pagina->ponteirofinal;
+        RRNpagina = pagina->chave[i].ponteiroproximo;
+        break;
       }
     }
 
