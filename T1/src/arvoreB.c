@@ -243,13 +243,15 @@ void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indice) {
 
     pagina->nroChavesNo++;
 
-    // printf("(nao cheioo) o no agora eh: ");
-    // imprimePagina(*pagina);
+    printf("(nao cheioo) o no agora eh: ");
+    imprimePagina(*pagina);
     // Atualiza o nó no arquivo
     escrevePagina(*pagina, pagina->RRNdoNo, indice);
 }
 
 void clearUltimaChave(Pagina *pagina){
+  pagina->ponteirofinal = pagina->chave[pagina->nroChavesNo - 1].ponteiroanterior; 
+
   pagina->chave[pagina->nroChavesNo - 1].ponteiroanterior = -1;
   pagina->chave[pagina->nroChavesNo - 1].ponteiroproximo = -1;
   pagina->chave[pagina->nroChavesNo - 1].nome = NULL;
@@ -300,13 +302,9 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
     // printf("promoveu do esquerdo\n");
     // Chave a ser promovida é a última do nó original
     chavePromovida = pagina.chave[pagina.nroChavesNo - 1];
-    
-    //shift ponteiros
-    int ponteiroAux = novaPagina.chave[0].ponteiroanterior;
-    novaPagina.chave[0].ponteiroanterior = pagina.ponteirofinal;
-    pagina.ponteirofinal = ponteiroAux;
-
     clearUltimaChave(&pagina);
+    novaPagina.chave[0].ponteiroanterior = chavePromovida.ponteiroproximo;
+
   } else {
     // printf("promoveu do direito\n");
     // Chave a ser promovida é a primeira do novo nó
@@ -315,13 +313,15 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
       novaPagina.chave[i] = novaPagina.chave[i + 1];
     }
     clearUltimaChave(&novaPagina);
+    pagina.ponteirofinal = chavePromovida.ponteiroanterior;
+    novaPagina.chave[0].ponteiroanterior = chavePromovida.ponteiroproximo;
   }
 
-  // printf("pagina da esquerda: ");
-  // imprimePagina(pagina);
+  printf("pagina da esquerda: ");
+  imprimePagina(pagina);
 
-  // printf("pagina da direita: ");
-  // imprimePagina(novaPagina);
+  printf("pagina da direita: ");
+  imprimePagina(novaPagina);
 
   escrevePagina(pagina, RRNSuperior, indice);
   escrevePagina(novaPagina, novaPagina.RRNdoNo, indice);
@@ -330,7 +330,7 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
   chavePromovida.ponteiroanterior = RRNSuperior;
   chavePromovida.ponteiroproximo = novaPagina.RRNdoNo;
 
-  // printf("promoveu a chave: %s\n", chavePromovida.nome);
+  printf("promoveu a chave: %s\n", chavePromovida.nome);
   // Insere chave promovida no nó pai
   insereNaArvoreB(chavePromovida, chavePromovida.ponteiroproximo, pagina.alturaNo + 1, indice);
 }
@@ -341,21 +341,22 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
   cabecalho.status = '0';
   escreveCabecalhoArvoreB(indice, cabecalho);
   
+  printf("inserindo %s, nivel %d, ponteirofinal %d\nproxRRN %d, raiz %d:\n", chave.nome, nivel, ponteirofinal, cabecalho.RRNproxNo, cabecalho.noRaiz);
+  
   int alturaArvore = -1;
   if(cabecalho.noRaiz != -1){
     Pagina paginaRaiz = lePagina(indice, cabecalho.noRaiz);
-    // imprimePagina(paginaRaiz);
+    imprimePagina(paginaRaiz);
     alturaArvore = paginaRaiz.alturaNo;
     for(int i = 0; i < paginaRaiz.nroChavesNo; i++)
       free(paginaRaiz.chave[i].nome);
   }
 
-  // printf("inserindo %s, nivel %d, ponteirofinal %d\nproxRRN %d, altura %d, raiz %d:\n", chave.nome, nivel, ponteirofinal, cabecalho.RRNproxNo, alturaArvore, cabecalho.noRaiz);
   // int n;
   // scanf("%d", &n);
 
   if (alturaArvore < nivel){
-    // printf("eh raiz\n");
+    printf("eh raiz\n");
     criaPaginaNova(indice, nivel, ponteirofinal, chave);
     return;
   }
@@ -363,10 +364,10 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
     int RRNSuperior = cabecalho.noRaiz;
 
     Pagina pagina = desceArvore(chave, cabecalho.noRaiz, nivel, &RRNSuperior, indice);
-    // printf("chegou na pagina %d de altura %d com %d chaves, que sao:", pagina.RRNdoNo, pagina.alturaNo, pagina.nroChavesNo);
-    // for(int i = 0; i < pagina.nroChavesNo; i++)
-    //   printf("%s, ", pagina.chave[i].nome);
-    // printf("\b\b\n");
+    printf("chegou na pagina %d de altura %d com %d chaves, que sao:", pagina.RRNdoNo, pagina.alturaNo, pagina.nroChavesNo);
+    for(int i = 0; i < pagina.nroChavesNo; i++)
+      printf("%s, ", pagina.chave[i].nome);
+    printf("\b\b\n");
     insereNaArvoreBRecursivo(pagina, RRNSuperior, chave, indice);
 
     for(int i = 0; i < pagina.nroChavesNo; i++)
@@ -382,40 +383,17 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
 // Função auxiliar para inserir uma chave na árvore-B recursivamente
 void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *indice) {
     if(pagina.nroChavesNo < ORDEM_ARVORE_B - 1){
-      // printf("inseriu em no nao cheio\n");
+      printf("inseriu em no nao cheio\n");
       insereEmNoNaoCheio(&pagina, chave, indice);
       return;
     } else {
-      // printf("dividiu no\n");
+      printf("dividiu no\n");
       particionaNo(pagina, chave, RRNSuperior, indice);
     }
 
 }
 
 Pagina desceArvore(Chave chave, int RRNpagina, int nivel, int *RRNSuperior, FILE *indice){
-  // Pagina pagina = lePagina(indice, RRNpagina);
-
-  // imprimePagina(pagina);
-  // printf("nivel: %d, altura: %d, RRNpagina %d\n", nivel, pagina.alturaNo, RRNpagina);
-  // imprimePagina(pagina);
-  
-  // if(pagina.alturaNo == nivel){
-  //   printf("retornando pagina %d na desce arvore\n", pagina.RRNdoNo);
-  //   return pagina;
-  // }
-  // else{
-  //   for(int i = 0; i < pagina.nroChavesNo; i++){
-  //     if(strcmp(pagina.chave[i].nome, chave.nome) > 0){
-  //       *RRNSuperior = RRNpagina;
-  //       desceArvore(chave, pagina.chave[i].ponteiroanterior, nivel, RRNSuperior, indice);
-  //     }
-  //     else if(i == pagina.nroChavesNo - 1){
-  //       *RRNSuperior = RRNpagina;
-  //       desceArvore(chave, pagina.ponteirofinal, nivel, RRNSuperior, indice);
-  //     }
-  //   }
-  // }
-
   Pagina pagina = lePagina(indice, RRNpagina);
 
   // printf("\n pagina %d lida na desce arvore\n", RRNpagina);
