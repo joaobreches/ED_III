@@ -3,7 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Função que faz o caminho até o diretorio correto do arquivo
 char* diretorioArquivo(char* nomeArquivo, char tipoArquivo) {
+    /*
+    Essa função encaminha o código na qual foi chamada direto para o diretorio correto do arquivo.
+    É usada na maioria das funções que chamam diretamente algum arquivo.
+    */
     char* diretorio;
   
     if (tipoArquivo == 'b')
@@ -18,11 +23,12 @@ char* diretorioArquivo(char* nomeArquivo, char tipoArquivo) {
     return resultado;
 }
 
+// Imprime o arquivo binario
 void imprimeBinario(char* binario){
   binario = diretorioArquivo(binario, 'b');
   FILE* arquivoBinario = fopen(binario, "rb");
 
-    if (arquivoBinario == NULL) {
+    if (arquivoBinario == NULL) { // confere se o arquivo existe
         printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
@@ -38,11 +44,12 @@ void imprimeBinario(char* binario){
     printf("\n");
 }
 
+// Abre o arquivo para escrita e leitura
 FILE* abreBinarioEscritaLeitura(char* nomeBinario){
     nomeBinario = diretorioArquivo(nomeBinario, 'b');
     FILE* binario = fopen(nomeBinario, "wb+");
 
-    if(binario == NULL){
+    if(binario == NULL){ // confere se o arquivo existe
         printf("Falha no processamento do arquivo.\n");
         exit(1);
     }
@@ -51,6 +58,7 @@ FILE* abreBinarioEscritaLeitura(char* nomeBinario){
     return binario;
 }
 
+// Abre o arquivo binario para escrita
 FILE* abreBinarioEscrita(char* nomeBinario){
     nomeBinario = diretorioArquivo(nomeBinario, 'b');
     FILE* binario = fopen(nomeBinario, "wb");
@@ -64,6 +72,7 @@ FILE* abreBinarioEscrita(char* nomeBinario){
     return binario;
 }
 
+// abre o arquivo binario para leitura
 FILE* abreBinarioLeitura(char* nomeBinario){
     nomeBinario = diretorioArquivo(nomeBinario, 'b');
     FILE* binario = fopen(nomeBinario, "rb");
@@ -77,6 +86,7 @@ FILE* abreBinarioLeitura(char* nomeBinario){
     return binario;
 }
 
+// Abre o arquivo .CSV para escrita
 FILE* abreCSVEscrita(char* nomeCSV){
     nomeCSV = diretorioArquivo(nomeCSV, 'c');
     FILE* csv = fopen(nomeCSV, "r");
