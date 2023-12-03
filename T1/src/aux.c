@@ -4,8 +4,8 @@
 
 void leBinario(){
 
-    FILE *arq = fopen("arquivo/binario/indice1.bin", "rb");
-    FILE *txt = fopen("arquivo/txt/monitor1.txt", "w");
+    FILE *arq = fopen("arquivo/binario/i1.bin", "rb");
+    FILE *txt = fopen("arquivo/txt/gerado1.txt", "w");
 
     CabecalhoooArvoreB rC;
     No noAux;
@@ -58,7 +58,7 @@ void leBinario(){
 void comparaBinarios() {
     FILE *arqMonitor = fopen("arquivo/binario/indice1.bin", "rb");
     FILE *arqGerado = fopen("arquivo/binario/i1.bin", "rb");
-    FILE *txt = fopen("arquivo/txt/comp1.bin", "w");
+    FILE *txt = fopen("arquivo/txt/comp1.txt", "w");
 
     char ger, monitor;
     int i = 0;
