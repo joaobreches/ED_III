@@ -15,7 +15,7 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   Essa funcao representa a funcionalidade 1 do exercicio introdutorio.
   */
 
-  nomeArquivoCSV = diretorioArquivo(nomeArquivoCSV, 'c');
+  // nomeArquivoCSV = diretorioArquivo(nomeArquivoCSV, 'c');
 
   // abre arquivo csv
   FILE* arquivoCSV = fopen(nomeArquivoCSV, "r");
@@ -24,7 +24,7 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
     return;
   }
 
-  nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
+  // nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
 
   // abre arquivo binario
   FILE *arquivoBinario = fopen(nomeArquivoBinario, "wb+");
@@ -172,8 +172,8 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   for(int i = 0; i < 5; i++) {
     free(colunas[i]);
   }
-  free(nomeArquivoCSV);
-  free(nomeArquivoBinario);
+  // free(nomeArquivoCSV);
+  // free(nomeArquivoBinario);
 }
 
 // incluir mensagens de erro - erro de nao registros ja incluido
@@ -185,7 +185,7 @@ void imprimeArquivo(char* nomeArquivoBinario) {
   */
   
   // abre arquivo binario 
-  nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
+  // nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
 
   FILE *arquivoBinario = fopen(nomeArquivoBinario, "rb");
   if (arquivoBinario == NULL) {
@@ -222,7 +222,7 @@ void imprimeArquivo(char* nomeArquivoBinario) {
 
   // fecha o arquivo binario
   fclose(arquivoBinario);
-  free(nomeArquivoBinario);
+  // free(nomeArquivoBinario);
 }
 
 bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char valorCampo[TAM_REGISTRO_FIXO]){
@@ -349,7 +349,7 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
   */
 
   // abre arquivo binario 
-  arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
+  // arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
 
   FILE *arquivo = fopen(arquivoEntrada, "rb");
   if (arquivo == NULL) {
@@ -397,7 +397,7 @@ void recuperaRegistro(char *arquivoEntrada, int rrn) {
 
   // fecha o arquivo
   fclose(arquivo);
-  free(arquivoEntrada);
+  // free(arquivoEntrada);
 }
 
 // Função principal para criar o índice da árvore-B a partir do arquivo de dados
@@ -438,6 +438,10 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
     if (registroAtual.removido == '0' && registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0) {
       // Insere a chave na árvore-B
       chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+      if(chave.nome == NULL){
+        printf("Falha na alocacao de memoria\n");
+        exit(1);
+      }
       chave.nome[0] = '\0';
       strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
       strcat(chave.nome, registroAtual.TecnologiaDestino.string);
@@ -566,6 +570,8 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
 
   Registro registroAtual;
   Chave chave;
+  chave.ponteiroanterior = -1;
+  chave.ponteiroproximo = -1;
   int RRN;
 
 
@@ -658,6 +664,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
         fwrite(&lixo, sizeof(char), 1, dados);
       }
 
+<<<<<<< HEAD
       // if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
       //   // Insira a chave correspondente na árvore-B
       //   chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
@@ -667,10 +674,26 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       //   chave.ref = RRN;
       //   insereNaArvoreB(chave, -1, -1, indice);  
       // }
+=======
+      if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
+        // Insira a chave correspondente na árvore-B
+        chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+        if(chave.nome == NULL){
+          printf("Falha na alocacao de memoria\n");
+          exit(1);
+        }
+        chave.nome[0] = '\0';
+        strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
+        strcat(chave.nome, registroAtual.TecnologiaDestino.string);
+        chave.ref = RRN;
+        insereNaArvoreB(chave, -1, -1, indice);
+        free(chave.nome);
+      }
+>>>>>>> e098c01b8fa01cdaa5f5f8dc5015138f0139b14b
     cabecalho.proxRRN++;
   }
 
-  // escreev o cabecalho no arquivo
+  // escreve o cabecalho no arquivo
   escreveCabecalho(dados, cabecalho);
 
   fclose(dados);

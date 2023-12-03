@@ -66,7 +66,7 @@ int main() {
       comparaBinarios();
       break;
     case 10:
-      leBinario();
+      printf("%s", diretorioArquivo("indice1.bin", 'b'));
       break;
   }
 
