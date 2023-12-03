@@ -156,7 +156,7 @@ Pagina lePagina(FILE* indiceLeitura, int RRN){
     fread(&pagina.chave[i].ponteiroanterior, sizeof(int), 1, indiceLeitura);
     pagina.chave[i].nome = (char*) malloc((TAM_CHAVE + 1) * sizeof(char));
     if(pagina.chave[i].nome == NULL){
-      printf("AAErro na alocacao de memoria.\n");
+      printf("Erro na alocacao de memoria.\n");
       exit(1);
     }
     fgets(pagina.chave[i].nome, TAM_CHAVE + 1, indiceLeitura);
