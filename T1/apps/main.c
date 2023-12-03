@@ -1,6 +1,7 @@
 #include "funcoesFornecidas.h"
 #include "funcionalidades.h"
 #include "arquivo.h"
+#include "aux.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -71,7 +72,7 @@ int main() {
       binarioNaTela(leitura1);
       break;
     case 10:
-      imprimeBinario(leitura1);
+      leBinario();
       break;
   }
 

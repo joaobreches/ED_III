@@ -418,6 +418,7 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
   Registro registroAtual;
   Chave chave;
   chave.ponteiroanterior = -1;
+  chave.ponteiroproximo = -1;
   int RRN = -1;
 
   // le os registros do arquivo de dados
@@ -440,7 +441,8 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
       strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
       strcat(chave.nome, registroAtual.TecnologiaDestino.string);
       chave.ref = RRN;
-      insereNaArvoreB(chave, -1, arqIndice);
+      printf("RRN> %d", RRN);
+      insereNaArvoreB(chave, -1, -1, arqIndice);
       free(chave.nome);
     }
   }
@@ -501,7 +503,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       chave.nome = registroAtual.TecnologiaOrigem.string;
       strcat(chave.nome, registroAtual.TecnologiaDestino.string);
       chave.ref = RRN;
-      insereNaArvoreB(chave, -1, indice);  
+      insereNaArvoreB(chave, -1, -1, indice);  
   }
 
   contaTecnologias(dados, registroAtual, &cabecalho);
