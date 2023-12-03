@@ -193,7 +193,9 @@ void imprimePagina(Pagina pagina){
 }
 
 void criaPaginaNova(FILE* indice, int alturaNo, int ponteirofinal, Chave chave){
+  // printf("criando nova pagina> altura %d, ponteirofinal %d\n", alturaNo, ponteirofinal);
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
+  // printCabecalhoArvoreB(indice);
   
   Pagina pagina;
   pagina.nroChavesNo = 1;
@@ -310,9 +312,10 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
   cabecalho.status = '0';
   escreveCabecalhoArvoreB(indice, cabecalho);
 
-  printf("its me hi\n");
+  // printf("its me hi\n");
   // printf("\n\ninserindo %s, proxRRN %d, raiz %d, no raiz:\n", chave.nome, cabecalho.RRNproxNo, cabecalho.noRaiz);
   // Pagina pagina = lePagina(indice, cabecalho.noRaiz);
+  // imprimePagina(pagina);
   // for(int i = 0; i < pagina.nroChavesNo; i++)
   //     free(pagina.chave[i].nome);
   // int n;
@@ -339,6 +342,7 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
       free(pagina.chave[i].nome);
   }
 
+  cabecalho = leCabecalhoArvoreB(indice);
   cabecalho.status = '1';
   escreveCabecalhoArvoreB(indice, cabecalho);
 
