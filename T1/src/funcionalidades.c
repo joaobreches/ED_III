@@ -442,7 +442,7 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
       strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
       strcat(chave.nome, registroAtual.TecnologiaDestino.string);
       chave.ref = RRN;
-      insereNaArvoreB(chave, -1, arqIndice);
+      insereNaArvoreB(chave, -1, -1, arqIndice);
       free(chave.nome);
     }
   }
@@ -500,7 +500,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       chave.nome = registroAtual.TecnologiaOrigem.string;
       strcat(chave.nome, registroAtual.TecnologiaDestino.string);
       chave.ref = RRN;
-      insereNaArvoreB(chave, -1, indice);  
+      insereNaArvoreB(chave, -1, -1, indice);  
   }
 
   contaTecnologias(dados, registroAtual, &cabecalho);
