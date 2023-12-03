@@ -5,7 +5,7 @@ test: #verify if still runs with directory changes
 	valgrind --leak-check=full -s ./bin/main
 
 test2:
-	valgrind --leak-check=full --show-leak-kinds=all -s ./bin/main
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./bin/main
 	
 all:
 	gcc -c -g ./src/arquivo.c -I ./include -o ./obj/arquivo.o

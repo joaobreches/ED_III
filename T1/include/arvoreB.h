@@ -50,6 +50,6 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice);
 void insereNaArvoreB(Chave chave, int ponteirofinal, FILE* indice);
 void insereNaArvoreBRecursivo(Pagina pagina, int RRNSuperior, Chave chave, FILE *indice);
 Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indice);
-int buscaArvoreB(FILE *indice, int RRNpagina, char* chave, Pagina pagina);
+int buscaArvoreB(FILE *indice, int RRNpagina, char* chave, Pagina *pagina);
 
 #endif

@@ -356,20 +356,28 @@ Pagina desceArvore(Chave chave, int RRNpagina, int *RRNSuperior, FILE *indice){
 }
 
 // Função para buscar um registro na árvore-B
-int buscaArvoreB(FILE *indice, int RRNpagina, char* chave, Pagina pagina) {
-  if(RRNpagina == -1){ //nao achou a chave num no folha
-    return -1;
-  }
+int buscaArvoreB(FILE *indice, int RRNpagina, char* chave, Pagina *pagina) {
   
-  pagina = lePagina(indice, RRNpagina);
+  while (RRNpagina != -1) {
+    *pagina = lePagina(indice, RRNpagina);
+    int i;
 
-  for(int i = 0; i < pagina.nroChavesNo; i++){
-    if(strcmp(pagina.chave[i].nome, chave) == 0)
-      return pagina.chave[i].ref;
-    else if(strcmp(pagina.chave[i].nome, chave) > 0)
-      buscaArvoreB(indice, pagina.chave[i].ponteiroanterior, chave, pagina);
-    else
-      if(i == ORDEM_ARVORE_B - 2)
-        buscaArvoreB(indice, pagina.ponteirofinal, chave, pagina);
+    for (i = 0; i < pagina->nroChavesNo; i++) {
+      if (strcmp(pagina->chave[i].nome, chave) == 0) {
+        return pagina->chave[i].ref;
+      } else if (strcmp(pagina->chave[i].nome, chave) > 0) {
+        RRNpagina = pagina->chave[i].ponteiroanterior;
+        break;
+      } else if (i == pagina->nroChavesNo - 1) {
+        RRNpagina = pagina->ponteirofinal;
+      }
+    }
+
+    if (i == pagina->nroChavesNo) {
+      RRNpagina = -1; // Não encontrou a chave no nó atual
+    }
   }
+
+  return -1; // Não encontrou a chave
+
 }

@@ -281,8 +281,6 @@ bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char v
       }
 
       // libera a memoria alocada
-      free(registro.TecnologiaOrigem.string);
-      free(registro.TecnologiaDestino.string);
     }
   return encontrado;
 }
@@ -316,7 +314,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
     scanf("%s %s", nomeCampo, valorCampo);
 
     // limpa o valorCampo se for uma string (remove as aspas)
-    if(strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 || strcmp(nomeCampo, "nomeTecnologiaDestino") == 0){
+    if(strcmp(nomeCampo, "nomeTecnologiaOrigem") == 0 || strcmp(nomeCampo, "nomeTecnologiaOrigemDestino") == 0 || strcmp(nomeCampo, "nomeTecnologiaDestino") == 0){
       int i;
       for(i = 0; valorCampo[i] != '\0'; i++){
         valorCampo[i] = valorCampo[i + 1];
@@ -326,7 +324,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
 
     bool encontrado = 0;
 
-    if(nomeCampo == "nomeTecnologiaOrigemDestino")
+    if(strcmp(nomeCampo, "nomeTecnologiaOrigemDestino") == 0)
       encontrado = filtroArvore(arquivoEntrada, arqIndice, valorCampo);
     else
       encontrado = filtroRegistro(arquivo, nomeCampo, valorCampo);
@@ -458,7 +456,10 @@ bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
 
   bool encontrado = 0;
   Pagina pagina;
-  int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave, pagina);
+
+  int RRN = buscaArvoreB(arquivoIndice, cabecalhoArvoreB.noRaiz, chave, &pagina);
+  pagina = lePagina(arquivoIndice, RRN);
+
   for(int i = 0; i < pagina.nroChavesNo; i++)
     free(pagina.chave[i].nome);
 
