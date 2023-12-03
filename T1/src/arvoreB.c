@@ -254,8 +254,7 @@ void insereEmNoNaoCheio(Pagina *pagina, Chave chave, FILE *indice) {
 }
 
 void clearUltimaChave(Pagina *pagina){
-  pagina->ponteirofinal = pagina->chave[pagina->nroChavesNo - 1].ponteiroanterior; 
-
+  
   pagina->chave[pagina->nroChavesNo - 1].ponteiroanterior = -1;
   pagina->chave[pagina->nroChavesNo - 1].ponteiroproximo = -1;
   pagina->chave[pagina->nroChavesNo - 1].nome = NULL;
@@ -265,6 +264,7 @@ void clearUltimaChave(Pagina *pagina){
 
 // Função auxiliar para dividir um nó durante a inserção
 void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
+
   // Cria um novo nó
   Pagina novaPagina;
   novaPagina.nroChavesNo = (ORDEM_ARVORE_B - 1) / 2;
@@ -355,9 +355,6 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
     for(int i = 0; i < paginaRaiz.nroChavesNo; i++)
       free(paginaRaiz.chave[i].nome);
   }
-
-  // int n;
-  // scanf("%d", &n);
 
   if (alturaArvore < nivel){
     printf("eh raiz\n");
