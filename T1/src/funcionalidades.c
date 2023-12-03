@@ -670,7 +670,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
     cabecalho.proxRRN++;
   }
 
-  // escreev o cabecalho no arquivo
+  // escreve o cabecalho no arquivo
   escreveCabecalho(dados, cabecalho);
 
   fclose(dados);
