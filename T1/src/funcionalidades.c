@@ -441,13 +441,6 @@ void criaIndiceArvoreB(char *arquivoDados, char *arquivoIndice) {
       strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
       strcat(chave.nome, registroAtual.TecnologiaDestino.string);
       chave.ref = RRN;
-      printf("\n\nRRN: %d\n", RRN);
-      // printf("RRN: %d\n", RRN);
-
-      if(RRN > 63){
-        int n;
-        scanf("%d", &n);
-      }
       insereNaArvoreB(chave, -1, 1, arqIndice);
       free(chave.nome);
     }
