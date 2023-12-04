@@ -479,13 +479,21 @@ bool filtroArvore(char* nomeArquivoDados, FILE* arquivoIndice, char* chave) {
   return encontrado;
 }
 
+// Função que recebe os valores a serem inseridos enquanto lida com nulos
 Registro lidaNulos(){
+  /*
+    Essa função recebe as entradas dos valores a serem inseridos no registro lidando com os casos nulos
+
+    Essa função é usada na função insereResgistro, referente à funcionalidade 7
+  */
+
   Registro registro;
 
-  char* reg1 = malloc(sizeof(char) * 100);
+  //recebe os valores que serão inseridos pelo usuario (repete as 5 vezes)
+  char* reg1 = malloc(sizeof(char) * 100);  // recebe o valor 1
   scanf("%s", reg1);
   reg1 = strtok(reg1, ",");
-  if(strcmp(reg1, "NULO") == 0){
+  if(strcmp(reg1, "NULO") == 0){  // lida com o caso nulo
     free(reg1);
     char* resg1 = malloc(2);
     resg1[0] = '\0';
@@ -496,7 +504,7 @@ Registro lidaNulos(){
     registro.TecnologiaOrigem.tamanho = strlen(reg1);
   }
 
-  char* reg2 = malloc(sizeof(char)* 100);
+  char* reg2 = malloc(sizeof(char)* 100); //recebe o valor 2
   scanf("%s", reg2);
   reg2 = strtok(reg2, ",");
   if(strcmp(reg2, "NULO") == 0){
@@ -545,14 +553,19 @@ Registro lidaNulos(){
   return registro;
 }
 
+// Funcionalidade 7 - insere os registros
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
-    
+    /*
+      Função relacionada à funcionalidade 7;
+
+      Insere os valores de entrada no registroe na arvore-B
+    */
   // Realize as inserções
   FILE *dados = fopen(arquivoDados, "rb+");
-  
   FILE *indice = fopen(arquivoIndice, "rb+");
 
-  if (dados == NULL || indice == NULL) {
+  // Verifica se o aquivo existe
+  if (dados == NULL || indice == NULL) {  
     printf("Falha no processamento do arquivo.\n");
     return;
   }
@@ -560,6 +573,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
 
   Cabecalho cabecalho;
 
+  // le o cabecalho
   fseek(dados, 0, SEEK_SET);
   fread(&cabecalho.status, sizeof(char), 1, dados);
   fread(&cabecalho.proxRRN, sizeof(int), 1, dados);
@@ -582,8 +596,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       int similar1 = 0;
       int similar2 = 0;
 
-      // conta tecnologias
-      // contaTecnologias(dados, registroAtual, &cabecalho);
+      // conta tecnologias;
       for(int j =0; j < cabecalho.proxRRN; j++){
         fseek(dados, TAM_CABECALHO, SEEK_SET);
         Registro newReg;
@@ -645,6 +658,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       if(registroAtual.TecnologiaDestino.tamanho != 0 && registroAtual.TecnologiaOrigem.tamanho != 0){
         cabecalho.nroParesTecnologias++;
       }
+      // fim da contagem de tecnologias
 
       // escreve campos no arquivo binario
       fwrite(&registroAtual.removido, sizeof(char), 1, dados);
@@ -678,7 +692,6 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
         insereNaArvoreB(chave, -1, -1, indice);
         free(chave.nome);
       }
-
     cabecalho.proxRRN++;
   }
 
