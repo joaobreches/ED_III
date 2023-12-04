@@ -664,20 +664,21 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
         fwrite(&lixo, sizeof(char), 1, dados);
       }
 
-      // if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
-      //   // Insira a chave correspondente na árvore-B
-      //   chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
-      //   if(chave.nome == NULL){
-      //     printf("Falha na alocacao de memoria\n");
-      //     exit(1);
-      //   }
-      //   chave.nome[0] = '\0';
-      //   strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
-      //   strcat(chave.nome, registroAtual.TecnologiaDestino.string);
-      //   chave.ref = RRN;
-      //   insereNaArvoreB(chave, -1, -1, indice);
-      //   free(chave.nome);
-      // }
+      if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
+        // Insira a chave correspondente na árvore-B
+        chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+        if(chave.nome == NULL){
+          printf("Falha na alocacao de memoria\n");
+          exit(1);
+        }
+        chave.nome[0] = '\0';
+        strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
+        strcat(chave.nome, registroAtual.TecnologiaDestino.string);
+        chave.ref = RRN;
+        insereNaArvoreB(chave, -1, -1, indice);
+        free(chave.nome);
+      }
+
     cabecalho.proxRRN++;
   }
 
