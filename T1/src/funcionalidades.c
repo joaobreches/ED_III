@@ -603,87 +603,87 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
       int similar1 = 0;
       int similar2 = 0;
 
-      // // conta tecnologias;
-      // for(int j =0; j < cabecalho.proxRRN; j++){
-      //   fseek(dados, TAM_CABECALHO, SEEK_SET);
-      //   Registro newReg;
-      //   fread(&newReg.removido, sizeof(char), 1, dados);
-      //   fread(&newReg.grupo, sizeof(int), 1, dados);
-      //   fread(&newReg.popularidade, sizeof(int), 1, dados);
-      //   fread(&newReg.peso, sizeof(int), 1, dados);
-      //   fread(&newReg.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
-      //   newReg.TecnologiaOrigem.string = malloc(newReg.TecnologiaOrigem.tamanho + 1);
-      //   if(newReg.TecnologiaOrigem.tamanho != 0)
-      //     fread(newReg.TecnologiaOrigem.string, sizeof(char), newReg.TecnologiaOrigem.tamanho, dados);
+      // conta tecnologias;
+      for(int j =0; j < cabecalho.proxRRN; j++){
+        fseek(dados, TAM_CABECALHO, SEEK_SET);
+        Registro newReg;
+        fread(&newReg.removido, sizeof(char), 1, dados);
+        fread(&newReg.grupo, sizeof(int), 1, dados);
+        fread(&newReg.popularidade, sizeof(int), 1, dados);
+        fread(&newReg.peso, sizeof(int), 1, dados);
+        fread(&newReg.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
+        newReg.TecnologiaOrigem.string = malloc(newReg.TecnologiaOrigem.tamanho + 1);
+        if(newReg.TecnologiaOrigem.tamanho != 0)
+          fread(newReg.TecnologiaOrigem.string, sizeof(char), newReg.TecnologiaOrigem.tamanho, dados);
 
-      //   newReg.TecnologiaOrigem.string[newReg.TecnologiaOrigem.tamanho] = '\0';
-      //   fread(&newReg.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
+        newReg.TecnologiaOrigem.string[newReg.TecnologiaOrigem.tamanho] = '\0';
+        fread(&newReg.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
 
-      //   newReg.TecnologiaDestino.string = malloc(newReg.TecnologiaDestino.tamanho + 1);
-      //   if(newReg.TecnologiaDestino.tamanho != 0)
-      //     fread(newReg.TecnologiaDestino.string, sizeof(char), newReg.TecnologiaDestino.tamanho, dados);
+        newReg.TecnologiaDestino.string = malloc(newReg.TecnologiaDestino.tamanho + 1);
+        if(newReg.TecnologiaDestino.tamanho != 0)
+          fread(newReg.TecnologiaDestino.string, sizeof(char), newReg.TecnologiaDestino.tamanho, dados);
 
-      //   newReg.TecnologiaDestino.string[newReg.TecnologiaDestino.tamanho] = '\0';
+        newReg.TecnologiaDestino.string[newReg.TecnologiaDestino.tamanho] = '\0';
 
-      //   if(newReg.removido == '1')
-      //     continue;
+        if(newReg.removido == '1')
+          continue;
         
-      //   if(newReg.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaOrigem.tamanho != 0){
-      //     if(strcmp(newReg.TecnologiaOrigem.string, registroAtual.TecnologiaOrigem.string) == 0){
-      //       similar1 = 1;
-      //     }
-      //   }
+        if(newReg.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaOrigem.tamanho != 0){
+          if(strcmp(newReg.TecnologiaOrigem.string, registroAtual.TecnologiaOrigem.string) == 0){
+            similar1 = 1;
+          }
+        }
 
-      //   if(newReg.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0){
-      //     if(strcmp(newReg.TecnologiaOrigem.string, registroAtual.TecnologiaDestino.string) == 0){
-      //       similar2 = 1;
-      //     }
-      //   }
+        if(newReg.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0){
+          if(strcmp(newReg.TecnologiaOrigem.string, registroAtual.TecnologiaDestino.string) == 0){
+            similar2 = 1;
+          }
+        }
 
-      //   if(newReg.TecnologiaDestino.tamanho != 0 && registroAtual.TecnologiaOrigem.tamanho != 0){
-      //     if(strcmp(newReg.TecnologiaDestino.string, registroAtual.TecnologiaOrigem.string) == 0){
-      //       similar1 = 1;
-      //     }
-      //   }
+        if(newReg.TecnologiaDestino.tamanho != 0 && registroAtual.TecnologiaOrigem.tamanho != 0){
+          if(strcmp(newReg.TecnologiaDestino.string, registroAtual.TecnologiaOrigem.string) == 0){
+            similar1 = 1;
+          }
+        }
 
-      //   if(newReg.TecnologiaDestino.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0){
-      //     if(strcmp(newReg.TecnologiaDestino.string, registroAtual.TecnologiaDestino.string) == 0){
-      //       similar2 = 1;
-      //     }
-      //   }
+        if(newReg.TecnologiaDestino.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0){
+          if(strcmp(newReg.TecnologiaDestino.string, registroAtual.TecnologiaDestino.string) == 0){
+            similar2 = 1;
+          }
+        }
 
-      //   free(newReg.TecnologiaOrigem.string);
-      //   free(newReg.TecnologiaDestino.string);
-      // }
+        free(newReg.TecnologiaOrigem.string);
+        free(newReg.TecnologiaDestino.string);
+      }
       
-      // if(similar1 == 1){
-      //   cabecalho.nroTecnologias++;
-      // }
-      // if(similar2 == 1){
-      //   cabecalho.nroTecnologias++;
-      // }
-      // if(registroAtual.TecnologiaDestino.tamanho != 0 && registroAtual.TecnologiaOrigem.tamanho != 0){
-      //   cabecalho.nroParesTecnologias++;
-      // }
-      // // fim da contagem de tecnologias
+      if(similar1 == 1){
+        cabecalho.nroTecnologias++;
+      }
+      if(similar2 == 1){
+        cabecalho.nroTecnologias++;
+      }
+      if(registroAtual.TecnologiaDestino.tamanho != 0 && registroAtual.TecnologiaOrigem.tamanho != 0){
+        cabecalho.nroParesTecnologias++;
+      }
+      // fim da contagem de tecnologias
 
-      // // escreve campos no arquivo binario
-      // fwrite(&registroAtual.removido, sizeof(char), 1, dados);
-      // fwrite(&registroAtual.grupo, sizeof(int), 1, dados);
-      // fwrite(&registroAtual.popularidade, sizeof(int), 1, dados);
-      // fwrite(&registroAtual.peso, sizeof(int), 1, dados);
-      // fwrite(&registroAtual.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
-      // if(registroAtual.TecnologiaOrigem.tamanho != 0)
-      //   fwrite(registroAtual.TecnologiaOrigem.string, sizeof(char), registroAtual.TecnologiaOrigem.tamanho, dados);
+      // escreve campos no arquivo binario
+      fwrite(&registroAtual.removido, sizeof(char), 1, dados);
+      fwrite(&registroAtual.grupo, sizeof(int), 1, dados);
+      fwrite(&registroAtual.popularidade, sizeof(int), 1, dados);
+      fwrite(&registroAtual.peso, sizeof(int), 1, dados);
+      fwrite(&registroAtual.TecnologiaOrigem.tamanho, sizeof(int), 1, dados);
+      if(registroAtual.TecnologiaOrigem.tamanho != 0)
+        fwrite(registroAtual.TecnologiaOrigem.string, sizeof(char), registroAtual.TecnologiaOrigem.tamanho, dados);
       
-      // fwrite(&registroAtual.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
-      // if(registroAtual.TecnologiaDestino.tamanho != 0)
-      //   fwrite(registroAtual.TecnologiaDestino.string, sizeof(char), registroAtual.TecnologiaDestino.tamanho, dados);
+      fwrite(&registroAtual.TecnologiaDestino.tamanho, sizeof(int), 1, dados);
+      if(registroAtual.TecnologiaDestino.tamanho != 0)
+        fwrite(registroAtual.TecnologiaDestino.string, sizeof(char), registroAtual.TecnologiaDestino.tamanho, dados);
       
-      // for(int j=0; j < TAM_REGISTRO - 21 - registroAtual.TecnologiaOrigem.tamanho - registroAtual.TecnologiaDestino.tamanho; j++){
-      //   char lixo = '$';
-      //   fwrite(&lixo, sizeof(char), 1, dados);
-      // }
+      for(int j=0; j < TAM_REGISTRO - 21 - registroAtual.TecnologiaOrigem.tamanho - registroAtual.TecnologiaDestino.tamanho; j++){
+        char lixo = '$';
+        fwrite(&lixo, sizeof(char), 1, dados);
+      }
 
       // Verifica se o registro não foi removido logicamente
       if (registroAtual.removido == '0' && registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0) {
