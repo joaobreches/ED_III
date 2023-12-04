@@ -562,11 +562,12 @@ Registro lidaNulos(){
 
 // Funcionalidade 7 - insere os registros
 void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
-    /*
-      Função relacionada à funcionalidade 7;
+  /*
+    Função relacionada à funcionalidade 7;
 
-      Insere os valores de entrada no registroe na arvore-B
-    */
+    Insere os valores de entrada no registroe na arvore-B
+  */
+
   // Realize as inserções
   FILE *dados = fopen(arquivoDados, "rb+");
   FILE *indice = fopen(arquivoIndice, "rb+");
@@ -587,6 +588,11 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
   fread(&cabecalho.nroTecnologias, sizeof(int), 1, dados);
   fread(&cabecalho.nroParesTecnologias, sizeof(int), 1, dados);
 
+  if(cabecalho.status != '1'){
+    printf("Falha no processamento do arquivo.\n");
+    exit(1);
+  }
+
   fseek(dados, cabecalho.proxRRN * TAM_REGISTRO, SEEK_SET);
 
   Registro registroAtual;
@@ -594,7 +600,6 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
   chave.ponteiroanterior = -1;
   chave.ponteiroproximo = -1;
   int RRN;
-
 
   for (int i = 0; i < n; i++) {
       // Solicite ao usuário os valores do novo registro
