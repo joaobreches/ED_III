@@ -31,12 +31,9 @@ void fechaIndiceEscrita(FILE* indice){
 // Escreve o cabecalho da arvore
 void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho) {
   /*
-  Escreve o cabecalho de arquivo binario referente aos dados presentes no arquivo
-  
-  Essa funcao eh chamada na funcao "criaTabela" do cabecalho funcoesBasicas.h 
+  Escreve o cabecalho de arquivo de indice de arvore b referente aos dados
+  presentes no arquivo de indice
   */
-
-  // printf("ESCREVENDO CABECALHO: %c, %d, %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
   
   fseek(indiceEscrita, 0, SEEK_SET); //inicia a escrita no começo do arquivo
 
@@ -45,6 +42,7 @@ void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho) {
   fwrite(&cabecalho.noRaiz, sizeof(int), 1, indiceEscrita);
   fwrite(&cabecalho.RRNproxNo, sizeof(int), 1, indiceEscrita);
   
+  //completa os bytes para o tamanho do cabecalho com lixo '$'
   char lixo[TAM_CABECALHO_ARVORE - 9];
   for (int i = 0; i <= TAM_CABECALHO_ARVORE-9; i++){
     lixo[i] = '$';
@@ -55,14 +53,12 @@ void escreveCabecalhoArvoreB(FILE *indiceEscrita, CabecalhoArvoreB cabecalho) {
 
 CabecalhoArvoreB leCabecalhoArvoreB(FILE* indiceLeitura) {
   /*
-  Imprime o cabecalho de um arquivo binario
-  
-  Essa eh uma funcao auxiliar usada para verificacao dos valores do cabecalho e nao foi implementada nas funcoes principais do projeto
+  Le o cabecalho de um arquivo de indice de arvore b
   */
   
   fseek(indiceLeitura, 0, SEEK_SET); //inicia a leitura no começo do arquivo
 
-  //armazena os dados do cabecalho em uma struct cabecalho e imprime seus valores
+  //armazena os dados do cabecalho em uma struct cabecalho e retorna o cabecalho
   CabecalhoArvoreB cabecalho;
   fread(&cabecalho.status, sizeof(char), 1, indiceLeitura);
   fread(&cabecalho.noRaiz, sizeof(int), 1, indiceLeitura);
@@ -72,35 +68,15 @@ CabecalhoArvoreB leCabecalhoArvoreB(FILE* indiceLeitura) {
 }
 
 void printCabecalhoArvoreB(FILE* indiceLeitura){
+  /*
+  Imprime o cabecalho de um arquivo de indice de arvore b
+  
+  Essa eh uma funcao auxiliar usada para verificacao dos valores
+  do cabecalho e nao foi implementada nas funcoes principais do projeto
+  */
+
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indiceLeitura);
   printf("%c %d %d\n", cabecalho.status, cabecalho.noRaiz, cabecalho.RRNproxNo);
-}
-
-bool skipCabecalhoArvore(FILE *indice){
-  /*
-  Essa funcao verifica se o arquivobinario esta consistente, se existem registros nele e pula para o byteoffset do primeiro registro
-
-  Essa funcao eh chamada nas funcoes "imprimeArquivo" e "recuperaDados" do cabecalho funcoesBasicas.h
-
-  retornos:
-  1 - bem sucedido
-  */
-  
-  fseek(indice, 0, SEEK_SET);
-
-  // le o cabecalho do arquivo binario e verifica se o arquivo esta consistente
-  char status;
-  fread(&status, sizeof(char), 1, indice);
-
-  // verifica se ha registros
-  int proxRRN;
-  fseek(indice, 1, SEEK_CUR); //skip noRaiz
-  fread(&proxRRN, sizeof(int), 1, indice);
-  // if (proxRRN < 1) {
-  //   return 0;
-  // }
-  
-  return 1;
 }
 
 void escrevePagina(Pagina pagina, int RRN, FILE* indiceEscrita){

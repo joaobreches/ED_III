@@ -40,7 +40,6 @@ void fechaIndiceEscrita(FILE* indice);
 void escreveCabecalhoArvoreB(FILE *indice, CabecalhoArvoreB cabecalho);
 CabecalhoArvoreB leCabecalhoArvoreB(FILE* indice);
 void printCabecalhoArvoreB(FILE* indice);
-bool skipCabecalhoArvore(FILE *indice);
 void escrevePagina(Pagina pagina, int RRN, FILE* indice);
 Pagina lePagina(FILE* indice, int RRN);
 void imprimePagina(Pagina pagina);

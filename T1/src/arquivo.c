@@ -9,8 +9,7 @@ char* diretorioArquivo(char* nomeArquivo, char tipoArquivo) {
     Essa função encaminha o código na qual foi chamada direto para o diretorio correto do arquivo.
     É usada na maioria das funções que chamam diretamente algum arquivo.
 
-    Por conta do runcodes, ela foi comentada e inutilizada. Para utilizá-la na integra, remova as
-    linhas em uso e descomente as demais.
+    Por conta do runcodes, ela foi comentada e inutilizada no decorrer das funcoes do programa.
     */
 
     char* diretorio;
