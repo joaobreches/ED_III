@@ -327,7 +327,7 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
 
 void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
 
-  // printf("inserindo %s\n", chave.nome);
+  printf("inserindo %s\n", chave.nome);
 
   // Função auxiliar para inserir uma chave na árvore-B
   
@@ -369,7 +369,7 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
   cabecalho.status = '1'; // define status como consistente
   escreveCabecalhoArvoreB(indice, cabecalho);
 
-  // printf("terminou a insercao\n");
+  printf("terminou a insercao\n");
 }
 
 void tipoInsercaoNaArvoreB(Pagina pagina, int RRNSuperior, Chave chave, FILE *indice) {
@@ -394,13 +394,13 @@ Pagina desceArvore(Chave chave, int RRNpagina, int nivel, int *RRNSuperior, FILE
 
   Pagina pagina = lePagina(indice, RRNpagina);
 
-  // printf("INICIO descendo: nivel %d, altura %d\n", nivel, pagina.alturaNo);
+  printf("INICIO descendo: nivel %d, altura %d\n", nivel, pagina.alturaNo);
 
-  while(pagina.alturaNo != nivel){
+  while(pagina.alturaNo != nivel && RRNpagina != -1){
     pagina = lePagina(indice, RRNpagina);
   
-    // printf("WHILE descendo: nivel %d, altura %d\nA pagina lida foi: ", nivel, pagina.alturaNo);
-    // imprimePagina(pagina);
+    printf("WHILE descendo: nivel %d, altura %d\nA pagina lida foi: ", nivel, pagina.alturaNo);
+    imprimePagina(pagina);
 
     // verifica para qual pagina (de acordo com o ponteiro/RRN) deve seguir ate chegar na altura desejada
     for(int i = 0; i < pagina.nroChavesNo; i++){
