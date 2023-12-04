@@ -688,7 +688,7 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
         strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
         strcat(chave.nome, registroAtual.TecnologiaDestino.string);
         chave.ref = RRN;
-        insereNaArvoreB(chave, -1, -1, indice);
+        insereNaArvoreB(chave, -1, 1, indice);
         free(chave.nome);
       }
     cabecalho.proxRRN++;
