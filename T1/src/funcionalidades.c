@@ -176,7 +176,6 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   // free(nomeArquivoBinario);
 }
 
-// incluir mensagens de erro - erro de nao registros ja incluido
 void imprimeArquivo(char* nomeArquivoBinario) {
   /*
   Essa funcao le um arquivo binario e imprime seus registros.
