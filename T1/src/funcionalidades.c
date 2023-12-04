@@ -10,7 +10,10 @@
 
 void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   /*
-  Essa funcao le um arquivo csv e escreve os registros com campo fixo e variavel em um arquivo binario. O arquivo inicialmente possui um cabecalho que indica o status do arquivo binario, o indice do proximo registro, o numero de tecnologias distintas presentes e o numero de pares de tecnologias.
+  Essa funcao le um arquivo csv e escreve os registros com campo fixo e variavel em um arquivo binario. 
+
+  O arquivo inicialmente possui um cabecalho que indica o status do arquivo binario, o indice do proximo registro, 
+  o numero de tecnologias distintas presentes e o numero de pares de tecnologias.
 
   Essa funcao representa a funcionalidade 1 do exercicio introdutorio.
   */
@@ -226,6 +229,9 @@ void imprimeArquivo(char* nomeArquivoBinario) {
 }
 
 bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char valorCampo[TAM_REGISTRO_FIXO]){
+  /*
+    Busca todos os registro e filtra os campos
+  */
 
   // cria registro auxiliar
   Registro registro;
@@ -286,9 +292,10 @@ bool filtroRegistro(FILE* arquivo, char nomeCampo[TAM_REGISTRO_VARIAVEL], char v
   return encontrado;
 }
 
+// Funcionalidade 3 e 6
 void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
   /*
-  Essa funcao le um arquivo binario e imprime os registros que se adequam a condicao fornecida seus registros.
+  Essa funcao le um arquivo binario e imprime os registros que se adequam a condicao fornecida.
 
   Essa funcao representa a funcionalidade 3 do exercicio introdutorio.
   */
@@ -341,6 +348,7 @@ void busca(int caso, char *arquivoEntrada, char* arquivoIndice, int n) {
   fclose(arqIndice);
 }
 
+// Funcionalidade 4 - Trabalho introdutorio
 void recuperaRegistro(char *arquivoEntrada, int rrn) {
   /*
   Essa funcao le um arquivo binario e imprime o registro de acordo com o seu RRN.
@@ -678,19 +686,19 @@ void insereRegistro(char *arquivoDados, char *arquivoIndice, int n) {
         fwrite(&lixo, sizeof(char), 1, dados);
       }
 
-      if(registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0 ){
-        // Insira a chave correspondente na árvore-B
-        chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
-        if(chave.nome == NULL){
-          printf("Falha na alocacao de memoria\n");
-          exit(1);
-        }
-        chave.nome[0] = '\0';
-        strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
-        strcat(chave.nome, registroAtual.TecnologiaDestino.string);
-        chave.ref = RRN;
-        insereNaArvoreB(chave, -1, -1, indice);
-        free(chave.nome);
+      // Verifica se o registro não foi removido logicamente
+      if (registroAtual.removido == '0' && registroAtual.TecnologiaOrigem.tamanho != 0 && registroAtual.TecnologiaDestino.tamanho != 0) {
+      // Insere a chave na árvore-B
+      chave.nome = malloc(registroAtual.TecnologiaOrigem.tamanho + registroAtual.TecnologiaDestino.tamanho + 2);
+      if(chave.nome == NULL){
+        printf("Falha na alocacao de memoria\n");
+        exit(1);
+      }
+      chave.nome[0] = '\0';
+      strcat(chave.nome, registroAtual.TecnologiaOrigem.string);
+      strcat(chave.nome, registroAtual.TecnologiaDestino.string);
+      chave.ref = RRN;
+      insereNaArvoreB(chave, -1, 1, indice);
       }
     cabecalho.proxRRN++;
   }
