@@ -326,6 +326,9 @@ void particionaNo(Pagina pagina, Chave chave, int RRNSuperior, FILE *indice) {
 }
 
 void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
+
+  // printf("inserindo %s\n", chave.nome);
+
   // Função auxiliar para inserir uma chave na árvore-B
   
   CabecalhoArvoreB cabecalho = leCabecalhoArvoreB(indice);
@@ -346,9 +349,14 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
     return;
   }
   else{   // insercao padrao da chave
+    // printf("no else\n");
     int RRNSuperior = cabecalho.noRaiz;
 
     Pagina pagina = desceArvore(chave, cabecalho.noRaiz, nivel, &RRNSuperior, indice); // encontra a pagina onde adicionar a chave
+    
+    // printf("a pagina que ele vai entrar eh: ");
+    // imprimePagina(pagina);
+
     tipoInsercaoNaArvoreB(pagina, RRNSuperior, chave, indice); // insere a chave na pagina encontrada
 
     // libera memoria alocada
@@ -360,6 +368,8 @@ void insereNaArvoreB(Chave chave, int ponteirofinal, int nivel, FILE* indice) {
   cabecalho = leCabecalhoArvoreB(indice);
   cabecalho.status = '1'; // define status como consistente
   escreveCabecalhoArvoreB(indice, cabecalho);
+
+  // printf("terminou a insercao\n");
 }
 
 void tipoInsercaoNaArvoreB(Pagina pagina, int RRNSuperior, Chave chave, FILE *indice) {
@@ -377,13 +387,20 @@ void tipoInsercaoNaArvoreB(Pagina pagina, int RRNSuperior, Chave chave, FILE *in
 }
 
 Pagina desceArvore(Chave chave, int RRNpagina, int nivel, int *RRNSuperior, FILE *indice){
-  // Funcao que encontra em qual pagina a chave deve ser inserida de acordo com a altura (nivel) definido
-  // O nivel inicialmente eh 1 (folha), mas vai aumentando a medida que a chave eh promovida
+  /*
+  Funcao que encontra em qual pagina a chave deve ser inserida de acordo com a altura (nivel) definido
+  O nivel inicialmente eh 1 (folha), mas vai aumentando a medida que a chave eh promovida
+  */
 
   Pagina pagina = lePagina(indice, RRNpagina);
 
+  // printf("INICIO descendo: nivel %d, altura %d\n", nivel, pagina.alturaNo);
+
   while(pagina.alturaNo != nivel){
     pagina = lePagina(indice, RRNpagina);
+  
+    // printf("WHILE descendo: nivel %d, altura %d\nA pagina lida foi: ", nivel, pagina.alturaNo);
+    // imprimePagina(pagina);
 
     // verifica para qual pagina (de acordo com o ponteiro/RRN) deve seguir ate chegar na altura desejada
     for(int i = 0; i < pagina.nroChavesNo; i++){
