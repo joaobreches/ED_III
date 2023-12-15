@@ -1,5 +1,6 @@
 #include "funcoesFornecidas.h"
 #include "funcionalidades.h"
+#include "T1/include/funcionalidades.h";
 #include "arquivo.h"
 #include "aux.h"
 #include <stdio.h>
@@ -61,6 +62,9 @@ int main() {
       break;
     case 7:   
       insereRegistro(leitura1, leitura2, atoi(leitura3));
+      break;
+    case 8:   
+      recuperaDados8(leitura1);
       break;
     case 10:
       comparaBinarios();

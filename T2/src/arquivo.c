@@ -1,4 +1,5 @@
 #include "arquivo.h"
+#include "registro.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -101,4 +102,31 @@ FILE* abreCSVEscrita(char* nomeCSV){
 
     // free(nomeCSV);
     return csv;
+}
+
+void lidaGrafos(char* nomeArquivo){
+    
+    // Abrir o arquivo binário para leitura
+    FILE *arquivo = abreBinarioLeitura(nomeArquivo);
+
+
+    // Lê o número de registros no arquivo
+    int numRegistros;
+    fread(&numRegistros, sizeof(int), 1, arquivo);
+
+    // Aloca espaço para os vértices
+    Vertice *vertices = (Vertice*)malloc(numRegistros * sizeof(Vertice));
+
+    // Lê os registros do arquivo
+    for (int i = 0; i < numRegistros; i++) {
+        fread(&vertices[i], sizeof(Vertice), 1, arquivo);
+        // Aloca espaço para as arestas do vértice
+        vertices[i].arestas = (Aresta*)malloc(vertices[i].numArestas * sizeof(Aresta));
+        // Lê as arestas do arquivo
+        fread(vertices[i].arestas, sizeof(Aresta), vertices[i].numArestas, arquivo);
+    }
+
+    // Fecha o arquivo
+    fclose(arquivo);
+
 }
