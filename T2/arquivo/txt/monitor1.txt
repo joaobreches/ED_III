@@ -1,0 +1,3846 @@
+
+Registro de Cabecalho da Arvore B:
+	Status = 1
+	RRN da Raiz = 184
+	RRN do prox No = 256
+	Lixo = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+Registro de RRN 0:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 0
+	P0 = -1
+	C0 = .NETASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 46
+	P1 = -1
+	C1 = .NETAZURE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 66
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 1:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 1
+	P0 = -1
+	C0 = ENTITY-FRAMEWORKASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 52
+	P1 = -1
+	C1 = ENTITY-FRAMEWORKASP.NET-WEB-API$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 65
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 2:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 2
+	P0 = 0
+	C0 = .NETC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 86
+	P1 = 53
+	C1 = .NETSQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 426
+	P2 = 220
+	C2 = AGILETDD$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 436
+	P3 = 252
+
+Registro de RRN 3:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 3
+	P0 = -1
+	C0 = WCFASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 57
+	P1 = -1
+	C1 = WCFASP.NET-WEB-API$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 64
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 4:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 4
+	P0 = -1
+	C0 = C#ASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 49
+	P1 = -1
+	C1 = C#ASP.NET-WEB-API$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 61
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 5:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 5
+	P0 = -1
+	C0 = SQL-SERVERASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 48
+	P1 = -1
+	C1 = SQL-SERVERASP.NET-WEB-API$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 63
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 6:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 6
+	P0 = 5
+	C0 = SQL-SERVERC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 87
+	P1 = 72
+	C1 = SQL-SERVERSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 419
+	P2 = 234
+	C2 = SQLASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 47
+	P3 = 44
+
+Registro de RRN 7:
+	Numero de chaves do no = 3
+	Altura do No = 3
+	RRN do no = 7
+	P0 = 2
+	C0 = AJAXCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 105
+	P1 = 221
+	C1 = AMAZON-WEB-SERVICESAZURE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 70
+	P2 = 109
+	C2 = ANDROIDANDROID-STUDIO$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 23
+	P3 = 54
+
+Registro de RRN 8:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 8
+	P0 = -1
+	C0 = MYSQLAPACHE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 41
+	P1 = -1
+	C1 = MYSQLCODEIGNITER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 99
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 9:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 9
+	P0 = -1
+	C0 = JSONJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 226
+	P1 = -1
+	C1 = JSONREST$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 379
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 10:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 10
+	P0 = 9
+	C0 = JSONXML$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 489
+	P1 = 255
+	C1 = JSPJAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 200
+	P2 = 117
+	C2 = LARAVELMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 294
+	P3 = 209
+
+Registro de RRN 11:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 11
+	P0 = -1
+	C0 = CSSANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 30
+	P1 = -1
+	C1 = CSSBOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 75
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 12:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 12
+	P0 = -1
+	C0 = AZUREAMAZON-WEB-SERVICES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 17
+	P1 = -1
+	C1 = AZUREASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 54
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 13:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 13
+	P0 = 11
+	C0 = CSSHTML$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 174
+	P1 = 92
+	C1 = CSSJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 232
+	P2 = 126
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 14:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 14
+	P0 = -1
+	C0 = JAVASCRIPTANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 33
+	P1 = -1
+	C1 = JAVASCRIPTCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 110
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 15:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 15
+	P0 = -1
+	C0 = ANGULARJSASP.NET-WEB-API$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 62
+	P1 = -1
+	C1 = ANGULARJSCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 116
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 16:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 16
+	P0 = -1
+	C0 = TYPESCRIPTANGULAR2$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 25
+	P1 = -1
+	C1 = UBUNTULINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 268
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 17:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 17
+	P0 = -1
+	C0 = IOSIPHONE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 196
+	P1 = -1
+	C1 = IOSOBJECTIVE-C$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 315
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 18:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 18
+	P0 = -1
+	C0 = REACTJSEXPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 146
+	P1 = -1
+	C1 = REACTJSJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 217
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 19:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 19
+	P0 = -1
+	C0 = NODE.JSEXPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 149
+	P1 = -1
+	C1 = NODE.JSJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 212
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 20:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 20
+	P0 = -1
+	C0 = HTML5CSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 111
+	P1 = -1
+	C1 = HTML5JAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 221
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 21:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 21
+	P0 = 17
+	C0 = IOSOSX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 321
+	P1 = 224
+	C1 = IPHONEIOS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 192
+	P2 = 157
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 22:
+	Numero de chaves do no = 2
+	Altura do No = 3
+	RRN do no = 22
+	P0 = 10
+	C0 = LESSCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 114
+	P1 = 210
+	C1 = LINUXAPACHE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 42
+	P2 = 88
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 23:
+	Numero de chaves do no = 2
+	Altura do No = 4
+	RRN do no = 23
+	P0 = 7
+	C0 = ANGULARJSJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 214
+	P1 = 122
+	C1 = AZURE.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 0
+	P2 = 55
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 24:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 24
+	P0 = -1
+	C0 = ANDROIDIOS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 188
+	P1 = -1
+	C1 = ANDROIDJAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 202
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 25:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 25
+	P0 = 12
+	C0 = AZUREASP.NET-WEB-API$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 60
+	P1 = 45
+	C1 = BASHLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 264
+	P2 = 199
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 26:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 26
+	P0 = -1
+	C0 = TESTINGSELENIUM$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 396
+	P1 = -1
+	C1 = TWITTER-BOOTSTRAP-3HTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 182
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 27:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 27
+	P0 = -1
+	C0 = JQUERYASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 51
+	P1 = -1
+	C1 = JQUERYBOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 74
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 28:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 28
+	P0 = -1
+	C0 = MONGODBELASTICSEARCH$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 132
+	P1 = -1
+	C1 = MONGODBEXPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 150
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 29:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 29
+	P0 = 19
+	C0 = NODE.JSMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 283
+	P1 = 139
+	C1 = NODE.JSREDUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 371
+	P2 = 189
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 30:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 30
+	P0 = -1
+	C0 = ASP.NETASP.NET-WEB-API$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 59
+	P1 = -1
+	C1 = ASP.NETAZURE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 69
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 31:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 31
+	P0 = -1
+	C0 = CODEIGNITERAJAX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 9
+	P1 = -1
+	C1 = CODEIGNITERJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 240
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 32:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 32
+	P0 = -1
+	C0 = WPFASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 55
+	P1 = -1
+	C1 = WPFC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 90
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 33:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 33
+	P0 = 3
+	C0 = WCFC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 92
+	P1 = 58
+	C1 = WCFSQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 424
+	P2 = 250
+	C2 = WEB-SERVICESHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 167
+	P3 = 127
+
+Registro de RRN 34:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 34
+	P0 = -1
+	C0 = EXPRESSMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 282
+	P1 = -1
+	C1 = EXPRESSNODE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 307
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 35:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 35
+	P0 = -1
+	C0 = ASP.NET-WEB-APIAZURE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 68
+	P1 = -1
+	C1 = ASP.NET-WEB-APIC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 83
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 36:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 36
+	P0 = 35
+	C0 = ASP.NET-WEB-APIENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 140
+	P1 = 218
+	C1 = ASP.NET.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 2
+	P2 = 30
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 37:
+	Numero de chaves do no = 3
+	Altura do No = 3
+	RRN do no = 37
+	P0 = 13
+	C0 = CSSPHOTOSHOP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 324
+	P1 = 163
+	C1 = DJANGOFLASK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 152
+	P2 = 114
+	C2 = ENTITY-FRAMEWORK.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 3
+	P3 = 77
+
+Registro de RRN 38:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 38
+	P0 = -1
+	C0 = AMAZON-WEB-SERVICESCLOUD$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 98
+	P1 = -1
+	C1 = AMAZON-WEB-SERVICESDEVOPS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 119
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 39:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 39
+	P0 = -1
+	C0 = LINUXBASH$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 71
+	P1 = -1
+	C1 = LINUXGIT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 156
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 40:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 40
+	P0 = -1
+	C0 = SCALAHADOOP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 159
+	P1 = -1
+	C1 = SCALAHASKELL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 161
+	P2 = -1
+	C2 = SELENIUMTESTING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 437
+	P3 = -1
+
+Registro de RRN 41:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 41
+	P0 = -1
+	C0 = DEVOPSDOCKER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 127
+	P1 = -1
+	C1 = DEVOPSJENKINS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 223
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 42:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 42
+	P0 = 34
+	C0 = EXPRESSREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 364
+	P1 = 190
+	C1 = FLASKDJANGO$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 123
+	P2 = 154
+	C2 = GITGITHUB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 157
+	P3 = 82
+
+Registro de RRN 43:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 43
+	P0 = -1
+	C0 = C#ENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 141
+	P1 = -1
+	C1 = C#LINQ$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 259
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 44:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 44
+	P0 = -1
+	C0 = SQLC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 81
+	P1 = -1
+	C1 = SQLORACLE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 317
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 45:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 45
+	P0 = -1
+	C0 = AZUREC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 89
+	P1 = -1
+	C1 = BASHGIT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 155
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 46:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 46
+	P0 = 43
+	C0 = C#SQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 420
+	P1 = 223
+	C1 = C#VB.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 453
+	P2 = 235
+	C2 = C#WPF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 481
+	P3 = 253
+
+Registro de RRN 47:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 47
+	P0 = -1
+	C0 = VB.NETC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 85
+	P1 = -1
+	C1 = VB.NETSQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 425
+	P2 = -1
+	C2 = VBAEXCEL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 142
+	P3 = -1
+
+Registro de RRN 48:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 48
+	P0 = 16
+	C0 = UNITY3DC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 91
+	P1 = 129
+	C1 = VB.NETASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 58
+	P2 = 47
+	C2 = VBAEXCEL-VBA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 144
+	P3 = 79
+
+Registro de RRN 49:
+	Numero de chaves do no = 2
+	Altura do No = 3
+	RRN do no = 49
+	P0 = 48
+	C0 = WCF.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 6
+	P1 = 33
+	C1 = WINDOWSLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 271
+	P2 = 202
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 50:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 50
+	P0 = -1
+	C0 = PYTHONDJANGO$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 122
+	P1 = -1
+	C1 = PYTHONFLASK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 151
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 51:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 51
+	P0 = -1
+	C0 = LINQC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 80
+	P1 = -1
+	C1 = LINQENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 138
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 52:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 52
+	P0 = 28
+	C0 = MONGODBMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 293
+	P1 = 144
+	C1 = MONGODBREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 363
+	P2 = 179
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 53:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 53
+	P0 = -1
+	C0 = .NETENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 134
+	P1 = -1
+	C1 = .NETLINQ$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 262
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 54:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 54
+	P0 = 24
+	C0 = ANGULAR2ANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 38
+	P1 = 229
+	C1 = ANGULARJSANGULAR2$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 26
+	P2 = 15
+	C2 = ANGULARJSEXPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 148
+	P3 = 81
+
+Registro de RRN 55:
+	Numero de chaves do no = 2
+	Altura do No = 3
+	RRN do no = 55
+	P0 = 25
+	C0 = BOOTSTRAPCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 112
+	P1 = 200
+	C1 = C#AZURE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 67
+	P2 = 46
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 56:
+	Numero de chaves do no = 2
+	Altura do No = 4
+	RRN do no = 56
+	P0 = 22
+	C0 = MAVENECLIPSE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 130
+	P1 = 213
+	C1 = MYSQLAJAX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 11
+	P2 = 181
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 57:
+	Numero de chaves do no = 2
+	Altura do No = 5
+	RRN do no = 57
+	P0 = 23
+	C0 = C++C$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 76
+	P1 = 238
+	C1 = EXPRESSANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 34
+	P2 = 116
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 58:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 58
+	P0 = -1
+	C0 = WCFENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 139
+	P1 = -1
+	C1 = WCFLINQ$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 257
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 59:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 59
+	P0 = -1
+	C0 = MYSQLHTML$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 171
+	P1 = -1
+	C1 = MYSQLJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 213
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 60:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 60
+	P0 = -1
+	C0 = PHPCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 118
+	P1 = -1
+	C1 = PHPHTML$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 173
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 61:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 61
+	P0 = 18
+	C0 = REACTJSMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 284
+	P1 = 140
+	C1 = REACTJSREDUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 370
+	P2 = 188
+	C2 = REDISMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 287
+	P3 = 151
+
+Registro de RRN 62:
+	Numero de chaves do no = 3
+	Altura do No = 3
+	RRN do no = 62
+	P0 = 61
+	C0 = REDUXEXPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 147
+	P1 = 152
+	C1 = RESTJSON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 242
+	P2 = 177
+	C2 = SASSANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 31
+	P3 = 132
+
+Registro de RRN 63:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 63
+	P0 = -1
+	C0 = JQUERYCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 108
+	P1 = -1
+	C1 = JQUERYHTML$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 176
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 64:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 64
+	P0 = -1
+	C0 = JENKINSDOCKER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 128
+	P1 = -1
+	C1 = JENKINSGIT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 153
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 65:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 65
+	P0 = 27
+	C0 = JQUERYCODEIGNITER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 100
+	P1 = 63
+	C1 = JQUERYHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 183
+	P2 = 105
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 66:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 66
+	P0 = -1
+	C0 = ANDROID-STUDIOANDROID$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 21
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 67:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 67
+	P0 = -1
+	C0 = HADOOPAPACHE-SPARK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 44
+	P1 = -1
+	C1 = HADOOPSCALA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 393
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 68:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 68
+	P0 = -1
+	C0 = DOCKERGO$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 158
+	P1 = -1
+	C1 = DOCKERJENKINS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 225
+	P2 = -1
+	C2 = DRUPALWORDPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 476
+	P3 = -1
+
+Registro de RRN 69:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 69
+	P0 = -1
+	C0 = SASSCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 117
+	P1 = -1
+	C1 = SASSHTML$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 175
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 70:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 70
+	P0 = -1
+	C0 = WPFLINQ$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 263
+	P1 = -1
+	C1 = WPFWCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 462
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 71:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 71
+	P0 = -1
+	C0 = ASP.NETENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 136
+	P1 = -1
+	C1 = ASP.NETJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 230
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 72:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 72
+	P0 = -1
+	C0 = SQL-SERVERENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 137
+	P1 = -1
+	C1 = SQL-SERVERLINQ$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 258
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 73:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 73
+	P0 = -1
+	C0 = WORDPRESSDRUPAL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 129
+	P1 = -1
+	C1 = WORDPRESSHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 178
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 74:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 74
+	P0 = 32
+	C0 = WPFENTITY-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 135
+	P1 = 70
+	C1 = XAMARINC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 88
+	P2 = 240
+	C2 = XCODEIPHONE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 195
+	P3 = 124
+
+Registro de RRN 75:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 75
+	P0 = -1
+	C0 = CEMBEDDED$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 133
+	P1 = -1
+	C1 = CJAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 204
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 76:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 76
+	P0 = -1
+	C0 = ENTITY-FRAMEWORKLINQ$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 261
+	P1 = -1
+	C1 = ENTITY-FRAMEWORKSQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 427
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 77:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 77
+	P0 = 1
+	C0 = ENTITY-FRAMEWORKC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 84
+	P1 = 76
+	C1 = ENTITY-FRAMEWORKWCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 459
+	P2 = 251
+	C2 = EXCEL-VBAEXCEL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 143
+	P3 = 222
+
+Registro de RRN 78:
+	Numero de chaves do no = 3
+	Altura do No = 3
+	RRN do no = 78
+	P0 = 21
+	C0 = JAVA-EEHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 169
+	P1 = 225
+	C1 = JAVAC++$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 96
+	P2 = 103
+	C2 = JAVASCRIPTHTML$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 172
+	P3 = 91
+
+Registro de RRN 79:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 79
+	P0 = -1
+	C0 = VISUAL-STUDIOC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 93
+	P1 = -1
+	C1 = VUE.JSLARAVEL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 250
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 80:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 80
+	P0 = -1
+	C0 = REDUXNODE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 311
+	P1 = -1
+	C1 = REDUXREACT-NATIVE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 356
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 81:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 81
+	P0 = -1
+	C0 = ANGULARJSHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 180
+	P1 = -1
+	C1 = ANGULARJSIONIC-FRAMEWORK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 187
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 82:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 82
+	P0 = -1
+	C0 = GITHUBGIT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 154
+	P1 = -1
+	C1 = GITJENKINS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 222
+	P2 = -1
+	C2 = GITLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 265
+	P3 = -1
+
+Registro de RRN 83:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 83
+	P0 = -1
+	C0 = LESSHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 181
+	P1 = -1
+	C1 = LESSSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 389
+	P2 = -1
+	C2 = LINQ.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 5
+	P3 = -1
+
+Registro de RRN 84:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 84
+	P0 = -1
+	C0 = JAVAHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 163
+	P1 = -1
+	C1 = JAVAJAVA-EE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 209
+	P2 = -1
+	C2 = JAVAJSP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 247
+	P3 = -1
+
+Registro de RRN 85:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 85
+	P0 = -1
+	C0 = SHELLLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 269
+	P1 = -1
+	C1 = SPRING-BOOTHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 164
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 86:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 86
+	P0 = 40
+	C0 = SHELLBASH$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 72
+	P1 = 85
+	C1 = SPRING-BOOTSPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 402
+	P2 = 206
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 87:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 87
+	P0 = -1
+	C0 = MAVENHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 165
+	P1 = -1
+	C1 = MAVENJENKINS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 224
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 88:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 88
+	P0 = 39
+	C0 = LINUXNGINX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 302
+	P1 = 160
+	C1 = LINUXSHELL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 398
+	P2 = 232
+	C2 = MACHINE-LEARNINGPYTHON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 346
+	P3 = 174
+
+Registro de RRN 89:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 89
+	P0 = -1
+	C0 = POSTGRESQLMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 285
+	P1 = -1
+	C1 = POSTGRESQLMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 296
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 90:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 90
+	P0 = -1
+	C0 = JAVASCRIPTHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 179
+	P1 = -1
+	C1 = JAVASCRIPTJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 239
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 91:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 91
+	P0 = 90
+	C0 = JAVASCRIPTMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 297
+	P1 = 150
+	C1 = JAVASCRIPTREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 365
+	P2 = 191
+	C2 = JAVASPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 407
+	P3 = 226
+
+Registro de RRN 92:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 92
+	P0 = -1
+	C0 = CSSHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 184
+	P1 = -1
+	C1 = CSSJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 218
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 93:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 93
+	P0 = -1
+	C0 = TWITTER-BOOTSTRAPHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 185
+	P1 = -1
+	C1 = TWITTER-BOOTSTRAPJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 211
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 94:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 94
+	P0 = 26
+	C0 = TWITTER-BOOTSTRAP-3JQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 238
+	P1 = 198
+	C1 = TWITTER-BOOTSTRAPCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 113
+	P2 = 93
+	C2 = TWITTER-BOOTSTRAPJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 235
+	P3 = 196
+
+Registro de RRN 95:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 95
+	P0 = -1
+	C0 = APACHE-SPARKSCALA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 395
+	P1 = -1
+	C1 = APACHELINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 273
+	P2 = -1
+	C2 = APACHEMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 300
+	P3 = -1
+
+Registro de RRN 96:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 96
+	P0 = -1
+	C0 = PHPAJAX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 13
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 97:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 97
+	P0 = 89
+	C0 = POSTGRESQLREDIS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 369
+	P1 = 185
+	C1 = POWERSHELLWINDOWS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 469
+	P2 = 245
+	C2 = PYTHONC++$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 97
+	P3 = 50
+
+Registro de RRN 98:
+	Numero de chaves do no = 3
+	Altura do No = 3
+	RRN do no = 98
+	P0 = 29
+	C0 = OBJECTIVE-CIPHONE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 197
+	P1 = 217
+	C1 = OSXLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 267
+	P2 = 159
+	C2 = PHPCODEIGNITER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 102
+	P3 = 107
+
+Registro de RRN 99:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 99
+	P0 = -1
+	C0 = JAVAC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 79
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 100:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 100
+	P0 = -1
+	C0 = OBJECTIVE-COSX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 320
+	P1 = -1
+	C1 = OBJECTIVE-CSWIFT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 434
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 101:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 101
+	P0 = -1
+	C0 = SPRINGJAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 198
+	P1 = -1
+	C1 = SPRINGJAVA-EE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 206
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 102:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 102
+	P0 = -1
+	C0 = JAVA-EEJAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 201
+	P1 = -1
+	C1 = JAVA-EESPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 404
+	P2 = -1
+	C2 = JAVA-EESPRING-MVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 412
+	P3 = -1
+
+Registro de RRN 103:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 103
+	P0 = 84
+	C0 = JAVASCRIPTAJAX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 14
+	P1 = 14
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 104:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 104
+	P0 = -1
+	C0 = SPRING-MVCJAVA-EE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 208
+	P1 = -1
+	C1 = SPRING-MVCJSP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 248
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 105:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 105
+	P0 = -1
+	C0 = JQUERYJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 210
+	P1 = -1
+	C1 = JQUERYJSON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 243
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 106:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 106
+	P0 = -1
+	C0 = PHPJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 215
+	P1 = -1
+	C1 = PHPJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 231
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 107:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 107
+	P0 = 60
+	C0 = PHPHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 177
+	P1 = 106
+	C1 = PHPLARAVEL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 251
+	P2 = 145
+	C2 = PLSQLORACLE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 318
+	P3 = 246
+
+Registro de RRN 108:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 108
+	P0 = -1
+	C0 = AJAXJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 216
+	P1 = -1
+	C1 = AJAXJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 234
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 109:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 109
+	P0 = 38
+	C0 = AMAZON-WEB-SERVICESDOCKER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 125
+	P1 = 66
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 110:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 110
+	P0 = -1
+	C0 = HTMLJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 227
+	P1 = -1
+	C1 = HTMLMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 298
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 111:
+	Numero de chaves do no = 3
+	Altura do No = 2
+	RRN do no = 111
+	P0 = 20
+	C0 = HTML5JQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 233
+	P1 = 118
+	C1 = HTML5SASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 388
+	P2 = 194
+	C2 = HTML5WORDPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 473
+	P3 = 247
+
+Registro de RRN 112:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 112
+	P0 = -1
+	C0 = SASSJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 220
+	P1 = -1
+	C1 = SASSJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 229
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 113:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 113
+	P0 = -1
+	C0 = DJANGOPOSTGRESQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 341
+	P1 = -1
+	C1 = DJANGOPYTHON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 347
+	P2 = -1
+	C2 = DOCKERAMAZON-WEB-SERVICES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 19
+	P3 = -1
+
+Registro de RRN 114:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 114
+	P0 = 113
+	C0 = DOCKERDEVOPS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 120
+	P1 = 68
+	C1 = ECLIPSEMAVEN$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 279
+	P2 = 136
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 115:
+	Numero de chaves do no = 2
+	Altura do No = 3
+	RRN do no = 115
+	P0 = 42
+	C0 = GODOCKER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 126
+	P1 = 155
+	C1 = HIBERNATEREST$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 378
+	P2 = 243
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 116:
+	Numero de chaves do no = 3
+	Altura do No = 4
+	RRN do no = 116
+	P0 = 115
+	C0 = HTML5ANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 39
+	P1 = 244
+	C1 = IOSANDROID$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 20
+	P2 = 78
+	C2 = JENKINSDEVOPS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 121
+	P3 = 193
+
+Registro de RRN 117:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 117
+	P0 = -1
+	C0 = JSPSPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 406
+	P1 = -1
+	C1 = JSPSPRING-MVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 414
+	P2 = -1
+	C2 = LARAVELCODEIGNITER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 101
+	P3 = -1
+
+Registro de RRN 118:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 118
+	P0 = -1
+	C0 = HTML5LESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 256
+	P1 = -1
+	C1 = HTML5PHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 333
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 119:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 119
+	P0 = -1
+	C0 = MYSQLLARAVEL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 252
+	P1 = -1
+	C1 = MYSQLMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 286
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 120:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 120
+	P0 = -1
+	C0 = ANGULARJSJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 237
+	P1 = -1
+	C1 = ANGULARJSMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 289
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 121:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 121
+	P0 = 120
+	C0 = ANGULARJSNODE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 308
+	P1 = 178
+	C1 = ANGULARJSTWITTER-BOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 438
+	P2 = 230
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 122:
+	Numero de chaves do no = 3
+	Altura do No = 3
+	RRN do no = 122
+	P0 = 121
+	C0 = APACHE-SPARKHADOOP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 160
+	P1 = 231
+	C1 = ASP.NET-WEB-APIASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 50
+	P2 = 36
+	C2 = ASP.NETC#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 82
+	P3 = 219
+
+Registro de RRN 123:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 123
+	P0 = -1
+	C0 = BOOTSTRAPJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 241
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 124:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 124
+	P0 = -1
+	C0 = XCODEOBJECTIVE-C$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 312
+	P1 = -1
+	C1 = XCODESWIFT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 432
+	P2 = -1
+	C2 = XMLJSON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 244
+	P3 = -1
+
+Registro de RRN 125:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 125
+	P0 = -1
+	C0 = HIBERNATEJSP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 246
+	P1 = -1
+	C1 = HIBERNATEMAVEN$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 281
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 126:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 126
+	P0 = -1
+	C0 = CSSLESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 255
+	P1 = -1
+	C1 = CSSMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 291
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 127:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 127
+	P0 = -1
+	C0 = WEB-SERVICESREST$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 376
+	P1 = -1
+	C1 = WEB-SERVICESSPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 399
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 128:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 128
+	P0 = -1
+	C0 = C++JAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 199
+	P1 = -1
+	C1 = C++PYTHON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 345
+	P2 = -1
+	C2 = C++QT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 351
+	P3 = -1
+
+Registro de RRN 129:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 129
+	P0 = -1
+	C0 = UNIXLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 266
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 130:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 130
+	P0 = -1
+	C0 = PYTHONMACHINE-LEARNING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 274
+	P1 = -1
+	C1 = PYTHONR$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 352
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 131:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 131
+	P0 = -1
+	C0 = RESTSPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 401
+	P1 = -1
+	C1 = RESTWEB-SERVICES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 466
+	P2 = -1
+	C2 = RMACHINE-LEARNING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 275
+	P3 = -1
+
+Registro de RRN 132:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 132
+	P0 = 69
+	C0 = SASSHTML5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 186
+	P1 = 112
+	C1 = SASSLESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 254
+	P2 = 175
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 133:
+	Numero de chaves do no = 2
+	Altura do No = 3
+	RRN do no = 133
+	P0 = 6
+	C0 = SQLPLSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 336
+	P1 = 169
+	C1 = TDDAGILE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 8
+	P2 = 94
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 134:
+	Numero de chaves do no = 2
+	Altura do No = 4
+	RRN do no = 134
+	P0 = 133
+	C0 = TYPESCRIPTANGULAR$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 24
+	P1 = 49
+	C1 = WORDPRESSCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 115
+	P2 = 203
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 135:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 135
+	P0 = -1
+	C0 = JQUERYAJAX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 10
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 136:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 136
+	P0 = -1
+	C0 = ELASTICSEARCHMONGODB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 288
+	P1 = -1
+	C1 = ELASTICSEARCHREDIS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 368
+	P2 = -1
+	C2 = EMBEDDEDC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 78
+	P3 = -1
+
+Registro de RRN 137:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 137
+	P0 = -1
+	C0 = SPRINGMAVEN$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 280
+	P1 = -1
+	C1 = SPRINGREST$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 375
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 138:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 138
+	P0 = 101
+	C0 = SPRINGJSP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 249
+	P1 = 137
+	C1 = SPRINGSPRING-BOOT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 408
+	P2 = 215
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 139:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 139
+	P0 = -1
+	C0 = NODE.JSREACT-NATIVE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 357
+	P1 = -1
+	C1 = NODE.JSREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 358
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 140:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 140
+	P0 = -1
+	C0 = REACTJSNODE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 306
+	P1 = -1
+	C1 = REACTJSREACT-NATIVE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 355
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 141:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 141
+	P0 = -1
+	C0 = NGINXLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 270
+	P1 = -1
+	C1 = NGINXREDIS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 367
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 142:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 142
+	P0 = 119
+	C0 = MYSQLPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 332
+	P1 = 170
+	C1 = NGINXAPACHE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 40
+	P2 = 141
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 143:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 143
+	P0 = -1
+	C0 = ASP.NETMVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 290
+	P1 = -1
+	C1 = ASP.NETSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 422
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 144:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 144
+	P0 = -1
+	C0 = MONGODBNODE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 309
+	P1 = -1
+	C1 = MONGODBPOSTGRESQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 340
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 145:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 145
+	P0 = -1
+	C0 = PHPMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 295
+	P1 = -1
+	C1 = PHPWORDPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 472
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 146:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 146
+	P0 = -1
+	C0 = AJAXMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 299
+	P1 = -1
+	C1 = AJAXPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 330
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 147:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 147
+	P0 = -1
+	C0 = CODEIGNITERMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 301
+	P1 = -1
+	C1 = CODEIGNITERPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 334
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 148:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 148
+	P0 = 31
+	C0 = CODEIGNITERLARAVEL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 253
+	P1 = 147
+	C1 = CODEIGNITERWORDPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 475
+	P2 = 249
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 149:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 149
+	P0 = -1
+	C0 = APIREST$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 377
+	P1 = -1
+	C1 = ASP.NET-WEB-APIANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 37
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 150:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 150
+	P0 = -1
+	C0 = JAVASCRIPTNODE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 305
+	P1 = -1
+	C1 = JAVASCRIPTPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 329
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 151:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 151
+	P0 = -1
+	C0 = REDISNGINX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 303
+	P1 = -1
+	C1 = REDISPOSTGRESQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 338
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 152:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 152
+	P0 = 80
+	C0 = REDUXREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 361
+	P1 = 176
+	C1 = RESTAPI$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 45
+	P2 = 161
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 153:
+	Numero de chaves do no = 2
+	Altura do No = 3
+	RRN do no = 153
+	P0 = 86
+	C0 = SPRING-MVCJAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 205
+	P1 = 207
+	C1 = SPRINGHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 170
+	P2 = 138
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 154:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 154
+	P0 = -1
+	C0 = FLASKPYTHON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 344
+	P1 = -1
+	C1 = GITBASH$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 73
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 155:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 155
+	P0 = 67
+	C0 = HASKELLSCALA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 394
+	P1 = 197
+	C1 = HIBERNATEJAVA-EE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 207
+	P2 = 125
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 156:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 156
+	P0 = -1
+	C0 = SWIFTOBJECTIVE-C$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 314
+	P1 = -1
+	C1 = SWIFTXCODE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 486
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 157:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 157
+	P0 = -1
+	C0 = IPHONEOBJECTIVE-C$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 313
+	P1 = -1
+	C1 = IPHONESWIFT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 433
+	P2 = -1
+	C2 = IPHONEXCODE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 487
+	P3 = -1
+
+Registro de RRN 158:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 158
+	P0 = -1
+	C0 = OSXOBJECTIVE-C$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 316
+	P1 = -1
+	C1 = OSXWINDOWS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 471
+	P2 = -1
+	C2 = PERLREGEX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 374
+	P3 = -1
+
+Registro de RRN 159:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 159
+	P0 = 158
+	C0 = PHOTOSHOPCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 107
+	P1 = 96
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 160:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 160
+	P0 = -1
+	C0 = LINUXOSX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 322
+	P1 = -1
+	C1 = LINUXPYTHON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 350
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 161:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 161
+	P0 = -1
+	C0 = RESTHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 166
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 162:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 162
+	P0 = -1
+	C0 = CSSPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 325
+	P1 = -1
+	C1 = CSSSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 391
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 163:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 163
+	P0 = 162
+	C0 = CSSTWITTER-BOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 443
+	P1 = 248
+	C1 = DEVOPSAMAZON-WEB-SERVICES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 18
+	P2 = 41
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 164:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 164
+	P0 = -1
+	C0 = WORDPRESSPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 327
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 165:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 165
+	P0 = 73
+	C0 = WORDPRESSJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 228
+	P1 = 164
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 166:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 166
+	P0 = -1
+	C0 = JQUERYPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 328
+	P1 = -1
+	C1 = JQUERYSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 384
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 167:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 167
+	P0 = -1
+	C0 = HTMLSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 387
+	P1 = -1
+	C1 = IONIC-FRAMEWORKANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 27
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 168:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 168
+	P0 = -1
+	C0 = SQLSQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 430
+	P1 = -1
+	C1 = SWIFTIOS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 189
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 169:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 169
+	P0 = 168
+	C0 = SWIFTIPHONE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 194
+	P1 = 156
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 170:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 170
+	P0 = -1
+	C0 = MYSQLPOSTGRESQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 337
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 171:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 171
+	P0 = -1
+	C0 = RUBY-ON-RAILSRUBY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 381
+	P1 = -1
+	C1 = RUBYPOSTGRESQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 342
+	P2 = -1
+	C2 = RUBYRUBY-ON-RAILS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 383
+	P3 = -1
+
+Registro de RRN 172:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 172
+	P0 = -1
+	C0 = WORDPRESSCODEIGNITER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 104
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 173:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 173
+	P0 = -1
+	C0 = REACT-NATIVENODE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 310
+	P1 = -1
+	C1 = REACT-NATIVEREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 360
+	P2 = -1
+	C2 = REACT-NATIVEREDUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 372
+	P3 = -1
+
+Registro de RRN 174:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 174
+	P0 = -1
+	C0 = MACHINE-LEARNINGR$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 354
+	P1 = -1
+	C1 = MATLABR$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 353
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 175:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 175
+	P0 = -1
+	C0 = SASSREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 359
+	P1 = -1
+	C1 = SASSTWITTER-BOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 440
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 176:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 176
+	P0 = -1
+	C0 = REGEXPERL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 323
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 177:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 177
+	P0 = 131
+	C0 = RMATLAB$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 276
+	P1 = 205
+	C1 = RUBY-ON-RAILSPOSTGRESQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 339
+	P2 = 171
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 178:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 178
+	P0 = -1
+	C0 = ANGULARJSREACTJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 362
+	P1 = -1
+	C1 = ANGULARJSSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 390
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 179:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 179
+	P0 = -1
+	C0 = MONGODBREDIS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 366
+	P1 = -1
+	C1 = MVCASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 53
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 180:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 180
+	P0 = 8
+	C0 = MYSQLCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 106
+	P1 = 59
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 181:
+	Numero de chaves do no = 1
+	Altura do No = 3
+	RRN do no = 181
+	P0 = 180
+	C0 = MYSQLJQUERY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 236
+	P1 = 142
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 182:
+	Numero de chaves do no = 1
+	Altura do No = 4
+	RRN do no = 182
+	P0 = 62
+	C0 = SCALAAPACHE-SPARK$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 43
+	P1 = 153
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 183:
+	Numero de chaves do no = 1
+	Altura do No = 5
+	RRN do no = 183
+	P0 = 182
+	C0 = SQL-SERVER.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 1
+	P1 = 134
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 184:
+	Numero de chaves do no = 2
+	Altura do No = 6
+	RRN do no = 184
+	P0 = 57
+	C0 = JSONAJAX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 15
+	P1 = 239
+	C1 = REACTJSANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 28
+	P2 = 183
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 185:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 185
+	P0 = -1
+	C0 = POSTGRESQLRUBY$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 380
+	P1 = -1
+	C1 = POSTGRESQLRUBY-ON-RAILS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 382
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 186:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 186
+	P0 = 130
+	C0 = QTC++$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 94
+	P1 = 173
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 187:
+	Numero de chaves do no = 1
+	Altura do No = 3
+	RRN do no = 187
+	P0 = 97
+	C0 = PYTHONLINUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 272
+	P1 = 186
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 188:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 188
+	P0 = -1
+	C0 = REACTJSSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 386
+	P1 = -1
+	C1 = REDISELASTICSEARCH$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 131
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 189:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 189
+	P0 = -1
+	C0 = OBJECTIVE-CIOS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 191
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 190:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 190
+	P0 = -1
+	C0 = EXPRESSREDUX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 373
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 191:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 191
+	P0 = -1
+	C0 = JAVASCRIPTSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 385
+	P1 = -1
+	C1 = JAVASCRIPTTWITTER-BOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 442
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 192:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 192
+	P0 = 64
+	C0 = JENKINSMAVEN$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 278
+	P1 = 135
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 193:
+	Numero de chaves do no = 2
+	Altura do No = 3
+	RRN do no = 193
+	P0 = 192
+	C0 = JQUERYANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 36
+	P1 = 65
+	C1 = JQUERYMYSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 292
+	P2 = 228
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 194:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 194
+	P0 = -1
+	C0 = HTML5TWITTER-BOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 439
+	P1 = -1
+	C1 = HTML5TWITTER-BOOTSTRAP-3$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 445
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 195:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 195
+	P0 = 110
+	C0 = HTMLPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 331
+	P1 = 167
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 196:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 196
+	P0 = -1
+	C0 = TWITTER-BOOTSTRAPSASS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 392
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 197:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 197
+	P0 = -1
+	C0 = HIBERNATEJAVA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 203
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 198:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 198
+	P0 = -1
+	C0 = TWITTER-BOOTSTRAPANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 32
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 199:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 199
+	P0 = -1
+	C0 = BASHSHELL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 397
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 200:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 200
+	P0 = 123
+	C0 = C#.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 7
+	P1 = 4
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 201:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 201
+	P0 = -1
+	C0 = WINDOWSOSX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 319
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 202:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 202
+	P0 = 201
+	C0 = WINDOWSPOWERSHELL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 343
+	P1 = 172
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 203:
+	Numero de chaves do no = 1
+	Altura do No = 3
+	RRN do no = 203
+	P0 = 165
+	C0 = WPF.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 4
+	P1 = 74
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 204:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 204
+	P0 = -1
+	C0 = SPRING-MVCSPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 400
+	P1 = -1
+	C1 = SPRING-MVCSPRING-BOOT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 410
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 205:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 205
+	P0 = -1
+	C0 = RPYTHON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 349
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 206:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 206
+	P0 = -1
+	C0 = SPRING-BOOTSPRING-MVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 415
+	P1 = -1
+	C1 = SPRING-MVCHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 168
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 207:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 207
+	P0 = 104
+	C0 = SPRING-MVCMAVEN$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 277
+	P1 = 204
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 208:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 208
+	P0 = -1
+	C0 = HIBERNATESPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 405
+	P1 = -1
+	C1 = HIBERNATESPRING-BOOT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 409
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 209:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 209
+	P0 = -1
+	C0 = LARAVELPHP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 326
+	P1 = -1
+	C1 = LARAVELVUE.JS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 457
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 210:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 210
+	P0 = 83
+	C0 = LINQASP.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 56
+	P1 = 51
+	C1 = LINQSQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 429
+	P2 = 241
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 211:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 211
+	P0 = -1
+	C0 = MAVENSPRING-MVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 411
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 212:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 212
+	P0 = 87
+	C0 = MAVENSPRING$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 403
+	P1 = 211
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 213:
+	Numero de chaves do no = 1
+	Altura do No = 3
+	RRN do no = 213
+	P0 = 212
+	C0 = MONGODBANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 29
+	P1 = 52
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 214:
+	Numero de chaves do no = 1
+	Altura do No = 4
+	RRN do no = 214
+	P0 = 98
+	C0 = POSTGRESQLDJANGO$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 124
+	P1 = 187
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 215:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 215
+	P0 = -1
+	C0 = SPRINGSPRING-MVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 413
+	P1 = -1
+	C1 = SPRINGWEB-SERVICES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 468
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 216:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 216
+	P0 = -1
+	C0 = OSXIOS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 190
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 217:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 217
+	P0 = 100
+	C0 = OBJECTIVE-CXCODE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 485
+	P1 = 254
+	C1 = ORACLESQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 421
+	P2 = 216
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 218:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 218
+	P0 = -1
+	C0 = ASP.NET-WEB-APISQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 423
+	P1 = -1
+	C1 = ASP.NET-WEB-APIWCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 465
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 219:
+	Numero de chaves do no = 2
+	Altura do No = 2
+	RRN do no = 219
+	P0 = 71
+	C0 = ASP.NETLINQ$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 260
+	P1 = 143
+	C1 = ASP.NETSQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 428
+	P2 = 233
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 220:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 220
+	P0 = -1
+	C0 = .NETWCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 458
+	P1 = -1
+	C1 = .NETWPF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 483
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 221:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 221
+	P0 = 108
+	C0 = AJAXJSON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 245
+	P1 = 146
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 222:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 222
+	P0 = -1
+	C0 = EXCEL-VBAVBA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 454
+	P1 = -1
+	C1 = EXCELEXCEL-VBA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 145
+	P2 = -1
+	C2 = EXCELVBA$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 455
+	P3 = -1
+
+Registro de RRN 223:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 223
+	P0 = -1
+	C0 = C#SQL-SERVER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 431
+	P1 = -1
+	C1 = C#UNITY3D$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 449
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 224:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 224
+	P0 = -1
+	C0 = IOSSWIFT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 435
+	P1 = -1
+	C1 = IOSXCODE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 488
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 225:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 225
+	P0 = 102
+	C0 = JAVAANDROID$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 22
+	P1 = 99
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 226:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 226
+	P0 = -1
+	C0 = JAVASPRING-MVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 417
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 227:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 227
+	P0 = -1
+	C0 = JQUERYTWITTER-BOOTSTRAP-3$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 444
+	P1 = -1
+	C1 = JQUERYWORDPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 477
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 228:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 228
+	P0 = 166
+	C0 = JQUERYTWITTER-BOOTSTRAP$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 441
+	P1 = 227
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 229:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 229
+	P0 = -1
+	C0 = ANGULAR2TYPESCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 446
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 230:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 230
+	P0 = -1
+	C0 = ANGULARTYPESCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 447
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 231:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 231
+	P0 = 95
+	C0 = APACHENGINX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 304
+	P1 = 149
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 232:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 232
+	P0 = -1
+	C0 = LINUXUBUNTU$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 448
+	P1 = -1
+	C1 = LINUXUNIX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 450
+	P2 = -1
+	C2 = LINUXWINDOWS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 470
+	P3 = -1
+
+Registro de RRN 233:
+	Numero de chaves do no = 3
+	Altura do No = 1
+	RRN do no = 233
+	P0 = -1
+	C0 = ASP.NETVB.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 451
+	P1 = -1
+	C1 = ASP.NETWCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 464
+	P2 = -1
+	C2 = ASP.NETWPF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = 482
+	P3 = -1
+
+Registro de RRN 234:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 234
+	P0 = -1
+	C0 = SQL-SERVERVB.NET$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 452
+	P1 = -1
+	C1 = SQL-SERVERWCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 461
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 235:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 235
+	P0 = -1
+	C0 = C#VISUAL-STUDIO$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 456
+	P1 = -1
+	C1 = C#WCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 460
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 236:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 236
+	P0 = 128
+	C0 = CC++$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 95
+	P1 = 75
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 237:
+	Numero de chaves do no = 1
+	Altura do No = 3
+	RRN do no = 237
+	P0 = 236
+	C0 = CLOUDAMAZON-WEB-SERVICES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 16
+	P1 = 148
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 238:
+	Numero de chaves do no = 1
+	Altura do No = 4
+	RRN do no = 238
+	P0 = 237
+	C0 = CSSAJAX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 12
+	P1 = 37
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 239:
+	Numero de chaves do no = 1
+	Altura do No = 5
+	RRN do no = 239
+	P0 = 56
+	C0 = NODE.JSANGULARJS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 35
+	P1 = 214
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 240:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 240
+	P0 = -1
+	C0 = XCODEIOS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 193
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 241:
+	Numero de chaves do no = 2
+	Altura do No = 1
+	RRN do no = 241
+	P0 = -1
+	C0 = LINQWCF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 463
+	P1 = -1
+	C1 = LINQWPF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = 478
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 242:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 242
+	P0 = -1
+	C0 = HIBERNATEWEB-SERVICES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 467
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 243:
+	Numero de chaves do no = 1
+	Altura do No = 2
+	RRN do no = 243
+	P0 = 208
+	C0 = HIBERNATESPRING-MVC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 416
+	P1 = 242
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 244:
+	Numero de chaves do no = 1
+	Altura do No = 3
+	RRN do no = 244
+	P0 = 111
+	C0 = HTMLJAVASCRIPT$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 219
+	P1 = 195
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 245:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 245
+	P0 = -1
+	C0 = PYTHONC$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 77
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 246:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 246
+	P0 = -1
+	C0 = PLSQLSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 418
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 247:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 247
+	P0 = -1
+	C0 = HTMLCSS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 109
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 248:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 248
+	P0 = -1
+	C0 = CSSWORDPRESS$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 474
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 249:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 249
+	P0 = -1
+	C0 = CPYTHON$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 348
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 250:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 250
+	P0 = -1
+	C0 = WCFWPF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 479
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 251:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 251
+	P0 = -1
+	C0 = ENTITY-FRAMEWORKWPF$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 480
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 252:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 252
+	P0 = -1
+	C0 = AJAXCODEIGNITER$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 103
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 253:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 253
+	P0 = -1
+	C0 = C#XAMARIN$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 484
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 254:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 254
+	P0 = -1
+	C0 = ORACLEPLSQL$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 335
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
+
+Registro de RRN 255:
+	Numero de chaves do no = 1
+	Altura do No = 1
+	RRN do no = 255
+	P0 = -1
+	C0 = JSPHIBERNATE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr0 = 162
+	P1 = -1
+	C1 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr1 = -1
+	P2 = -1
+	C2 = $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	Pr2 = -1
+	P3 = -1
