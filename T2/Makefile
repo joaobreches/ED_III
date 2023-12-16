@@ -45,21 +45,25 @@ crl: #compile and run for linux
 push:
 	git pull
 	git push
+	clear
 
 merge:
 	git add .
 	git commit -m "merge"
 	git pull
 	git push
+	clear
 
 fino:
 	git add .
 	git commit -m "ajuste fino"
 	git pull
 	git push
+	clear
 
 limpeza:
 	git add .
 	git commit -m "limpeza de codigo"
 	git pull
 	git push
+	clear
