@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+void liberarMemoria(Vertice *vertices, int numRegistros);
+void liberaGrafo(Vertice *grafo, int numRegistros);
+int compararArestas(const void *a, const void *b);
+int compararNomes(const void *a, const void *b);
 Pilha* inicializarPilha(int tamanho);
 int pilhaVazia(Pilha* pilha);
 void empilhar(Pilha* pilha, int item);

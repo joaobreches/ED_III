@@ -5,6 +5,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Função para comparar nomes de tecnologias para qsort
+int compararNomes(const void *a, const void *b) {
+    return strcmp(*(const char **)a, *(const char **)b);
+}
+// Função para liberar memória alocada para os vértices e arestas
+void liberarMemoria(Vertice *vertices, int numRegistros) {
+    for (int i = 0; i < numRegistros; i++) {
+        free(vertices[i].arestas);
+    }
+    free(vertices);
+}
+//---------------------------------------------------------------
+
 // Função para inicializar a pilha
 Pilha* inicializarPilha(int tamanho) {
     Pilha *pilha = (Pilha*)malloc(sizeof(Pilha));
@@ -40,6 +53,13 @@ Vertice* inicializarGrafo(int numVertices) {
         grafo[i].numArestas = 0;
     }
     return grafo;
+}
+
+void liberaGrafo(Vertice *grafo, int numRegistros) {
+    for (int i = 0; i < numRegistros; i++) {
+        free(grafo[i].arestas);
+    }
+    free(grafo);
 }
 
 // Função para adicionar uma aresta ao grafo
