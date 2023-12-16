@@ -1,12 +1,4 @@
 #include "funcionalidades.h"
-#include "funcoesFornecidas.h"
-#include "registro.h"
-#include "arquivo.h"
-#include "algoritmos.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
 
 // Função para executar a funcionalidade 8
 void recuperaDados8(char *nomeArquivo) {

@@ -34,31 +34,6 @@ typedef struct _Registro {
   StringVariavel TecnologiaDestino;
 } Registro;
 
-typedef struct {
-    char nomeTecDestino[50];
-    char nomeTecOrigem[50];
-    int peso;
-    int destino;
-} Aresta;
-
-typedef struct {
-    char nomeTecnologia[50];
-    int grupo;
-    int grauEntrada;
-    int grauSaida;
-    int grau;
-    Aresta* arestas;
-    int numArestas;
-    int visitado;
-} Vertice;
-
-// Pilha para o algoritmo de Kosaraju
-typedef struct {
-    int *array;
-    int topo;
-} Pilha;
-
-
 void escreveCabecalho(FILE *arquivo, Cabecalho cabecalho);
 void printCabecalho(FILE *arquivo);
 bool skipCabecalho(FILE *arquivoBinario);
@@ -67,6 +42,5 @@ int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, Strin
 void contaTecnologias(FILE* arquivoBinario, Registro registroAtual, Cabecalho* cabecalho);
 Registro leRegistro(FILE *arquivo, Registro *registro);
 int compararStrings(const void *a, const void *b);
-int compararArestas(const void *a, const void *b);
 
 #endif

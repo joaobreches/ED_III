@@ -11,7 +11,8 @@ all:
 	gcc -c -g ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c -g ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c -g ./src/registro.c -I ./include -o ./obj/registro.o
-	gcc -c -g ./src/algoritmos.c -I ./include -o ./obj/algoritmos.o
+	gcc -c -g ./src/pilha.c -I ./include -o ./obj/pilha.o
+	gcc -c -g ./src/grafo.c -I ./include -o ./obj/grafo.o
 	gcc -c -g ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
 	gcc -g ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
 
@@ -25,7 +26,8 @@ crw:  #compile and run for windows
 	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
-	gcc -c ./src/algoritmos.c -I ./include -o ./obj/algoritmos.o
+	gcc -c -g ./src/pilha.c -I ./include -o ./obj/pilha.o
+	gcc -c -g ./src/grafo.c -I ./include -o ./obj/grafo.o
 	gcc -c ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
 	gcc ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
 	.\bin\main
@@ -34,7 +36,24 @@ crl: #compile and run for linux
 	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
-	gcc -c ./src/algoritmos.c -I ./include -o ./obj/algoritmos.o
+	gcc -c -g ./src/pilha.c -I ./include -o ./obj/pilha.o
+	gcc -c -g ./src/grafo.c -I ./include -o ./obj/grafo.o
 	gcc -c ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
 	gcc ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
 	./bin/main
+
+push:
+	git pull
+	git push
+
+merge:
+	git add .
+	git commit -m "merge"
+	git pull
+	git push
+
+fino:
+	git add .
+	git commit -m "ajuste fino"
+	git pull
+	git push

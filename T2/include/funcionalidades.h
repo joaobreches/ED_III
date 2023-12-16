@@ -1,8 +1,10 @@
 #ifndef FUNCIONALIDADES_H
 #define FUNCIONALIDADE_H
 
+#include "funcoesFornecidas.h"
 #include "registro.h"
 #include "arquivo.h"
+#include "grafo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

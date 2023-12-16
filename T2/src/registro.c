@@ -316,8 +316,3 @@ Registro leRegistro(FILE *arquivo, Registro *registro){
 int compararStrings(const void *a, const void *b) {
     return strcmp(*(const char **)a, *(const char **)b);
 }
-
-// Função para comparar arestas (usada para ordenação)
-int compararArestas(const void *a, const void *b) {
-    return strcmp(((Aresta*)a)->nomeTecDestino, ((Aresta*)b)->nomeTecDestino);
-}

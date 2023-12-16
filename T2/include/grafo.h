@@ -1,16 +1,32 @@
-#ifndef ALGORITMOS_H
-#define ALGORITMOS_H
+#ifndef GRAFO_H
+#define GRAFO_H
 
 #include "registro.h"
 #include "arquivo.h"
+#include "pilha.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-Pilha* inicializarPilha(int tamanho);
-int pilhaVazia(Pilha* pilha);
-void empilhar(Pilha* pilha, int item);
-int desempilhar(Pilha* pilha);
+typedef struct {
+    char nomeTecDestino[50];
+    char nomeTecOrigem[50];
+    int peso;
+    int destino;
+} Aresta;
+
+typedef struct {
+    char nomeTecnologia[50];
+    int grupo;
+    int grauEntrada;
+    int grauSaida;
+    int grau;
+    Aresta* arestas;
+    int numArestas;
+    int visitado;
+} Vertice;
+
+int compararArestas(const void *a, const void *b);
 Vertice* inicializarGrafo(int numVertices);
 void adicionarAresta(Vertice* grafo, int origem, int destino);
 void dfs(Vertice* grafo, int vertice, Pilha* pilha);
