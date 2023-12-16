@@ -8,11 +8,9 @@
 #include <string.h>
 #include <stdbool.h>
 
-void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario);
-void imprimeArquivo(char* nomeArquivoBinario);
-void recuperaDados8(const char *nomeArquivo);
-void listaNomes(const char *nomeArquivo, int n);
-void fortementeConexo(const char* nomeArquivo);
-void caminhoCurto(const char* nomeArquivo, int n);
+void recuperaDados8(char *nomeArquivo);
+void listaNomes(char *nomeArquivo, int n);
+void fortementeConexo(char* nomeArquivo);
+void caminhoCurto(char* nomeArquivo, int n);
 
 #endif

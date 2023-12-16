@@ -1,8 +1,6 @@
 #include "funcoesFornecidas.h"
 #include "funcionalidades.h"
-#include "T1/include/funcionalidades.h";
 #include "arquivo.h"
-#include "aux.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,37 +32,34 @@ int main() {
   // armazena os valores lidos nas suas respectivas variaveis
   sscanf(linha, "%d %s %s %s", &funcionalidade, leitura1, leitura2, leitura3);
 
-  CabecalhoArvoreB cabecalho;
-
   // chama cada funcionalidade de acordo com a entrada no terminal
   switch (funcionalidade){
-    case 1:
-      criaTabela(leitura1, leitura2);
-      leitura2 = (char*) leitura2;
-      binarioNaTela(leitura2);
-      break;
-    case 2:
-      imprimeArquivo(leitura1);
-      break;
-    case 3:
-      busca(3, leitura1, "", atoi(leitura2));
-      break;
-    case 4:   
-      recuperaRegistro(leitura1, atoi(leitura2));
-      break;
-    case 5:
-      criaIndiceArvoreB(leitura1, leitura2);
-      leitura2 = (char*) leitura2;
-      binarioNaTela(leitura2);
-      break;
-    case 6:
-      busca(6, leitura1, leitura2, atoi(leitura3));
-      break;
-    case 7:   
-      insereRegistro(leitura1, leitura2, atoi(leitura3));
-      break;
+    // case 1:
+      // criaTabela(leitura1, leitura2);
+      // leitura2 = (char*) leitura2;
+      // binarioNaTela(leitura2);
+    //   break;
+    // case 2:
+      // imprimeArquivo(leitura1);
+    //   break;
+    // case 3:
+      //busca(3, leitura1, "", atoi(leitura2));
+    //   break;
+    // case 4:   
+      //recuperaRegistro(leitura1, atoi(leitura2));
+    //   break;
+    // case 5:
+      //criaIndiceArvoreB(leitura1, leitura2);
+      //leitura2 = (char*) leitura2;
+      //binarioNaTela(leitura2);
+    //   break;
+    // case 6:
+      //busca(6, leitura1, leitura2, atoi(leitura3));
+    //   break;
+    // case 7:   
+      //insereRegistro(leitura1, leitura2, atoi(leitura3));
+      // break;
     case 8:   
-      printf("entrou!");
       recuperaDados8(leitura1);
       break;
     case 10:   
@@ -77,7 +72,7 @@ int main() {
       caminhoCurto(leitura1, atoi(leitura2));
       break;
     case 15:
-      comparaBinarios();
+      //comparaBinarios();
       break;
   }
 
