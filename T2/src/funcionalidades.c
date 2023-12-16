@@ -2,50 +2,57 @@
 
 // Função para executar a funcionalidade 8
 void recuperaDados8(char *nomeArquivo) {
-    
-  printf("entrou!");
+    FILE *arquivo = fopen(nomeArquivo, "rb");
+    if (arquivo == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
 
-    // Abrir o arquivo binário para leitura
-    FILE *arquivo = abreBinarioLeitura(nomeArquivo);
-
-    // Lê o número de registros no arquivo
     int numRegistros;
     fread(&numRegistros, sizeof(int), 1, arquivo);
 
-    // Aloca espaço para os vértices
     Vertice *vertices = malloc(numRegistros * sizeof(Vertice));
+    if (vertices == NULL) {
+        perror("Erro de alocação de memória");
+        fclose(arquivo);
+        return;
+    }
 
     // Lê os registros do arquivo
     for (int i = 0; i < numRegistros; i++) {
-    // Lê o vértice do arquivo
-        if (fread(&vertices[i], sizeof(Vertice), 1, arquivo) != 1) {
-            perror("Erro ao ler vértice do arquivo");
-            exit(EXIT_FAILURE);
-        }
+        fread(&vertices[i], sizeof(Vertice), 1, arquivo);
 
         // Aloca espaço para as arestas do vértice
-        vertices[i].arestas = malloc(vertices[i].numArestas * sizeof(Aresta));
-        if (vertices[i].arestas == NULL) {
-            perror("Erro ao alocar memória para arestas do vértice");
-            exit(EXIT_FAILURE);
+        vertices[i].arestas = (Aresta *)malloc(vertices[i].numArestas * sizeof(Aresta));
+        if (!vertices[i].arestas) {
+            printf("Erro de alocação de memória para as arestas.\n");
+            fclose(arquivo);
+            // Liberar a memória alocada anteriormente
+            for (int j = 0; j < i; j++) {
+                free(vertices[j].arestas);
+            }
+            free(vertices);
+            return;
         }
 
-        // Lê as arestas do arquivo
-        if (fread(vertices[i].arestas, sizeof(Aresta), vertices[i].numArestas, arquivo) != vertices[i].numArestas) {
-            perror("Erro ao ler arestas do vértice do arquivo");
-            exit(EXIT_FAILURE);
-        }
+        // Lê as arestas diretamente no bloco de memória reservado para elas
+        fread(vertices[i].arestas, sizeof(Aresta), vertices[i].numArestas, arquivo);
     }
 
-    // Fecha o arquivo
-    fclose(arquivo);
-
     // Ordena os nomes das tecnologias para a saída ordenada
-    char **nomesOrdenados = (char**)malloc(numRegistros * sizeof(char*));
+    char **nomesOrdenados = malloc(numRegistros * sizeof(char *));
+    if (nomesOrdenados == NULL) {
+        perror("Erro de alocação de memória");
+        liberarMemoria(vertices, numRegistros);
+        fclose(arquivo);
+        return;
+    }
+
     for (int i = 0; i < numRegistros; i++) {
         nomesOrdenados[i] = vertices[i].nomeTecnologia;
     }
-    qsort(nomesOrdenados, numRegistros, sizeof(char*), compararStrings);
+
+    qsort(nomesOrdenados, numRegistros, sizeof(char *), compararNomes);
 
     // Imprime os dados ordenados
     for (int i = 0; i < numRegistros; i++) {
@@ -56,8 +63,8 @@ void recuperaDados8(char *nomeArquivo) {
         }
 
         printf("%s, %d, %d, %d, %d, ", vertices[indice].nomeTecnologia,
-               vertices[indice].grupo, vertices[indice].grauEntrada,
-               vertices[indice].grauSaida, vertices[indice].grau);
+            vertices[indice].grupo, vertices[indice].grauEntrada,
+            vertices[indice].grauSaida, vertices[indice].grau);
 
         // Ordena as arestas pelo nomeTecDestino para a saída ordenada
         qsort(vertices[indice].arestas, vertices[indice].numArestas, sizeof(Aresta), compararArestas);
@@ -74,11 +81,10 @@ void recuperaDados8(char *nomeArquivo) {
     }
 
     // Libera a memória alocada
-    for (int i = 0; i < numRegistros; i++) {
-        free(vertices[i].arestas);
-    }
-    free(vertices);
+    liberarMemoria(vertices, numRegistros);
     free(nomesOrdenados);
+
+    fclose(arquivo);
 }
 
 // Função para executar a funcionalidade 10
@@ -232,7 +238,7 @@ void fortementeConexo(char* nomeArquivo) {
 // Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)
 void caminhoCurto(char* nomeArquivo, int n) {
     // Abrir o arquivo binário para leitura
-    FILE* arquivo = fopen(nomeArquivo, "rb");
+    FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
         printf("Falha na execução da funcionalidade.\n");
         return;
@@ -243,15 +249,19 @@ void caminhoCurto(char* nomeArquivo, int n) {
     fread(&numRegistros, sizeof(int), 1, arquivo);
 
     // Inicializa o grafo
-    Vertice* grafo = inicializarGrafo(numRegistros);
+    Vertice *grafo = inicializarGrafo(numRegistros);
 
     // Lê os registros do arquivo
+    Aresta aresta;
     for (int i = 0; i < numRegistros; i++) {
         fread(&grafo[i], sizeof(Vertice), 1, arquivo);
         // Aloca espaço para as arestas do vértice
-        grafo[i].arestas = (Aresta*)malloc(grafo[i].numArestas * sizeof(Aresta));
+        grafo[i].arestas = (Aresta*)malloc(grafo[i].numArestas * (TAM_NOME * sizeof(char) + sizeof(int)));
         // Lê as arestas do arquivo
-        fread(grafo[i].arestas, sizeof(Aresta), grafo[i].numArestas, arquivo);
+        fread(aresta.nomeTecDestino, TAM_NOME * sizeof(char) + sizeof(int), grafo[i].numArestas, arquivo);
+        fread(aresta.nomeTecOrigem, TAM_NOME * sizeof(char) + sizeof(int), grafo[i].numArestas, arquivo);
+        fread(aresta.peso, TAM_NOME * sizeof(int) + sizeof(int), grafo[i].numArestas, arquivo);
+        fread(aresta.destino, TAM_NOME * sizeof(int) + sizeof(int), grafo[i].numArestas, arquivo);
     }
 
     // Fecha o arquivo
@@ -259,8 +269,8 @@ void caminhoCurto(char* nomeArquivo, int n) {
 
     // Realiza a funcionalidade
     for (int i = 0; i < n; i++) {
-        char tecnologiaOrigem[100];
-        char tecnologiaDestino[100];
+        char tecnologiaOrigem[TAM_NOME];
+        char tecnologiaDestino[TAM_NOME];
 
         // Lê as tecnologias de origem e destino
         scanf("%s %s", tecnologiaOrigem, tecnologiaDestino);
@@ -294,8 +304,5 @@ void caminhoCurto(char* nomeArquivo, int n) {
     }
 
     // Libera a memória alocada
-    for (int i = 0; i < numRegistros; i++) {
-        free(grafo[i].arestas);
-    }
-    free(grafo);
+    liberaGrafo(grafo, numRegistros);
 }

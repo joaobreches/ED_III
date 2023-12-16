@@ -10,6 +10,7 @@
 #define TAM_REGISTRO_FIXO 21
 #define TAM_REGISTRO_VARIAVEL 55
 #define TAM_CABECALHO 13
+#define TAM_NOME 100
 
 typedef struct _Cabecalho {
   char status; // 0 para arquivo inconsistente e 1 para arquivo consistente
