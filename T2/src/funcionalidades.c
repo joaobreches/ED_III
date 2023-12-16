@@ -3,6 +3,7 @@
 #include "registro.h"
 #include "arvoreB.h"
 #include "arquivo.h"
+#include "algoritmos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -363,4 +364,151 @@ void listaNomes(const char *nomeArquivo, int n) {
         free(vertices[i].arestas);
     }
     free(vertices);
+}
+
+// Função para determinar se o grafo é fortemente conexo
+void fortementeConexo(const char* nomeArquivo) {
+    // Abrir o arquivo binário para leitura
+    FILE* arquivo = abreBinarioLeitura(nomeArquivo);
+    if (arquivo == NULL) {
+        printf("Falha na execução da funcionalidade.\n");
+        return;
+    }
+
+    // Lê o número de registros no arquivo
+    int numRegistros;
+    fread(&numRegistros, sizeof(int), 1, arquivo);
+
+    // Inicializa o grafo
+    Vertice* grafo = inicializarGrafo(numRegistros);
+
+    // Lê os registros do arquivo
+    for (int i = 0; i < numRegistros; i++) {
+        fread(&grafo[i], sizeof(Vertice), 1, arquivo);
+        // Aloca espaço para as arestas do vértice
+        grafo[i].arestas = (Aresta*)malloc(grafo[i].numArestas * sizeof(Aresta));
+        // Lê as arestas do arquivo
+        fread(grafo[i].arestas, sizeof(Aresta), grafo[i].numArestas, arquivo);
+    }
+
+    // Fecha o arquivo
+    fclose(arquivo);
+
+    // Realiza a funcionalidade
+    Pilha* pilha = inicializarPilha(numRegistros);
+
+    // Realiza a primeira DFS para preencher a pilha
+    for (int i = 0; i < numRegistros; i++) {
+        if (!grafo[i].visitado) {
+            dfs(grafo, i, pilha);
+        }
+    }
+
+    // Inicializa o grafo transposto (grafo reverso)
+    Vertice* grafoTransposto = inicializarGrafo(numRegistros);
+
+    // Inicializa um vetor para armazenar os componentes fortemente conexos
+    int *componente = (int*)malloc(numRegistros * sizeof(int));
+
+    // Realiza a DFS no grafo transposto para calcular os componentes fortemente conexos
+    int componenteAtual = 0;
+    while (!pilhaVazia(pilha)) {
+        int vertice = desempilhar(pilha);
+        if (!grafoTransposto[vertice].visitado) {
+            dfsTransposto(grafo, vertice, componente, componenteAtual);
+            componenteAtual++;
+        }
+    }
+
+    // Verifica quantos componentes fortemente conexos foram encontrados
+    int numComponentes = 0;
+    for (int i = 0; i < numRegistros; i++) {
+        if (componente[i] > numComponentes) {
+            numComponentes = componente[i];
+        }
+    }
+
+    // Verifica se o grafo é fortemente conexo
+    if (numComponentes == 0) {
+        printf("Nao, o grafo nao e fortemente conexo e possui 0 componentes.\n");
+    } else {
+        printf("Sim, o grafo e fortemente conexo e possui %d componente%s.\n", numComponentes + 1, (numComponentes == 0) ? "" : "s");
+    }
+
+    // Libera a memória alocada
+    free(pilha->array);
+    free(pilha);
+    free(grafoTransposto);
+    free(componente);
+}
+
+// Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)
+void caminhoCurto(const char* nomeArquivo, int n) {
+    // Abrir o arquivo binário para leitura
+    FILE* arquivo = fopen(nomeArquivo, "rb");
+    if (arquivo == NULL) {
+        printf("Falha na execução da funcionalidade.\n");
+        return;
+    }
+
+    // Lê o número de registros no arquivo
+    int numRegistros;
+    fread(&numRegistros, sizeof(int), 1, arquivo);
+
+    // Inicializa o grafo
+    Vertice* grafo = inicializarGrafo(numRegistros);
+
+    // Lê os registros do arquivo
+    for (int i = 0; i < numRegistros; i++) {
+        fread(&grafo[i], sizeof(Vertice), 1, arquivo);
+        // Aloca espaço para as arestas do vértice
+        grafo[i].arestas = (Aresta*)malloc(grafo[i].numArestas * sizeof(Aresta));
+        // Lê as arestas do arquivo
+        fread(grafo[i].arestas, sizeof(Aresta), grafo[i].numArestas, arquivo);
+    }
+
+    // Fecha o arquivo
+    fclose(arquivo);
+
+    // Realiza a funcionalidade
+    for (int i = 0; i < n; i++) {
+        char tecnologiaOrigem[100];
+        char tecnologiaDestino[100];
+
+        // Lê as tecnologias de origem e destino
+        scanf("%s %s", tecnologiaOrigem, tecnologiaDestino);
+
+        int origem = -1;
+        int destino = -1;
+
+        // Encontra os índices dos vértices correspondentes às tecnologias
+        for (int j = 0; j < numRegistros; j++) {
+            if (strcmp(grafo[j].nomeTecnologia, tecnologiaOrigem) == 0) {
+                origem = j;
+            }
+            if (strcmp(grafo[j].nomeTecnologia, tecnologiaDestino) == 0) {
+                destino = j;
+            }
+        }
+
+        // Verifica se as tecnologias foram encontradas
+        if (origem == -1 || destino == -1) {
+            printf("Registro inexistente.\n");
+        } else {
+            // Verifica se há caminho entre as tecnologias
+            if (bfs(grafo, numRegistros, origem, destino)) {
+                // Calcula o caminho mais curto usando Dijkstra
+                int pesoCaminho = dijkstra(grafo, numRegistros, origem, destino);
+                printf("%s %s: %d\n", tecnologiaOrigem, tecnologiaDestino, pesoCaminho);
+            } else {
+                printf("%s %s: CAMINHO INEXISTENTE\n", tecnologiaOrigem, tecnologiaDestino);
+            }
+        }
+    }
+
+    // Libera a memória alocada
+    for (int i = 0; i < numRegistros; i++) {
+        free(grafo[i].arestas);
+    }
+    free(grafo);
 }

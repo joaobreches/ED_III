@@ -38,6 +38,7 @@ typedef struct {
     char nomeTecDestino[50];
     char nomeTecOrigem[50];
     int peso;
+    int destino;
 } Aresta;
 
 typedef struct {
@@ -48,7 +49,15 @@ typedef struct {
     int grau;
     Aresta* arestas;
     int numArestas;
+    int visitado;
 } Vertice;
+
+// Pilha para o algoritmo de Kosaraju
+typedef struct {
+    int *array;
+    int topo;
+} Pilha;
+
 
 void escreveCabecalho(FILE *arquivo, Cabecalho cabecalho);
 void printCabecalho(FILE *arquivo);

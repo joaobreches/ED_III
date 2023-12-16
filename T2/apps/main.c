@@ -66,7 +66,16 @@ int main() {
     case 8:   
       recuperaDados8(leitura1);
       break;
-    case 10:
+    case 10:   
+      listaNomes(leitura1, atoi(leitura2));
+      break;
+    case 11:   
+      fortementeConexo(leitura1);
+      break;
+    case 12:   
+      caminhoCurto(leitura1, atoi(leitura2));
+      break;
+    case 15:
       comparaBinarios();
       break;
   }

@@ -10,6 +10,9 @@
 
 void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario);
 void imprimeArquivo(char* nomeArquivoBinario);
-void executarFuncionalidade8(const char *nomeArquivo);
+void recuperaDados8(const char *nomeArquivo);
+void listaNomes(const char *nomeArquivo, int n);
+void fortementeConexo(const char* nomeArquivo);
+void caminhoCurto(const char* nomeArquivo, int n);
 
 #endif
