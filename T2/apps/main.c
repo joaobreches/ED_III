@@ -64,6 +64,7 @@ int main() {
       insereRegistro(leitura1, leitura2, atoi(leitura3));
       break;
     case 8:   
+      printf("entrou!");
       recuperaDados8(leitura1);
       break;
     case 10:   

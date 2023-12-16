@@ -230,7 +230,7 @@ void imprimeArquivo(char* nomeArquivoBinario) {
 
 // Função para executar a funcionalidade 8
 void recuperaDados8(const char *nomeArquivo) {
-    
+  printf("entrou!");
     // Abrir o arquivo binário para leitura
     FILE *arquivo = abreBinarioLeitura(nomeArquivo);
 
