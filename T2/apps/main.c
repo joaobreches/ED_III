@@ -1,6 +1,4 @@
-#include "funcoesFornecidas.h"
 #include "funcionalidades.h"
-#include "arquivo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

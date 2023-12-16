@@ -57,3 +57,9 @@ fino:
 	git commit -m "ajuste fino"
 	git pull
 	git push
+
+limpeza:
+	git add .
+	git commit -m "limpeza de codigo"
+	git pull
+	git push

@@ -1,8 +1,4 @@
 #include "arquivo.h"
-#include "registro.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 // Função que faz o caminho até o diretorio correto do arquivo
 char* diretorioArquivo(char* nomeArquivo, char tipoArquivo) {

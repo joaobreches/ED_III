@@ -1,9 +1,4 @@
 #include "grafo.h"
-#include "registro.h"
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 
 // Função para liberar memória alocada para os vértices e arestas

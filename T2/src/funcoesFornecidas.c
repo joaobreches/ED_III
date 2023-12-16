@@ -1,9 +1,4 @@
 #include "funcoesFornecidas.h"
-#include "arquivo.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 
 void readline(char* string){
     char c = 0;
