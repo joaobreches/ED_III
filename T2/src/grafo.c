@@ -1,13 +1,13 @@
 #include "grafo.h"
 
 
-// Função para liberar memória alocada para os vértices e arestas
-void liberarMemoria(Vertice *grafo, int numRegistros) {
-    for (int i = 0; i < numRegistros; i++) {
-        free(grafo[i].arestas);
-    }
-    free(grafo);
-}
+// // Função para liberar memória alocada para os vértices e arestas
+// void liberarMemoria(Vertice *grafo, int numRegistros) {
+//     for (int i = 0; i < numRegistros; i++) {
+//         free(grafo[i].arestas);
+//     }
+//     free(grafo);
+// }
 
 // Função para comparar arestas (usada para ordenação)
 int compararArestas(const void *a, const void *b) {
@@ -20,62 +20,75 @@ int compararNomes(const void *a, const void *b) {
 }
 
 // Função para inicializar um grafo
-Vertice* inicializarGrafo(int numVertices) {
-    Vertice* grafo = (Vertice*)malloc(numVertices * sizeof(Vertice));
+Grafo inicializarGrafo() {
+    Grafo grafo;
+    grafo.numVertices = 0;
+    // Vertice* grafo = (Vertice*)malloc(numVertices * sizeof(Vertice));
 
-    if (grafo == NULL) {
-        perror("Falha na execução da funcionalidade");
-        fclose(arquivo);
-        exit(1);
-    }
+    // if (grafo == NULL) {
+    //     perror("Falha na execução da funcionalidade");
+    //     fclose(arquivo);
+    //     exit(1);
+    // }
 
-    for (int i = 0; i < numVertices; i++) {
-        grafo[i].nomeTecnologia = NULL;
-        grafo[i].grupo = 0;
-        grafo[i].grauEntrada = 0;
-        grafo[i].grauSaida = 0;
-        grafo[i].grau = 0;
-        grafo[i].arestas = NULL;
-        grafo[i].numArestas = 0;
-        grafo[i].visitado = 0;
-    }
+    // for (int i = 0; i < numVertices; i++) {
+    //     grafo[i].nomeTecnologia = NULL;
+    //     grafo[i].grupo = 0;
+    //     grafo[i].grauEntrada = 0;
+    //     grafo[i].grauSaida = 0;
+    //     grafo[i].grau = 0;
+    //     grafo[i].arestas = NULL;
+    //     grafo[i].numArestas = 0;
+    //     grafo[i].visitado = 0;
+    // }
     return grafo;
 }
 
-void liberaGrafo(Vertice *grafo, int numRegistros) {
-    for (int i = 0; i < numRegistros; i++) {
-        free(grafo[i].arestas);
+void liberaGrafo(Grafo grafo) {
+    for (int i = 0; i < grafo.numVertices; i++) {
+        free(grafo.vertices[i].arestas);
     }
-    free(grafo);
+    free(grafo.vertices);
 }
 
-void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
-    grafo.vertice = (Vertice) realloc (grafo.vertice, numVertices+1);
+void imprimeGrafo(Grafo grafo){
+    for(int i = 0; i < grafo.numVertices; i++){
+        for(int j = 0; j < grafo.vertice[i].grauSaida; j++){
+            // printf();
+        }
+    }
+}
 
-    grafo.numVertices++;
+
+// adiciona um vertice ao grafo
+void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
+    grafo.vertice = (Vertice) realloc (grafo.vertice, numVertices+1 * sizeof(Vertice)); // aloca memoria para o vertice
+
+    // define parametros iniciais do vertice
     grafo.vertice[numVertices].nomeTecnologia = nomeTecnologia;
     grafo.vertice[numVertices].grupo = grupo;
-    grafo[i].grauEntrada = 0;
-    grafo[i].grauSaida = 0;
-    grafo[i].grau = 0;
-    grafo[i].numArestas = 0;
-    grafo[i].visitado = 0;
+    grafo.vertice[numVertices].grauEntrada = 0;
+    grafo.vertice[numVertices].grauSaida = 0;
+    grafo.vertice[numVertices].grau = 0;
+    grafo.vertice[numVertices].numArestas = 0;
+    grafo.vertice[numVertices].visitado = 0;
+
+    // aumenta a contagem de quantidade de vertices em 1
+    grafo.numVertices++;
 }
 
 // Função para adicionar uma aresta ao grafo
-void adicionarAresta(Vertice* grafo, int origem, int destino) {
-    grafo[origem].arestas = (Aresta*)realloc(grafo[origem].arestas, (grafo[origem].numArestas + 1) * sizeof(Aresta));
-    grafo[origem].arestas[grafo[origem].numArestas].destino = destino;
-    grafo[origem].numArestas++;
-
-}
-
-// Le os componentes da aresta
-void leAresta(Aresta *aresta, FILE *arquivo){
-    fread(aresta.nomeTecDestino, sizeof(char), 50, arquivo);
-    fread(aresta.nomeTecOrigem, sizeof(char), 50, arquivo);
-    fread(aresta.peso, sizeof(int), 1, arquivo);
-    fread(aresta.destino, sizeof(int), 1, arquivo);
+void adicionaAresta(Vertice* vertices, int origem, int destino, int peso) {
+    veritices[origem].arestas = (Aresta*)realloc(vertices[origem].arestas, (vertices[origem].grauSaida + 1) * sizeof(Aresta)); // aloca memoria para a nova aresta
+    
+    vertices[origem].arestas[vertices[origem].grauSaida].destino = destino; // define destino da aresta
+    vertices[origem].arestas[vertices[origem].grauSaida].peso = peso; // define peso da aresta
+    
+    vertices[origem].grauSaida++; // aumenta o grau de saida da tecnologia de origem em 1
+    vertices[origem].grau++; // aumenta o grau total da tecnologia de origem em 1
+    
+    vertices[destino].grauEntrada++; // aumenta o grau de entrada da tecnologia de saida em 1
+    vertices[destino].grau++; // aumenta o grau total da tecnologia de saida em 1
 }
 
 // Função para realizar uma DFS no grafo

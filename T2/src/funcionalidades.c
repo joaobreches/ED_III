@@ -21,8 +21,7 @@ void recuperaDados8(char *nomeArquivo) {
     int numRegistros;
     fread(&numRegistros, sizeof(int), 1, arquivo);
 
-    Grafo grafo;
-    grafo.numVertices = 0;
+    Grafo grafo = inicializarGrafo();
 
     Registro registro;
     skipCabecalho(arquivo);
@@ -53,21 +52,7 @@ void recuperaDados8(char *nomeArquivo) {
             verticeDestino = grafo.numVertices - 1;
         }
 
-        // Aloca espaço para as arestas do vértice
-        grafo[i].arestas = (Aresta *)malloc(grafo[i].numArestas * sizeof(Aresta));
-        if (!grafo[i].arestas) {
-            printf("Erro de alocação de memória para as arestas.\n");
-            fclose(arquivo);
-            // Liberar a memória alocada anteriormente
-            for (int j = 0; j < i; j++) {
-                free(grafo[j].arestas);
-            }
-            free(grafo);
-            return;
-        }
-
-        // Lê as arestas diretamente no bloco de memória reservado para elas
-        leAresta()
+        adicionarAresta(grafo.vertices, verticeOrigem, verticeDestino, registro.peso);
     }
 
     // Ordena os nomes das tecnologias para a saída ordenada
@@ -112,7 +97,7 @@ void recuperaDados8(char *nomeArquivo) {
     }
 
     // Libera a memória alocada
-    liberarMemoria(grafo, numRegistros);
+    liberaGrafo(grafo);
     free(nomesOrdenados);
 
     fclose(arquivo);

@@ -33,13 +33,13 @@ typedef struct {
     int numVertices;
 } Grafo;
 
-void liberarMemoria(Vertice *grafo, int numRegistros);
-void liberaGrafo(Vertice *grafo, int numRegistros);
+// void liberarMemoria(Vertice *grafo, int numRegistros);
 int compararArestas(const void *a, const void *b);
 int compararNomes(const void *a, const void *b);
-Vertice* inicializarGrafo(int numVertices);
-void leAresta(Aresta *aresta);
-void adicionarAresta(Vertice* grafo, int origem, int destino);
+Grafo inicializarGrafo();
+void liberaGrafo(Grafo grafo);
+void imprimeGrafo(Grafo grafo);
+void adicionaAresta(Vertice* vertices, int origem, int destino, int peso)/
 void dfs(Vertice* grafo, int vertice, Pilha* pilha);
 void dfsTransposto(Vertice* grafo, int vertice, int* componente, int componenteAtual);
 int bfs(Vertice* grafo, int numVertices, int origem, int destino);
