@@ -56,3 +56,10 @@ comentarios:
 	git pull
 	git push
 	clear
+
+erro10:
+	git add .
+	git commit -m "resolvendo erro f10"
+	git pull
+	git push
+	clear

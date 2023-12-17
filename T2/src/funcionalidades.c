@@ -71,11 +71,11 @@ void listaNomes(char *nomeArquivo, int n) {
             aresta = aresta->prox;
         }
         printf("\n\n");
+        free(tecnologia);
     }
 
     // Libera a memória alocada
     liberaGrafo(grafoTransposto);
-    free(tecnologia);
 }
 
 // // Função para determinar se o grafo é fortemente conexo
