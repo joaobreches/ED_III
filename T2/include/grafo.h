@@ -28,11 +28,12 @@ typedef struct {
     int visitado;
 } Vertice;
 
-void liberarMemoria(Vertice *vertices, int numRegistros);
+void liberarMemoria(Vertice *grafo, int numRegistros);
 void liberaGrafo(Vertice *grafo, int numRegistros);
 int compararArestas(const void *a, const void *b);
 int compararNomes(const void *a, const void *b);
 Vertice* inicializarGrafo(int numVertices);
+void leAresta(Aresta *aresta);
 void adicionarAresta(Vertice* grafo, int origem, int destino);
 void dfs(Vertice* grafo, int vertice, Pilha* pilha);
 void dfsTransposto(Vertice* grafo, int vertice, int* componente, int componenteAtual);

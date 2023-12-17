@@ -4,52 +4,77 @@
 void recuperaDados8(char *nomeArquivo) {
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
-        perror("Erro ao abrir o arquivo");
-        return;
+        perror("Falha na execução da funcionalidade");
+        fclose(arquivo);
+        exit(1);
+    }
+
+    // Verifica o status do arquivo
+    char statusArquivo;
+    fread(&statusArquivo, sizeof(char), 1, arquivo);
+    if (status == '0') {
+        perror("Falha na execução da funcionalidade");
+        fclose(arquivo);
+        exit(1);
     }
 
     int numRegistros;
     fread(&numRegistros, sizeof(int), 1, arquivo);
 
-    Vertice *vertices = malloc(numRegistros * sizeof(Vertice));
-    if (vertices == NULL) {
-        perror("Erro de alocação de memória");
+    Vertice *grafo = malloc(numRegistros * sizeof(Vertice));
+    if (grafo == NULL) {
+        perror("Falha na execução da funcionalidade");
         fclose(arquivo);
-        return;
+        exit(1);
     }
+
+    Registro registro;
+    skipCabecalho(arquivo);
 
     // Lê os registros do arquivo
     for (int i = 0; i < numRegistros; i++) {
-        fread(&vertices[i], sizeof(Vertice), 1, arquivo);
+        registro = leRegistro(arquivo, registro);
+
+        bool encontrado = 0;
+
+        for(int j = 0; j < i; j++)
+
+        grafo[i].nomeTecnologia = registro.TecnologiaOrigem;
+        grafo[i].grupo = registro.grupo;
+        grafo[i].grauEntrada = 0;
+        grafo[i].grauSaida = 0;
+        grafo[i].grau = 0;
+        grafo[i].numArestas = 1;
+        grafo[i].visitado = 0;
 
         // Aloca espaço para as arestas do vértice
-        vertices[i].arestas = (Aresta *)malloc(vertices[i].numArestas * sizeof(Aresta));
-        if (!vertices[i].arestas) {
+        grafo[i].arestas = (Aresta *)malloc(grafo[i].numArestas * sizeof(Aresta));
+        if (!grafo[i].arestas) {
             printf("Erro de alocação de memória para as arestas.\n");
             fclose(arquivo);
             // Liberar a memória alocada anteriormente
             for (int j = 0; j < i; j++) {
-                free(vertices[j].arestas);
+                free(grafo[j].arestas);
             }
-            free(vertices);
+            free(grafo);
             return;
         }
 
         // Lê as arestas diretamente no bloco de memória reservado para elas
-        fread(vertices[i].arestas, sizeof(Aresta), vertices[i].numArestas, arquivo);
+        leAresta()
     }
 
     // Ordena os nomes das tecnologias para a saída ordenada
     char **nomesOrdenados = malloc(numRegistros * sizeof(char *));
     if (nomesOrdenados == NULL) {
         perror("Erro de alocação de memória");
-        liberarMemoria(vertices, numRegistros);
+        liberarMemoria(grafo, numRegistros);
         fclose(arquivo);
         return;
     }
 
     for (int i = 0; i < numRegistros; i++) {
-        nomesOrdenados[i] = vertices[i].nomeTecnologia;
+        nomesOrdenados[i] = grafo[i].nomeTecnologia;
     }
 
     qsort(nomesOrdenados, numRegistros, sizeof(char *), compararNomes);
@@ -58,21 +83,21 @@ void recuperaDados8(char *nomeArquivo) {
     for (int i = 0; i < numRegistros; i++) {
         int indice = 0;
         // Encontra o índice correspondente ao nome ordenado
-        while (strcmp(vertices[indice].nomeTecnologia, nomesOrdenados[i]) != 0) {
+        while (strcmp(grafo[indice].nomeTecnologia, nomesOrdenados[i]) != 0) {
             indice++;
         }
 
-        printf("%s, %d, %d, %d, %d, ", vertices[indice].nomeTecnologia,
-            vertices[indice].grupo, vertices[indice].grauEntrada,
-            vertices[indice].grauSaida, vertices[indice].grau);
+        printf("%s, %d, %d, %d, %d, ", grafo[indice].nomeTecnologia,
+            grafo[indice].grupo, grafo[indice].grauEntrada,
+            grafo[indice].grauSaida, grafo[indice].grau);
 
         // Ordena as arestas pelo nomeTecDestino para a saída ordenada
-        qsort(vertices[indice].arestas, vertices[indice].numArestas, sizeof(Aresta), compararArestas);
+        qsort(grafo[indice].arestas, grafo[indice].numArestas, sizeof(Aresta), compararArestas);
 
         // Imprime as arestas
-        for (int j = 0; j < vertices[indice].numArestas; j++) {
-            printf("%s, %d", vertices[indice].arestas[j].nomeTecDestino, vertices[indice].arestas[j].peso);
-            if (j < vertices[indice].numArestas - 1) {
+        for (int j = 0; j < grafo[indice].numArestas; j++) {
+            printf("%s, %d", grafo[indice].arestas[j].nomeTecDestino, grafo[indice].arestas[j].peso);
+            if (j < grafo[indice].numArestas - 1) {
                 printf(", ");
             }
         }
@@ -81,7 +106,7 @@ void recuperaDados8(char *nomeArquivo) {
     }
 
     // Libera a memória alocada
-    liberarMemoria(vertices, numRegistros);
+    liberarMemoria(grafo, numRegistros);
     free(nomesOrdenados);
 
     fclose(arquivo);

@@ -2,11 +2,11 @@
 
 
 // Função para liberar memória alocada para os vértices e arestas
-void liberarMemoria(Vertice *vertices, int numRegistros) {
+void liberarMemoria(Vertice *grafo, int numRegistros) {
     for (int i = 0; i < numRegistros; i++) {
-        free(vertices[i].arestas);
+        free(grafo[i].arestas);
     }
-    free(vertices);
+    free(grafo);
 }
 
 // Função para comparar arestas (usada para ordenação)
@@ -42,6 +42,14 @@ void adicionarAresta(Vertice* grafo, int origem, int destino) {
     grafo[origem].arestas = (Aresta*)realloc(grafo[origem].arestas, (grafo[origem].numArestas + 1) * sizeof(Aresta));
     grafo[origem].arestas[grafo[origem].numArestas].destino = destino;
     grafo[origem].numArestas++;
+}
+
+// Le os componentes da aresta
+void leAresta(Aresta *aresta, FILE *arquivo){
+    fread(aresta.nomeTecDestino, sizeof(char), 50, arquivo);
+    fread(aresta.nomeTecOrigem, sizeof(char), 50, arquivo);
+    fread(aresta.peso, sizeof(int), 1, arquivo);
+    fread(aresta.destino, sizeof(int), 1, arquivo);
 }
 
 // Função para realizar uma DFS no grafo
