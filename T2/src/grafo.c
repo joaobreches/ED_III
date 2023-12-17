@@ -1,19 +1,6 @@
 #include "grafo.h"
 
 
-// // Função para liberar memória alocada para os vértices e arestas
-// void liberarMemoria(Vertice *grafo, int numRegistros) {
-//     for (int i = 0; i < numRegistros; i++) {
-//         free(grafo[i].arestas);
-//     }
-//     free(grafo);
-// }
-
-// Função para comparar arestas (usada para ordenação)
-int compararArestas(const void *a, const void *b) {
-    // return strcmp(((Aresta*)a)->nomeTecDestino, ((Aresta*)b)->nomeTecDestino);
-}
-
 // Função para inicializar um grafo
 Grafo inicializarGrafo() {
     Grafo grafo;
@@ -90,6 +77,11 @@ void adicionaAresta(Vertice* vertices, int origem, int destino, int peso) {
     
     vertices[destino].grauEntrada++; // aumenta o grau de entrada da tecnologia de saida em 1
     vertices[destino].grau++; // aumenta o grau total da tecnologia de saida em 1
+}
+
+// Função para comparar arestas (usada para ordenação)
+int compararArestas(const void *a, const void *b) {
+    // return strcmp(((Aresta*)a)->nomeTecDestino, ((Aresta*)b)->nomeTecDestino);
 }
 
 // Função para realizar uma DFS no grafo

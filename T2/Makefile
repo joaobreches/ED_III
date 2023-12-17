@@ -21,6 +21,7 @@ run:
 	./bin/main
 
 crl: #compile and run for linux
+	clear
 	make all
 	make run
 

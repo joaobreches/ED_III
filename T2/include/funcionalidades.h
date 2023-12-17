@@ -3,9 +3,6 @@
 
 #include "funcoesFornecidas.h"
 #include "algoritmos.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 
 void criaGrafo(char *nomeArquivo);
