@@ -37,7 +37,7 @@ void criaGrafo(char *nomeArquivo) {
         // lê registro do arquivo binario
         if(!leRegistroNaoNulo(arquivo, &registro))
             continue;
-        imprimeRegistro(registro);
+        // imprimeRegistro(registro);
         
         // verifica se as tecnologias de origem e de destinos ja tem vertices, se tiver identifica quais sao os vertices, se nao cria vertices para elas 
         int verticeOrigem = -1;
@@ -113,7 +113,7 @@ void criaGrafoTransposto(char *nomeArquivo) {
         // lê registro do arquivo binario
         if(!leRegistroNaoNulo(arquivo, &registro))
             continue;
-        imprimeRegistro(registro);
+        // imprimeRegistro(registro);
         
         // verifica se as tecnologias de origem e de destinos ja tem vertices, se tiver identifica quais sao os vertices, se nao cria vertices para elas 
         int verticeOrigem = -1;
