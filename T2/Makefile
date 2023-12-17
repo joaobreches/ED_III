@@ -33,6 +33,7 @@ crw:  #compile and run for windows
 	.\bin\main
 
 crl: #compile and run for linux
+	clear
 	gcc -c ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o

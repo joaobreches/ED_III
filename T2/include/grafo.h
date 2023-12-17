@@ -11,8 +11,8 @@
 
 
 typedef struct {
-    char nomeTecDestino[50];
-    char nomeTecOrigem[50];
+    // char nomeTecDestino[50];
+    // char nomeTecOrigem[50];
     int peso;
     int destino;
 } Aresta;
@@ -39,7 +39,8 @@ int compararNomes(const void *a, const void *b);
 Grafo inicializarGrafo();
 void liberaGrafo(Grafo grafo);
 void imprimeGrafo(Grafo grafo);
-void adicionaAresta(Vertice* vertices, int origem, int destino, int peso)/
+void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo);
+void adicionaAresta(Vertice* vertices, int origem, int destino, int peso);
 void dfs(Vertice* grafo, int vertice, Pilha* pilha);
 void dfsTransposto(Vertice* grafo, int vertice, int* componente, int componenteAtual);
 int bfs(Vertice* grafo, int numVertices, int origem, int destino);

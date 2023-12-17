@@ -11,7 +11,7 @@
 
 // Função para comparar arestas (usada para ordenação)
 int compararArestas(const void *a, const void *b) {
-    return strcmp(((Aresta*)a)->nomeTecDestino, ((Aresta*)b)->nomeTecDestino);
+    // return strcmp(((Aresta*)a)->nomeTecDestino, ((Aresta*)b)->nomeTecDestino);
 }
 
 // Função para comparar nomes de tecnologias para qsort
@@ -44,6 +44,7 @@ Grafo inicializarGrafo() {
     return grafo;
 }
 
+// libera toda a memoria alocada no grafo
 void liberaGrafo(Grafo grafo) {
     for (int i = 0; i < grafo.numVertices; i++) {
         free(grafo.vertices[i].arestas);
@@ -51,35 +52,34 @@ void liberaGrafo(Grafo grafo) {
     free(grafo.vertices);
 }
 
+// imprime os valores do grafo de acordo com o formato exigido
 void imprimeGrafo(Grafo grafo){
-    for(int i = 0; i < grafo.numVertices; i++){
-        for(int j = 0; j < grafo.vertice[i].grauSaida; j++){
-            // printf();
-        }
-    }
+    for(int i = 0; i < grafo.numVertices; i++)
+        for(int j = 0; j < grafo.vertices[i].grauSaida; j++)
+            printf("%s, %d, %d, %d, %d, %s, %d\n", grafo.vertices[i].nomeTecnologia, grafo.vertices[i].grupo, grafo.vertices[i].grauEntrada,  grafo.vertices[i].grauSaida,  grafo.vertices[i].grau, grafo.vertices[grafo.vertices[i].arestas[j].destino].nomeTecnologia, grafo.vertices[i].arestas[j].peso);
 }
 
 
 // adiciona um vertice ao grafo
 void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
-    grafo.vertice = (Vertice) realloc (grafo.vertice, numVertices+1 * sizeof(Vertice)); // aloca memoria para o vertice
+    grafo->vertices = (Vertice*) realloc (grafo->vertices, grafo->numVertices+1 * sizeof(Vertice)); // aloca memoria para o vertice
 
     // define parametros iniciais do vertice
-    grafo.vertice[numVertices].nomeTecnologia = nomeTecnologia;
-    grafo.vertice[numVertices].grupo = grupo;
-    grafo.vertice[numVertices].grauEntrada = 0;
-    grafo.vertice[numVertices].grauSaida = 0;
-    grafo.vertice[numVertices].grau = 0;
-    grafo.vertice[numVertices].numArestas = 0;
-    grafo.vertice[numVertices].visitado = 0;
+    strcpy(grafo->vertices[grafo->numVertices].nomeTecnologia, nomeTecnologia);
+    grafo->vertices[grafo->numVertices].grupo = grupo;
+    grafo->vertices[grafo->numVertices].grauEntrada = 0;
+    grafo->vertices[grafo->numVertices].grauSaida = 0;
+    grafo->vertices[grafo->numVertices].grau = 0;
+    grafo->vertices[grafo->numVertices].numArestas = 0;
+    grafo->vertices[grafo->numVertices].visitado = 0;
 
     // aumenta a contagem de quantidade de vertices em 1
-    grafo.numVertices++;
+    grafo->numVertices++;
 }
 
 // Função para adicionar uma aresta ao grafo
 void adicionaAresta(Vertice* vertices, int origem, int destino, int peso) {
-    veritices[origem].arestas = (Aresta*)realloc(vertices[origem].arestas, (vertices[origem].grauSaida + 1) * sizeof(Aresta)); // aloca memoria para a nova aresta
+    vertices[origem].arestas = (Aresta*)realloc(vertices[origem].arestas, (vertices[origem].grauSaida + 1) * sizeof(Aresta)); // aloca memoria para a nova aresta
     
     vertices[origem].arestas[vertices[origem].grauSaida].destino = destino; // define destino da aresta
     vertices[origem].arestas[vertices[origem].grauSaida].peso = peso; // define peso da aresta
