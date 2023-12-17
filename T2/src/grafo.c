@@ -82,6 +82,7 @@ void adicionaAresta(Vertice* vertices, int origem, int destino, int peso) {
     vertices[origem].arestas = (Aresta*)realloc(vertices[origem].arestas, (vertices[origem].grauSaida + 1) * sizeof(Aresta)); // aloca memoria para a nova aresta
     
     vertices[origem].arestas[vertices[origem].grauSaida].destino = &vertices[destino]; // define destino da aresta
+    printf("tec destino: %s\n", vertices[origem].arestas[vertices[origem].grauSaida].destino->nomeTecnologia);
     vertices[origem].arestas[vertices[origem].grauSaida].peso = peso; // define peso da aresta
     
     vertices[origem].grauSaida++; // aumenta o grau de saida da tecnologia de origem em 1

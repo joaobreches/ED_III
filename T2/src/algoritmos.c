@@ -1,7 +1,6 @@
 #include "algoritmos.h"
 
 void quicksortRecursivoVertice(Vertice *v, int ini, int fim) {
-    printf("na sort vertice recursivo\n");
     Vertice pivo, aux;
     int meio, i, j;
     
@@ -57,6 +56,9 @@ void quicksortRecursivoAresta(Aresta *a, int ini, int fim) {
     i = ini;
     j = fim;
     while (1) {
+        int trava;
+        scanf("%d", &trava);
+        printf("i %d: %s, j %d: %s, pivo %d: %s\n", i, a[i].destino->nomeTecnologia, j, a[j].destino->nomeTecnologia, meio, pivo.destino->nomeTecnologia);
         // andar o i
         for (; strcmp(a[i].destino->nomeTecnologia, pivo.destino->nomeTecnologia) < 0; i++);
         

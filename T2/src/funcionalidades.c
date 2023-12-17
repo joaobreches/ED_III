@@ -31,16 +31,18 @@ void recuperaDados8(char *nomeArquivo) {
 
     // adiciona registros no grafo
     for (int i = 0; i < numRegistros; i++) {
+        // int trava;
+        // scanf("%d", &trava);
         // lê registro do arquivo binario
         if(!leRegistroNaoNulo(arquivo, &registro))
             continue;
         imprimeRegistro(registro);
         
-        // verifica se a tecnologia de origem e de destinos ja tem vertices, se tiver identifica qual é o vertice, se nao cria vertices para erlas 
+        // verifica se as tecnologias de origem e de destinos ja tem vertices, se tiver identifica quais sao os vertices, se nao cria vertices para elas 
         int verticeOrigem = -1;
         int verticeDestino = -1;
 
-        for(int j = 0; j < i; j++){
+        for(int j = 0; j < grafo.numVertices; j++){
             if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaOrigem.string) == 0)
                 verticeOrigem = j;
             if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaDestino.string) == 0)
@@ -54,7 +56,7 @@ void recuperaDados8(char *nomeArquivo) {
             verticeOrigem = grafo.numVertices - 1;
         }
 
-        if(verticeOrigem == -1){
+        if(verticeDestino == -1){
             adicionaVertice(&grafo, registro.TecnologiaDestino.string, registro.grupo);
             verticeDestino = grafo.numVertices - 1;
         }
@@ -64,10 +66,10 @@ void recuperaDados8(char *nomeArquivo) {
     }
 
     quicksortVertice(grafo.vertices, grafo.numVertices);
-    for(int i = 0; i < grafo.numVertices; i++)
-        quicksortAresta(grafo.vertices[i].arestas, grafo.vertices[i].grauSaida);
-
+    // for(int i = 0; i < grafo.numVertices; i++)
+    //     quicksortAresta(grafo.vertices[i].arestas, grafo.vertices[i].grauSaida);
     imprimeGrafo(grafo);
+
 
     // // Ordena os nomes das tecnologias para a saída ordenada
     // char **nomesOrdenados = malloc(numRegistros * sizeof(char *));
