@@ -33,10 +33,17 @@ void listaNomes(char *nomeArquivo, int n) {
 
     // Realiza a funcionalidade n vezes
     for (int k = 0; k < n; k++) {
-        // Lê o nome da tecnologia passado como parâmetro
-        char tecnologia[50];
-        fgets(tecnologia, sizeof(tecnologia), stdin);
-        tecnologia[strcspn(tecnologia, "\n")] = '\0'; // Remove o caractere de nova linha
+        char tecnologia[TAM_REGISTRO_FIXO];
+
+        // le o nome da tecnologia a ser buscada
+        scanf("%s", tecnologia);
+
+        // limpa a tecnologia se for uma string (remove as aspas)
+        int i;
+        for(i = 0; tecnologia[i] != '\0'; i++){
+            tecnologia[i] = tecnologia[i + 1];
+        }
+        tecnologia[i - 2] = '\0';
 
         // Encontra o índice correspondente ao nome passado como parâmetro
         int indice = 0;
@@ -49,20 +56,19 @@ void listaNomes(char *nomeArquivo, int n) {
         }
 
         // Imprime a tecnologia passada como parâmetro
-        printf("\"%s\": ", tecnologia);
-
-        // // Ordena as arestas pelo nomeTecOrigem para a saída ordenada
-        // qsort(vertices[indice].arestas, vertices[indice].numArestas, sizeof(Aresta), compararArestas);
+        printf("%s: ", tecnologia);
 
         // Imprime as tecnologias que originaram a tecnologia passada como parâmetro
         bool primeiraTecnologia = 1;
+        Aresta* aresta = grafoTransposto.vertices[indice]->ini;
         for (int j = 0; j < grafoTransposto.vertices[indice]->grauSaida; j++) {
             if (primeiraTecnologia) {
-                // printf("%s", grafoTransposto.vertices[indice].arestas[j].destino->nomeTecnologia);
+                printf("%s", aresta->destino->nomeTecnologia);
                 primeiraTecnologia = 0;
             } else {
-                // printf(", %s", grafoTransposto.vertices[indice].arestas[j].destino->nomeTecnologia);
+                printf(", %s", aresta->destino->nomeTecnologia);
             }
+            aresta = aresta->prox;
         }
         printf("\n\n");
     }
