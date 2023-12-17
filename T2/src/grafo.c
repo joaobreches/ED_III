@@ -14,15 +14,11 @@ int compararArestas(const void *a, const void *b) {
     // return strcmp(((Aresta*)a)->nomeTecDestino, ((Aresta*)b)->nomeTecDestino);
 }
 
-// Função para comparar nomes de tecnologias para qsort
-int compararNomes(const void *a, const void *b) {
-    return strcmp(*(const char **)a, *(const char **)b);
-}
-
 // Função para inicializar um grafo
 Grafo inicializarGrafo() {
     Grafo grafo;
     grafo.numVertices = 0;
+    grafo.vertices = malloc(sizeof(Vertice));
     // Vertice* grafo = (Vertice*)malloc(numVertices * sizeof(Vertice));
 
     // if (grafo == NULL) {
@@ -56,13 +52,13 @@ void liberaGrafo(Grafo grafo) {
 void imprimeGrafo(Grafo grafo){
     for(int i = 0; i < grafo.numVertices; i++)
         for(int j = 0; j < grafo.vertices[i].grauSaida; j++)
-            printf("%s, %d, %d, %d, %d, %s, %d\n", grafo.vertices[i].nomeTecnologia, grafo.vertices[i].grupo, grafo.vertices[i].grauEntrada,  grafo.vertices[i].grauSaida,  grafo.vertices[i].grau, grafo.vertices[grafo.vertices[i].arestas[j].destino].nomeTecnologia, grafo.vertices[i].arestas[j].peso);
+            printf("origem %s, grupo %d, entrada %d, saida %d, grau %d, destino %s, peso %d\n", grafo.vertices[i].nomeTecnologia, grafo.vertices[i].grupo, grafo.vertices[i].grauEntrada,  grafo.vertices[i].grauSaida, grafo.vertices[i].grau, grafo.vertices[i].arestas[j].destino->nomeTecnologia, grafo.vertices[i].arestas[j].peso);
 }
 
 
 // adiciona um vertice ao grafo
 void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
-    grafo->vertices = (Vertice*) realloc (grafo->vertices, grafo->numVertices+1 * sizeof(Vertice)); // aloca memoria para o vertice
+    grafo->vertices = (Vertice*)realloc(grafo->vertices, (grafo->numVertices + 1) * sizeof(Vertice));
     if(grafo->vertices == NULL){
         perror("Falha na execução da funcionalidade");
         exit(1);
@@ -85,7 +81,7 @@ void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
 void adicionaAresta(Vertice* vertices, int origem, int destino, int peso) {
     vertices[origem].arestas = (Aresta*)realloc(vertices[origem].arestas, (vertices[origem].grauSaida + 1) * sizeof(Aresta)); // aloca memoria para a nova aresta
     
-    vertices[origem].arestas[vertices[origem].grauSaida].destino = destino; // define destino da aresta
+    vertices[origem].arestas[vertices[origem].grauSaida].destino = &vertices[destino]; // define destino da aresta
     vertices[origem].arestas[vertices[origem].grauSaida].peso = peso; // define peso da aresta
     
     vertices[origem].grauSaida++; // aumenta o grau de saida da tecnologia de origem em 1

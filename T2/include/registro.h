@@ -42,6 +42,6 @@ void imprimeRegistro(Registro registro);
 int comparaTecnologias(FILE *arquivoBinario, StringVariavel novaTecOrigem, StringVariavel novaTecDestino);
 void contaTecnologias(FILE* arquivoBinario, Registro registroAtual, Cabecalho* cabecalho);
 Registro leRegistro(FILE *arquivo, Registro *registro);
-int compararStrings(const void *a, const void *b);
+bool leRegistroNaoNulo(FILE *arquivo, Registro *registro);
 
 #endif

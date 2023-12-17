@@ -9,15 +9,18 @@
 #include <string.h>
 #include <limits.h>
 
+typedef struct _vertice Vertice;
+typedef struct _aresta Aresta;
+typedef struct _grafo Grafo;
 
-typedef struct {
+typedef struct _aresta {
     // char nomeTecDestino[50];
     // char nomeTecOrigem[50];
     int peso;
-    int destino;
+    Vertice* destino;
 } Aresta;
 
-typedef struct {
+typedef struct _vertice {
     char nomeTecnologia[50];
     int grupo;
     int grauEntrada;
@@ -28,14 +31,13 @@ typedef struct {
     int visitado;
 } Vertice;
 
-typedef struct {
+typedef struct _grafo {
     Vertice* vertices;
     int numVertices;
 } Grafo;
 
 // void liberarMemoria(Vertice *grafo, int numRegistros);
 int compararArestas(const void *a, const void *b);
-int compararNomes(const void *a, const void *b);
 Grafo inicializarGrafo();
 void liberaGrafo(Grafo grafo);
 void imprimeGrafo(Grafo grafo);

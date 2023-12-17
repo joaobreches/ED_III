@@ -2,7 +2,7 @@
 #define FUNCIONALIDADE_H
 
 #include "funcoesFornecidas.h"
-#include "grafo.h"
+#include "algoritmos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
