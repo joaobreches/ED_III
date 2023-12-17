@@ -4,31 +4,34 @@
 Grafo inicializarGrafo() {
     Grafo grafo;
     grafo.numVertices = 0;
-    grafo.vertices = malloc(sizeof(Vertice));
+    grafo.vertices = NULL;
     return grafo;
 }
 
 // libera toda a memoria alocada no grafo
 void liberaGrafo(Grafo grafo) {
-    for (int i = 0; i < grafo.numVertices; i++) {
-        Aresta* aresta = grafo.vertices[i].ini;
-        for(int j = 0; j < grafo.vertices[i].grauSaida; j++){
+    for(int i = 0; i < grafo.numVertices; i++){
+        Aresta* aresta = grafo.vertices[i]->ini;
+
+        for(int j = 0; j < grafo.vertices[i]->grauSaida; j++){
+            grafo.vertices[i]->ini = aresta->prox;
             free(aresta);
-            aresta = aresta->prox;
+            aresta = grafo.vertices[i]->ini;
         }
+        free(grafo.vertices[i]->nomeTecnologia);
+        free(grafo.vertices[i]);
     }
     free(grafo.vertices);
 }
 
 // imprime os valores do grafo de acordo com o formato exigido
 void imprimeGrafo(Grafo grafo){
-    int k = 0;
     for(int i = 0; i < grafo.numVertices; i++){
-        Vertice v = grafo.vertices[i];
-        Aresta* aresta = grafo.vertices[i].ini;
+        Vertice* v = grafo.vertices[i];
+        Aresta* aresta = v->ini;
 
-        for(int j = 0; j < grafo.vertices[i].grauSaida; j++){
-            printf("%s, %d, %d, %d, %d, %s, %d\n", v.nomeTecnologia, v.grupo, v.grauEntrada,  v.grauSaida, v.grau, aresta->destino->nomeTecnologia, aresta->peso);
+        for(int j = 0; j < v->grauSaida; j++){
+            printf("%s, %d, %d, %d, %d, %s, %d\n", v->nomeTecnologia, v->grupo, v->grauEntrada,  v->grauSaida, v->grau, aresta->destino->nomeTecnologia, aresta->peso);
             aresta = aresta->prox;
         }
     }
@@ -36,55 +39,57 @@ void imprimeGrafo(Grafo grafo){
 
 // adiciona um vertice ao grafo
 void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
-    grafo->vertices = (Vertice*)realloc(grafo->vertices, (grafo->numVertices + 1) * sizeof(Vertice));
-    if(grafo->vertices == NULL){
+    grafo->vertices = (Vertice**)realloc(grafo->vertices, (grafo->numVertices + 1) * sizeof(Vertice));
+    grafo->vertices[grafo->numVertices] = (Vertice*) malloc(sizeof(Vertice));
+    grafo->vertices[grafo->numVertices]->nomeTecnologia = (char*) malloc(50 * sizeof(char));
+
+    if(grafo->vertices == NULL || grafo->vertices[grafo->numVertices] == NULL || grafo->vertices[grafo->numVertices]->nomeTecnologia == NULL){
         perror("Falha na execução da funcionalidade");
         exit(1);
     }
-    
-    // define parametros iniciais do vertice
-    strcpy(grafo->vertices[grafo->numVertices].nomeTecnologia, nomeTecnologia);
-    grafo->vertices[grafo->numVertices].grupo = grupo;
-    grafo->vertices[grafo->numVertices].grauEntrada = 0;
-    grafo->vertices[grafo->numVertices].grauSaida = 0;
-    grafo->vertices[grafo->numVertices].grau = 0;
-    grafo->vertices[grafo->numVertices].numArestas = 0;
-    grafo->vertices[grafo->numVertices].visitado = 0;
-    grafo->vertices[grafo->numVertices].ini = NULL;
 
-    // printf("ADICIONA VERTICE: nome %s\n\n", grafo->vertices[grafo->numVertices].nomeTecnologia);
+    // define parametros iniciais do vertice
+    strcpy(grafo->vertices[grafo->numVertices]->nomeTecnologia, nomeTecnologia);
+    grafo->vertices[grafo->numVertices]->grupo = grupo;
+    grafo->vertices[grafo->numVertices]->grauEntrada = 0;
+    grafo->vertices[grafo->numVertices]->grauSaida = 0;
+    grafo->vertices[grafo->numVertices]->grau = 0;
+    grafo->vertices[grafo->numVertices]->numArestas = 0;
+    grafo->vertices[grafo->numVertices]->visitado = 0;
+    grafo->vertices[grafo->numVertices]->ini = NULL;
+
+    // printf("ADICIONA VERTICE: nome %s\n\n", grafo->vertices[grafo->numVertices]->nomeTecnologia);
     // aumenta a contagem de quantidade de vertices em 1
     grafo->numVertices++;
-
 }
 
 // Função para adicionar uma aresta ao grafo
-void adicionaAresta(Vertice* vertices, int origem, int destino, int peso) {
+void adicionaAresta(Vertice** vertices, int origem, int destino, int peso) {
     Aresta* arestaNova = malloc(sizeof(Aresta));
     if(arestaNova == NULL){
         printf("Falha na execução da funcionalidade\n");
         exit(1);
     }
 
-    arestaNova->destino = &vertices[destino]; 
+    arestaNova->destino = vertices[destino]; 
     arestaNova->peso = peso; 
     arestaNova->prox = NULL; 
 
-    Aresta* arestaAtual = vertices[origem].ini;
+    Aresta* arestaAtual = vertices[origem]->ini;
     if(arestaAtual == NULL)
-        vertices[origem].ini = arestaNova;
+        vertices[origem]->ini = arestaNova;
     
     else {
         Aresta* arestaAnterior = NULL;
         while(arestaAtual != NULL){
-            if(strcmp(arestaAtual->destino->nomeTecnologia, vertices[destino].nomeTecnologia) > 0)
+            if(strcmp(arestaAtual->destino->nomeTecnologia, vertices[destino]->nomeTecnologia) > 0)
                 break;
             arestaAnterior = arestaAtual;
             arestaAtual = arestaAtual->prox;
         }
 
         if(arestaAnterior == NULL){
-            vertices[origem].ini = arestaNova;
+            vertices[origem]->ini = arestaNova;
         }
         else {
             arestaAnterior->prox = arestaNova;
@@ -93,11 +98,11 @@ void adicionaAresta(Vertice* vertices, int origem, int destino, int peso) {
         arestaNova->prox = arestaAtual;
     }
         
-    vertices[origem].grauSaida++; // aumenta o grau de saida da tecnologia de origem em 1
-    vertices[origem].grau++; // aumenta o grau total da tecnologia de origem em 1
+    vertices[origem]->grauSaida++; // aumenta o grau de saida da tecnologia de origem em 1
+    vertices[origem]->grau++; // aumenta o grau total da tecnologia de origem em 1
     
-    vertices[destino].grauEntrada++; // aumenta o grau de entrada da tecnologia de saida em 1
-    vertices[destino].grau++; // aumenta o grau total da tecnologia de saida em 1
+    vertices[destino]->grauEntrada++; // aumenta o grau de entrada da tecnologia de saida em 1
+    vertices[destino]->grau++; // aumenta o grau total da tecnologia de saida em 1
 }
 
 Grafo criaGrafo(FILE* arquivo, bool transposto){
@@ -137,9 +142,9 @@ Grafo criaGrafo(FILE* arquivo, bool transposto){
         int verticeDestino = -1;
 
         for(int j = 0; j < grafo.numVertices; j++){
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaOrigem.string) == 0)
+            if(strcmp(grafo.vertices[j]->nomeTecnologia, registro.TecnologiaOrigem.string) == 0)
                 verticeOrigem = j;
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaDestino.string) == 0)
+            if(strcmp(grafo.vertices[j]->nomeTecnologia, registro.TecnologiaDestino.string) == 0)
                 verticeDestino = j;
             if(verticeOrigem != -1 && verticeDestino != -1)
                 break;
@@ -162,11 +167,12 @@ Grafo criaGrafo(FILE* arquivo, bool transposto){
         else
             adicionaAresta(grafo.vertices, verticeOrigem, verticeDestino, registro.peso);
         // printf("DEPOIS vertice %s tem %d arestas\n\n", grafo.vertices[verticeOrigem].nomeTecnologia, grafo.vertices[verticeOrigem].grauSaida);
+
+        free(registro.TecnologiaOrigem.string);
+        free(registro.TecnologiaDestino.string);
     }
 
     quicksortVertice(grafo.vertices, grafo.numVertices); // ordena os vertices do grafo
-    // for(int i = 0; i < grafo.numVertices; i++) // ordena a aresta de cada vertice do grafo
-    //     quicksortAresta(grafo.vertices[i].arestas, grafo.vertices[i].grauSaida);
 
     return grafo;
 }
@@ -278,8 +284,8 @@ Grafo criaGrafo(FILE* arquivo, bool transposto){
 //     return resultado;
 // }
 
-void quicksortRecursivoVertice(Vertice *v, int ini, int fim) {
-    Vertice pivo, aux;
+void quicksortRecursivoVertice(Vertice **v, int ini, int fim) {
+    Vertice *pivo, *aux;
     int meio, i, j;
     
     if (ini >= fim)
@@ -294,10 +300,10 @@ void quicksortRecursivoVertice(Vertice *v, int ini, int fim) {
     j = fim;
     while (1) {
         // andar o i
-        for (; strcmp(v[i].nomeTecnologia, pivo.nomeTecnologia) < 0; i++);
+        for (; strcmp(v[i]->nomeTecnologia, pivo->nomeTecnologia) < 0; i++);
         
         // andar o j
-        for (; strcmp(v[j].nomeTecnologia, pivo.nomeTecnologia) > 0; j--);
+        for (; strcmp(v[j]->nomeTecnologia, pivo->nomeTecnologia) > 0; j--);
         
         // verificar se i encontrou j
         if (i == j)
@@ -314,6 +320,6 @@ void quicksortRecursivoVertice(Vertice *v, int ini, int fim) {
     quicksortRecursivoVertice(v, i + 1, fim);
 }
 
-void quicksortVertice(Vertice *v, int n) {
+void quicksortVertice(Vertice **v, int n) {
     quicksortRecursivoVertice(v, 0, n - 1); // inicia recursividade
 }

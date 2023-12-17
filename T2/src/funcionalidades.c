@@ -40,7 +40,7 @@ void listaNomes(char *nomeArquivo, int n) {
 
         // Encontra o índice correspondente ao nome passado como parâmetro
         int indice = 0;
-        while (strcmp(grafoTransposto.vertices[indice].nomeTecnologia, tecnologia) != 0) {
+        while (strcmp(grafoTransposto.vertices[indice]->nomeTecnologia, tecnologia) != 0) {
             indice++;
             if (indice > grafoTransposto.numVertices) {
                 printf("Registro inexistente.\n\n");
@@ -56,7 +56,7 @@ void listaNomes(char *nomeArquivo, int n) {
 
         // Imprime as tecnologias que originaram a tecnologia passada como parâmetro
         bool primeiraTecnologia = 1;
-        for (int j = 0; j < grafoTransposto.vertices[indice].grauSaida; j++) {
+        for (int j = 0; j < grafoTransposto.vertices[indice]->grauSaida; j++) {
             if (primeiraTecnologia) {
                 // printf("%s", grafoTransposto.vertices[indice].arestas[j].destino->nomeTecnologia);
                 primeiraTecnologia = 0;

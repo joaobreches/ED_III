@@ -20,7 +20,7 @@ typedef struct _aresta {
 } Aresta;
 
 typedef struct _vertice {
-    char nomeTecnologia[50];
+    char* nomeTecnologia;
     int grupo;
     int grauEntrada;
     int grauSaida;
@@ -31,7 +31,7 @@ typedef struct _vertice {
 } Vertice;
 
 typedef struct _grafo {
-    Vertice* vertices;
+    Vertice** vertices;
     int numVertices;
 } Grafo;
 
@@ -39,14 +39,14 @@ Grafo inicializarGrafo();
 void liberaGrafo(Grafo grafo);
 void imprimeGrafo(Grafo grafo);
 void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo);
-void adicionaAresta(Vertice* vertices, int origem, int destino, int peso);
+void adicionaAresta(Vertice** vertices, int origem, int destino, int peso);
 Grafo criaGrafo(FILE *arquivo, bool transposto);
 int compararArestas(const void *a, const void *b);
 void dfs(Vertice* grafo, int vertice, Pilha* pilha);
 void dfsTransposto(Vertice* grafo, int vertice, int* componente, int componenteAtual);
 int bfs(Vertice* grafo, int numVertices, int origem, int destino);
 int dijkstra(Vertice* grafo, int numVertices, int origem, int destino);
-void quicksortRecursivoVertice(Vertice *v, int ini, int fim);
-void quicksortVertice(Vertice *v, int n);
+void quicksortRecursivoVertice(Vertice **v, int ini, int fim);
+void quicksortVertice(Vertice **v, int n);
 
 #endif
