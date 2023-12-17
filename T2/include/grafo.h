@@ -2,6 +2,7 @@
 #define GRAFO_H
 
 #include "registro.h"
+#include "algoritmos.h"
 #include "arquivo.h"
 #include "pilha.h"
 #include <limits.h>
@@ -15,6 +16,7 @@ typedef struct _aresta {
     // char nomeTecOrigem[50];
     int peso;
     Vertice* destino;
+    Aresta* prox;
 } Aresta;
 
 typedef struct _vertice {
@@ -23,7 +25,7 @@ typedef struct _vertice {
     int grauEntrada;
     int grauSaida;
     int grau;
-    Aresta* arestas;
+    Aresta* ini;
     int numArestas;
     int visitado;
 } Vertice;
@@ -44,5 +46,7 @@ void dfs(Vertice* grafo, int vertice, Pilha* pilha);
 void dfsTransposto(Vertice* grafo, int vertice, int* componente, int componenteAtual);
 int bfs(Vertice* grafo, int numVertices, int origem, int destino);
 int dijkstra(Vertice* grafo, int numVertices, int origem, int destino);
+void quicksortRecursivoVertice(Vertice *v, int ini, int fim);
+void quicksortVertice(Vertice *v, int n);
 
 #endif
