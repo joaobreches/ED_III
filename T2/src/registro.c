@@ -309,7 +309,66 @@ Registro leRegistro(FILE *arquivo, Registro *registro){
   return *registro;
 }
 
-// Função para comparar strings (usada para ordenação)
-int compararStrings(const void *a, const void *b) {
-    return strcmp(*(const char **)a, *(const char **)b);
+bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
+  /* 
+  Essa função le o registro e lida com as suas questões gerais, como verificar se o mesmo existe, lidar com nulos, lidar com lixo e le os campos do registro, armazenando a leitura no registro auxiliar
+
+  Retorna 0 se nao houver registro ou se houver campo nulo. Retorna 1 se a leitura foi realizada com sucesso.
+  */
+
+  fread(&registro->removido, sizeof(char), 1, arquivo);
+
+  // verifica se o registro existe
+  if (registro->removido == '1') {
+    fseek(arquivo, TAM_REGISTRO - 1, SEEK_CUR);
+    return 0;
+  }
+
+  // le os campos do registro e aramazena no registro auxiliar
+  fread(&registro->grupo, sizeof(int), 1, arquivo);
+  fread(&registro->popularidade, sizeof(int), 1, arquivo);
+  fread(&registro->peso, sizeof(int), 1, arquivo);
+  fread(&registro->TecnologiaOrigem.tamanho, sizeof(int), 1, arquivo);
+
+  if (registro->TecnologiaOrigem.tamanho != 0) {
+    registro->TecnologiaOrigem.string = malloc((registro->TecnologiaOrigem.tamanho + 1) * sizeof(char));
+    if(registro->TecnologiaOrigem.string == NULL){
+      printf("Falha na execução da funcionalidade\n");
+      fclose(arquivo);
+      return 0;
+    }
+
+    fread(registro->TecnologiaOrigem.string, sizeof(char), registro->TecnologiaOrigem.tamanho, arquivo);
+    registro->TecnologiaOrigem.string[registro->TecnologiaOrigem.tamanho] = '\0';
+  } else {
+    registro->TecnologiaOrigem.string = strdup("NULO"); // imprime NULO se o campo da string for nulo
+  }
+
+  fread(&registro->TecnologiaDestino.tamanho, sizeof(int), 1, arquivo);
+
+  if (registro->TecnologiaDestino.tamanho != 0) {
+    registro->TecnologiaDestino.string = malloc((registro->TecnologiaDestino.tamanho + 1) * sizeof(char));
+    if(registro->TecnologiaDestino.string == NULL){
+      printf("Falha na execução da funcionalidade\n");
+      fclose(arquivo);
+      return 0;
+    }
+
+    fread(registro->TecnologiaDestino.string, sizeof(char), registro->TecnologiaDestino.tamanho, arquivo);
+    registro->TecnologiaDestino.string[registro->TecnologiaDestino.tamanho] = '\0';
+  } else {
+    registro->TecnologiaDestino.string = strdup("NULO"); // imprime NULO se o campo da string for nulo
+  }
+
+  // verifica o a quantidade de lixo restante nesse registro e pula o ponteiro do arquivo para o proximo registro
+  int tam_bytes =
+      sizeof(registro->grupo) + sizeof(registro->popularidade) +
+      sizeof(registro->peso) + sizeof(registro->TecnologiaOrigem.tamanho) +
+      sizeof(registro->TecnologiaDestino.tamanho) + sizeof(char) +
+      registro->TecnologiaOrigem.tamanho + registro->TecnologiaDestino.tamanho;
+  fseek(arquivo, TAM_REGISTRO - tam_bytes, SEEK_CUR);
+
+  if(registro->grupo == -1 || registro->TecnologiaOrigem.tamanho == 0 || registro->TecnologiaDestino.tamanho == 0)
+    return 0;
+  return 1;
 }

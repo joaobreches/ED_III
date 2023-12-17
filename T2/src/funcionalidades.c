@@ -1,7 +1,8 @@
 #include "funcionalidades.h"
 
-// Função para executar a funcionalidade 8
-void recuperaDados8(char *nomeArquivo) {
+// Função para executar a funcionalidade 8 - cria grafo e imprime-o
+void recuperaDadosGrafo(char *nomeArquivo, bool transposto) {
+    // abre arquivo binario para leitura
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
         perror("Falha na execução da funcionalidade");
@@ -9,178 +10,66 @@ void recuperaDados8(char *nomeArquivo) {
         exit(1);
     }
 
-    // Verifica o status do arquivo
-    char statusArquivo;
-    fread(&statusArquivo, sizeof(char), 1, arquivo);
-    if (statusArquivo == '0') {
+    Grafo grafo = criaGrafo(arquivo, transposto);
+    imprimeGrafo(grafo);
+
+    // Libera a memória alocada
+    liberaGrafo(grafo);
+    fclose(arquivo);
+}
+
+// Função para executar a funcionalidade 10
+void listaNomes(char *nomeArquivo, int n) {
+    // abre arquivo binario para leitura
+    FILE *arquivo = fopen(nomeArquivo, "rb");
+    if (arquivo == NULL) {
         perror("Falha na execução da funcionalidade");
         fclose(arquivo);
         exit(1);
     }
 
-    // le proxRRN (quantidade de registros)
-    int numRegistros;
-    fread(&numRegistros, sizeof(int), 1, arquivo);
-    printf("NUMERO DE REGISTROS: %d\n", numRegistros);
+    Grafo grafoTransposto = criaGrafo(arquivo, 1);
+    fclose(arquivo);
 
-    // inicializa grafo
-    Grafo grafo = inicializarGrafo();
+    // Realiza a funcionalidade n vezes
+    for (int k = 0; k < n; k++) {
+        // Lê o nome da tecnologia passado como parâmetro
+        char tecnologia[50];
+        fgets(tecnologia, sizeof(tecnologia), stdin);
+        tecnologia[strcspn(tecnologia, "\n")] = '\0'; // Remove o caractere de nova linha
 
-    // pula o cabecalho do arquivo binario (deizxa o ponteiro no inicio do primeiro registro)
-    Registro registro;
-    skipCabecalho(arquivo);
-
-    // adiciona registros no grafo
-    for (int i = 0; i < numRegistros; i++) {
-        printf("loop %d, numVertices %d\n", i, grafo.numVertices);
-        // lê registro do arquivo binario
-        registro = leRegistro(arquivo, &registro);
-        printf("nome tecnologia origem: %d\n", registro.TecnologiaOrigem.tamanho);
-
-        // verifica se a tecnologia de origem e de destinos ja tem vertices, se tiver identifica qual é o vertice, se nao cria vertices para erlas 
-        int verticeOrigem = -1;
-        int verticeDestino = -1;
-
-        for(int j = 0; j < i; j++){
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaOrigem.string) == 0)
-                verticeOrigem = j;
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaDestino.string) == 0)
-                verticeDestino = j;
-            if(verticeOrigem != -1 && verticeDestino != -1)
-                break;
+        // Encontra o índice correspondente ao nome passado como parâmetro
+        int indice = 0;
+        while (strcmp(grafoTransposto.vertices[indice]->nomeTecnologia, tecnologia) != 0) {
+            indice++;
+            if (indice > grafoTransposto.numVertices) {
+                printf("Registro inexistente.\n\n");
+                continue;
+            }
         }
 
-        printf("saiu do for\n");
+        // Imprime a tecnologia passada como parâmetro
+        printf("\"%s\": ", tecnologia);
 
-        if(verticeOrigem == -1){
-            adicionaVertice(&grafo, registro.TecnologiaOrigem.string, registro.grupo);
-            verticeOrigem = grafo.numVertices - 1;
+        // // Ordena as arestas pelo nomeTecOrigem para a saída ordenada
+        // qsort(vertices[indice].arestas, vertices[indice].numArestas, sizeof(Aresta), compararArestas);
+
+        // Imprime as tecnologias que originaram a tecnologia passada como parâmetro
+        bool primeiraTecnologia = 1;
+        for (int j = 0; j < grafoTransposto.vertices[indice]->grauSaida; j++) {
+            if (primeiraTecnologia) {
+                // printf("%s", grafoTransposto.vertices[indice].arestas[j].destino->nomeTecnologia);
+                primeiraTecnologia = 0;
+            } else {
+                // printf(", %s", grafoTransposto.vertices[indice].arestas[j].destino->nomeTecnologia);
+            }
         }
-
-        printf("aaaa\n");
-
-        if(verticeOrigem == -1){
-            adicionaVertice(&grafo, registro.TecnologiaDestino.string, registro.grupo);
-            verticeDestino = grafo.numVertices - 1;
-        }
-
-        // cria aresta e a adiciona 
-        adicionaAresta(grafo.vertices, verticeOrigem, verticeDestino, registro.peso);
-
-        printf("fim do loop\n");
+        printf("\n\n");
     }
 
-    // // Ordena os nomes das tecnologias para a saída ordenada
-    // char **nomesOrdenados = malloc(numRegistros * sizeof(char *));
-    // if (nomesOrdenados == NULL) {
-    //     perror("Erro de alocação de memória");
-    //     liberaGrafo(grafo);
-    //     fclose(arquivo);
-    //     return;
-    // }
-
-    // for (int i = 0; i < numRegistros; i++) {
-    //     nomesOrdenados[i] = grafo.vertices[i].nomeTecnologia;
-    // }
-
-    // qsort(nomesOrdenados, numRegistros, sizeof(char *), compararNomes);
-
-    // // Imprime os dados ordenados
-    imprimeGrafo(grafo);
-
-    // for (int i = 0; i < numRegistros; i++) {
-    //     int indice = 0;
-    //     // Encontra o índice correspondente ao nome ordenado
-    //     while (strcmp(grafo.vertices[indice].nomeTecnologia, nomesOrdenados[i]) != 0) {
-    //         indice++;
-    //     }
-
-    //     printf("%s, %d, %d, %d, %d, ", grafo.vertices[indice].nomeTecnologia,
-    //         grafo.vertices[indice].grupo, grafo.vertices[indice].grauEntrada,
-    //         grafo.vertices[indice].grauSaida, grafo.vertices[indice].grau);
-
-    //     // Ordena as arestas pelo nomeTecDestino para a saída ordenada
-    //     qsort(grafo.vertices[indice].arestas, grafo.vertices[indice].numArestas, sizeof(Aresta), compararArestas);
-    // }
-
     // Libera a memória alocada
-    liberaGrafo(grafo);
-    // free(nomesOrdenados);
-
-    fclose(arquivo);
+    liberaGrafo(grafoTransposto);
 }
-
-// // Função para executar a funcionalidade 10
-// void listaNomes(char *nomeArquivo, int n) {
-    
-//   // Abrir o arquivo binário para leitura
-//   FILE *arquivo = abreBinarioLeitura(nomeArquivo);
-
-
-//   // Lê o número de registros no arquivo
-//   int numRegistros;
-//   fread(&numRegistros, sizeof(int), 1, arquivo);
-
-//   // Aloca espaço para os vértices
-//   Vertice *vertices = (Vertice*)malloc(numRegistros * sizeof(Vertice));
-
-//   // Lê os registros do arquivo
-//   for (int i = 0; i < numRegistros; i++) {
-//       fread(&vertices[i], sizeof(Vertice), 1, arquivo);
-//       // Aloca espaço para as arestas do vértice
-//       vertices[i].arestas = (Aresta*)malloc(vertices[i].numArestas * sizeof(Aresta));
-//       // Lê as arestas do arquivo
-//       fread(vertices[i].arestas, sizeof(Aresta), vertices[i].numArestas, arquivo);
-//   }
-
-//   // Fecha o arquivo
-//   fclose(arquivo);
-
-//   Registro registro;
-
-//     // Realiza a funcionalidade n vezes
-//     for (int k = 0; k < n; k++) {
-//         // Lê o nome da tecnologia passado como parâmetro
-//         char tecnologia[50];
-//         fgets(tecnologia, sizeof(tecnologia), stdin);
-//         tecnologia[strcspn(tecnologia, "\n")] = '\0'; // Remove o caractere de nova linha
-
-//         // Encontra o índice correspondente ao nome passado como parâmetro
-//         int indice = 0;
-//         while (strcmp(vertices[indice].nomeTecnologia, tecnologia) != 0) {
-//             indice++;
-//             if (indice >= numRegistros) {
-//                 printf("Registro inexistente.\n\n");
-//                 continue;
-//             }
-//         }
-
-//         // Imprime a tecnologia passada como parâmetro
-//         printf("\"%s\": ", tecnologia);
-
-//         // Ordena as arestas pelo nomeTecOrigem para a saída ordenada
-//         qsort(vertices[indice].arestas, vertices[indice].numArestas, sizeof(Aresta), compararArestas);
-
-//         // Imprime as tecnologias que originaram a tecnologia passada como parâmetro
-//         int primeiraTecnologia = 1;
-//         for (int j = 0; j < vertices[indice].numArestas; j++) {
-//             if (primeiraTecnologia) {
-//                 // printf("%s", vertices[indice].arestas[j].nomeTecOrigem);
-//                 primeiraTecnologia = 0;
-//             } else {
-//                 // printf(", %s", vertices[indice].arestas[j].nomeTecOrigem);
-//             }
-//         }
-
-//         printf("\n\n");
-//     }
-
-//     // Libera a memória alocada
-//     for (int i = 0; i < numRegistros; i++) {
-//         free(vertices[i].arestas);
-//     }
-//     free(vertices);
-// }
 
 // // Função para determinar se o grafo é fortemente conexo
 // void fortementeConexo(char* nomeArquivo) {
