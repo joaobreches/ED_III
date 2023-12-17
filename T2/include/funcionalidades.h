@@ -2,7 +2,7 @@
 #define FUNCIONALIDADE_H
 
 #include "funcoesFornecidas.h"
-#include "algoritmos.h"
+#include "grafo.h"
 #include <stdbool.h>
 
 void recuperaDadosGrafo(char *nomeArquivo, bool transposto);

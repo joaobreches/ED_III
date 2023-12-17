@@ -2,7 +2,6 @@
 #define GRAFO_H
 
 #include "registro.h"
-#include "algoritmos.h"
 #include "arquivo.h"
 #include "pilha.h"
 #include <limits.h>

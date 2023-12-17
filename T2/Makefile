@@ -13,7 +13,6 @@ all:
 	gcc -c -g ./src/registro.c -I ./include -o ./obj/registro.o
 	gcc -c -g ./src/pilha.c -I ./include -o ./obj/pilha.o
 	gcc -c -g ./src/grafo.c -I ./include -o ./obj/grafo.o
-	gcc -c -g ./src/algoritmos.c -I ./include -o ./obj/algoritmos.o
 	gcc -c -g ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
 	gcc -g ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
 
@@ -54,6 +53,13 @@ limpeza:
 comentarios:
 	git add .
 	git commit -m "comentarios"
+	git pull
+	git push
+	clear
+
+erro10:
+	git add .
+	git commit -m "resolvendo erro f10"
 	git pull
 	git push
 	clear

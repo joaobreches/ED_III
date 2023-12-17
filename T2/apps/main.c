@@ -63,9 +63,9 @@ int main() {
     case 9:   
       recuperaDadosGrafo(leitura1, 1); // cria grafo transposto
       break;
-    // case 10:   
-    //   listaNomes(leitura1, atoi(leitura2));
-    //   break;
+    case 10:   
+      listaNomes(leitura1, atoi(leitura2));
+      break;
     // case 11:   
     //   fortementeConexo(leitura1);
     //   break;
