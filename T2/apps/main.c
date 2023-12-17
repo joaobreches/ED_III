@@ -32,31 +32,6 @@ int main() {
 
   // chama cada funcionalidade de acordo com a entrada no terminal
   switch (funcionalidade){
-    // case 1:
-      // criaTabela(leitura1, leitura2);
-      // leitura2 = (char*) leitura2;
-      // binarioNaTela(leitura2);
-    //   break;
-    // case 2:
-      // imprimeArquivo(leitura1);
-    //   break;
-    // case 3:
-      //busca(3, leitura1, "", atoi(leitura2));
-    //   break;
-    // case 4:   
-      //recuperaRegistro(leitura1, atoi(leitura2));
-    //   break;
-    // case 5:
-      //criaIndiceArvoreB(leitura1, leitura2);
-      //leitura2 = (char*) leitura2;
-      //binarioNaTela(leitura2);
-    //   break;
-    // case 6:
-      //busca(6, leitura1, leitura2, atoi(leitura3));
-    //   break;
-    // case 7:   
-      //insereRegistro(leitura1, leitura2, atoi(leitura3));
-      // break;
     case 8:   
       recuperaDadosGrafo(leitura1, 0); // cria grafo
       break;
@@ -66,15 +41,12 @@ int main() {
     case 10:   
       listaNomes(leitura1, atoi(leitura2));
       break;
-    // case 11:   
-    //   fortementeConexo(leitura1);
-    //   break;
+    case 11:   
+      fortementeConexo(leitura1);
+      break;
     // case 12:   
     //   caminhoCurto(leitura1, atoi(leitura2));
     //   break;
-    case 15:
-      //comparaBinarios();
-      break;
   }
 
   // libera a memoria alocada

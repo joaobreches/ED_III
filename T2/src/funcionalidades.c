@@ -1,6 +1,6 @@
 #include "funcionalidades.h"
 
-// Função para executar a funcionalidade 8 - cria grafo e imprime-o
+// Função para executar a funcionalidade 8 e 9 - cria grafo (transposto ou nao) e imprime-o
 void recuperaDadosGrafo(char *nomeArquivo, bool transposto) {
     // abre arquivo binario para leitura
     FILE *arquivo = fopen(nomeArquivo, "rb");
@@ -77,81 +77,70 @@ void listaNomes(char *nomeArquivo, int n) {
     liberaGrafo(grafoTransposto);
 }
 
-// // Função para determinar se o grafo é fortemente conexo
-// void fortementeConexo(char* nomeArquivo) {
-//     // Abrir o arquivo binário para leitura
-//     FILE* arquivo = abreBinarioLeitura(nomeArquivo);
-//     if (arquivo == NULL) {
-//         printf("Falha na execução da funcionalidade.\n");
-//         return;
-//     }
+// Função para determinar se o grafo é fortemente conexo
+void fortementeConexo(char* nomeArquivo) {
+    // Abrir o arquivo binário para leitura
+    FILE* arquivo = abreBinarioLeitura(nomeArquivo);
+    if (arquivo == NULL) {
+        printf("Falha na execução da funcionalidade.\n");
+        return;
+    }
 
-//     // Lê o número de registros no arquivo
-//     int numRegistros;
-//     fread(&numRegistros, sizeof(int), 1, arquivo);
+    // Inicializa o grafo
+    Grafo grafo = criaGrafo(arquivo, 0);
 
-//     // Inicializa o grafo
-//     Vertice* grafo = inicializarGrafo(numRegistros);
+    // Realiza a funcionalidade
+    Pilha* pilha = inicializarPilha(grafo.numVertices);
 
-//     // Lê os registros do arquivo
-//     for (int i = 0; i < numRegistros; i++) {
-//         fread(&grafo[i], sizeof(Vertice), 1, arquivo);
-//         // Aloca espaço para as arestas do vértice
-//         grafo[i].arestas = (Aresta*)malloc(grafo[i].numArestas * sizeof(Aresta));
-//         // Lê as arestas do arquivo
-//         fread(grafo[i].arestas, sizeof(Aresta), grafo[i].numArestas, arquivo);
-//     }
+    // Realiza a primeira DFS para preencher a pilha
+    for (int i = 0; i < grafo.numVertices; i++) {
+        if (!grafo.vertices[i]->visitado) {
+            dfs(grafo.vertices[i], pilha);
+        }
+    }
 
-//     // Fecha o arquivo
-//     fclose(arquivo);
+    // Inicializa o grafo transposto (grafo reverso)
+    Grafo grafoTransposto = criaGrafo(arquivo, 1);
 
-//     // Realiza a funcionalidade
-//     Pilha* pilha = inicializarPilha(numRegistros);
+    // Fecha o arquivo
+    fclose(arquivo);
 
-//     // Realiza a primeira DFS para preencher a pilha
-//     for (int i = 0; i < numRegistros; i++) {
-//         if (!grafo[i].visitado) {
-//             dfs(grafo, i, pilha);
-//         }
-//     }
+    // Inicializa um vetor para armazenar os componentes fortemente conexos
+    // int *componente = (int*)malloc(grafo.numVertices * sizeof(int));
 
-//     // Inicializa o grafo transposto (grafo reverso)
-//     Vertice* grafoTransposto = inicializarGrafo(numRegistros);
+    // Realiza a DFS no grafo transposto para calcular os componentes fortemente conexos
+    // int componenteAtual = 0;
+    int numComponentes = 0;
+    while (!pilhaVazia(pilha)) {
+        Vertice* vertice = desempilhar(pilha);
+        if (!vertice->visitado) {
+            dfs(vertice, NULL);
+            // componenteAtual++;
+            numComponentes++;
+        }
+    }
 
-//     // Inicializa um vetor para armazenar os componentes fortemente conexos
-//     int *componente = (int*)malloc(numRegistros * sizeof(int));
+    // Verifica quantos componentes fortemente conexos foram encontrados
+    // for (int i = 0; i < grafo.numVertices; i++) {
+    //     if (componente[i] > numComponentes) {
+    //         numComponentes = componente[i];
+    //     }
+    // }
 
-//     // Realiza a DFS no grafo transposto para calcular os componentes fortemente conexos
-//     int componenteAtual = 0;
-//     while (!pilhaVazia(pilha)) {
-//         int vertice = desempilhar(pilha);
-//         if (!grafoTransposto[vertice].visitado) {
-//             dfsTransposto(grafo, vertice, componente, componenteAtual);
-//             componenteAtual++;
-//         }
-//     }
+    // Verifica se o grafo é fortemente conexo
+    if (numComponentes == 0) {
+        printf("Nao, o grafo nao e fortemente conexo e possui 0 componentes.\n");
+    } else {
+        printf("Sim, o grafo e fortemente conexo e possui %d componente%s.\n", numComponentes + 1, (numComponentes == 0) ? "" : "s");
+    }
 
-//     // Verifica quantos componentes fortemente conexos foram encontrados
-//     int numComponentes = 0;
-//     for (int i = 0; i < numRegistros; i++) {
-//         if (componente[i] > numComponentes) {
-//             numComponentes = componente[i];
-//         }
-//     }
-
-//     // Verifica se o grafo é fortemente conexo
-//     if (numComponentes == 0) {
-//         printf("Nao, o grafo nao e fortemente conexo e possui 0 componentes.\n");
-//     } else {
-//         printf("Sim, o grafo e fortemente conexo e possui %d componente%s.\n", numComponentes + 1, (numComponentes == 0) ? "" : "s");
-//     }
-
-//     // Libera a memória alocada
-//     free(pilha->array);
-//     free(pilha);
-//     free(grafoTransposto);
-//     free(componente);
-// }
+    // Libera a memória alocada
+    free(pilha->array);
+    free(pilha);
+    liberaGrafo(grafo);
+    liberaGrafo(grafoTransposto);
+    // free(componente);
+}
 
 // // Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)
 // void caminhoCurto(char* nomeArquivo, int n) {
