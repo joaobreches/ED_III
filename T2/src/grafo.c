@@ -63,7 +63,11 @@ void imprimeGrafo(Grafo grafo){
 // adiciona um vertice ao grafo
 void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
     grafo->vertices = (Vertice*) realloc (grafo->vertices, grafo->numVertices+1 * sizeof(Vertice)); // aloca memoria para o vertice
-
+    if(grafo->vertices == NULL){
+        perror("Falha na execução da funcionalidade");
+        exit(1);
+    }
+    
     // define parametros iniciais do vertice
     strcpy(grafo->vertices[grafo->numVertices].nomeTecnologia, nomeTecnologia);
     grafo->vertices[grafo->numVertices].grupo = grupo;

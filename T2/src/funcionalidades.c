@@ -21,6 +21,7 @@ void recuperaDados8(char *nomeArquivo) {
     // le proxRRN (quantidade de registros)
     int numRegistros;
     fread(&numRegistros, sizeof(int), 1, arquivo);
+    printf("NUMERO DE REGISTROS: %d\n", numRegistros);
 
     // inicializa grafo
     Grafo grafo = inicializarGrafo();
@@ -34,6 +35,7 @@ void recuperaDados8(char *nomeArquivo) {
         printf("loop %d, numVertices %d\n", i, grafo.numVertices);
         // lê registro do arquivo binario
         registro = leRegistro(arquivo, &registro);
+        printf("nome tecnologia origem: %d\n", registro.TecnologiaOrigem.tamanho);
 
         // verifica se a tecnologia de origem e de destinos ja tem vertices, se tiver identifica qual é o vertice, se nao cria vertices para erlas 
         int verticeOrigem = -1;

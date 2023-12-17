@@ -45,6 +45,7 @@ bool skipCabecalho(FILE *arquivoBinario){
   1 - arquivo inconsistente ou ausencia de registros
   */
   
+  fseek(arquivoBinario, 0, SEEK_SET);
   // le o cabecalho do arquivo binario e verifica se o arquivo esta consistente
   char status;
   fread(&status, sizeof(char), 1, arquivoBinario);
