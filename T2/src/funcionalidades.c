@@ -71,7 +71,6 @@ void listaNomes(char *nomeArquivo, int n) {
             aresta = aresta->prox;
         }
         printf("\n\n");
-        free(tecnologia);
     }
 
     // Libera a memória alocada
