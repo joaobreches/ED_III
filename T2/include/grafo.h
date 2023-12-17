@@ -28,6 +28,11 @@ typedef struct {
     int visitado;
 } Vertice;
 
+typedef struct {
+    Vertice* vertices;
+    int numVertices;
+} Grafo;
+
 void liberarMemoria(Vertice *grafo, int numRegistros);
 void liberaGrafo(Vertice *grafo, int numRegistros);
 int compararArestas(const void *a, const void *b);

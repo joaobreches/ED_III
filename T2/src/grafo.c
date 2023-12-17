@@ -22,10 +22,22 @@ int compararNomes(const void *a, const void *b) {
 // Função para inicializar um grafo
 Vertice* inicializarGrafo(int numVertices) {
     Vertice* grafo = (Vertice*)malloc(numVertices * sizeof(Vertice));
+
+    if (grafo == NULL) {
+        perror("Falha na execução da funcionalidade");
+        fclose(arquivo);
+        exit(1);
+    }
+
     for (int i = 0; i < numVertices; i++) {
-        grafo[i].visitado = 0;
+        grafo[i].nomeTecnologia = NULL;
+        grafo[i].grupo = 0;
+        grafo[i].grauEntrada = 0;
+        grafo[i].grauSaida = 0;
+        grafo[i].grau = 0;
         grafo[i].arestas = NULL;
         grafo[i].numArestas = 0;
+        grafo[i].visitado = 0;
     }
     return grafo;
 }
@@ -37,11 +49,25 @@ void liberaGrafo(Vertice *grafo, int numRegistros) {
     free(grafo);
 }
 
+void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
+    grafo.vertice = (Vertice) realloc (grafo.vertice, numVertices+1);
+
+    grafo.numVertices++;
+    grafo.vertice[numVertices].nomeTecnologia = nomeTecnologia;
+    grafo.vertice[numVertices].grupo = grupo;
+    grafo[i].grauEntrada = 0;
+    grafo[i].grauSaida = 0;
+    grafo[i].grau = 0;
+    grafo[i].numArestas = 0;
+    grafo[i].visitado = 0;
+}
+
 // Função para adicionar uma aresta ao grafo
 void adicionarAresta(Vertice* grafo, int origem, int destino) {
     grafo[origem].arestas = (Aresta*)realloc(grafo[origem].arestas, (grafo[origem].numArestas + 1) * sizeof(Aresta));
     grafo[origem].arestas[grafo[origem].numArestas].destino = destino;
     grafo[origem].numArestas++;
+
 }
 
 // Le os componentes da aresta

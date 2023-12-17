@@ -21,12 +21,8 @@ void recuperaDados8(char *nomeArquivo) {
     int numRegistros;
     fread(&numRegistros, sizeof(int), 1, arquivo);
 
-    Vertice *grafo = malloc(numRegistros * sizeof(Vertice));
-    if (grafo == NULL) {
-        perror("Falha na execução da funcionalidade");
-        fclose(arquivo);
-        exit(1);
-    }
+    Grafo grafo;
+    grafo.numVertices = 0;
 
     Registro registro;
     skipCabecalho(arquivo);
@@ -35,17 +31,27 @@ void recuperaDados8(char *nomeArquivo) {
     for (int i = 0; i < numRegistros; i++) {
         registro = leRegistro(arquivo, registro);
 
-        bool encontrado = 0;
+        int verticeOrigem = -1;
+        int verticeDestino = -1;
 
-        for(int j = 0; j < i; j++)
+        for(int j = 0; j < i; j++){
+            if(strcmp(grafo[j].nomeTecnologia, registro.tecnologiaOrigem.string) == 0)
+                verticeOrigem = j;
+            if(strcmp(grafo[j].nomeTecnologia, registro.tecnologiaDestino.string) == 0)
+                verticeDestino = j;
+            if(verticeOrigem != -1 && verticeDestino != -1)
+                break;
+        }
 
-        grafo[i].nomeTecnologia = registro.TecnologiaOrigem;
-        grafo[i].grupo = registro.grupo;
-        grafo[i].grauEntrada = 0;
-        grafo[i].grauSaida = 0;
-        grafo[i].grau = 0;
-        grafo[i].numArestas = 1;
-        grafo[i].visitado = 0;
+        if(verticeOrigem == -1){
+            adicionaVertice(grafo, registro.tecnologiaOrigem.string, registro.grupo);
+            verticeOrigem = grafo.numVertices - 1;
+        }
+
+        if(verticeOrigem == -1){
+            adicionaVertice(grafo, registro.tecnologiaDestino.string, registro.grupo);
+            verticeDestino = grafo.numVertices - 1;
+        }
 
         // Aloca espaço para as arestas do vértice
         grafo[i].arestas = (Aresta *)malloc(grafo[i].numArestas * sizeof(Aresta));
