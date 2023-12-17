@@ -1,7 +1,7 @@
 #include "funcionalidades.h"
 
 // Função para executar a funcionalidade 8 - cria grafo e imprime-o
-void criaGrafo(char *nomeArquivo) {
+void recuperaDadosGrafo(char *nomeArquivo, bool transposto) {
     // abre arquivo binario para leitura
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
@@ -10,141 +10,7 @@ void criaGrafo(char *nomeArquivo) {
         exit(1);
     }
 
-    // Verifica o status do arquivo
-    char statusArquivo;
-    fread(&statusArquivo, sizeof(char), 1, arquivo);
-    if (statusArquivo == '0') {
-        perror("Falha na execução da funcionalidade");
-        fclose(arquivo);
-        exit(1);
-    }
-
-    // le proxRRN (quantidade de registros)
-    int numRegistros;
-    fread(&numRegistros, sizeof(int), 1, arquivo);
-
-    // inicializa grafo
-    Grafo grafo = inicializarGrafo();
-
-    // pula o cabecalho do arquivo binario (deixa o ponteiro no inicio do primeiro registro)
-    Registro registro;
-    skipCabecalho(arquivo);
-
-    // adiciona registros no grafo
-    for (int i = 0; i < numRegistros; i++) {
-        // int trava;
-        // scanf("%d", &trava);
-        // lê registro do arquivo binario
-        if(!leRegistroNaoNulo(arquivo, &registro))
-            continue;
-        // imprimeRegistro(registro);
-        
-        // verifica se as tecnologias de origem e de destinos ja tem vertices, se tiver identifica quais sao os vertices, se nao cria vertices para elas 
-        int verticeOrigem = -1;
-        int verticeDestino = -1;
-
-        for(int j = 0; j < grafo.numVertices; j++){
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaOrigem.string) == 0)
-                verticeOrigem = j;
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaDestino.string) == 0)
-                verticeDestino = j;
-            if(verticeOrigem != -1 && verticeDestino != -1)
-                break;
-        }
-
-        if(verticeOrigem == -1){
-            adicionaVertice(&grafo, registro.TecnologiaOrigem.string, registro.grupo);
-            verticeOrigem = grafo.numVertices - 1;
-        }
-
-        if(verticeDestino == -1){
-            adicionaVertice(&grafo, registro.TecnologiaDestino.string, registro.grupo);
-            verticeDestino = grafo.numVertices - 1;
-        }
-
-        // cria aresta e a adiciona ao grafo
-        adicionaAresta(grafo.vertices, verticeOrigem, verticeDestino, registro.peso);
-    }
-
-    quicksortVertice(grafo.vertices, grafo.numVertices); // ordena os vertices do grafo
-    // for(int i = 0; i < grafo.numVertices; i++) // ordena a aresta de cada vertice do grafo
-    //     quicksortAresta(grafo.vertices[i].arestas, grafo.vertices[i].grauSaida);
-    imprimeGrafo(grafo);
-
-    // Libera a memória alocada
-    liberaGrafo(grafo);
-    fclose(arquivo);
-}
-
-// Função para executar a funcionalidade 9 - cria grafo transposto e imprime-o
-void criaGrafoTransposto(char *nomeArquivo) {
-    // abre arquivo binario para leitura
-    FILE *arquivo = fopen(nomeArquivo, "rb");
-    if (arquivo == NULL) {
-        perror("Falha na execução da funcionalidade");
-        fclose(arquivo);
-        exit(1);
-    }
-
-    // Verifica o status do arquivo
-    char statusArquivo;
-    fread(&statusArquivo, sizeof(char), 1, arquivo);
-    if (statusArquivo == '0') {
-        perror("Falha na execução da funcionalidade");
-        fclose(arquivo);
-        exit(1);
-    }
-
-    // le proxRRN (quantidade de registros)
-    int numRegistros;
-    fread(&numRegistros, sizeof(int), 1, arquivo);
-
-    // inicializa grafo
-    Grafo grafo = inicializarGrafo();
-
-    // pula o cabecalho do arquivo binario (deixa o ponteiro no inicio do primeiro registro)
-    Registro registro;
-    skipCabecalho(arquivo);
-
-    // adiciona registros no grafo
-    for (int i = 0; i < numRegistros; i++) {
-        // int trava;
-        // scanf("%d", &trava);
-        // lê registro do arquivo binario
-        if(!leRegistroNaoNulo(arquivo, &registro))
-            continue;
-        // imprimeRegistro(registro);
-        
-        // verifica se as tecnologias de origem e de destinos ja tem vertices, se tiver identifica quais sao os vertices, se nao cria vertices para elas 
-        int verticeOrigem = -1;
-        int verticeDestino = -1;
-
-        for(int j = 0; j < grafo.numVertices; j++){
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaOrigem.string) == 0)
-                verticeOrigem = j;
-            if(strcmp(grafo.vertices[j].nomeTecnologia, registro.TecnologiaDestino.string) == 0)
-                verticeDestino = j;
-            if(verticeOrigem != -1 && verticeDestino != -1)
-                break;
-        }
-
-        if(verticeOrigem == -1){
-            adicionaVertice(&grafo, registro.TecnologiaOrigem.string, registro.grupo);
-            verticeOrigem = grafo.numVertices - 1;
-        }
-
-        if(verticeDestino == -1){
-            adicionaVertice(&grafo, registro.TecnologiaDestino.string, registro.grupo);
-            verticeDestino = grafo.numVertices - 1;
-        }
-
-        // cria aresta e a adiciona ao grafo
-        adicionaAresta(grafo.vertices, verticeDestino, verticeOrigem, registro.peso);
-    }
-
-    quicksortVertice(grafo.vertices, grafo.numVertices); // ordena os vertices do grafo
-    // for(int i = 0; i < grafo.numVertices; i++) // ordena a aresta de cada vertice do grafo
-    //     quicksortAresta(grafo.vertices[i].arestas, grafo.vertices[i].grauSaida);
+    Grafo grafo = criaGrafo(arquivo, transposto);
     imprimeGrafo(grafo);
 
     // Libera a memória alocada

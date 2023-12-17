@@ -5,8 +5,7 @@
 #include "algoritmos.h"
 #include <stdbool.h>
 
-void criaGrafo(char *nomeArquivo);
-void criaGrafoTransposto(char *nomeArquivo);
+void recuperaDadosGrafo(char *nomeArquivo);
 void listaNomes(char *nomeArquivo, int n);
 void fortementeConexo(char* nomeArquivo);
 void caminhoCurto(char* nomeArquivo, int n);

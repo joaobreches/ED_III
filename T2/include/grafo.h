@@ -38,6 +38,7 @@ void liberaGrafo(Grafo grafo);
 void imprimeGrafo(Grafo grafo);
 void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo);
 void adicionaAresta(Vertice* vertices, int origem, int destino, int peso);
+Grafo criaGrafo(FILE *arquivo, bool transposto);
 int compararArestas(const void *a, const void *b);
 void dfs(Vertice* grafo, int vertice, Pilha* pilha);
 void dfsTransposto(Vertice* grafo, int vertice, int* componente, int componenteAtual);
