@@ -368,8 +368,7 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
       registro->TecnologiaOrigem.tamanho + registro->TecnologiaDestino.tamanho;
   fseek(arquivo, TAM_REGISTRO - tam_bytes, SEEK_CUR);
 
-
-  if(registro->peso == -1 || registro->popularidade == -1 || registro->grupo == -1 || registro->TecnologiaOrigem.tamanho == 0 || registro->TecnologiaDestino.tamanho == 0)
+  if(registro->grupo == -1 || registro->TecnologiaOrigem.tamanho == 0 || registro->TecnologiaDestino.tamanho == 0)
     return 0;
   return 1;
 }

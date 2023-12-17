@@ -39,6 +39,9 @@ void imprimeGrafo(Grafo grafo){
 
 // adiciona um vertice ao grafo
 void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
+    // if(strcmp(nomeTecnologia, "ANGULAR2") == 0 || strcmp(nomeTecnologia, "REACTJS") == 0)
+    //     printf("------------------TEC %s TEM GRUPO %d\n", nomeTecnologia, grupo);
+
     grafo->vertices = (Vertice**)realloc(grafo->vertices, (grafo->numVertices + 1) * sizeof(Vertice));
     grafo->vertices[grafo->numVertices] = (Vertice*) malloc(sizeof(Vertice));
     grafo->vertices[grafo->numVertices]->nomeTecnologia = (char*) malloc(50 * sizeof(char));
@@ -58,7 +61,6 @@ void adicionaVertice(Grafo *grafo, char *nomeTecnologia, int grupo){
     grafo->vertices[grafo->numVertices]->visitado = 0;
     grafo->vertices[grafo->numVertices]->ini = NULL;
 
-    // printf("ADICIONA VERTICE: nome %s\n\n", grafo->vertices[grafo->numVertices]->nomeTecnologia);
     // aumenta a contagem de quantidade de vertices em 1
     grafo->numVertices++;
 }
@@ -103,6 +105,16 @@ void adicionaAresta(Vertice** vertices, int origem, int destino, int peso) {
     
     vertices[destino]->grauEntrada++; // aumenta o grau de entrada da tecnologia de saida em 1
     vertices[destino]->grau++; // aumenta o grau total da tecnologia de saida em 1
+
+    // if(strcmp(vertices[origem]->nomeTecnologia, "AZURE") == 0){
+    //     Vertice* v = vertices[origem];
+    //     Aresta* aresta = v->ini;
+
+    //     for(int j = 0; j < v->grauSaida; j++){
+    //         printf("\n\n%s %d %d %d %d %s %d\n\n", v->nomeTecnologia, v->grupo, v->grauEntrada,  v->grauSaida, v->grau, aresta->destino->nomeTecnologia, aresta->peso);
+    //         aresta = aresta->prox;
+    //     }
+    // }
 }
 
 Grafo criaGrafo(FILE* arquivo, bool transposto){
@@ -142,8 +154,11 @@ Grafo criaGrafo(FILE* arquivo, bool transposto){
         int verticeDestino = -1;
 
         for(int j = 0; j < grafo.numVertices; j++){
-            if(strcmp(grafo.vertices[j]->nomeTecnologia, registro.TecnologiaOrigem.string) == 0)
+            if(strcmp(grafo.vertices[j]->nomeTecnologia, registro.TecnologiaOrigem.string) == 0){
                 verticeOrigem = j;
+                if(grafo.vertices[verticeOrigem]->grupo == -1)
+                    grafo.vertices[verticeOrigem]->grupo = registro.grupo;
+            }
             if(strcmp(grafo.vertices[j]->nomeTecnologia, registro.TecnologiaDestino.string) == 0)
                 verticeDestino = j;
             if(verticeOrigem != -1 && verticeDestino != -1)
@@ -156,7 +171,7 @@ Grafo criaGrafo(FILE* arquivo, bool transposto){
         }
 
         if(verticeDestino == -1){
-            adicionaVertice(&grafo, registro.TecnologiaDestino.string, registro.grupo);
+            adicionaVertice(&grafo, registro.TecnologiaDestino.string, -1);
             verticeDestino = grafo.numVertices - 1;
         }
         
