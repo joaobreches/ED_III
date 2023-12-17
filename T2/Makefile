@@ -50,3 +50,10 @@ limpeza:
 	git pull
 	git push
 	clear
+
+comentarios:
+	git add .
+	git commit -m "comentarios"
+	git pull
+	git push
+	clear

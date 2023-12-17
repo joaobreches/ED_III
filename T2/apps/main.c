@@ -58,10 +58,10 @@ int main() {
       //insereRegistro(leitura1, leitura2, atoi(leitura3));
       // break;
     case 8:   
-      recuperaDadosGrafo(leitura1, 0);
+      recuperaDadosGrafo(leitura1, 0); // cria grafo
       break;
     case 9:   
-      recuperaDadosGrafo(leitura1, 1);
+      recuperaDadosGrafo(leitura1, 1); // cria grafo transposto
       break;
     // case 10:   
     //   listaNomes(leitura1, atoi(leitura2));
