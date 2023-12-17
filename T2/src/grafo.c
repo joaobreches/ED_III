@@ -197,107 +197,112 @@ Grafo criaGrafo(FILE* arquivo, bool transposto){
 //     return strcmp(((Aresta*)a)->nomeTecDestino, ((Aresta*)b)->nomeTecDestino);
 // }
 
-// // Função para realizar uma DFS no grafo
-// void dfs(Vertice* grafo, int vertice, Pilha* pilha) {
-//     grafo[vertice].visitado = 1;
+// Função para realizar uma DFS no grafo
+void dfs(Vertice* vertice, Pilha* pilha) {
+    vertice->visitado = 1;
 
-//     for (int i = 0; i < grafo[vertice].numArestas; i++) {
-//         int destino = grafo[vertice].arestas[i].destino;
-//         if (!grafo[destino].visitado) {
-//             dfs(grafo, destino, pilha);
-//         }
-//     }
+    Aresta* atual = vertice->ini;
+    while (atual != NULL) {
+        Vertice* destino = atual->destino;
+        if (!destino->visitado) {
+            dfs(destino, pilha);
+        }
+        atual = atual->prox;
+    }
 
-//     empilhar(pilha, vertice);
-// }
+    empilhar(pilha, vertice);
+}
 
-// // Função para realizar uma DFS no grafo reverso (transposto)
-// void dfsTransposto(Vertice* grafo, int vertice, int* componente, int componenteAtual) {
-//     grafo[vertice].visitado = 1;
-//     componente[vertice] = componenteAtual;
+// Função para realizar uma DFS no grafo reverso (transposto)
+void dfsTransposto(Vertice* vertice, int* componente, int componenteAtual) {
+    vertice->visitado = 1;
+    componente[vertice] = componenteAtual;
 
-//     for (int i = 0; i < grafo[vertice].numArestas; i++) {
-//         int destino = grafo[vertice].arestas[i].destino;
-//         if (!grafo[destino].visitado) {
-//             dfsTransposto(grafo, destino, componente, componenteAtual);
-//         }
-//     }
-// }
+    Aresta* atual = vertice->ini;
 
-// // Função para realizar uma busca em largura no grafo
-// int bfs(Vertice* grafo, int numVertices, int origem, int destino) {
-//     int* visitado = (int*)malloc(numVertices * sizeof(int));
-//     for (int i = 0; i < numVertices; i++) {
-//         visitado[i] = 0;
-//     }
+    for (int i = 0; i < vertice->numArestas; i++) {
+        Vertice* destino = atual->destino;
+        if (!destino->visitado) {
+            dfsTransposto(destino, componente, componenteAtual);
+        }
+        atual = atual->prox;
+    }
+}
 
-//     // Fila para a BFS
-//     int* fila = (int*)malloc(numVertices * sizeof(int));
-//     int frente = 0;
-//     int tras = 0;
+// Função para realizar uma busca em largura no grafo
+int bfs(Vertice* grafo, int numVertices, int origem, int destino) {
+    int* visitado = (int*)malloc(numVertices * sizeof(int));
+    for (int i = 0; i < numVertices; i++) {
+        visitado[i] = 0;
+    }
 
-//     // Inicia a busca a partir do vértice de origem
-//     visitado[origem] = 1;
-//     fila[tras++] = origem;
+    // Fila para a BFS
+    int* fila = (int*)malloc(numVertices * sizeof(int));
+    int frente = 0;
+    int tras = 0;
 
-//     while (frente != tras) {
-//         int verticeAtual = fila[frente++];
-//         for (int i = 0; i < grafo[verticeAtual].numArestas; i++) {
-//             int vizinho = grafo[verticeAtual].arestas[i].destino;
-//             if (!visitado[vizinho]) {
-//                 visitado[vizinho] = 1;
-//                 fila[tras++] = vizinho;
-//             }
-//         }
-//     }
+    // Inicia a busca a partir do vértice de origem
+    visitado[origem] = 1;
+    fila[tras++] = origem;
 
-//     int alcancavel = visitado[destino];
+    while (frente != tras) {
+        int verticeAtual = fila[frente++];
+        for (int i = 0; i < grafo[verticeAtual].numArestas; i++) {
+            int vizinho = grafo[verticeAtual].arestas[i].destino;
+            if (!visitado[vizinho]) {
+                visitado[vizinho] = 1;
+                fila[tras++] = vizinho;
+            }
+        }
+    }
 
-//     free(visitado);
-//     free(fila);
+    int alcancavel = visitado[destino];
 
-//     return alcancavel;
-// }
+    free(visitado);
+    free(fila);
 
-// // Função para calcular o caminho mais curto usando o algoritmo de Dijkstra
-// int dijkstra(Vertice* grafo, int numVertices, int origem, int destino) {
-//     int* distancia = (int*)malloc(numVertices * sizeof(int));
-//     int* visitado = (int*)malloc(numVertices * sizeof(int));
+    return alcancavel;
+}
 
-//     for (int i = 0; i < numVertices; i++) {
-//         distancia[i] = INT_MAX;
-//         visitado[i] = 0;
-//     }
+// Função para calcular o caminho mais curto usando o algoritmo de Dijkstra
+int dijkstra(Vertice* grafo, int numVertices, int origem, int destino) {
+    int* distancia = (int*)malloc(numVertices * sizeof(int));
+    int* visitado = (int*)malloc(numVertices * sizeof(int));
+    Aresta grafo;
+    for (int i = 0; i < numVertices; i++) {
+        distancia[i] = INT_MAX;
+        visitado[i] = 0;
+    }
 
-//     distancia[origem] = 0;
+    distancia[origem] = 0;
 
-//     for (int i = 0; i < numVertices - 1; i++) {
-//         int u = -1;
-//         for (int j = 0; j < numVertices; j++) {
-//             if (!visitado[j] && (u == -1 || distancia[j] < distancia[u])) {
-//                 u = j;
-//             }
-//         }
+    for (int i = 0; i < numVertices - 1; i++) {
+        int u = -1;
+        for (int j = 0; j < numVertices; j++) {
+            if (!visitado[j] && (u == -1 || distancia[j] < distancia[u])) {
+                u = j;
+            }
+        }
 
-//         visitado[u] = 1;
+        visitado[u] = 1;
 
-//         for (int j = 0; j < grafo[u].numArestas; j++) {
-//             int v = grafo[u].arestas[j].destino;
-//             int peso = grafo[u].arestas[j].peso;
+        for (int j = 0; j < grafo[u].numArestas; j++) {
+            int v = grafo[u].arestas[j].destino;
+            int peso = grafo[u].arestas[j].peso;
 
-//             if (distancia[u] != INT_MAX && distancia[u] + peso < distancia[v]) {
-//                 distancia[v] = distancia[u] + peso;
-//             }
-//         }
-//     }
+            if (distancia[u] != INT_MAX && distancia[u] + peso < distancia[v]) {
+                distancia[v] = distancia[u] + peso;
+            }
+        }
+    }
 
-//     int resultado = distancia[destino];
+    int resultado = distancia[destino];
 
-//     free(distancia);
-//     free(visitado);
+    free(distancia);
+    free(visitado);
 
-//     return resultado;
-// }
+    return resultado;
+}
 
 void quicksortRecursivoVertice(Vertice **v, int ini, int fim) {
     Vertice *pivo, *aux;
