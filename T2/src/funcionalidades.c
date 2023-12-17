@@ -153,71 +153,71 @@ void listaNomes(char *nomeArquivo, int n) {
 //     free(componente);
 // }
 
-// Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)
-void caminhoCurto(char* nomeArquivo, int n) {
-    // Abrir o arquivo binário para leitura
-    FILE *arquivo = fopen(nomeArquivo, "rb");
-    if (arquivo == NULL) {
-        printf("Falha na execução da funcionalidade.\n");
-        return;
-    }
+// // Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)
+// void caminhoCurto(char* nomeArquivo, int n) {
+//     // Abrir o arquivo binário para leitura
+//     FILE *arquivo = fopen(nomeArquivo, "rb");
+//     if (arquivo == NULL) {
+//         printf("Falha na execução da funcionalidade.\n");
+//         return;
+//     }
 
-    // Lê o número de registros no arquivo
-    int numRegistros;
-    fread(&numRegistros, sizeof(int), 1, arquivo);
+//     // Lê o número de registros no arquivo
+//     int numRegistros;
+//     fread(&numRegistros, sizeof(int), 1, arquivo);
 
-    // Inicializa o grafo
-    Vertice *vertice;
+//     // Inicializa o grafo
+//     Vertice *vertice;
 
-    // Lê os registros do arquivo
-    Aresta aresta;
-    Registro registro;
-    skipCabecalho(arquivo);
+//     // Lê os registros do arquivo
+//     Aresta aresta;
+//     Registro registro;
+//     skipCabecalho(arquivo);
 
-    for (int i = 0; i < numRegistros; i++) {
-        //lê registro do arquivo
-        if(!leRegistroNaoNulo(arquivo, &registro))
-            continue;
-        imprimeRegistro(registro);
-    }
+//     for (int i = 0; i < numRegistros; i++) {
+//         //lê registro do arquivo
+//         if(!leRegistroNaoNulo(arquivo, &registro))
+//             continue;
+//         imprimeRegistro(registro);
+//     }
 
 
-    // Fecha o arquivo
-    fclose(arquivo);
+//     // Fecha o arquivo
+//     fclose(arquivo);
 
-    // Realiza a funcionalidade
-    for (int i = 0; i < n; i++) {
-        char tecnologiaOrigem[TAM_NOME];
-        char tecnologiaDestino[TAM_NOME];
+//     // Realiza a funcionalidade
+//     for (int i = 0; i < n; i++) {
+//         char tecnologiaOrigem[TAM_NOME];
+//         char tecnologiaDestino[TAM_NOME];
 
-        // Lê as tecnologias de origem e destino
-        scanf("%s %s", tecnologiaOrigem, tecnologiaDestino);
+//         // Lê as tecnologias de origem e destino
+//         scanf("%s %s", tecnologiaOrigem, tecnologiaDestino);
 
-        int origem = -1;
-        int destino = -1;
+//         int origem = -1;
+//         int destino = -1;
 
-        // Encontra os índices dos vértices correspondentes às tecnologias
-        for (int j = 0; j < numRegistros; j++) {
-            if (strcmp(vertice[j].nomeTecnologia, tecnologiaOrigem) == 0) {
-                origem = j;
-            }
-            if (strcmp(vertice[j].nomeTecnologia, tecnologiaDestino) == 0) {
-                destino = j;
-            }
-        }
+//         // Encontra os índices dos vértices correspondentes às tecnologias
+//         for (int j = 0; j < numRegistros; j++) {
+//             if (strcmp(vertice[j].nomeTecnologia, tecnologiaOrigem) == 0) {
+//                 origem = j;
+//             }
+//             if (strcmp(vertice[j].nomeTecnologia, tecnologiaDestino) == 0) {
+//                 destino = j;
+//             }
+//         }
 
-        // Verifica se as tecnologias foram encontradas
-        if (origem == -1 || destino == -1) {
-            printf("Registro inexistente.\n");
-        } else {
-            // Verifica se há caminho entre as tecnologias
-            if (bfs(vertice, numRegistros, origem, destino)) {
-                // Calcula o caminho mais curto usando Dijkstra
-                int pesoCaminho = dijkstra(vertice, numRegistros, origem, destino);
-                printf("%s %s: %d\n", tecnologiaOrigem, tecnologiaDestino, pesoCaminho);
-            } else {
-                printf("%s %s: CAMINHO INEXISTENTE\n", tecnologiaOrigem, tecnologiaDestino);
-            }
-        }
-    }
-}
+//         // Verifica se as tecnologias foram encontradas
+//         if (origem == -1 || destino == -1) {
+//             printf("Registro inexistente.\n");
+//         } else {
+//             // Verifica se há caminho entre as tecnologias
+//             if (bfs(vertice, numRegistros, origem, destino)) {
+//                 // Calcula o caminho mais curto usando Dijkstra
+//                 int pesoCaminho = dijkstra(vertice, numRegistros, origem, destino);
+//                 printf("%s %s: %d\n", tecnologiaOrigem, tecnologiaDestino, pesoCaminho);
+//             } else {
+//                 printf("%s %s: CAMINHO INEXISTENTE\n", tecnologiaOrigem, tecnologiaDestino);
+//             }
+//         }
+//     }
+// }
