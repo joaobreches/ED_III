@@ -75,6 +75,7 @@ void listaNomes(char *nomeArquivo, int n) {
 
     // Libera a memória alocada
     liberaGrafo(grafoTransposto);
+    free(tecnologia);
 }
 
 // // Função para determinar se o grafo é fortemente conexo
