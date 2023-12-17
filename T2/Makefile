@@ -8,7 +8,6 @@ test2:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./bin/main
 	
 all:
-	clear
 	gcc -c -g ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c -g ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c -g ./src/registro.c -I ./include -o ./obj/registro.o
@@ -19,7 +18,6 @@ all:
 	gcc -g ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
 
 run:
-	clear
 	./bin/main
 
 crl: #compile and run for linux
