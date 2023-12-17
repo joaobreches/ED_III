@@ -31,7 +31,7 @@ void imprimeGrafo(Grafo grafo){
         Aresta* aresta = v->ini;
 
         for(int j = 0; j < v->grauSaida; j++){
-            printf("%s, %d, %d, %d, %d, %s, %d\n", v->nomeTecnologia, v->grupo, v->grauEntrada,  v->grauSaida, v->grau, aresta->destino->nomeTecnologia, aresta->peso);
+            printf("%s %d %d %d %d %s %d\n", v->nomeTecnologia, v->grupo, v->grauEntrada,  v->grauSaida, v->grau, aresta->destino->nomeTecnologia, aresta->peso);
             aresta = aresta->prox;
         }
     }
