@@ -48,7 +48,7 @@ int main() {
       listaNomes(strings[1], atoi(strings[2]), strings);
       break;
     case 11:   
-      fortementeConexo(strings[1], 0);
+      fortementeConexo(strings[1]);
       break;
     case 12:   
       caminhoCurto(strings[1], atoi(strings[2]), strings);
