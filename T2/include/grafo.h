@@ -51,8 +51,8 @@ Grafo criaGrafo(FILE *arquivo, bool transposto);
 // int compararArestas(const void *a, const void *b);
 void dfs(Vertice* vertice, Pilha* pilha);
 // void dfsTransposto(Vertice* vertice, int* componente, int componenteAtual);
-int bfs(Vertice* grafo, int numVertices, int origem, int destino);
-int dijkstra(Vertice* grafo, int numVertices, int origem, int destino);
+int bfs(Vertice** grafo, int numVertices, int origem, int destino);
+int dijkstra(Vertice** grafo, int numVertices, int origem, int destino);
 void quicksortRecursivoVertice(Vertice **v, int ini, int fim);
 void quicksortVertice(Vertice **v, int n);
 

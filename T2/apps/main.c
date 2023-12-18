@@ -44,9 +44,9 @@ int main() {
     case 11:   
       fortementeConexo(leitura1);
       break;
-    // case 12:   
-    //   caminhoCurto(leitura1, atoi(leitura2));
-    //   break;
+    case 12:   
+      caminhoCurto(leitura1, atoi(leitura2));
+      break;
   }
 
   // libera a memoria alocada
