@@ -105,33 +105,28 @@ void fortementeConexo(char* nomeArquivo) {
     // Fecha o arquivo
     fclose(arquivo);
 
-    // Inicializa um vetor para armazenar os componentes fortemente conexos
-    // int *componente = (int*)malloc(grafo.numVertices * sizeof(int));
-
-    // Realiza a DFS no grafo transposto para calcular os componentes fortemente conexos
-    // int componenteAtual = 0;
     int numComponentes = 0;
+
     while (!pilhaVazia(pilha)) {
         Vertice* vertice = desempilhar(pilha);
+
+        int indice = 0;
+        while (strcmp(grafoTransposto.vertices[indice]->nomeTecnologia, vertice->nomeTecnologia) != 0)
+            indice++;
+
+        vertice = grafoTransposto.vertices[indice];
+        
         if (!vertice->visitado) {
             dfs(vertice, NULL);
-            // componenteAtual++;
             numComponentes++;
         }
     }
 
-    // Verifica quantos componentes fortemente conexos foram encontrados
-    // for (int i = 0; i < grafo.numVertices; i++) {
-    //     if (componente[i] > numComponentes) {
-    //         numComponentes = componente[i];
-    //     }
-    // }
-
     // Verifica se o grafo é fortemente conexo
-    if (numComponentes == 0) {
-        printf("Nao, o grafo nao e fortemente conexo e possui 0 componentes.\n");
+    if (numComponentes > 1) {
+        printf("Não, o grafo não é fortemente conexo e possui %d componentes.\n", numComponentes);
     } else {
-        printf("Sim, o grafo e fortemente conexo e possui %d componente%s.\n", numComponentes + 1, (numComponentes == 0) ? "" : "s");
+        printf("Sim, o grafo é fortemente conexo e possui 1 componente.\n");
     }
 
     // Libera a memória alocada
@@ -139,7 +134,6 @@ void fortementeConexo(char* nomeArquivo) {
     free(pilha);
     liberaGrafo(grafo);
     liberaGrafo(grafoTransposto);
-    // free(componente);
 }
 
 // // Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)

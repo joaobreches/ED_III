@@ -200,7 +200,7 @@ Grafo criaGrafo(FILE* arquivo, bool transposto){
 // Funções auxiliares DFS
 void dfs(Vertice* vertice, Pilha* pilha) {
     vertice->visitado = 1;
-    
+
     Aresta* aresta = vertice->ini;
     while (aresta != NULL) {
         if (!aresta->destino->visitado) {
@@ -359,6 +359,8 @@ int pilhaVazia(Pilha* pilha) {
 
 // Função para empilhar um elemento na pilha
 void empilhar(Pilha* pilha, Vertice* item) {
+    if(pilha == NULL)
+        return;
     pilha->array[++pilha->topo] = *item;
 }
 
