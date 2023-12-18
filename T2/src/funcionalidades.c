@@ -10,6 +10,7 @@ void recuperaDadosGrafo(char *nomeArquivo, bool transposto) {
         exit(1);
     }
 
+    // cria e imprime grafo
     Grafo grafo = criaGrafo(arquivo, transposto);
     imprimeGrafo(grafo);
 
@@ -19,7 +20,7 @@ void recuperaDadosGrafo(char *nomeArquivo, bool transposto) {
 }
 
 // Função para executar a funcionalidade 10
-void listaNomes(char *nomeArquivo, int n) {
+void listaNomes(char *nomeArquivo, int n, char** strings) {
     // abre arquivo binario para leitura
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
@@ -28,31 +29,26 @@ void listaNomes(char *nomeArquivo, int n) {
         exit(1);
     }
 
+    // cria grafo transposto e libera memoria alocada
     Grafo grafoTransposto = criaGrafo(arquivo, 1);
     fclose(arquivo);
 
     // Realiza a funcionalidade n vezes
     for (int k = 0; k < n; k++) {
-        char tecnologia[TAM_REGISTRO_FIXO];
+        char* tecnologia = strings[k+3];
 
-        // le o nome da tecnologia a ser buscada
-        scanf("%s", tecnologia);
-
-        // limpa a tecnologia se for uma string (remove as aspas)
+        // limpa a string da tecnologia (remove as aspas)
         int i;
         for(i = 0; tecnologia[i] != '\0'; i++){
             tecnologia[i] = tecnologia[i + 1];
         }
         tecnologia[i - 2] = '\0';
 
-        // Encontra o índice correspondente ao nome passado como parâmetro
-        int indice = 0;
-        while (strcmp(grafoTransposto.vertices[indice]->nomeTecnologia, tecnologia) != 0) {
-            indice++;
-            if (indice > grafoTransposto.numVertices) {
-                printf("Registro inexistente.\n\n");
-                continue;
-            }
+        // Busca o indice correspondente ao nome passado como parâmetro
+        int indice = buscaIndice(grafoTransposto, tecnologia);
+        if (indice == -1) { // tecnologia nao encontrada
+            printf("Registro inexistente.\n\n");
+            continue;
         }
 
         // Imprime a tecnologia passada como parâmetro
@@ -70,6 +66,11 @@ void listaNomes(char *nomeArquivo, int n) {
             }
             aresta = aresta->prox;
         }
+
+        // a tecnologia nao foi gerada por outra
+        if (grafoTransposto.vertices[indice]->grauSaida == 0)
+            printf("Registro inexistente.");
+
         printf("\n\n");
     }
 
@@ -89,7 +90,7 @@ void fortementeConexo(char* nomeArquivo) {
     // Inicializa o grafo
     Grafo grafo = criaGrafo(arquivo, 0);
 
-    // Realiza a funcionalidade
+    // Inicializa a pilha
     Pilha* pilha = inicializarPilha(grafo.numVertices);
 
     // Realiza a primeira DFS para preencher a pilha
@@ -105,33 +106,29 @@ void fortementeConexo(char* nomeArquivo) {
     // Fecha o arquivo
     fclose(arquivo);
 
-    // Inicializa um vetor para armazenar os componentes fortemente conexos
-    // int *componente = (int*)malloc(grafo.numVertices * sizeof(int));
-
-    // Realiza a DFS no grafo transposto para calcular os componentes fortemente conexos
-    // int componenteAtual = 0;
+    // Inicializa contagem de componentes fortemente conexos
     int numComponentes = 0;
+
+    // Realiza a DFS no grafo transposto desempilhando-o
     while (!pilhaVazia(pilha)) {
-        Vertice* vertice = desempilhar(pilha);
+        Vertice* vertice = desempilhar(pilha); // desempilha o vertice usado no grafo original
+
+        int indice = buscaIndice(grafoTransposto, vertice->nomeTecnologia); // busca o vertice correspondente no grafo transposto
+
+        vertice = grafoTransposto.vertices[indice]; // atribui o vertice no grafo transposto ao vertice utilizado
+        
+        // realiza a DFS no grafo transposto e atualiza a contagem de componentes
         if (!vertice->visitado) {
             dfs(vertice, NULL);
-            // componenteAtual++;
             numComponentes++;
         }
     }
 
-    // Verifica quantos componentes fortemente conexos foram encontrados
-    // for (int i = 0; i < grafo.numVertices; i++) {
-    //     if (componente[i] > numComponentes) {
-    //         numComponentes = componente[i];
-    //     }
-    // }
-
     // Verifica se o grafo é fortemente conexo
-    if (numComponentes == 0) {
-        printf("Nao, o grafo nao e fortemente conexo e possui 0 componentes.\n");
+    if (numComponentes > 1) {
+        printf("Não, o grafo não é fortemente conexo e possui %d componentes.\n", numComponentes);
     } else {
-        printf("Sim, o grafo e fortemente conexo e possui %d componente%s.\n", numComponentes + 1, (numComponentes == 0) ? "" : "s");
+        printf("Sim, o grafo é fortemente conexo e possui 1 componente.\n");
     }
 
     // Libera a memória alocada
@@ -139,7 +136,6 @@ void fortementeConexo(char* nomeArquivo) {
     free(pilha);
     liberaGrafo(grafo);
     liberaGrafo(grafoTransposto);
-    // free(componente);
 }
 
 // Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)

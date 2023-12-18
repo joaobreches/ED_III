@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 void recuperaDadosGrafo(char *nomeArquivo, bool transposto);
-void listaNomes(char *nomeArquivo, int n);
+void listaNomes(char *nomeArquivo, int n, char** strings);
 void fortementeConexo(char* nomeArquivo);
 void caminhoCurto(char* nomeArquivo, int n);
 

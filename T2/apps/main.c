@@ -10,50 +10,55 @@
 #define NAO_REMOVIDO '0'
 
 int main() {
-  
-  char *leitura1, *leitura2, *leitura3, *linha;
-  int funcionalidade;
+  char linha[500];
+  char *token;
+  char *strings[50];
 
-  // aloca memoria para as strings
-  linha = (char *) malloc(300 * sizeof(char));
-  leitura1 = (char *) malloc(100 * sizeof(char));
-  leitura2 = (char *) malloc(100 * sizeof(char));
-  leitura3 = (char *) malloc(100 * sizeof(char));
+  // le a linha
+  fgets(linha, sizeof(linha), stdin);
 
-  if (linha == NULL || leitura1 == NULL || leitura2 == NULL) {
-    printf("Erro na alocação de memória.\n");
-    return 1;
+  // remove \n da linha
+  size_t length = strlen(linha);
+  if (length > 0 && linha[length - 1] == '\n') {
+      linha[length - 1] = '\0';
   }
 
-  // le uma linha de entrada do terminal
-  fgets(linha, 300, stdin);
-  // armazena os valores lidos nas suas respectivas variaveis
-  sscanf(linha, "%d %s %s %s", &funcionalidade, leitura1, leitura2, leitura3);
+  // separa a linha em strings a cada espaço
+  token = strtok(linha, " ");
+
+  int i = 0;
+  // Armazena as strings no vetor
+  while (token != NULL && i < sizeof(strings) / sizeof(strings[0])) {
+      strings[i] = strdup(token);  // strdup aloca memória para a nova string
+      token = strtok(NULL, " ");
+      i++;
+  }
+
+  int funcionalidade = atoi(strings[0]); 
 
   // chama cada funcionalidade de acordo com a entrada no terminal
   switch (funcionalidade){
-    case 8:   
-      recuperaDadosGrafo(leitura1, 0); // cria grafo
+    case 8:
+      recuperaDadosGrafo(strings[1], 0); // cria grafo (transposto = FALSE = 0)
       break;
     case 9:   
-      recuperaDadosGrafo(leitura1, 1); // cria grafo transposto
+      recuperaDadosGrafo(strings[1], 1); // cria grafo transposto (transposto = TRUE = 1)
       break;
     case 10:   
-      listaNomes(leitura1, atoi(leitura2));
+      listaNomes(strings[1], atoi(strings[2]), strings);
       break;
     case 11:   
-      fortementeConexo(leitura1);
+      fortementeConexo(strings[1]);
       break;
     case 12:   
-      caminhoCurto(leitura1, atoi(leitura2));
+      caminhoCurto(strings[1], atoi(strings[2]));
       break;
   }
 
-  // libera a memoria alocada
-  free(leitura1);
-  free(leitura2);
-  free(leitura3);
-  free(linha);
+  // Libera a memória alocada para as strings
+  for (int j = 0; j < i; j++) {
+      free(strings[j]);
+  }
 
   return 0;
 }
