@@ -51,7 +51,7 @@ int main() {
       fortementeConexo(strings[1], 0);
       break;
     case 12:   
-      caminhoCurto(strings[1], atoi(strings[2]));
+      caminhoCurto(strings[1], atoi(strings[2]), strings);
       break;
   }
 
