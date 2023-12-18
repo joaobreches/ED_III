@@ -139,7 +139,7 @@ void fortementeConexo(char* nomeArquivo) {
 }
 
 // Função para executar a funcionalidade 12void executarFuncionalidade12(const char* nomeArquivo, int n)
-void caminhoCurto(char* nomeArquivo, int n) {
+void caminhoCurto(char* nomeArquivo, int n, char** strings) {
     // Abrir o arquivo binário para leitura
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
@@ -151,14 +151,11 @@ void caminhoCurto(char* nomeArquivo, int n) {
     Grafo grafo = criaGrafo(arquivo, 0);
     Vertice** vertice = grafo.vertices;
 
-
+    
     // Realiza a funcionalidade
     for (int i = 0; i < n; i++) {
-        char tecnologiaOrigem[TAM_NOME];
-        char tecnologiaDestino[TAM_NOME];
-
-        // Lê as tecnologias de origem e destino
-        scanf("%s %s", tecnologiaOrigem, tecnologiaDestino);
+        char* tecnologiaOrigem = strings[3 + i *2];
+        char* tecnologiaDestino = strings[2* i + 4];
 
         int origem = -1;
         int destino = -1;
@@ -168,7 +165,7 @@ void caminhoCurto(char* nomeArquivo, int n) {
             tecnologiaDestino[k] = tecnologiaDestino[k + 1];
         }
         tecnologiaDestino[k - 2] = '\0';
-        
+
         for(k = 0; tecnologiaOrigem[k] != '\0'; k++){
             tecnologiaOrigem[k] = tecnologiaOrigem[k + 1];
         }
@@ -194,8 +191,11 @@ void caminhoCurto(char* nomeArquivo, int n) {
                 // Calcula o caminho mais curto usando Dijkstra
                 printf("%s %s: %d\n", tecnologiaOrigem, tecnologiaDestino, pesoCaminho);
             } else {
-                printf("%s %s: CAMINHO INEXISTENTE\n", tecnologiaOrigem, tecnologiaDestino);
+                printf("%s %s: CAMINHO INEXISTENTE.\n", tecnologiaOrigem, tecnologiaDestino);
             }
         }
     }
+
+    fclose(arquivo);
+    liberaGrafo(grafo);
 }
