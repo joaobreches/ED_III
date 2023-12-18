@@ -84,8 +84,8 @@ void fortementeConexo(char* nomeArquivo) {
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
         perror("Falha na execução da funcionalidade");
-        // fclose(arquivo);
-        // exit(1);
+        fclose(arquivo);
+        exit(1);
     }
 
     // Inicializa o grafo
