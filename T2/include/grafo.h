@@ -39,7 +39,6 @@ void adicionaAresta(Vertice** vertices, int origem, int destino, int peso);
 Grafo criaGrafo(FILE *arquivo, bool transposto);
 int buscaIndice(Grafo grafo, char* nomeTecnologia);
 void dfs(Vertice* vertice, Pilha* pilha);
-int bfs(Vertice* grafo, int numVertices, int origem, int destino);
 int dijkstra(Vertice** grafo, int numVertices, int origem, int destino);
 void quicksortRecursivoVertice(Vertice **v, int ini, int fim);
 void quicksortVertice(Vertice **v, int n);
