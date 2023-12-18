@@ -313,7 +313,7 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
   /* 
   Essa função le o registro e lida com as suas questões gerais, como verificar se o mesmo existe, lidar com nulos, lidar com lixo e le os campos do registro, armazenando a leitura no registro auxiliar
 
-  Retorna 0 se nao houver registro ou se houver campo nulo. Retorna 1 se a leitura foi realizada com sucesso.
+  Retorna 0 se nao houver registro ou se houver tecnologia ou grupo nulo. Retorna 1 se a leitura foi realizada com sucesso.
   */
 
   fread(&registro->removido, sizeof(char), 1, arquivo);
@@ -370,6 +370,7 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
       registro->TecnologiaOrigem.tamanho + registro->TecnologiaDestino.tamanho;
   fseek(arquivo, TAM_REGISTRO - tam_bytes, SEEK_CUR);
 
+  // verifica as condicoes de retorno
   if(registro->grupo == -1 || registro->TecnologiaOrigem.tamanho == 0 || registro->TecnologiaDestino.tamanho == 0){
     if(registro->TecnologiaOrigem.tamanho != 0)
       free(registro->TecnologiaOrigem.string);

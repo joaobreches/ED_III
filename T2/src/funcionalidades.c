@@ -10,6 +10,7 @@ void recuperaDadosGrafo(char *nomeArquivo, bool transposto) {
         exit(1);
     }
 
+    // cria e imprime grafo
     Grafo grafo = criaGrafo(arquivo, transposto);
     imprimeGrafo(grafo);
 
@@ -28,6 +29,7 @@ void listaNomes(char *nomeArquivo, int n) {
         exit(1);
     }
 
+    // cria grafo transposto e libera memoria alocada
     Grafo grafoTransposto = criaGrafo(arquivo, 1);
     fclose(arquivo);
 
@@ -38,21 +40,18 @@ void listaNomes(char *nomeArquivo, int n) {
         // le o nome da tecnologia a ser buscada
         scanf("%s", tecnologia);
 
-        // limpa a tecnologia se for uma string (remove as aspas)
+        // limpa a string da tecnologia (remove as aspas)
         int i;
         for(i = 0; tecnologia[i] != '\0'; i++){
             tecnologia[i] = tecnologia[i + 1];
         }
         tecnologia[i - 2] = '\0';
 
-        // Encontra o índice correspondente ao nome passado como parâmetro
-        int indice = 0;
-        while (strcmp(grafoTransposto.vertices[indice]->nomeTecnologia, tecnologia) != 0) {
-            indice++;
-            if (indice > grafoTransposto.numVertices) {
-                printf("Registro inexistente.\n\n");
-                continue;
-            }
+        // Busca o indice correspondente ao nome passado como parâmetro
+        int indice = buscaIndice(grafoTransposto, tecnologia);
+        if (indice == -1) { // tecnologia nao encontrada
+            printf("Registro inexistente.\n\n");
+            continue;
         }
 
         // Imprime a tecnologia passada como parâmetro
@@ -70,6 +69,11 @@ void listaNomes(char *nomeArquivo, int n) {
             }
             aresta = aresta->prox;
         }
+
+        // a tecnologia nao foi gerada por outra
+        if (grafoTransposto.vertices[indice]->grauSaida == 0)
+            printf("Registro inexistente.");
+
         printf("\n\n");
     }
 
@@ -89,7 +93,7 @@ void fortementeConexo(char* nomeArquivo) {
     // Inicializa o grafo
     Grafo grafo = criaGrafo(arquivo, 0);
 
-    // Realiza a funcionalidade
+    // Inicializa a pilha
     Pilha* pilha = inicializarPilha(grafo.numVertices);
 
     // Realiza a primeira DFS para preencher a pilha
@@ -105,17 +109,18 @@ void fortementeConexo(char* nomeArquivo) {
     // Fecha o arquivo
     fclose(arquivo);
 
+    // Inicializa contagem de componentes fortemente conexos
     int numComponentes = 0;
 
+    // Realiza a DFS no grafo transposto desempilhando-o
     while (!pilhaVazia(pilha)) {
-        Vertice* vertice = desempilhar(pilha);
+        Vertice* vertice = desempilhar(pilha); // desempilha o vertice usado no grafo original
 
-        int indice = 0;
-        while (strcmp(grafoTransposto.vertices[indice]->nomeTecnologia, vertice->nomeTecnologia) != 0)
-            indice++;
+        int indice = buscaIndice(grafoTransposto, vertice->nomeTecnologia); // busca o vertice correspondente no grafo transposto
 
-        vertice = grafoTransposto.vertices[indice];
+        vertice = grafoTransposto.vertices[indice]; // atribui o vertice no grafo transposto ao vertice utilizado
         
+        // realiza a DFS no grafo transposto e atualiza a contagem de componentes
         if (!vertice->visitado) {
             dfs(vertice, NULL);
             numComponentes++;

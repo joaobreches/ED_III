@@ -33,10 +33,10 @@ int main() {
   // chama cada funcionalidade de acordo com a entrada no terminal
   switch (funcionalidade){
     case 8:   
-      recuperaDadosGrafo(leitura1, 0); // cria grafo
+      recuperaDadosGrafo(leitura1, 0); // cria grafo (transposto = FALSE = 0)
       break;
     case 9:   
-      recuperaDadosGrafo(leitura1, 1); // cria grafo transposto
+      recuperaDadosGrafo(leitura1, 1); // cria grafo transposto (transposto = TRUE = 1)
       break;
     case 10:   
       listaNomes(leitura1, atoi(leitura2));
