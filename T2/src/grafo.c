@@ -212,24 +212,8 @@ void dfs(Vertice* vertice, Pilha* pilha) {
     empilhar(pilha, vertice);
 }
 
-// // Função para realizar uma DFS no grafo reverso (transposto)
-// void dfsTransposto(Vertice* vertice, int* componente, int componenteAtual) {
-//     vertice->visitado = 1;
-//     componente[vertice] = componenteAtual;
-
-//     Aresta* atual = vertice->ini;
-
-//     for (int i = 0; i < vertice->numArestas; i++) {
-//         Vertice* destino = atual->destino;
-//         if (!destino->visitado) {
-//             dfsTransposto(destino, componente, componenteAtual);
-//         }
-//         atual = atual->prox;
-//     }
-// }
-
-// // Função para realizar uma busca em largura no grafo
-// int bfs(Vertice* grafo, int numVertices, int origem, int destino) {
+// Função para realizar uma busca em largura no grafo
+// int bfs(Vertice* vertice, int numVertices, int origem, int destino) {
 //     int* visitado = (int*)malloc(numVertices * sizeof(int));
 //     for (int i = 0; i < numVertices; i++) {
 //         visitado[i] = 0;
@@ -246,8 +230,8 @@ void dfs(Vertice* vertice, Pilha* pilha) {
 
 //     while (frente != tras) {
 //         int verticeAtual = fila[frente++];
-//         for (int i = 0; i < grafo[verticeAtual].numArestas; i++) {
-//             int vizinho = grafo[verticeAtual].arestas[i].destino;
+//         for (int i = 0; i < vertice[verticeAtual].numArestas; i++) {
+//             Vertice* vizinho = verticeAtual.destino;
 //             if (!visitado[vizinho]) {
 //                 visitado[vizinho] = 1;
 //                 fila[tras++] = vizinho;

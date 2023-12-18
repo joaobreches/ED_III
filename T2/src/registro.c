@@ -333,6 +333,7 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
   if (registro->TecnologiaOrigem.tamanho != 0) {
     registro->TecnologiaOrigem.string = malloc((registro->TecnologiaOrigem.tamanho + 1) * sizeof(char));
     if(registro->TecnologiaOrigem.string == NULL){
+      free(registro->TecnologiaOrigem.string);
       printf("Falha na execução da funcionalidade\n");
       fclose(arquivo);
       return 0;
@@ -341,7 +342,7 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
     fread(registro->TecnologiaOrigem.string, sizeof(char), registro->TecnologiaOrigem.tamanho, arquivo);
     registro->TecnologiaOrigem.string[registro->TecnologiaOrigem.tamanho] = '\0';
   } else {
-    registro->TecnologiaOrigem.string = strdup("NULO"); // imprime NULO se o campo da string for nulo
+    registro->TecnologiaOrigem.string = "NULO"; // imprime NULO se o campo da string for nulo
   }
 
   fread(&registro->TecnologiaDestino.tamanho, sizeof(int), 1, arquivo);
@@ -349,6 +350,7 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
   if (registro->TecnologiaDestino.tamanho != 0) {
     registro->TecnologiaDestino.string = malloc((registro->TecnologiaDestino.tamanho + 1) * sizeof(char));
     if(registro->TecnologiaDestino.string == NULL){
+      free(registro->TecnologiaOrigem.string);
       printf("Falha na execução da funcionalidade\n");
       fclose(arquivo);
       return 0;
@@ -357,7 +359,7 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
     fread(registro->TecnologiaDestino.string, sizeof(char), registro->TecnologiaDestino.tamanho, arquivo);
     registro->TecnologiaDestino.string[registro->TecnologiaDestino.tamanho] = '\0';
   } else {
-    registro->TecnologiaDestino.string = strdup("NULO"); // imprime NULO se o campo da string for nulo
+    registro->TecnologiaDestino.string = "NULO"; // imprime NULO se o campo da string for nulo
   }
 
   // verifica o a quantidade de lixo restante nesse registro e pula o ponteiro do arquivo para o proximo registro
@@ -368,7 +370,14 @@ bool leRegistroNaoNulo(FILE *arquivo, Registro *registro){
       registro->TecnologiaOrigem.tamanho + registro->TecnologiaDestino.tamanho;
   fseek(arquivo, TAM_REGISTRO - tam_bytes, SEEK_CUR);
 
-  if(registro->grupo == -1 || registro->TecnologiaOrigem.tamanho == 0 || registro->TecnologiaDestino.tamanho == 0)
+  if(registro->grupo == -1 || registro->TecnologiaOrigem.tamanho == 0 || registro->TecnologiaDestino.tamanho == 0){
+    if(registro->TecnologiaOrigem.tamanho != 0)
+      free(registro->TecnologiaOrigem.string);
+    
+    if(registro->TecnologiaDestino.tamanho != 0)
+      free(registro->TecnologiaDestino.string);
+      
     return 0;
+  }
   return 1;
 }

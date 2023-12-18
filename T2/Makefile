@@ -11,7 +11,6 @@ all:
 	gcc -c -g ./src/arquivo.c -I ./include -o ./obj/arquivo.o
 	gcc -c -g ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
 	gcc -c -g ./src/registro.c -I ./include -o ./obj/registro.o
-	gcc -c -g ./src/pilha.c -I ./include -o ./obj/pilha.o
 	gcc -c -g ./src/grafo.c -I ./include -o ./obj/grafo.o
 	gcc -c -g ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
 	gcc -g ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
