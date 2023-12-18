@@ -80,6 +80,7 @@ void listaNomes(char *nomeArquivo, int n, char** strings) {
 
 // Função para determinar se o grafo é fortemente conexo
 void fortementeConexo(char* nomeArquivo) {
+    printf("%s\n", nomeArquivo); 
     // Abrir o arquivo binário para leitura
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
