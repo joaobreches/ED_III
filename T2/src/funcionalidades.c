@@ -20,7 +20,7 @@ void recuperaDadosGrafo(char *nomeArquivo, bool transposto) {
 }
 
 // Função para executar a funcionalidade 10
-void listaNomes(char *nomeArquivo, int n) {
+void listaNomes(char *nomeArquivo, int n, char** strings) {
     // abre arquivo binario para leitura
     FILE *arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
@@ -35,10 +35,7 @@ void listaNomes(char *nomeArquivo, int n) {
 
     // Realiza a funcionalidade n vezes
     for (int k = 0; k < n; k++) {
-        char tecnologia[TAM_REGISTRO_FIXO];
-
-        // le o nome da tecnologia a ser buscada
-        scanf("%s", tecnologia);
+        char* tecnologia = strings[k+3];
 
         // limpa a string da tecnologia (remove as aspas)
         int i;
