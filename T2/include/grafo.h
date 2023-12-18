@@ -8,6 +8,7 @@
 typedef struct _vertice Vertice;
 typedef struct _aresta Aresta;
 typedef struct _grafo Grafo;
+typedef struct _pilha Pilha;
 
 typedef struct _aresta {
     int peso;
@@ -29,8 +30,6 @@ typedef struct _grafo {
     Vertice** vertices;
     int numVertices;
 } Grafo;
-
-typedef struct _pilha Pilha;
 
 Grafo inicializarGrafo();
 void liberaGrafo(Grafo grafo);
@@ -55,6 +54,5 @@ Pilha* inicializarPilha(int tamanho);
 int pilhaVazia(Pilha* pilha);
 void empilhar(Pilha* pilha, Vertice* item);
 Vertice* desempilhar(Pilha* pilha);
-
 
 #endif
