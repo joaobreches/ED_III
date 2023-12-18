@@ -3,7 +3,6 @@
 
 #include "registro.h"
 #include "arquivo.h"
-#include "pilha.h"
 #include <limits.h>
 
 typedef struct _vertice Vertice;
